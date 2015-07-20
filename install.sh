@@ -46,14 +46,14 @@ if [ ! -e $HOME/.config/pep8 ];then
 fi
 
 # 一：安装 CMake 命令
-if [ ! -e $CURRENT_DIR/tmp ];then mkdir $CURRENT_DIR/tmp ; fi
-cd $CURRENT_DIR/tmp
+if [ ! -e $HOME/tmp ];then mkdir $HOME/tmp ; fi
+cd $HOME/tmp
 wget http://www.cmake.org/files/v3.2/cmake-3.2.3.tar.gz
 tar -zxvf cmake-3.2.3.tar.gz
 cd cmake-3.2.3
 ./bootstrap
 make && sudo make install
-
+cd $CURRENT_DIR
 
 # 配置 shell
 sudo chmod +x $CURRENT_DIR/b-shell/install-shell.sh

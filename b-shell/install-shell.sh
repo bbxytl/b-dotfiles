@@ -41,4 +41,4 @@ echo " Step 3: source files -----------Shell"
 source $HOME/.bashrc
 source $HOME/.bash_profile
 #source $HOME/.dir_colors
-echo " Step 4: end of install ------------ Shell
+echo " Step 4: end of install ------------ Shell"
