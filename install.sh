@@ -46,6 +46,7 @@ if [ ! -e $HOME/.config/pep8 ];then
 fi
 
 # 一：安装 CMake 命令
+if [ ! -e $CURRENT_DIR/tmp ];then mkdir $CURRENT_DIR/tmp ; fi
 cd $CURRENT_DIR/tmp
 wget http://www.cmake.org/files/v3.2/cmake-3.2.3.tar.gz
 tar -zxvf cmake-3.2.3.tar.gz
@@ -55,23 +56,23 @@ make && sudo make install
 
 
 # 配置 shell
-sudo chmod +x $CURRENT_DIR/b-shell/install.sh
+sudo chmod +x $CURRENT_DIR/b-shell/install-shell.sh
 cd $CURRENT_DIR/b-shell
 ./install-shell.sh
 
 # 配置 tmux
-sudo chmod +x $CURRENT_DIR/b-tmux/install.sh
+sudo chmod +x $CURRENT_DIR/b-tmux/install-tmux.sh
 cd $CURRENT_DIR/b-tmux
 ./install-tmux.sh
 
 # 配置 powerline
-sudo chmod +x $CURRENT_DIR/b-powerline/install.sh
+sudo chmod +x $CURRENT_DIR/b-powerline/install-powerline.sh
 cd $CURRENT_DIR/b-powerline
 ./install-powerline.sh
 
 # 配置 vim
 cd $CURRENT_DIR/b-vim
-sudo chmod +x $CURRENT_DIR/b-vim/install.sh
+sudo chmod +x $CURRENT_DIR/b-vim/install-vim.sh
 ./install-vim.sh
 
 cd $CURRENT_DIR
