@@ -49,7 +49,7 @@ fi
 echo " Step 4: update/install plugins using Vundle -------- Vim"
 system_shell=$SHELLL
 export SHELL="/bin/sh"
-vim -u $HOME/.vimrc.bundles +BundelInstall! +BundleClean +qall
+vim -u $HOME/.vimrc.bundles +BundleInstall! +BundleClean +qall
 export SHELL=$system_shell
 
 echo "Step5: compile YouCompleteMe"
