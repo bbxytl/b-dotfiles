@@ -27,6 +27,7 @@ lnif(){
 today=`date +%Y%m%d`
 bakdot="$HOME/orgConfigBak"
 if [ ! -e $bakdot ];then mkdir $bakdot; fi
+if [ ! -e $HOME/tmp ];then mkdir $HOME/tmp; fi
 
 echo "Step 3-1: bucking up current config --------------- Tmux"
 tmuxbak="$bakdot/ori-tmux.$today"
@@ -36,8 +37,8 @@ for i in $HOME/.tmux.conf $HOME/.tmux.conf.local; do [ -L $i ] && unlink $i ; do
 echo "Step 3-2: install tmux"
 system_shell=$SHELLL
 export SHELL="/bin/sh"
-if [ ! -e $CURRENT_DIR/tmp/libevent.$today ];then mkdir $CURRENT_DIR/tmp/libevent.$today; fi
-cd $CURRENT_DIR/tmp/libevent.$today
+if [ ! -e $HOME/tmp/libevent.$today ];then mkdir $HOME/tmp/libevent.$today; fi
+cd $HOME/tmp/libevent.$today
 wget http://sourceforge.net/projects/levent/files/libevent/libevent-2.0/libevent-2.0.22-stable.tar.gz/download
 tar -xzvf libevent-2.0.22-stable.tar.gz
 cd libevent-2.0.22-stable
@@ -48,8 +49,8 @@ if [ -e /usr/lib64 ];then
     lnif  /usr/local/lib/libevent-2.0.so.5 /usr/lib64/libevent-2.0.so.5
 fi
 cd $CURRENT_DIR
-git clone https://github.com/tmux/tmux.git $CURRENT_DIR/tmp/tmux.$today
-cd $CURRENT_DIR/tmp/tmux.$today
+git clone https://github.com/tmux/tmux.git $HOME/tmp/tmux.$today
+cd $HOME/tmp/tmux.$today
 sh autogen.sh
 ./configure && make && sudo make install
 cd $CURRENT_DIR

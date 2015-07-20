@@ -35,7 +35,8 @@ for i in $HOME/.fonts/PowerlineSymbols.otf $HOME/.config/fontconfig; do [ -L $i 
 echo " Step 2: install ----------powerline"
 
 # 安装 powerline
-cd $CURRENT_DIR/tmp
+if [ ! -e $HOME/tmp ];then mkdir $HOME/tmp; fi
+cd $HOME/tmp
 if [ ! -e powerline ];then mkdir powerline; fi
 cd powerline
 pip install --user git+https://github.com/powerline/powerline

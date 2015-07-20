@@ -18,6 +18,7 @@ BASEDIR=$(dirname $0)
 cd $BASEDIR
 CURRENT_DIR=`pwd`
 
+if [ ! -e $HOME/tmp ];then mkdir $HOME/tmp; fi
 
 # 配置 shell
 sudo chmod +x $CURRENT_DIR/b-shell/install-shell.sh
