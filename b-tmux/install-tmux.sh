@@ -12,6 +12,13 @@
 #
 # ====================================================
 
+if [ $# -ge 1 ];then
+	PASSWD=$1
+else{
+	echo "请输入密码："
+	read PASSWD
+}
+
 
 # 备份原始数据
 BASEDIR=$(dirname $0)
@@ -43,16 +50,16 @@ wget http://sourceforge.net/projects/levent/files/libevent/libevent-2.0/libevent
 tar -xzvf libevent-2.0.22-stable.tar.gz
 cd libevent-2.0.22-stable
 ./configure
-make && make verify && sudo make install
-sudo lnif /usr/local/lib/libevent-2.0.so.5 /usr/lib/libevent-2.0.so.5
+make && make verify && echo $PASSWD | sudo -S make install
+echo $PASSWD | sudo -S ln -sf /usr/local/lib/libevent-2.0.so.5 /usr/lib/libevent-2.0.so.5
 if [ -e /usr/lib64 ];then
-    sudo lnif  /usr/local/lib/libevent-2.0.so.5 /usr/lib64/libevent-2.0.so.5
+    echo $PASSWD | sudo -S ln -sf /usr/local/lib/libevent-2.0.so.5 /usr/lib64/libevent-2.0.so.5
 fi
 cd $CURRENT_DIR
 git clone https://github.com/tmux/tmux.git $HOME/tmp/tmux.$today
 cd $HOME/tmp/tmux.$today
 sh autogen.sh
-./configure && make && sudo make install
+./configure && make && echo $PASSWD | sudo -S make install
 cd $CURRENT_DIR
 export SHELL=$system_shell
 echo "Step 3-2: setting tu symlinks----------Vim"

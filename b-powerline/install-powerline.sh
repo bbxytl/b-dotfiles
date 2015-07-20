@@ -12,6 +12,13 @@
 #
 # ====================================================
 
+if [ $# -ge 1 ];then
+	PASSWD=$1
+else{
+	echo "请输入密码："
+	read PASSWD
+}
+
 
 # 备份原始数据
 BASEDIR=$(dirname $0)
@@ -35,7 +42,7 @@ for i in $HOME/.fonts/PowerlineSymbols.otf $HOME/.config/fontconfig; do [ -L $i 
 echo " Step 2: install ----------powerline"
 
 # 安装 powerline
-if [ ! -e $HOME/tmp ];then mkdir $HOME/tmp; fi
+if [ ! -e $HOME/tmp ];then echo $PASSWD | sudo -S mkdir $HOME/tmp; fi
 cd $HOME/tmp
 if [ ! -e powerline ];then mkdir powerline; fi
 cd powerline

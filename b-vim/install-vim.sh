@@ -13,6 +13,13 @@
 # ====================================================
 
 
+if [ $# -ge 1 ];then
+	PASSWD=$1
+else{
+	echo "请输入密码："
+	read PASSWD
+}
+
 # 一：配置 shell 环境
 # 备份原始数据
 BASEDIR=$(dirname $0)
@@ -67,8 +74,8 @@ fi
 
 echo " Step 5: vim bk and undo dir"
 if [ ! -d /tmp/vimbk ]; then
-    mkdir -p /tmp/vimbk
+    echo $PASSWD | sudo -S  mkdir -p /tmp/vimbk
 fi
 if [ ! -d /tmp/vimundo ];then
-    mkdir -p /tmp/vimundo
+    echo $PASSWD | sudo -S  mkdir -p /tmp/vimundo
 fi
