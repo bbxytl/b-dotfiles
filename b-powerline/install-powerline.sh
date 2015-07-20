@@ -38,7 +38,7 @@ echo " Step 2: install ----------powerline"
 cd $CURRENT_DIR/tmp
 if [ ! -e powerline ];then mkdir powerline; fi
 cd powerline
-pip install --user git+git://github.com/powerline/powerline
+pip install --user git+https://github.com/powerline/powerline
 wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
 wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
 if [ ! -e $HOME/.fonts ];then mkdir .fonts; fi

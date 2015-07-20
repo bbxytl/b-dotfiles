@@ -36,21 +36,23 @@ for i in $HOME/.tmux.conf $HOME/.tmux.conf.local; do [ -L $i ] && unlink $i ; do
 echo "Step 3-2: install tmux"
 system_shell=$SHELLL
 export SHELL="/bin/sh"
-git clone git://levent.git/sourceforge.net/gitroot/levent/libevent $CURRENT_DIR/tmp/libevent.$today
+if [ ! -e $CURRENT_DIR/tmp/libevent.$today ];then mkdir $CURRENT_DIR/tmp/libevent.$today; fi
 cd $CURRENT_DIR/tmp/libevent.$today
-sudo sh autogen.sh
+wget http://sourceforge.net/projects/levent/files/libevent/libevent-2.0/libevent-2.0.22-stable.tar.gz/download
+tar -xzvf libevent-2.0.22-stable.tar.gz
+cd libevent-2.0.22-stable
 ./configure
 make && make verify && sudo make install
 lnif /usr/local/lib/libevent-2.0.so.5 /usr/lib/libevent-2.0.so.5
 if [ -e /usr/lib64 ];then
     lnif  /usr/local/lib/libevent-2.0.so.5 /usr/lib64/libevent-2.0.so.5
 fi
-cd -
-git clone git://git.code.sf.net/p/tmux/tmux-code $CURRENT_DIR/tmp/tmux.$today
+cd $CURRENT_DIR
+git clone https://github.com/tmux/tmux.git $CURRENT_DIR/tmp/tmux.$today
 cd $CURRENT_DIR/tmp/tmux.$today
 sh autogen.sh
 ./configure && make && sudo make install
-cd -
+cd $CURRENT_DIR
 export SHELL=$system_shell
 echo "Step 3-2: setting tu symlinks----------Vim"
 lnif $CURRENT_DIR/tmux.conf $HOME/.tmux.conf
