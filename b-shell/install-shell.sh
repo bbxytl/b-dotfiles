@@ -40,5 +40,5 @@ lnif $CURRENT_DIR/DIR_COLORS $HOME/.dir_colors
 echo " Step 3: source files -----------Shell"
 source $HOME/.bashrc
 source $HOME/.bash_profile
-source $HOME/.dir_colors
+#source $HOME/.dir_colors
 echo " Step 4: end of install ------------ Shell
