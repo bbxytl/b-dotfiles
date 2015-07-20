@@ -39,14 +39,14 @@ system_shell=$SHELLL
 export SHELL="/bin/sh"
 if [ ! -e $HOME/tmp/libevent.$today ];then mkdir $HOME/tmp/libevent.$today; fi
 cd $HOME/tmp/libevent.$today
-wget http://sourceforge.net/projects/levent/files/libevent/libevent-2.0/libevent-2.0.22-stable.tar.gz/download
+wget http://sourceforge.net/projects/levent/files/libevent/libevent-2.0/libevent-2.0.22-stable.tar.gz
 tar -xzvf libevent-2.0.22-stable.tar.gz
 cd libevent-2.0.22-stable
 ./configure
 make && make verify && sudo make install
-lnif /usr/local/lib/libevent-2.0.so.5 /usr/lib/libevent-2.0.so.5
+sudo lnif /usr/local/lib/libevent-2.0.so.5 /usr/lib/libevent-2.0.so.5
 if [ -e /usr/lib64 ];then
-    lnif  /usr/local/lib/libevent-2.0.so.5 /usr/lib64/libevent-2.0.so.5
+    sudo lnif  /usr/local/lib/libevent-2.0.so.5 /usr/lib64/libevent-2.0.so.5
 fi
 cd $CURRENT_DIR
 git clone https://github.com/tmux/tmux.git $HOME/tmp/tmux.$today
