@@ -12,13 +12,16 @@
 #
 # ====================================================
 
-if [ $# -ge 1 ];then
+if [ $# -ge 2 ];then
 	PASSWD=$1
+	PACKGES=$2
 else
 	echo "请输入密码："
 	read PASSWD
+	PACKGES=$HOME/mydotfiles/packges
 fi
 
+if [ -e $PACKGES ];then mkdir $PACKGES;fi
 
 # 一：配置 shell 环境
 # 备份原始数据
@@ -33,8 +36,9 @@ lnif(){
 }
 
 today=`date +%Y%m%d`
-bakdot="$HOME/orgConfigBak"
+bakdot="$HOME/mydotfiles/orgConfigBak"
 if [ ! -e $bakdot ];then mkdir $bakdot; fi
+
 echo " Step 1: backing up current config-----------Shell"
 shellbak="$bakdot/ori-shell.$today"
 if [ ! -e $shellbak ];then mkdir $shellbak; fi

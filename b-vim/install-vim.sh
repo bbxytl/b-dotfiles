@@ -13,12 +13,17 @@
 # ====================================================
 
 
-if [ $# -ge 1 ];then
+if [ $# -ge 2 ];then
 	PASSWD=$1
+	PACKGES=$2
 else
 	echo "请输入密码："
 	read PASSWD
+	PACKGES=$HOME/mydotfiles/packges
 fi
+
+if [ -e $PACKGES ];then mkdir $PACKGES;fi
+
 # 一：配置 shell 环境
 # 备份原始数据
 BASEDIR=$(dirname $0)
@@ -32,8 +37,12 @@ lnif(){
 }
 
 today=`date +%Y%m%d`
-bakdot="$HOME/orgConfigBak"
+bakdot="$HOME/mydotfiles/orgConfigBak"
+tmp="$HOME/mydotfiles/tmp"
+vimpacks="$PACKGES/vim"
 if [ ! -e $bakdot ];then mkdir $bakdot; fi
+if [ ! -e $tmp ];then mkdir $tmp; fi
+if [ ! -e $vimpacks ];then mkdir $vimpacks; fi
 
 echo " Step 1: bucking up current config --------------- Vim"
 vimbak="$bakdot/ori-vim.$today"
@@ -43,11 +52,11 @@ for i in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles; do [ -L $i 
 echo " Step 2: setting tu symlinks----------Vim"
 lnif $CURRENT_DIR/vimrc $HOME/.vimrc
 lnif $CURRENT_DIR/vimrc.bundles $HOME/.vimrc.bundles
-lnif "$CURRENT_DIR" "$HOME/.vim"
+lnif "$vimpacks" "$HOME/.vim"
 echo " Step 3: install vundle"
-if [ ! -e $CURRENT_DIR/bundle/vundle ]; then
+if [ ! -e $vimpacks/bundle/vundle ]; then
     echo "Installing Vundle"
-    git clone https://github.com/gmarik/vundle.git $CURRENT_DIR/bundle/vundle
+    git clone https://github.com/gmarik/vundle.git $vimpacks/bundle/vundle
 else
     echo "Upgrde Vundle"
     cd "$HOME/.vim/bundle/vundle" && git pull origin master
@@ -62,7 +71,7 @@ echo "Step5: compile YouCompleteMe"
 echo "It will take a long time, just be patient!"
 echo "If error,you need to compile it yourself"
 echo "cd $CURRENT_DIR/bundle/YouCompleteMe/ && bash -x install.sh --clang-completer"
-cd $CURRENT_DIR/bundle/YouCompleteMe/
+cd $vimpacks/bundle/YouCompleteMe/
 if [ `which clang` ]   # check system clang
 then
     bash -x install.sh --clang-completer --system-libclang   # use system clang

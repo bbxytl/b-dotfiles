@@ -12,13 +12,16 @@
 #
 # ====================================================
 
-if [ $# -ge 1 ];then
+if [ $# -ge 2 ];then
 	PASSWD=$1
+	PACKGES=$2
 else
 	echo "请输入密码："
 	read PASSWD
+	PACKGES=$HOME/mydotfiles/packges
 fi
 
+if [ -e $PACKGES ];then mkdir $PACKGES;fi
 
 # 备份原始数据
 BASEDIR=$(dirname $0)
@@ -32,9 +35,10 @@ lnif(){
 }
 
 today=`date +%Y%m%d`
-bakdot="$HOME/orgConfigBak"
+bakdot="$HOME/mydotfiles/orgConfigBak"
+tmp="$HOME/mydotfiles/tmp"
 if [ ! -e $bakdot ];then mkdir $bakdot; fi
-if [ ! -e $HOME/tmp ];then mkdir $HOME/tmp; fi
+if [ ! -e $tmp ];then mkdir $tmp; fi
 
 echo "Step 3-1: bucking up current config --------------- Tmux"
 tmuxbak="$bakdot/ori-tmux.$today"
@@ -48,8 +52,8 @@ export SHELL="/bin/sh"
 install=true
 if locate *libevent*2*>/dev/null 2>&1 ;then install=false;fi
 if $install;then
-    if [ ! -e $HOME/tmp/libevent.$today ];then mkdir $HOME/tmp/libevent.$today; fi
-    cd $HOME/tmp/libevent.$today
+    if [ ! -e $tmp/libevent.$today ];then mkdir $tmp/libevent.$today; fi
+    cd $tmp/libevent.$today
     wget http://sourceforge.net/projects/levent/files/libevent/libevent-2.0/libevent-2.0.22-stable.tar.gz
     tar -xzvf libevent-2.0.22-stable.tar.gz
     cd libevent-2.0.22-stable
@@ -65,8 +69,8 @@ cd $CURRENT_DIR
 install=true
 if locate *tmux*>/dev/null 2>&1 ;then install=false;fi
 if $install;then
-    git clone https://github.com/tmux/tmux.git $HOME/tmp/tmux.$today
-    cd $HOME/tmp/tmux.$today
+    git clone https://github.com/tmux/tmux.git $tmp/tmux.$today
+    cd $tmp/tmux.$today
     sh autogen.sh
     ./configure && make && echo $PASSWD | sudo -S make install
 fi

@@ -65,24 +65,32 @@ if $install;then
     cd $CURRENT_DIR
 fi
 
+cd $HOME
+mkdir $HOME/mydotfiles
+mv $CURRENT_DIR $HOME/mydotfiles/b-dotfiles
+PACKGES=$HOME/mydotfiles/packges
+mkdir $PACKGES
+CURRENT_DIR="$HOME/mydotfiles/b-dotfiles"
+cd $CURRENT_DIR
+
 # 配置 shell
 echo $PASSWD | sudo -S chmod +x $CURRENT_DIR/b-shell/install-shell.sh
 cd $CURRENT_DIR/b-shell
-./install-shell.sh $PASSWD
+./install-shell.sh $PASSWD  $PACKGES
 
 # 配置 tmux
 echo $PASSWD | sudo -S chmod +x $CURRENT_DIR/b-tmux/install-tmux.sh
 cd $CURRENT_DIR/b-tmux
-./install-tmux.sh $PASSWD
+./install-tmux.sh $PASSWD  $PACKGES
 
 # 配置 powerline
 echo $PASSWD | sudo -S chmod +x $CURRENT_DIR/b-powerline/install-powerline.sh
 cd $CURRENT_DIR/b-powerline
-./install-powerline.sh $PASSWD
+./install-powerline.sh $PASSWD  $PACKGES
 
 # 配置 vim
 cd $CURRENT_DIR/b-vim
 echo $PASSWD | sudo -S chmod +x $CURRENT_DIR/b-vim/install-vim.sh
-./install-vim.sh $PASSWD
+./install-vim.sh $PASSWD  $PACKGES
 
 cd $CURRENT_DIR
