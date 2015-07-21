@@ -52,9 +52,13 @@ echo $PASSWD | sudo -S chmod +x $CURRENT_DIR/b-man-zh/install-man-zh.sh
 ./install-man-zh.sh $PASSWD  $PACKGES
 
 
+# others
+cd $CURRENT_DIR/others
+echo $PASSWD | sudo -S chmod +x $CURRENT_DIR/others/install-others.sh
+./install-others.sh $PASSWD  $PACKGES
+
 # 配置 vim
 cd $CURRENT_DIR/b-vim
 echo $PASSWD | sudo -S chmod +x $CURRENT_DIR/b-vim/install-vim.sh
 ./install-vim.sh $PASSWD  $PACKGES
 
-cd $CURRENT_DIR

@@ -81,10 +81,10 @@ alias volume="amixer get Master | sed '1,4 d' | cut -d [ -f 2 | cut -d ] -f 1"
 #alias cman='man -M /usr/local/zhman/share/man/zh_CN'
 
 alias tmux='tmux -2'
-alias tlshutdown='echo "Viki@long" | sudo -S shutdown -h now'
-alias tlreboot='echo "Viki@long" | sudo -S reboot'
+alias tlshutdown='sudo shutdown -h now'
+alias tlreboot='sudo reboot'
 
-alias tlinit='echo "Viki@long" | sudo -S mount -t vboxsf VBoxShare /mnt/WinShare;
+alias tlinit='sudo mount -t vboxsf VBoxShare /mnt/WinShare;
 if [ $? -ne 0 ];then
     echo " mount VBoxShare share dir error!"
 fi

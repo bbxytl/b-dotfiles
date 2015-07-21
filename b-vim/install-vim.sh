@@ -22,7 +22,7 @@ else
 	PACKGES=$HOME/mydotfiles/packges
 fi
 
-if [ -e $PACKGES ];then mkdir $PACKGES;fi
+if [ ! -e $PACKGES ];then mkdir $PACKGES;fi
 
 # 一：配置 shell 环境
 # 备份原始数据

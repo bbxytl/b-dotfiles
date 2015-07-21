@@ -21,7 +21,7 @@ else
 	PACKGES=$HOME/mydotfiles/packges
 fi
 
-if [ -e $PACKGES ];then mkdir $PACKGES;fi
+if [ ! -e $PACKGES ];then mkdir $PACKGES;fi
 
 # 一：配置 shell 环境
 # 备份原始数据
@@ -42,12 +42,13 @@ if [ ! -e $bakdot ];then mkdir $bakdot; fi
 echo " Step 1: backing up current config-----------Shell"
 shellbak="$bakdot/ori-shell.$today"
 if [ ! -e $shellbak ];then mkdir $shellbak; fi
-for i in $HOME/.bashrc $HOME/.bash_profile $HOME/.dir_colors; do [ -e $i ] && [ ! -L $i ] && mv $i $shellbak/$i; done
-for i in $HOME/.bashrc $HOME/.bash_profile $HOME/.dir_colors; do [ -L $i ] && unlink $i ; done
+for i in $HOME/.bashrc $HOME/.bash_profile $HOME/.dir_colors $HOME/.inputrc; do [ -e $i ] && [ ! -L $i ] && mv $i $shellbak/$i; done
+for i in $HOME/.bashrc $HOME/.bash_profile $HOME/.dir_colors $HOME/.inputrc; do [ -L $i ] && unlink $i ; done
 echo " Step 2: setting tu symlinks----------Shell"
 lnif $CURRENT_DIR/bashrc $HOME/.bashrc
 lnif $CURRENT_DIR/bash_profile $HOME/.bash_profile
 lnif $CURRENT_DIR/DIR_COLORS $HOME/.dir_colors
+lnif $CURRENT_DIR/inputrc $HOME/.inputrc
 echo " Step 3: source files -----------Shell"
 source $HOME/.bashrc
 source $HOME/.bash_profile

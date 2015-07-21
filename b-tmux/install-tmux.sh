@@ -21,7 +21,7 @@ else
 	PACKGES=$HOME/mydotfiles/packges
 fi
 
-if [ -e $PACKGES ];then mkdir $PACKGES;fi
+if [ ! -e $PACKGES ];then mkdir $PACKGES;fi
 
 # 备份原始数据
 BASEDIR=$(dirname $0)
