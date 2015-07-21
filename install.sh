@@ -65,11 +65,12 @@ if $install;then
     cd $CURRENT_DIR
 fi
 
+today=`date +%Y%m%d`
 cd $HOME
-mkdir $HOME/mydotfiles
+if [ ! -e $HOME/mydotfiles ];then mkdir $HOME/mydotfiles;else mkdir $HOME/mydotfiles.$today;fi
 mv $CURRENT_DIR $HOME/mydotfiles/b-dotfiles
 PACKGES=$HOME/mydotfiles/packges
-mkdir $PACKGES
+if [ ! -e $PACKGES ];then mkdir $PACKGES;else mkdir $PACKGES.$today;fi
 CURRENT_DIR="$HOME/mydotfiles/b-dotfiles"
 cd $CURRENT_DIR
 
