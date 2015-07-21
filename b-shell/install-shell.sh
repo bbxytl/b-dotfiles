@@ -14,10 +14,10 @@
 
 if [ $# -ge 1 ];then
 	PASSWD=$1
-else{
+else
 	echo "请输入密码："
 	read PASSWD
-}
+fi
 
 
 # 一：配置 shell 环境

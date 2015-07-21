@@ -14,10 +14,10 @@
 
 if [ $# -ge 1 ];then
 	PASSWD=$1
-else{
+else
 	echo "请输入密码："
 	read PASSWD
-}
+fi
 
 
 # 备份原始数据
@@ -44,22 +44,45 @@ for i in $HOME/.tmux.conf $HOME/.tmux.conf.local; do [ -L $i ] && unlink $i ; do
 echo "Step 3-2: install tmux"
 system_shell=$SHELLL
 export SHELL="/bin/sh"
-if [ ! -e $HOME/tmp/libevent.$today ];then mkdir $HOME/tmp/libevent.$today; fi
-cd $HOME/tmp/libevent.$today
-wget http://sourceforge.net/projects/levent/files/libevent/libevent-2.0/libevent-2.0.22-stable.tar.gz
-tar -xzvf libevent-2.0.22-stable.tar.gz
-cd libevent-2.0.22-stable
-./configure
-make && make verify && echo $PASSWD | sudo -S make install
-echo $PASSWD | sudo -S ln -sf /usr/local/lib/libevent-2.0.so.5 /usr/lib/libevent-2.0.so.5
-if [ -e /usr/lib64 ];then
-    echo $PASSWD | sudo -S ln -sf /usr/local/lib/libevent-2.0.so.5 /usr/lib64/libevent-2.0.so.5
+
+install_32=false
+install_64=false
+if  ls /usr/lib/libevent-2.0.so.5 >/dev/null 2>&1 ;then
+    install_32=true
 fi
+if  ls /usr/lib64/libevent-2.0.so.5 >/dev/null 2>&1 ;then
+    install_64=true
+fi
+if [ ! [ $install_32 || $install_64 ] ];then
+    if [ ! -e $HOME/tmp/libevent.$today ];then mkdir $HOME/tmp/libevent.$today; fi
+    cd $HOME/tmp/libevent.$today
+    wget http://sourceforge.net/projects/levent/files/libevent/libevent-2.0/libevent-2.0.22-stable.tar.gz
+    tar -xzvf libevent-2.0.22-stable.tar.gz
+    cd libevent-2.0.22-stable
+    ./configure
+    make && make verify && echo $PASSWD | sudo -S make install
+    echo $PASSWD | sudo -S ln -sf /usr/local/lib/libevent-2.0.so.5 /usr/lib/libevent-2.0.so.5
+    if [ -e /usr/lib64 ];then
+        echo $PASSWD | sudo -S ln -sf /usr/local/lib/libevent-2.0.so.5 /usr/lib64/libevent-2.0.so.5
+    fi
+fi
+
 cd $CURRENT_DIR
-git clone https://github.com/tmux/tmux.git $HOME/tmp/tmux.$today
-cd $HOME/tmp/tmux.$today
-sh autogen.sh
-./configure && make && echo $PASSWD | sudo -S make install
+install_32=false
+install_64=false
+if  ls /usr/bin/tmux >/dev/null 2>&1 ;then
+    install_32=true
+fi
+if  ls /usr/local/bin/tmux >/dev/null 2>&1 ;then
+    install_64=true
+fi
+if [ ! [ $install_32 || $install_64 ] ];then
+    git clone https://github.com/tmux/tmux.git $HOME/tmp/tmux.$today
+    cd $HOME/tmp/tmux.$today
+    sh autogen.sh
+    ./configure && make && echo $PASSWD | sudo -S make install
+fi
+
 cd $CURRENT_DIR
 export SHELL=$system_shell
 echo "Step 3-2: setting tu symlinks----------Vim"
