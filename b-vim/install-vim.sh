@@ -19,7 +19,6 @@ else
 	echo "请输入密码："
 	read PASSWD
 fi
-
 # 一：配置 shell 环境
 # 备份原始数据
 BASEDIR=$(dirname $0)

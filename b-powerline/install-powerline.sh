@@ -42,11 +42,15 @@ for i in $HOME/.fonts/PowerlineSymbols.otf $HOME/.config/fontconfig; do [ -L $i 
 echo " Step 2: install ----------powerline"
 
 # 安装 powerline
-if [ ! -e $HOME/tmp ];then echo $PASSWD | sudo -S mkdir $HOME/tmp; fi
-cd $HOME/tmp
-if [ ! -e powerline ];then mkdir powerline; fi
-cd powerline
-pip install --user git+https://github.com/powerline/powerline
+install=true
+if locate *powerline* >/dev/null 2>&1;then install=false;fi
+if install;then
+    if [ ! -e $HOME/tmp ];then echo $PASSWD | sudo -S mkdir $HOME/tmp; fi
+    cd $HOME/tmp
+    if [ ! -e powerline ];then mkdir powerline; fi
+    cd powerline
+    pip install --user git+https://github.com/powerline/powerline
+fi
 wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
 wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
 if [ ! -e $HOME/.fonts ];then mkdir .fonts; fi

@@ -47,16 +47,14 @@ if [ ! -e $HOME/.config/pep8 ];then
 	echo -e pep8str > $HOME/.config/pep8
 fi
 
-# 一：安装 CMake 命令
-install_root=false
-install_user=false
-if ls /usr/share/doc/cmake.3.2.* >/dev/null 2>&1;then
-    install_root=true
-fi
-if ls /usr/local/share/doc/cmake.3.2.* >/dev/null 2>&1;then
-    install_user=true
-fi
-if [ ! [$install_root || $install_user ] ];then
+# 安装 locate 查找包
+echo $PASSWD | sudo -S  yum install mlocate.x86_64
+echo $PASSWD | sudo -S  updatedb
+
+# 安装 CMake 命令
+install=true
+if locate *cmake*3*2*>/dev/null 2>&1 ;then install=false;fi
+if $install;then
     if [ ! -e $HOME/tmp ];then mkdir $HOME/tmp ; fi
     cd $HOME/tmp
     wget http://www.cmake.org/files/v3.2/cmake-3.2.3.tar.gz

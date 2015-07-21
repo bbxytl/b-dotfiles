@@ -45,15 +45,9 @@ echo "Step 3-2: install tmux"
 system_shell=$SHELLL
 export SHELL="/bin/sh"
 
-install_32=false
-install_64=false
-if  ls /usr/lib/libevent-2.0.so.5 >/dev/null 2>&1 ;then
-    install_32=true
-fi
-if  ls /usr/lib64/libevent-2.0.so.5 >/dev/null 2>&1 ;then
-    install_64=true
-fi
-if [ ! [ $install_32 || $install_64 ] ];then
+install=true
+if locate *libevent*2*>/dev/null 2>&1 ;then install=false;fi
+if $install;then
     if [ ! -e $HOME/tmp/libevent.$today ];then mkdir $HOME/tmp/libevent.$today; fi
     cd $HOME/tmp/libevent.$today
     wget http://sourceforge.net/projects/levent/files/libevent/libevent-2.0/libevent-2.0.22-stable.tar.gz
@@ -68,15 +62,9 @@ if [ ! [ $install_32 || $install_64 ] ];then
 fi
 
 cd $CURRENT_DIR
-install_32=false
-install_64=false
-if  ls /usr/bin/tmux >/dev/null 2>&1 ;then
-    install_32=true
-fi
-if  ls /usr/local/bin/tmux >/dev/null 2>&1 ;then
-    install_64=true
-fi
-if [ ! [ $install_32 || $install_64 ] ];then
+install=true
+if locate *tmux*>/dev/null 2>&1 ;then install=false;fi
+if $install;then
     git clone https://github.com/tmux/tmux.git $HOME/tmp/tmux.$today
     cd $HOME/tmp/tmux.$today
     sh autogen.sh
