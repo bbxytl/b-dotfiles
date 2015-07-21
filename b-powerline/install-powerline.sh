@@ -42,7 +42,7 @@ if [ ! -e $bakdot ];then mkdir $bakdot; fi
 echo " Step 1: backing up current config-----------powerline"
 powerlinebak="$bakdot/ori-powerline.$today"
 if [ ! -e $powerlinebak ];then mkdir $powerlinebak; fi
-for i in $HOME/.fonts/PowerlineSymbols.otf $HOME/.config/fontconfig; do [ -e $i ] && [ ! -L $i ] && mv $i $powerlinebak/$i; done
+for i in $HOME/.fonts/PowerlineSymbols.otf $HOME/.config/fontconfig; do [ -e $i ] && [ ! -L $i ] && mv $i $powerlinebak/; done
 for i in $HOME/.fonts/PowerlineSymbols.otf $HOME/.config/fontconfig; do [ -L $i ] && unlink $i ; done
 echo " Step 2: install ----------powerline"
 

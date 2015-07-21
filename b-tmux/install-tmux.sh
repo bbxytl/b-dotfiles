@@ -43,7 +43,7 @@ if [ ! -e $tmp ];then mkdir $tmp; fi
 echo "Step 3-1: bucking up current config --------------- Tmux"
 tmuxbak="$bakdot/ori-tmux.$today"
 if [ ! -e $tmuxbak ];then mkdir $tmuxbak; fi
-for i in $HOME/.tmux.conf $HOME/.tmux.conf.local; do [ -e $i ] && [ ! -L $i ] && mv $i $tmuxbak/$i; done
+for i in $HOME/.tmux.conf $HOME/.tmux.conf.local; do [ -e $i ] && [ ! -L $i ] && mv $i $tmuxbak/; done
 for i in $HOME/.tmux.conf $HOME/.tmux.conf.local; do [ -L $i ] && unlink $i ; done
 echo "Step 3-2: install tmux"
 system_shell=$SHELLL
