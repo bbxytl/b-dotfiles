@@ -77,7 +77,7 @@ fi
 
 cd $CURRENT_DIR
 export SHELL=$system_shell
-echo "Step 3-2: setting tu symlinks----------Vim"
+echo "Step 3-2: setting tu symlinks----------Tmux"
 lnif $CURRENT_DIR/tmux.conf $HOME/.tmux.conf
 lnif $CURRENT_DIR/tmux.conf.local $HOME/.tmux.conf.local
 cd $CURRENT_DIR
