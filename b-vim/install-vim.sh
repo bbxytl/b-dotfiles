@@ -47,12 +47,13 @@ if [ ! -e $vimpacks ];then mkdir $vimpacks; fi
 echo " Step 1: bucking up current config --------------- Vim"
 vimbak="$bakdot/ori-vim.$today"
 if [ ! -e $vimbak ];then mkdir $vimbak; fi
-for i in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.indexer_files; do [ -e $i ] && [ ! -L $i ] && mv $i $vimbak/$i; done
-for i in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.indexer_files; do [ -L $i ] && unlink $i ; done
+for i in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.indexer_files $HOME/.ctags; do [ -e $i ] && [ ! -L $i ] && mv $i $vimbak/$i; done
+for i in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.indexer_files $HOME/.ctags; do [ -L $i ] && unlink $i ; done
 echo " Step 2: setting tu symlinks----------Vim"
 lnif $CURRENT_DIR/vimrc $HOME/.vimrc
 lnif $CURRENT_DIR/vimrc.bundles $HOME/.vimrc.bundles
 lnif $CURRENT_DIR/indexer_files $HOME/.indexer_files
+lnif $CURRENT_DIR/ctags  $HOME/.ctags
 lnif "$vimpacks" "$HOME/.vim"
 echo " Step 3: install vundle"
 if [ ! -e $vimpacks/bundle/vundle ]; then

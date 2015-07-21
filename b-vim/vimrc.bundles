@@ -536,6 +536,107 @@ Bundle 'majutsushi/tagbar'
 nmap <F9> :TagbarToggle<CR>
 "nmap <leader>m :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
+" cpp类型
+let g:tagbar_type_cpp = {
+    \ 'kinds' : [
+        \ 'd:macros:1',
+        \ 'g:enums',
+        \ 't:typedefs:0:0',
+        \ 'e:enumerators:0:0',
+        \ 'n:namespaces',
+        \ 'c:classes',
+        \ 's:structs',
+        \ 'u:unions',
+        \ 'f:functions',
+        \ 'm:members:0:0',
+        \ 'v:global:0:0',
+        \ 'x:external:0:0',
+        \ 'l:local:0:0'
+     \ ],
+     \ 'sro'        : '::',
+     \ 'kind2scope' : {
+         \ 'g' : 'enum',
+         \ 'n' : 'namespace',
+         \ 'c' : 'class',
+         \ 's' : 'struct',
+         \ 'u' : 'union'
+     \ },
+     \ 'scope2kind' : {
+         \ 'enum'      : 'g',
+         \ 'namespace' : 'n',
+         \ 'class'     : 'c',
+         \ 'struct'    : 's',
+         \ 'union'     : 'u'
+     \ }
+\ }
+" markdown
+let g:tagbar_type_markdown = {
+    \ 'ctagstype' : 'markdown',
+    \ 'kinds' : [
+        \ 'h:Heading_L1',
+        \ 'i:Heading_L2',
+        \ 'k:Heading_L3'
+    \ ]
+\ }
+" CSS
+let g:tagbar_type_css = {
+\ 'ctagstype' : 'Css',
+    \ 'kinds'     : [
+        \ 'c:classes',
+        \ 's:selectors',
+        \ 'i:identities'
+    \ ]
+\ }
+" Makefile (targets)
+let g:tagbar_type_make = {
+            \ 'kinds':[
+                \ 'm:macros',
+                \ 't:targets'
+            \ ]
+\}
+" obj-c
+let g:tagbar_type_objc = {
+    \ 'ctagstype' : 'ObjectiveC',
+    \ 'kinds'     : [
+        \ 'i:interface',
+        \ 'I:implementation',
+        \ 'p:Protocol',
+        \ 'm:Object_method',
+        \ 'c:Class_method',
+        \ 'v:Global_variable',
+        \ 'F:Object field',
+        \ 'f:function',
+        \ 'p:property',
+        \ 't:type_alias',
+        \ 's:type_structure',
+        \ 'e:enumeration',
+        \ 'M:preprocessor_macro',
+    \ ],
+    \ 'sro'        : ' ',
+    \ 'kind2scope' : {
+        \ 'i' : 'interface',
+        \ 'I' : 'implementation',
+        \ 'p' : 'Protocol',
+        \ 's' : 'type_structure',
+        \ 'e' : 'enumeration'
+    \ },
+    \ 'scope2kind' : {
+        \ 'interface'      : 'i',
+        \ 'implementation' : 'I',
+        \ 'Protocol'       : 'p',
+        \ 'type_structure' : 's',
+        \ 'enumeration'    : 'e'
+    \ }
+\ }
+" R
+let g:tagbar_type_r = {
+    \ 'ctagstype' : 'r',
+    \ 'kinds'     : [
+        \ 'f:Functions',
+        \ 'g:GlobalVariables',
+        \ 'v:FunctionVariables',
+    \ ]
+\ }
 " for ruby
 let g:tagbar_type_ruby = {
     \ 'kinds' : [
@@ -685,6 +786,7 @@ map <leader><F4> :AS<CR>
 " ======================= vim-scripts/indexer.tar.gz ==========================
 " 周期性针对这个工程自动生成标签文件，并通知 vim 引人该标签文件
 Bundle 'vim-scripts/indexer.tar.gz'
+" 如果出问题了则使用：
 " cd ~/.vim/bundle/
 " git clone git@github.com:vim-scripts/indexer.tar.gz
 

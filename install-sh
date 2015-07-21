@@ -31,6 +31,7 @@ if [ ! -e $PACKGES ];then mkdir $PACKGES;else mkdir $PACKGES.$today;fi
 CURRENT_DIR="$HOME/mydotfiles/b-dotfiles"
 cd $CURRENT_DIR
 
+
 # 配置 shell
 echo $PASSWD | sudo -S chmod +x $CURRENT_DIR/b-shell/install-shell.sh
 cd $CURRENT_DIR/b-shell

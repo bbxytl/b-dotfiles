@@ -21,6 +21,19 @@ CURRENT_DIR=`pwd`
 echo " 安装环境，过程中需要输入密码。。。。。请输入："
 read PASSWD
 
+
+today=`date +%Y%m%d`
+cd $HOME
+if [ ! -e $HOME/mydotfiles ];then mkdir $HOME/mydotfiles;else mkdir $HOME/mydotfiles.$today;fi
+mv $CURRENT_DIR $HOME/mydotfiles/b-dotfiles
+PACKGES=$HOME/mydotfiles/packges
+if [ ! -e $PACKGES ];then mkdir $PACKGES;else mkdir $PACKGES.$today;fi
+CURRENT_DIR="$HOME/mydotfiles/b-dotfiles"
+cd $CURRENT_DIR
+
+tmp="$HOME/mydotfiles/tmp"
+if [ ! -e $tmp ];then mkdir $tmp; fi
+
 system_shell=$SHELLL
 export SHELL="/bin/sh"
 
@@ -58,8 +71,8 @@ echo $PASSWD | sudo -S  updatedb
 install=true
 if locate *cmake*3*2*>/dev/null 2>&1 ;then install=false;fi
 if $install;then
-    if [ ! -e $HOME/tmp ];then mkdir $HOME/tmp ; fi
-    cd $HOME/tmp
+    if [ ! -e $tmp ];then mkdir $tmp ; fi
+    cd $tmp
     wget http://www.cmake.org/files/v3.2/cmake-3.2.3.tar.gz
     tar -zxvf cmake-3.2.3.tar.gz
     cd cmake-3.2.3
