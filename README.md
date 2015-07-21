@@ -19,5 +19,10 @@ sh install.sh
 - 在安装 YouCompleteMe 时，如果失败，请查看 **[文档][2]** ;
 - 每一个文件夹内的都可单独配置，单要先使用 `./config` 进行配置;
 
+## 配置学习
+- 本配置的部分可直接查看 vimrc 和 vimrc.bundles 进行查看
+- 其他学习推荐：[use_vim_as_ide][3]
+
 [1]: https://github.com/wklken/k-vim
 [2]: https://github.com/Valloric/YouCompleteMe
+[3]: https://github.com/bbxytl/use_vim_as_ide

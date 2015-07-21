@@ -158,6 +158,11 @@ set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusl
 set number 		" 显示行号
 set nowrap		" 取消换行
 
+" 设置快捷键将选中文本块复制至系统剪贴板
+vnoremap <leader>y "+y
+" 设置快捷键将系统剪贴板内容粘贴至 vim
+nmap <leader>p "+p
+
 set showmatch	" 括号配对情况,跳转并高亮一下匹配的括号
 " How many tenths of a second to blink when matching brackets
 set matchtime=2
@@ -169,6 +174,7 @@ set ignorecase		" 搜索时忽略大小写
 set smartcase     	" 有一个或以上大写字母时仍大小写敏感
 
 " ======================= 代码折叠
+" za，打开或关闭当前折叠；zM，关闭所有折叠；zR，打开所有折叠。
 set foldenable
 " 折叠方法
 " manual    手工折叠
@@ -301,7 +307,7 @@ nnoremap gj j
 " ===================== F1 - F12 设置
 " F1 废弃这个键,防止调出系统帮助
 " F2 行号开关，用于鼠标复制代码用
-" F3 
+" F3 显示/关闭 树形资源管理器
 " F4 换行开关
 " F5 粘贴模式paste_mode开关,用于有格式的代码粘贴
 " F6 语法开关，关闭语法可以加快大文件的展示
@@ -331,7 +337,7 @@ nnoremap <F2> :call HideNumber()<CR>
 au InsertLeave * set nopaste
 
 nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
-nnoremap <F3> <Leader>n
+map <F3> <leader>n
 
 " =================== 分屏窗口移动
 map <C-j> <C-W>j

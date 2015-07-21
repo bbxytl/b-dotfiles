@@ -68,6 +68,6 @@ if $install;then
     cd $CURRENT_DIR
 fi
 
-
+echo $PASSWD | sudo -S yum install ctags
 
 export SHELL=$system_shell

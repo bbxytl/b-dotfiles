@@ -70,11 +70,25 @@ Bundle 'gmarik/vundle'
 " Bundle 'ap/vim-css-color'				" for css color
 " Bundle 'asins/vimcdoc'				" 中文 vim 帮助
 
+" C/C++ 配置
+" Bundle 'Mizuchi/STL-Syntax'           " 增加对 STL\C++14等的C++语法高亮
+" Bundle 'protodef'                     " 由接口快速生成实现框架
+" Bundle 'FSwitch'                      " 依赖项
+" 周期性针对这个工程自动生成标签文件，并通知 vim 引人该标签文件
+"   Bundle 'indexer'
+" 依赖项
+"   Bundle 'DfrankUtil'
+"   Bundle 'vimprj'
+" 增加对 STL\C++14等的C++语法高亮
+"   Bundle 'vim-scripts/a.vim'
+" 缩进标识
+"   Bundle 'nathanaelkane/vim-indent-guides'
 
 " ============== vim-scripts ==================
 "   插件来自 vim-scripts，直接写插件名就行了
 "  Bundle 'L9'
 "  Bundle 'FuzzyFinder'
+
 
 " ============== 自己的git库插件 ==================
 "   如使用自己的git库的插件，像下面这样做
@@ -265,6 +279,39 @@ Bundle 'vim-scripts/matchit.zip'
 " '[a-zA-Z] go to mark
 Bundle "kshenoy/vim-signature"
 """"""
+" 书签设定。mx，设定/取消当前行名为 x 的标签；m,，自动设定下一个可用书签名，
+"   前面提说，独立书签名是不能重复的，在你已经有了多个独立书签，
+"   当想再设置书签时，需要记住已经设定的所有书签名，否则很可能会将已有的书签冲掉，这可不好，
+"   所以，vim-signature 为你提供了 m, 快捷键，
+"   自动帮你选定下一个可用独立书签名；mda，删除当前文件中所有独立书签。
+" 书签罗列。ms，罗列出当前文件中所有书签，选中后回车可直接跳转；
+" 书签跳转。mn，按行号前后顺序，跳转至下个独立书签；
+"   mp，按行号前后顺序，跳转至前个独立书签。
+"   书签跳转方式很多，除了这里说的行号前后顺序，
+"   还可以基于书签名字母顺序跳转、分类书签同类跳转、分类书签不同类间跳转等等。
+let g:SignatureMap = {
+        \ 'Leader'             :  "m",
+        \ 'PlaceNextMark'      :  "m,",
+        \ 'ToggleMarkAtLine'   :  "m.",
+        \ 'PurgeMarksAtLine'   :  "m-",
+        \ 'DeleteMark'         :  "dm",
+        \ 'PurgeMarks'         :  "mda",
+        \ 'PurgeMarkers'       :  "m<BS>",
+        \ 'GotoNextLineAlpha'  :  "']",
+        \ 'GotoPrevLineAlpha'  :  "'[",
+        \ 'GotoNextSpotAlpha'  :  "`]",
+        \ 'GotoPrevSpotAlpha'  :  "`[",
+        \ 'GotoNextLineByPos'  :  "]'",
+        \ 'GotoPrevLineByPos'  :  "['",
+        \ 'GotoNextSpotByPos'  :  "mn",
+        \ 'GotoPrevSpotByPos'  :  "mp",
+        \ 'GotoNextMarker'     :  "[+",
+        \ 'GotoPrevMarker'     :  "[-",
+        \ 'GotoNextMarkerAny'  :  "]=",
+        \ 'GotoPrevMarkerAny'  :  "[=",
+        \ 'ListLocalMarks'     :  "ms",
+        \ 'ListLocalMarkers'   :  "m?"
+        \ }"]]]']"}
 
 
 " ======================= 文本对象 ==========================
@@ -361,7 +408,7 @@ let g:ctrlsf_mapping = {
     \ "prev"  : "<C-K>",
     \ "pquit" : "q",
     \ }
-
+nnoremap <leader>sp :CtrlSF<CR>
 
 " ======================= tpope/vim-fugitive ==========================
 " git.  git操作还是习惯命令行,vim里面处理简单diff编辑操作
@@ -598,9 +645,76 @@ Bundle 'nono/jquery.vim'
 Bundle 'ap/vim-css-color'
 """"""
 
-		
 " ======================= asins/vimcdoc ==========================
 " 中文 vim 帮助
 Bundle 'asins/vimcdoc'
 """"""
 
+" ################### C/C++ 支持 ####################################
+" ======================= Mizuchi/STL-Syntax ==========================
+" 增加对 STL\C++14等的C++语法高亮
+Bundle 'Mizuchi/STL-Syntax'
+""""""
+
+
+" ======================= nathanaelkane/vim-indent-guides ==========================
+" 缩进标识
+Bundle 'nathanaelkane/vim-indent-guides'
+""""""
+" 随 vim 自启动
+ let g:indent_guides_enable_on_vim_startup=1
+" 从第二层开始可视化显示缩进
+let g:indent_guides_start_level=2
+" 色块宽度
+let g:indent_guides_guide_size=1
+" 快捷键 i 开/关缩进可视化
+:nmap <silent> <Leader>i <Plug>IndentGuidesToggle
+
+" ===================== vim-scripts/a.vim ==========================
+" 增加对 STL\C++14等的C++语法高亮
+Bundle 'vim-scripts/a.vim'
+""""""
+" *.cpp 和 *.h 间切换
+nmap <Leader>ch :A<CR>
+" 子窗口中显示 *.cpp 或 *.h
+nmap <Leader>sch :AS<CR>
+map <F4> :A<CR>
+map <leader><F4> :AS<CR>
+
+
+" ======================= vim-scripts/indexer.tar.gz ==========================
+" 周期性针对这个工程自动生成标签文件，并通知 vim 引人该标签文件
+Bundle 'vim-scripts/indexer.tar.gz'
+" cd ~/.vim/bundle/
+" git clone git@github.com:vim-scripts/indexer.tar.gz
+
+" 依赖项
+Bundle 'DfrankUtil'
+Bundle 'vimprj'
+" indexer 还有个自己的配置文件，用于设定各个工程的根目录路径，配置文件位于
+" ~/.indexer_files，内容可以设定为：
+""""""
+" 设置插件 indexer 调用 ctags 的参数
+" 默认 --c++-kinds=+p+l，重新设置为 --c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v
+" 默认 --fields=+iaS 不满足 YCM 要求，需改为 --fields=+iaSl
+let g:indexer_ctagsCommandLineOptions="--c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v --fields=+iaSl --extra=+q"
+" --------------- ~/.indexer_files ---------------
+"  [foo]
+"  /data/workplace/foo/src/
+"  [bar]
+"  /data/workplace/bar/src/
+"
+
+
+" ======================= protodef ==========================
+" 由接口快速生成实现框架
+Bundle 'protodef'
+" 依赖项
+Bundle 'FSwitch'
+""""""
+" 设置 pullproto.pl 脚本路径
+let g:protodefprotogetter='~/.vim/bundle/protodef/pullproto.pl'
+" 成员函数的实现顺序与声明顺序一致
+let g:disable_protodef_sorting=1
+" pullproto.pl 是 protodef 自带的 perl 脚本，默认位于 ~/.vim 目录，由于改用
+" pathogen 管理插件，所以路径需重新设置。
