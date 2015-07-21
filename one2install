@@ -1,0 +1,27 @@
+#!/bin/bash
+# ====================================================
+#   Copyright (C)2015 All rights reserved.
+#
+#   Author  : bbxytl
+#   Email   : bbxytl@gmail.com
+#   FileName: run.sh
+#   LastModify : 2015-07-20 14:45
+#   Describe:
+#
+#   Log     :
+#
+# ====================================================
+
+# 一键安装
+
+if [ $# -ge 1 ];then
+	PASSWD=$1
+else
+	echo " 安装环境，过程中需要输入密码。。。。。请输入："
+	read PASSWD
+fi
+
+echo $PASSWD | sudo -S chmod +x install-sh
+echo $PASSWD | sudo -S chmod +x config-sh
+./config-sh $PASSWD | tee -a log/config.log
+./install-sh $PASSWD | tee -a log/install.log

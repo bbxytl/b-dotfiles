@@ -18,8 +18,12 @@ BASEDIR=$(dirname $0)
 cd $BASEDIR
 CURRENT_DIR=`pwd`
 
-echo " 安装环境，过程中需要输入密码。。。。。请输入："
-read PASSWD
+if [ $# -ge 1 ];then
+	PASSWD=$1
+else
+	echo " 安装环境，过程中需要输入密码。。。。。请输入："
+	read PASSWD
+fi
 
 
 today=`date +%Y%m%d`

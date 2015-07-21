@@ -7,12 +7,19 @@
 - powerline
 
 ## 安装方式
+- 一键安装
+```shell
+sh one2install
+```
+- 手动的安装全部
 ```
 sudo chmod +x install-sh
 sudo chmod +x config-sh
-sh config-sh
-sh install-sh
+sh config-sh | tee -a log/config.log
+sh install-sh | tee -a log/install.log
 ```
+
+- 分别安装，进入到各安装文件夹下，分别进行运行 `install-*.sh` 文件
 
 ## 说明
 - 本配置参照 [k-vim][1]，不过去除了其 airline ，改而使用 powerline ，因为 airline 在 tmux 下会导致 vim 显示问题。
