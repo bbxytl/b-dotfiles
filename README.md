@@ -15,8 +15,10 @@ sh one2install
 ```
 sudo chmod +x install-sh
 sudo chmod +x config-sh
-sh config-sh | tee -a log/config.log
-sh install-sh | tee -a log/install.log
+logdir="~/mydotfiles/packges/log"
+if [ ! -e $logdir ];then mkdir -p $logdir;fi
+sh config-sh | tee -a $logdir/config.log
+sh install-sh | tee -a $logdir/install.log
 ```
 
 - 分别安装，进入到各安装文件夹下，分别进行运行 `install-*.sh` 文件
@@ -32,6 +34,7 @@ cd ~/.vim/bundle/
 git clone git@github.com:vim-scripts/indexer.tar.gz
 ```
 - 每一个文件夹内的都可单独配置，单要先使用 `./config` 进行配置;
+- 安装日志在 `~/mydotfiles/packges/log/` 目录下；
 
 ## 配置学习
 - 本配置的部分可直接查看 vimrc 和 vimrc.bundles 进行查看

@@ -21,7 +21,10 @@ else
 	read PASSWD
 fi
 
+logdir="~/mydotfiles/packges/log"
+if [ ! -e $logdir ];then mkdir -p $logdir;fi
+
 echo $PASSWD | sudo -S chmod +x install-sh
 echo $PASSWD | sudo -S chmod +x config-sh
-./config-sh $PASSWD | tee -a log/config.log
-./install-sh $PASSWD | tee -a log/install.log
+./config-sh $PASSWD | tee -a $logdir/config.log
+./install-sh $PASSWD | tee -a $logdir/install.log

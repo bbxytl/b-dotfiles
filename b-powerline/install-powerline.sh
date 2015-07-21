@@ -47,11 +47,11 @@ for i in $HOME/.fonts/PowerlineSymbols.otf $HOME/.config/fontconfig; do [ -L $i 
 echo " Step 2: install ----------powerline"
 
 # 安装 powerline
-install=true
-if locate *powerline* >/dev/null 2>&1;then install=false;fi
+installfg=true
+if locate *powerline* >/dev/null 2>&1;then installfg=false;fi
 if [ ! -e $tmp/powerline ];then mkdir $tmp/powerline; fi
 cd $tmp/powerline
-if install;then
+if $installfg;then
     pip install --user git+https://github.com/powerline/powerline
 fi
 wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf

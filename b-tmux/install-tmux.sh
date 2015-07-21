@@ -49,9 +49,9 @@ echo "Step 3-2: install tmux"
 system_shell=$SHELLL
 export SHELL="/bin/sh"
 
-install=true
-if locate *libevent*2*>/dev/null 2>&1 ;then install=false;fi
-if $install;then
+installfg=true
+if locate *libevent*2*>/dev/null 2>&1 ;then installfg=false;fi
+if $installfg;then
     if [ ! -e $tmp/libevent.$today ];then mkdir $tmp/libevent.$today; fi
     cd $tmp/libevent.$today
     wget http://sourceforge.net/projects/levent/files/libevent/libevent-2.0/libevent-2.0.22-stable.tar.gz

@@ -68,13 +68,13 @@ if [ ! -e $HOME/.config/pep8 ];then
 fi
 
 # 安装 locate 查找包
-echo $PASSWD | sudo -S  yum install mlocate.x86_64
+echo $PASSWD | sudo -S  yum -y install mlocate.x86_64
 echo $PASSWD | sudo -S  updatedb
 
 # 安装 CMake 命令
-install=true
-if locate *cmake*3*2*>/dev/null 2>&1 ;then install=false;fi
-if $install;then
+installfg=true
+if locate *cmake*3*2*>/dev/null 2>&1 ;then installfg=false;fi
+if $installfg;then
     if [ ! -e $tmp ];then mkdir $tmp ; fi
     cd $tmp
     wget http://www.cmake.org/files/v3.2/cmake-3.2.3.tar.gz
@@ -86,5 +86,18 @@ if $install;then
 fi
 
 echo $PASSWD | sudo -S yum install ctags
+
+# 更新vim为 7.4
+installfg=true
+if locate *cmake*3*2*>/dev/null 2>&1 ;then installfg=false;fi
+if $installfg;then
+    if [ ! -e $tmp ];then mkdir $tmp ; fi
+    cd $tmp
+	wget ftp://ftp.vim.org/pub/vim/unix/vim-7.4.tar.bz2
+	tar -xjf vim-7.4.tar.bz2
+	cd vim74
+	make && echo $PASSWD | sudo -S make install
+    cd $CURRENT_DIR
+fi
 
 export SHELL=$system_shell
