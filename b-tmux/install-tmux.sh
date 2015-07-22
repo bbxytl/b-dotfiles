@@ -66,9 +66,9 @@ if $installfg;then
 fi
 
 cd $CURRENT_DIR
-install=true
-if locate *tmux*>/dev/null 2>&1 ;then install=false;fi
-if $install;then
+installfg=true
+if locate *tmux*>/dev/null 2>&1 ;then installfg=false;fi
+if $installfg;then
     git clone https://github.com/tmux/tmux.git $tmp/tmux.$today
     cd $tmp/tmux.$today
     sh autogen.sh
