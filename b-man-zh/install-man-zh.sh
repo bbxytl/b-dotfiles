@@ -30,7 +30,7 @@ if [ ! -e $tmp ];then mkdir $tmp; fi
 # 安装 man-zh
 git clone https://github.com/lidaobing/manpages-zh.git $tmp/manpages-zh.$today
 cd $tmp/manpages-zh.$today
-./configure --prefix=/usr/local/zhman --disable-zhtw 
+./configure --prefix=$HOME/.local/zhman --disable-zhtw 
 make 
 echo $PASSWD | sudo -S make install
 

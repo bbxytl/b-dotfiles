@@ -36,9 +36,9 @@ lnif(){
 
 today=`date +%Y%m%d`
 bakdot="$HOME/mydotfiles/orgConfigBak"
-tmp="$HOME/mydotfiles/tmp"
-if [ ! -e $tmp ];then mkdir $tmp; fi
+packge="$HOME/mydotfiles/packges"
 if [ ! -e $bakdot ];then mkdir $bakdot; fi
+if [ ! -e $packge ];then mkdir $packge; fi
 echo " Step 1: backing up current config-----------powerline"
 powerlinebak="$bakdot/ori-powerline.$today"
 if [ ! -e $powerlinebak ];then mkdir $powerlinebak; fi
@@ -49,8 +49,8 @@ echo " Step 2: install ----------powerline"
 # 安装 powerline
 installfg=true
 if locate *powerline* >/dev/null 2>&1;then installfg=false;fi
-if [ ! -e $tmp/powerline ];then mkdir $tmp/powerline; fi
-cd $tmp/powerline
+if [ ! -e $packge/powerline ];then mkdir $packge/powerline; fi
+cd $packge/powerline
 if $installfg;then
     pip install --user git+https://github.com/powerline/powerline
 fi
