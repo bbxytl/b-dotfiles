@@ -694,6 +694,10 @@ vmap <Leader>d "+d
 nmap <Leader>p "+p
 nmap <Leader>P "+P
 vmap <Leader>p "+p
-vmap <Leader>P "+P
+vmap <Leader>P "+P  
 
-
+" map <leader>hs :
+" func! ADA_Hi_Liht()    
+    let ada_standard_types = 1
+    
+" let ada_no_trail_space_error=1

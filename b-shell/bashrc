@@ -11,6 +11,7 @@ alias cman='man -M /usr/local/zhman/share/man/zh_CN'
 EDITOR='vim'
 export EDITOR
 
+export PS1='\e[0;31m\u@\h \w| \e[m'
 # User specific aliases and functions
 
 #
@@ -26,7 +27,7 @@ alias tmls="tmux ls"
 
 
 # . ~/.local/lib/python2.6/site-packages/powerline/bindings/bash/powerline.sh
-. ~/mydotfiles/packges/powerline/powerline/bindings/bash/powerline.sh
+# . ~/mydotfiles/packges/powerline/powerline/bindings/bash/powerline.sh
 
 alias cdp="cd -"
 alias grep='grep --color=auto'

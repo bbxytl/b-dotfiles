@@ -7,7 +7,7 @@
   excludesfile = ~/.cvsignore
 
 [alias]
-  st = status -sb
+  st = status
   ci = commit
   br = branch -vv
   co = checkout
