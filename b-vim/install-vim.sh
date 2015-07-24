@@ -38,10 +38,8 @@ lnif(){
 
 today=`date +%Y%m%d`
 bakdot="$HOME/mydotfiles/orgConfigBak"
-tmp="$HOME/mydotfiles/tmp"
 vimpacks="$PACKGES/vim"
 if [ ! -e $bakdot ];then mkdir $bakdot; fi
-if [ ! -e $tmp ];then mkdir $tmp; fi
 if [ ! -e $vimpacks ];then mkdir $vimpacks; fi
 
 echo " Step 1: bucking up current config --------------- Vim"
@@ -55,37 +53,37 @@ lnif $CURRENT_DIR/vimrc.bundles $HOME/.vimrc.bundles
 lnif $CURRENT_DIR/indexer_files $HOME/.indexer_files
 lnif $CURRENT_DIR/ctags  $HOME/.ctags
 lnif "$vimpacks" "$HOME/.vim"
-echo " Step 3: install vundle"
-if [ ! -e $vimpacks/bundle/vundle ]; then
-    echo "Installing Vundle"
-    git clone https://github.com/gmarik/vundle.git $vimpacks/bundle/vundle
-else
-    echo "Upgrde Vundle"
-    cd "$HOME/.vim/bundle/vundle" && git pull origin master
-fi
-echo " Step 4: update/install plugins using Vundle -------- Vim"
-system_shell=$SHELLL
-export SHELL="/bin/sh"
-vim -u $HOME/.vimrc.bundles +BundleInstall! +BundleClean +qall
-export SHELL=$system_shell
-
-echo "Step5: compile YouCompleteMe"
-echo "It will take a long time, just be patient!"
-echo "If error,you need to compile it yourself"
-echo "cd $CURRENT_DIR/bundle/YouCompleteMe/ && bash -x install.sh --clang-completer"
-cd $vimpacks/bundle/YouCompleteMe/
-if [ `which clang` ]   # check system clang
-then
-    bash -x install.sh --clang-completer --system-libclang   # use system clang
-else
-    bash -x install.sh --clang-completer
-fi
+# echo " Step 3: install vundle"
+#if [ ! -e $vimpacks/bundle/vundle ]; then
+#    echo "Installing Vundle"
+#    git clone https://github.com/gmarik/vundle.git $vimpacks/bundle/vundle
+#else
+#    echo "Upgrde Vundle"
+#    cd "$HOME/.vim/bundle/vundle" && git pull origin master
+#fi
+#echo " Step 4: update/install plugins using Vundle -------- Vim"
+#system_shell=$SHELLL
+#export SHELL="/bin/sh"
+#vim -u $HOME/.vimrc.bundles +BundleInstall! +BundleClean +qall
+#export SHELL=$system_shell
+#
+# echo "Step5: compile YouCompleteMe"
+# echo "It will take a long time, just be patient!"
+# echo "If error,you need to compile it yourself"
+# echo "cd $CURRENT_DIR/bundle/YouCompleteMe/ && bash -x install.sh --clang-completer"
+# cd $vimpacks/bundle/YouCompleteMe/
+# if [ `which clang` ]   # check system clang
+# then
+    # bash -x install.sh --clang-completer --system-libclang   # use system clang
+# else
+    # bash -x install.sh --clang-completer
+# fi
 
 
 echo " Step 5: vim bk and undo dir"
-if [ ! -d /tmp/vimbk ]; then
-    echo $PASSWD | sudo -S  mkdir -p /tmp/vimbk
+if [ ! -d $vimpacks/vimbackup ]; then
+    mkdir -p $vimpacks/vimbackup
 fi
-if [ ! -d /tmp/vimundo ];then
-    echo $PASSWD | sudo -S  mkdir -p /tmp/vimundo
+if [ ! -d $vimpacks/vimundo ];then
+    mkdir -p $vimpacks/vimundo
 fi

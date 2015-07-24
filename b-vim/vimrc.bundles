@@ -116,6 +116,21 @@ let g:syntastic_warning_symbol='>'
 let g:syntastic_check_on_open=1
 let g:syntastic_check_on_wq=0
 let g:syntastic_enable_highlighting=1
+
+" 最轻量
+" let g:syntastic_python_checkers=['pyflakes'] " 使用pyflakes
+
+" 中等
+" error code: http://pep8.readthedocs.org/en/latest/intro.html#error-codes
+let g:syntastic_python_checkers=['pep8', 'pyflakes'] " 使用pyflakes,速度比pylint快
+let g:syntastic_python_pep8_args='--ignore=E501,E225'
+
+" 重量级, 但是足够强大, 定制完成后相当个性化
+" pylint codes: http://pylint-messages.wikidot.com/all-codes
+" let g:syntastic_python_checkers=['pyflakes', 'pylint'] " 使用pyflakes,速度比pylint快
+" let g:syntastic_python_checkers=['pylint'] " 使用pyflakes,速度比pylint快
+" let g:syntastic_python_pylint_args='--disable=C0111,R0903,C0301'
+
 " 修改高亮的背景色, 适应主题
 highlight SyntasticErrorSign guifg=white guibg=black
 " to see error location list
@@ -138,28 +153,36 @@ nnoremap <Leader>sp :lprevious<cr>
 " =================== Valloric/YouCompleteMe =====================
 " 代码自动补全,迄今为止用到的最好的自动VIM自动补全插件
 " youcompleteme  默认tab  s-tab 和自动补全冲突
-Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Valloric/YouCompleteMe'
 """"""
-let g:ycm_key_list_select_completion = ['<Down>']
-let g:ycm_key_list_previous_completion = ['<Up>']
-let g:ycm_complete_in_comments = 1  "在注释输入中也能补全
-let g:ycm_complete_in_strings = 1   "在字符串输入中也能补全
-let g:ycm_use_ultisnips_completer = 1 "提示UltiSnips
-let g:ycm_collect_identifiers_from_comments_and_strings = 1   "注释和字符串中的文字也会被收入补全
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_seed_identifiers_with_syntax=1   "语言关键字补全, 不过python关键字都很短，所以，需要的自己打开
-let g:ycm_goto_buffer_command = 'new-tab'  " 跳转到定义处,新Tab打开
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
-" 引入，可以补全系统，以及python的第三方包 针对新老版本YCM做了兼容
-" old version
-if !empty(glob("~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"))
-    let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"
-endif
-" new version
-if !empty(glob("~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"))
-    let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
-endif
+"let g:ycm_key_list_select_completion = ['<Down>']
+"let g:ycm_key_list_previous_completion = ['<Up>']
+"let g:ycm_complete_in_comments = 1  "在注释输入中也能补全
+"let g:ycm_complete_in_strings = 1   "在字符串输入中也能补全
+"let g:ycm_use_ultisnips_completer = 1 "提示UltiSnips
+"let g:ycm_collect_identifiers_from_comments_and_strings = 1   "注释和字符串中的文字也会被收入补全
+"let g:ycm_collect_identifiers_from_tags_files = 1
+"let g:ycm_seed_identifiers_with_syntax=1   "语言关键字补全, 不过python关键字都很短，所以，需要的自己打开
+"let g:ycm_goto_buffer_command = 'new-tab'  " 跳转到定义处,新Tab打开
+"nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+"nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
+"" 引入，可以补全系统，以及python的第三方包 针对新老版本YCM做了兼容
+"" old version
+"if !empty(glob("~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"))
+"    let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"
+"endif
+"" new version
+"if !empty(glob("~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"))
+"    let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+"endif
+"
+" ======================= Shougo/neocomplete.vim ============================
+" 代码补全
+Bundle 'Shougo/neocomplete.vim'
+let g:neocomplete#enable_at_startup = 1
+
+Bundle 'vim-scripts/OmniCppComplete'
+
 
 
 " ======================= SirVer/ultisnips | honza/vim-snippets ==========================
@@ -820,3 +843,11 @@ let g:protodefprotogetter='~/.vim/bundle/protodef/pullproto.pl'
 let g:disable_protodef_sorting=1
 " pullproto.pl 是 protodef 自带的 perl 脚本，默认位于 ~/.vim 目录，由于改用
 " pathogen 管理插件，所以路径需重新设置。
+
+
+" ======================== vim-powerline =============
+Bundle 'Lokaltog/vim-powerline'
+" Bundle ' bling/vim-airline'
+" set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
+" Always show the status line - use 2 lines for the status bar
+set laststatus=2

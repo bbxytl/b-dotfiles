@@ -58,7 +58,7 @@ set shortmess=atI       	" 启动的时候不显示那个援助索马里儿童�
 " 备份,到另一个位置. 防止误删, 目前是取消备份
 "set backup
 "set backupext=.bak
-"set backupdir=~/.tmp/vimbk/
+"set backupdir=~/.vim/vimbackup/
 
 " 取消备份。 视情况自己改
 set nobackup
@@ -70,7 +70,7 @@ if has('persistent_undo')
   set undolevels=1000         " How many undos
   set undoreload=10000        " number of lines to save for undo
   set undofile                " So is persistent undo ...
-  set undodir=/tmp/vimundo/
+  set undodir=~/.vim/vimundo/
 endif
 
 set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
@@ -130,17 +130,22 @@ set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusl
 set laststatus=2
 
 " ================== powerline 设置
-set rtp+=/usr/lib/python2.7/site-packages/powerline/bindings/vim
+" set rtp+=~/.local/lib/python2.6/site-packages/powerline/bindings/vim
+" set powerlinedir=~/mydotfiles/packges/powerline/powerline/bindings/vim/plugin
+" set rtp+=~/mydotfiles/tmp/powerline/powerline/bindings/vim
 
 " These lines setup the environment to show graphics and colors correctly.
 set nocompatible
 set t_Co=256
 
-let g:minBufExplForceSyntaxEnable = 1
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
+" let g:minBufExplForceSyntaxEnable = 1
+" python from powerline.vim import setup as powerline_setup
+" python powerline_setup()
+" python del powerline_setup
 
+"python2.6 from powerline.vim import setup as powerline_setup
+" python2.6 powerline_setup()
+" python2.6 del powerline_setup
 if ! has('gui_running')
 "   set ttimeoutlen=10
 "   augroup FastEscape
@@ -354,6 +359,8 @@ noremap L $
 " ex mode commands made easy 用于快速进入命令行
 nnoremap ; :
 
+" 关闭 C 的语法检测，因为 LPC 也是.c后缀
+let g:syntastic_ignore_files=[".*\.c$"]
 
 " ====================== 命令行模式增强，ctrl - a到行首， -e 到行尾
 cnoremap <C-j> <t_kd>
@@ -688,4 +695,5 @@ nmap <Leader>p "+p
 nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
+
 
