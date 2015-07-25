@@ -1,0 +1,16 @@
+# .zshrc.local
+
+# Source global definitions
+if [ -f ~/.zshrc.oh-my-zsh ]; then
+	. ~/.zshrc.oh-my-zsh
+fi
+
+# zsh 配置
+
+
+
+
+# zsh 和 bash 共用
+if [ -f ~/.sh.self.config ]; then
+	. ~/.sh.self.config
+fi

@@ -34,15 +34,10 @@ if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
 
-" ensure ftdetect et al work by including this after the Vundle stuff
-filetype plugin indent on
 
 "==========================================
 " General Settings 基础设置
 "==========================================
-
-"以下配置有详细说明，一些特性不喜欢可以直接注解掉
-
 "set guifont=Monaco:h20          " 字体 && 字号
 set history=2000			" history存储容量
 
@@ -55,17 +50,16 @@ filetype plugin indent on
 set autoread          		" 文件修改之后自动载入。
 set shortmess=atI       	" 启动的时候不显示那个援助索马里儿童的提示
 
-" 备份,到另一个位置. 防止误删, 目前是取消备份
-"set backup
-"set backupext=.bak
-"set backupdir=~/.vim/vimbackup/
-
-" 取消备份。 视情况自己改
-set nobackup
-" 关闭交换文件
-set noswapfile
-
-"create undo file
+" 备份,到另一个位置. 防止误删
+set backup
+set backupext=.bak
+set backupdir=~/.vim/vimbackup/
+" set nobackup		" 取消备份。 视情况自己改
+" 交换文件
+set swapfile
+set swapfile=~/.vim/vimswap
+" set noswapfile	" 关闭交换文件
+" undo 文件
 if has('persistent_undo')
   set undolevels=1000         " How many undos
   set undoreload=10000        " number of lines to save for undo

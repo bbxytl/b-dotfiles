@@ -1,0 +1,17 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+export TERM=xterm-256color
+# alias cman='man -M /usr/local/zhman/share/man/zh_CN'
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+export PS1='\e[0;31m\u@\h \w| \e[m'
+# User specific aliases and functions
+
+
+if [ -f ~/.sh.self.config ]; then
+	. ~/.sh.self.config
+fi
