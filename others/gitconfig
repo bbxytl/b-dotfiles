@@ -3,6 +3,7 @@
   email = bbxytl@gmail.com
 
 [core]
+  autocrlf = false
   whitespace = fix,space-before-tab,tab-in-indent,trailing-space
   excludesfile = ~/.cvsignore
 
