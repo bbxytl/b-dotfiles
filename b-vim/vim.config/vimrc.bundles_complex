@@ -120,7 +120,7 @@ let g:UltiSnipsEditSplit="vertical"
 
 
 " #### 主要用于 C/C++ 代码补全，需要 ctag 支持
-Bundle 'vim-scripts/OmniCppComplete'
+"Bundle 'vim-scripts/OmniCppComplete'
 
 
 " ##### Python 代码补全
@@ -151,6 +151,7 @@ let g:NERDSpaceDelims=1
 " ##### 快速去行尾空格
 Bundle 'bronson/vim-trailing-whitespace'
 map <leader>, :FixWhitespace<cr>
+
 
 
 " ##### 更高效的移动 [,, + w/fx]
@@ -460,7 +461,6 @@ map <F4> :A<CR>
 map <leader><F4> :AS<CR>
 
 
-
 " ##### 周期性针对这个工程自动生成标签文件，并通知 vim 引人该标签文件
 Bundle 'vim-scripts/indexer.tar.gz'
 " 如果出问题了则使用：
@@ -471,7 +471,6 @@ Bundle 'DfrankUtil'
 Bundle 'vimprj'
 " indexer 还有个自己的配置文件，用于设定各个工程的根目录路径，配置文件位于
 " ~/.indexer_files，内容可以设定为：
-""""""
 " 设置插件 indexer 调用 ctags 的参数
 " 默认 --c++-kinds=+p+l，重新设置为 --c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v
 " 默认 --fields=+iaS 不满足 YCM 要求，需改为 --fields=+iaSl
@@ -483,6 +482,17 @@ let g:indexer_ctagsCommandLineOptions="--c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v 
 "  /data/workplace/bar/src/
 
 
+" ##### 由接口快速生成实现框架
+Bundle 'protodef'
+" 依赖项
+Bundle 'FSwitch'
+" 设置 pullproto.pl 脚本路径
+let g:protodefprotogetter='~/.vim/bundle/protodef/pullproto.pl'
+" 成员函数的实现顺序与声明顺序一致
+let g:disable_protodef_sorting=1
+" pullproto.pl 是 protodef 自带的 perl 脚本，默认位于 ~/.vim 目录，由于改用
+" pathogen 管理插件，所以路径需重新设置。
+
 
 " ##### vim-powerline
 Bundle 'Lokaltog/vim-powerline'
@@ -490,6 +500,82 @@ Bundle 'Lokaltog/vim-powerline'
 " set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
 " Always show the status line - use 2 lines for the status bar
 set laststatus=2
+
+" ##### 重量级补全
+Bundle 'Valloric/YouCompleteMe'
+let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_key_list_previous_completion = ['<Up>']
+let g:ycm_complete_in_comments = 1  "在注释输入中也能补全
+let g:ycm_complete_in_strings = 1   "在字符串输入中也能补全
+let g:ycm_use_ultisnips_completer = 1 "提示UltiSnips
+let g:ycm_collect_identifiers_from_comments_and_strings = 1   "注释和字符串中的文字也会被收入补全
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_seed_identifiers_with_syntax=1   "语言关键字补全, 不过python关键字都很短，所以，需要的自己打开
+let g:ycm_goto_buffer_command = 'new-tab'  " 跳转到定义处,新Tab打开
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
+" 引入，可以补全系统，以及python的第三方包 针对新老版本YCM做了兼容
+" old version
+if !empty(glob("~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"))
+    let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"
+endif
+" new version
+if !empty(glob("~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"))
+    let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+endif
+
+
+" ##### 快速赋值语句对齐
+Bundle 'junegunn/vim-easy-align'
+vmap <Leader>a <Plug>(EasyAlign)
+nmap <Leader>a <Plug>(EasyAlign)
+if !exists('g:easy_align_delimiters')
+  let g:easy_align_delimiters = {}
+endif
+let g:easy_align_delimiters['#'] = { 'pattern': '#', 'ignore_groups': ['String'] }
+
+
+" ##### git.  git操作还是习惯命令行,vim里面处理简单diff编辑操作
+" :Gdiff  :Gstatus :Gvsplit
+Bundle 'tpope/vim-fugitive'
+""""""
+nnoremap <leader>ge :Gdiff<CR>
+" not ready to open
+<leader>gbm maps to :Gblame<CR>
+<leader>gst maps to :Gstatus<CR>
+<leader>gdf maps to :Gdiff<CR>  和现有冲突
+<leader>glg maps to :Glog<CR>
+<leader>gci maps to :Gcommit<CR>
+<leader>gps maps to :Git push<CR>
+
+" ##### 同git diff,实时展示文件中修改的行
+" 只是不喜欢除了行号多一列, 默认关闭,gs时打开
+Bundle 'airblade/vim-gitgutter'
+""""""
+let g:gitgutter_map_keys = 0
+let g:gitgutter_enabled = 0
+let g:gitgutter_highlight_lines = 1
+nnoremap <leader>gs :GitGutterToggle<CR>
+
+
+
+" ##### 可以查看回到某个历史状态
+Bundle 'sjl/gundo.vim'
+""""""
+noremap <leader>h :GundoToggle<CR>
+
+
+" ##### quickrun
+Bundle 'thinca/vim-quickrun'
+""""""
+let g:quickrun_config = {
+\   "_" : {
+\       "outputter" : "message",
+\   },
+\}
+let g:quickrun_no_default_key_mappings = 1
+nmap <Leader>r <Plug>(quickrun)
+map <F10> :QuickRun<CR>
 
 
 

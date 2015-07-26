@@ -13,12 +13,17 @@
 # ====================================================
 
 
+# 默认安装 simple 版
+COMPLEX=false
 if [ $# -ge 1 ];then
-	PACKGES=$2
-else
-	PACKGES=$HOME/mydotfiles/packges
+	if [ $1="--complex" ];then
+		COMPLEX=true
+	else
+		echo "Error arg! no arg to rum simple , arg: --complex to use ycm and so on !"
+		exit
+	fi
 fi
-
+PACKGES=$HOME/mydotfiles/packges
 if [ ! -e $PACKGES ];then mkdir $PACKGES;fi
 
 
@@ -47,8 +52,14 @@ for i in $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.vimrc.config_bas
 for i in $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.vimrc.config_base $HOME/.vimrc.config_filetype $HOME/.indexer_files; do [ -L $i ] && unlink $i ; done
 
 echo " Step 2: setting tu symlinks----------Vim"
+if COMPLEX;then
+	bundlesfile=$CURRENT_DIR/vimrc.bundles_complex
+else
+	bundlesfile=$CURRENT_DIR/vimrc.bundles
+fi
+
 lnif $CURRENT_DIR/vimrc $HOME/.vimrc
-lnif $CURRENT_DIR/vimrc.bundles $HOME/.vimrc.bundles
+lnif bundlesfile $HOME/.vimrc.bundles
 lnif $CURRENT_DIR/vimrc.config_base $HOME/.vimrc.config_base
 lnif $CURRENT_DIR/vimrc.config_filetype $HOME/.vimrc.config_filetype
 lnif $CURRENT_DIR/indexer_files $HOME/.indexer_files
@@ -62,12 +73,12 @@ else
     echo "Upgrde Vundle"
     cd "$HOME/.vim/bundle/vundle" && git pull origin master
 fi
-#echo " Step 4: update/install plugins using Vundle -------- Vim"
-#system_shell=$SHELLL
-#export SHELL="/bin/sh"
-#vim -u $HOME/.vimrc.bundles +BundleInstall! +BundleClean +qall
-#export SHELL=$system_shell
-#
+echo " Step 4: update/install plugins using Vundle -------- Vim"
+system_shell=$SHELLL
+export SHELL="/bin/sh"
+vim -u $HOME/.vimrc.bundles +BundleInstall! +BundleClean +qall
+export SHELL=$system_shell
+
 # echo "Step5: compile YouCompleteMe"
 # echo "It will take a long time, just be patient!"
 # echo "If error,you need to compile it yourself"
