@@ -12,15 +12,12 @@
 #
 # ====================================================
 
-if [ $# -ge 2 ];then
-	PASSWD=$1
-	PACKGES=$2
-else
-	echo "请输入密码："
-	read PASSWD
-	PACKGES=$HOME/mydotfiles/packges
-fi
+# 依赖包：
+# ncurses-devel
+#autoconf m4 perl automake
+# 依赖命令：autoconf -ivf
 
+PACKGES=$HOME/mydotfiles/packges
 if [ ! -e $PACKGES ];then mkdir $PACKGES;fi
 
 # 备份原始数据
@@ -50,29 +47,25 @@ system_shell=$SHELLL
 export SHELL="/bin/sh"
 
 installfg=true
-if locate *libevent*2*>/dev/null 2>&1 ;then installfg=false;fi
+if which tmux >/dev/null 2>&1 ;then installfg=false;fi
 if $installfg;then
     if [ ! -e $tmp/libevent.$today ];then mkdir $tmp/libevent.$today; fi
     cd $tmp/libevent.$today
     wget http://sourceforge.net/projects/levent/files/libevent/libevent-2.0/libevent-2.0.22-stable.tar.gz
     tar -xzvf libevent-2.0.22-stable.tar.gz
     cd libevent-2.0.22-stable
-    ./configure
-    make && make verify && echo $PASSWD | sudo -S make install
-    echo $PASSWD | sudo -S ln -sf /usr/local/lib/libevent-2.0.so.5 /usr/lib/libevent-2.0.so.5
-    if [ -e /usr/lib64 ];then
-        echo $PASSWD | sudo -S ln -sf /usr/local/lib/libevent-2.0.so.5 /usr/lib64/libevent-2.0.so.5
-    fi
-fi
-
-cd $CURRENT_DIR
-installfg=true
-if locate *tmux*>/dev/null 2>&1 ;then installfg=false;fi
-if $installfg;then
+    ./configure --prefix=$HOME/.local
+    make && make verify &&  make install
+    #echo $PASSWD | sudo -S ln -sf /usr/local/lib/libevent-2.0.so.5 /usr/lib/libevent-2.0.so.5
+    #if [ -e /usr/lib64 ];then
+    #    echo $PASSWD | sudo -S ln -sf /usr/local/lib/libevent-2.0.so.5 /usr/lib64/libevent-2.0.so.5
+    #fi
+	cd $CURRENT_DIR
     git clone https://github.com/tmux/tmux.git $tmp/tmux.$today
     cd $tmp/tmux.$today
     sh autogen.sh
-    ./configure && make && echo $PASSWD | sudo -S make install
+    ./configure --prefix=$HOME/.local
+	make && make install
 fi
 
 cd $CURRENT_DIR

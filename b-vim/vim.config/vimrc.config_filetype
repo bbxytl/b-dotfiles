@@ -1,0 +1,154 @@
+"==========================================
+" FileType Settings  文件类型设置
+"==========================================
+
+autocmd BufRead,BufNew *.pike setfiletype pike
+autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown.mkd
+autocmd BufRead,BufNew *.c setfiletype pike		" LPC 文件的缘故
+autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
+autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
+autocmd FileType pike set tabstop=4 shiftwidth=4 expandtab ai
+autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown.mkd
+fun! <SID>StripTrailingWhitespaces()	" 保存文件时删除多余空格
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,pike autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
+
+
+" 加入注释,主要以 /**/ 、 // 注释的语言
+function! SetComment()
+    call setline(1,"/*====================================================")
+    call append(line("."), " *   Copyright (C)".strftime("%Y")." All rights reserved.")
+    call append(line(".") + 1, " *")
+    call append(line(".") + 2, " *   Author  : bbxytl")
+    call append(line(".") + 3, " *   Email  : bbxytl@gmail.com")
+    call append(line(".") + 4, " *   FileName: ".expand("%:t"))
+    call append(line(".") + 5, " *   Last Modified : ".strftime("%Y-%m-%d %H:%M"))
+    call append(line(".") + 6, " *   Describe:")
+    call append(line(".") + 7, " *")
+    call append(line(".") + 8, " *   Log     :")
+    call append(line(".") + 9, " *")
+    call append(line(".") + 10, " * ====================================================*/")
+endfunction
+" 加入注释， 主要以 # 进行注释的语言
+function! SetCommentBin()
+    if &filetype == 'sh'
+        let l = 0
+    elseif &filetype == 'python'
+        let l = 2
+    elseif &filetype == 'pike'
+        let l = 0
+    endif
+
+    call append(l + 1,"\# ====================================================")
+    call append(l + 2, "\#   Copyright (C)".strftime("%Y")." All rights reserved.")
+    call append(l + 3, "#")
+    call append(l + 4, "\#   Author  : bbxytl")
+    call append(l + 5, "\#   Email   : bbxytl@gmail.com")
+    call append(l + 6, "\#   FileName: ".expand("%:t"))
+    call append(l + 7, "\#   LastModify : ".strftime("%Y-%m-%d %H:%M"))
+    call append(l + 8, "\#   Describe:")
+    call append(l + 9, "\#")
+    call append(l + 10, "\#   Log     :")
+    call append(l + 11, "\#")
+    call append(l + 12, "\# ====================================================")
+endfunction
+
+
+
+
+" 将键盘上的 F4 功能键映射为添加文件头的快捷键,目前有问题
+"map <F4> ms:call AutoSetFileHead()<cr>'s
+autocmd BufRead,BufNewFile *.c setfiletype pike
+" 定义函数AutoSetFileHead，自动插入文件头
+autocmd BufNewFile *.sh,*.py,*.pike,*.h,*.hpp,*c,*cpp exec ":call AutoSetFileHead()"
+
+function! AutoSetFileHead()
+    let n = 1
+    while n < 15
+        let line = getline(n)
+        if line =~'^\#\s*\S*Last\sModified:\S*.*$'
+            call UpdateTitle()
+            return
+        endif
+        let n = n + 1
+    endwhile
+    call AddTitle()
+endfunction
+
+function! UpdateTitle()
+    normal m'
+    execute '/# *LastModify:/s@:.*$@\=strftime(":\t%Y-%m-%d %H:%M ====")'
+    normal "
+    normal mk
+    execute '/# *FileName:/s@:.*$@\=":\t\t".expand("%:t")@'
+    execute "noh"
+    normal 'k
+    echohl WarningMsg | echo "Successful in updating the copy right." | echohl None
+endfunction
+
+function! AddTitle()
+    "如果文件类型为.sh文件
+    if &filetype == 'sh'
+        call setline(1, "\#!/bin/bash")
+        call SetCommentBin()
+    endif
+
+    "如果文件类型为python
+    if &filetype == 'python'
+        call setline(1, "\#!/usr/bin/env python")
+        call append(1, "\# encoding: utf-8")
+        call append(2, "\# coding style: pep8")
+        call SetCommentBin()
+    endif
+
+    " Pike 文件
+    if &filetype == 'pike'
+        call SetComment()
+        "call insert(1, "\#!/usr/bin/env pike")
+    endif
+
+    " C 文件
+    let hf = expand("%:e") == "h" || expand("%:e") == "hpp"
+    if &filetype == 'c' && !hf  || &filetype == "cpp" && !hf
+        call SetComment()
+        let l = 10
+        "call append(line(".") + l + 1, "\#include \"".expand("%:t:r").".h\"")
+        if &filetype == "cpp"
+            call append(line(".") + l + 2, "\#include <iostream>")
+            call append(line(".") + l + 3, "using namespace std;")
+        else
+            "call append(line(".") + l + 2, "\#include <stdio.h>")
+        endif
+    endif
+
+    " H 文件
+    if expand("%:e") == 'h' || expand("%:e") == "hpp"
+        call SetComment()
+        let l = 10
+        call append(line(".") + l + 1, "")
+        call append(line(".") + l + 2, "\#ifndef  _".toupper(expand("%:t:r"))."_H")
+        call append(line(".") + l + 3, "\#define  _".toupper(expand("%:t:r"))."_H")
+        call append(line(".") + l + 4, "")
+        call append(line(".") + l + 5, "")
+        call append(line(".") + l + 6, "\#endif _".toupper(expand("%:t:r"))."_H")
+    endif
+
+    normal G
+    normal o
+    normal o
+endfunc
+
+
+" set some keyword to highlight
+if has("autocmd")
+  " Highlight TODO, FIXME, NOTE, etc.
+  if v:version > 701
+    autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|CHANGED\|DONE\|XXX\|BUG\|HACK\)')
+    autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|INFO\|IDEA\|NOTICE\)')
+  endif
+endif

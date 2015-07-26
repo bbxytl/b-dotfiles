@@ -12,15 +12,7 @@
 #
 # ====================================================
 
-if [ $# -ge 2 ];then
-	PASSWD=$1
-	PACKGES=$2
-else
-	echo "请输入密码："
-	read PASSWD
-	PACKGES=$HOME/mydotfiles/packges
-fi
-
+PACKGES=$HOME/mydotfiles/packges
 if [ -e $PACKGES ];then mkdir $PACKGES;fi
 
 # 一：配置 shell 环境

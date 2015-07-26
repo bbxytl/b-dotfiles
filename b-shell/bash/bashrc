@@ -12,6 +12,6 @@ export PS1='\e[0;31m\u@\h \w| \e[m'
 # User specific aliases and functions
 
 
-if [ -f ~/.sh.self.config ]; then
-	. ~/.sh.self.config
+if [ -f ~/.alias.sh ]; then
+	. ~/.alias.sh
 fi

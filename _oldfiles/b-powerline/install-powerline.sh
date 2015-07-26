@@ -48,7 +48,7 @@ echo " Step 2: install ----------powerline"
 
 # 安装 powerline
 installfg=true
-if locate *powerline* >/dev/null 2>&1;then installfg=false;fi
+if which powerline >/dev/null 2>&1;then installfg=false;fi
 if [ ! -e $packge/powerline ];then mkdir $packge/powerline; fi
 cd $packge/powerline
 if $installfg;then

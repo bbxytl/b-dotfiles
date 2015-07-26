@@ -11,6 +11,6 @@ fi
 
 
 # zsh 和 bash 共用
-if [ -f ~/.sh.self.config ]; then
-	. ~/.sh.self.config
+if [ -f ~/.alias.sh ]; then
+	. ~/.alias.sh
 fi

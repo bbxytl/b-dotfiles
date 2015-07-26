@@ -13,19 +13,15 @@
 # ====================================================
 
 
-if [ $# -ge 2 ];then
-	PASSWD=$1
+if [ $# -ge 1 ];then
 	PACKGES=$2
 else
-	echo "请输入密码："
-	read PASSWD
 	PACKGES=$HOME/mydotfiles/packges
 fi
 
 if [ ! -e $PACKGES ];then mkdir $PACKGES;fi
 
-# 一：配置 shell 环境
-# 备份原始数据
+
 BASEDIR=$(dirname $0)
 cd $BASEDIR
 CURRENT_DIR=`pwd`
@@ -42,25 +38,30 @@ vimpacks="$PACKGES/vim"
 if [ ! -e $bakdot ];then mkdir $bakdot; fi
 if [ ! -e $vimpacks ];then mkdir $vimpacks; fi
 
+# 保留 从 github 上搞来的配置
+mv $HOME/.vimrc $HOME/.vimrc_other
 echo " Step 1: bucking up current config --------------- Vim"
 vimbak="$bakdot/ori-vim.$today"
 if [ ! -e $vimbak ];then mkdir $vimbak; fi
-for i in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.indexer_files $HOME/.ctags; do [ -e $i ] && [ ! -L $i ] && mv $i $vimbak/; done
-for i in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.indexer_files $HOME/.ctags; do [ -L $i ] && unlink $i ; done
+for i in $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.vimrc.config_base $HOME/.vimrc.config_filetype $HOME/.indexer_files; do [ -e $i ] && [ ! -L $i ] && mv $i $vimbak/; done
+for i in $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.vimrc.config_base $HOME/.vimrc.config_filetype $HOME/.indexer_files; do [ -L $i ] && unlink $i ; done
+
 echo " Step 2: setting tu symlinks----------Vim"
 lnif $CURRENT_DIR/vimrc $HOME/.vimrc
 lnif $CURRENT_DIR/vimrc.bundles $HOME/.vimrc.bundles
+lnif $CURRENT_DIR/vimrc.config_base $HOME/.vimrc.config_base
+lnif $CURRENT_DIR/vimrc.config_filetype $HOME/.vimrc.config_filetype
 lnif $CURRENT_DIR/indexer_files $HOME/.indexer_files
-lnif $CURRENT_DIR/ctags  $HOME/.ctags
 lnif "$vimpacks" "$HOME/.vim"
-# echo " Step 3: install vundle"
-#if [ ! -e $vimpacks/bundle/vundle ]; then
-#    echo "Installing Vundle"
-#    git clone https://github.com/gmarik/vundle.git $vimpacks/bundle/vundle
-#else
-#    echo "Upgrde Vundle"
-#    cd "$HOME/.vim/bundle/vundle" && git pull origin master
-#fi
+
+echo " Step 3: install vundle"
+if [ ! -e $vimpacks/bundle/vundle ]; then
+    echo "Installing Vundle"
+    git clone https://github.com/gmarik/vundle.git $vimpacks/bundle/vundle
+else
+    echo "Upgrde Vundle"
+    cd "$HOME/.vim/bundle/vundle" && git pull origin master
+fi
 #echo " Step 4: update/install plugins using Vundle -------- Vim"
 #system_shell=$SHELLL
 #export SHELL="/bin/sh"
@@ -80,10 +81,17 @@ lnif "$vimpacks" "$HOME/.vim"
 # fi
 
 
-echo " Step 5: vim bk and undo dir"
-if [ ! -d $vimpacks/vimbackup ]; then
-    mkdir -p $vimpacks/vimbackup
+echo " Step 5: vim bk and undo dir and swp and view"
+vimdir=$HOME/.vim
+if [ ! -d $vimdir/vimbackup ]; then
+    mkdir -p $vimdir/vimbackup
 fi
-if [ ! -d $vimpacks/vimundo ];then
-    mkdir -p $vimpacks/vimundo
+if [ ! -d $vimdir/vimundo ];then
+    mkdir -p $vimdir/vimundo
 fi
+if [ ! -d $vimdir/vimswap ];then
+    mkdir -p $vimdir/vimswap
+fi
+# if [ ! -d $vimdir/vimviews ];then
+#     mkdir -p $vimdir/vimviews
+# fi

@@ -12,6 +12,11 @@
 #
 # ====================================================
 
-for i in $HOME/.ctags $HOME/.indexer_files $HOME/.vim $HOME/.vimrc $HOME/.vimrc.bundles;do
-    rm $i
+for i in $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.vimrc.config_base $HOME/.vimrc.config_filetype $HOME/.indexer_files;do
+    if [ -e $i ];then
+		rm $i
+	fi
 done
+if [ -e $HOME/.vimrc_other ];then
+	mv $HOME/.vimrc_other $HOME/.vimrc
+fi

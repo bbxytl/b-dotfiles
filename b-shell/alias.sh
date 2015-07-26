@@ -74,11 +74,12 @@ alias volume="amixer get Master | sed '1,4 d' | cut -d [ -f 2 | cut -d ] -f 1"
 #kernelgraph() { lsmod | perl -e 'print "digraph \"lsmod\" {";<>;while(<>){@_=split/\s+/; print "\"$_[0]\" -> \"$_\"\n" for split/,/,$_[3]}print "}"' | dot -Tpng | display -;}
 #alias busy="cat /dev/urandom | hexdump -C | grep \"ca fe\""
 #
-#alias cman='man -M /usr/local/zhman/share/man/zh_CN'
+
+alias cman='man -M $HOME/.local/share/man/zh_CN'
 
 alias tmux='tmux -2'
-alias tlshutdown='sudo shutdown -h now'
-alias tlreboot='sudo reboot'
+alias tlshutdown='shutdown -h now'
+#alias tlreboot='sudo reboot'
 alias tlinit='sudo mount -t vboxsf VBoxShare /mnt/WinShare;
 if [ $? -ne 0 ];then
     echo " mount VBoxShare share dir error!"
