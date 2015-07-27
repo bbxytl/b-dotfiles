@@ -59,7 +59,7 @@ else
 fi
 
 lnif $CURRENT_DIR/vimrc $HOME/.vimrc
-lnif bundlesfile $HOME/.vimrc.bundles
+lnif $bundlesfile $HOME/.vimrc.bundles
 lnif $CURRENT_DIR/vimrc.config_base $HOME/.vimrc.config_base
 lnif $CURRENT_DIR/vimrc.config_filetype $HOME/.vimrc.config_filetype
 lnif $CURRENT_DIR/indexer_files $HOME/.indexer_files

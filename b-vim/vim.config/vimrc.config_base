@@ -21,8 +21,8 @@
 " ###################  基本设置 ###################
 		" 允许插件 启动自动补全
 filetype on
-filetype indent on			
-filetype plugin on			
+filetype indent on
+filetype plugin on
 filetype plugin indent on
 		" 文件修改之后自动载入。
 set autoread
@@ -246,11 +246,11 @@ nnoremap j gj
 nnoremap gj j
 
 " ##### F1 - F12 设置
-" F1 
+" F1
 " F2 行号开关，用于鼠标复制代码用
 " F3 显示/关闭 树形资源管理器
-" F4 
-" F5 
+" F4
+" F5
 " F6 语法开关，关闭语法可以加快大文件的展示
 
 noremap <F1> <Esc>"
@@ -361,7 +361,7 @@ autocmd TabLeave * let g:last_active_tab = tabpagenr()
 vnoremap < <gv
 vnoremap > >gv
 		" y$ -> Y Make Y behave like other capitals
-map Y y$							
+map Y y$
 set mouse=v
 set clipboard=unnamed
 		" select all
@@ -444,10 +444,10 @@ nmap <Leader>p "+p
 			" 设置快捷键将系统剪贴板内容粘贴至 vim
 nmap <leader>P "+p
 vmap <Leader>p "+p
-vmap <Leader>P "+P  
- 
+vmap <Leader>P "+P
+
 " let ada_no_trail_space_error=1
 		" 关闭 C 的语法检测，因为 LPC 也是.c后缀
 let g:syntastic_ignore_files=[".*\.c$"]
 
-set tags+=~/.indexer_files_tags/systags
+" set tags+=~/.indexer_files_tags/systags
