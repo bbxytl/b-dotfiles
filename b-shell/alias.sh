@@ -3,6 +3,7 @@
 
 export EDITOR='vim'
 
+alias v="vim"
 # User specific aliases and functions
 ##Productivity
 
@@ -19,7 +20,9 @@ alias tmls="tmux ls"
 # . ~/.local/lib/python2.6/site-packages/powerline/bindings/bash/powerline.sh
 # . ~/mydotfiles/packges/powerline/powerline/bindings/bash/powerline.sh
 
-alias cdp="cd -"
+alias cdu="cd -"
+alias cdp="cd ~/data/projects/"
+
 alias grep='grep --color=auto'
 mcd() { mkdir -p "$1"; cd "$1";}
 cls() { cd "$1"; ls;}
