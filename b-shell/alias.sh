@@ -1,30 +1,20 @@
-# .bashrc
 
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
-export TERM=xterm-256color
-alias cman='man -M /usr/local/zhman/share/man/zh_CN'
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
-EDITOR='vim'
-export EDITOR
+# 自身配置的 命令
 
-export PS1='\e[0;31m\u@\h \w| \e[m'
+export EDITOR='vim'
+
 # User specific aliases and functions
-
-#
 ##Productivity
+
 alias ls="ls --color=auto"
 alias ll="ls --color -l"
 alias lla="ll -a"
 alias lsa="ls -a"
+
 # tmux
 alias tmat="tmux attach -t"
 alias tmnn="tmux new -s"
 alias tmls="tmux ls"
-
 
 # . ~/.local/lib/python2.6/site-packages/powerline/bindings/bash/powerline.sh
 # . ~/mydotfiles/packges/powerline/powerline/bindings/bash/powerline.sh
@@ -68,7 +58,7 @@ alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^
 sbs(){ du -b --max-depth 1 | sort -nr | perl -pe 's{([0-9]+)}{sprintf "%.1f%s", $1>=2**30? ($1/2**30, "G"): $1>=2**20? ($1/2**20, "M"): $1>=2**10? ($1/2**10, "K"): ($1, "")}e';}
 alias intercept="sudo strace -ff -e trace=write -e write=1,2 -p"
 alias meminfo='free -m -l -t'
-alias ps?="ps aux | grep"
+alias psg="ps aux | grep"
 alias volume="amixer get Master | sed '1,4 d' | cut -d [ -f 2 | cut -d ] -f 1"
 
 ##Network
@@ -84,11 +74,12 @@ alias volume="amixer get Master | sed '1,4 d' | cut -d [ -f 2 | cut -d ] -f 1"
 #kernelgraph() { lsmod | perl -e 'print "digraph \"lsmod\" {";<>;while(<>){@_=split/\s+/; print "\"$_[0]\" -> \"$_\"\n" for split/,/,$_[3]}print "}"' | dot -Tpng | display -;}
 #alias busy="cat /dev/urandom | hexdump -C | grep \"ca fe\""
 #
-#alias cman='man -M /usr/local/zhman/share/man/zh_CN'
+
+alias cman='man -M $HOME/.local/share/man/zh_CN'
 
 alias tmux='tmux -2'
-alias tlshutdown='sudo shutdown -h now'
-alias tlreboot='sudo reboot'
+alias tlshutdown='shutdown -h now'
+#alias tlreboot='sudo reboot'
 alias tlinit='sudo mount -t vboxsf VBoxShare /mnt/WinShare;
 if [ $? -ne 0 ];then
     echo " mount VBoxShare share dir error!"

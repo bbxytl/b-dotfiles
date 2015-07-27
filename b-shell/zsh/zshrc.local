@@ -1,0 +1,20 @@
+# .zshrc.local
+
+# Source global definitions
+if [ -f ~/.zshrc.oh-my-zsh ]; then
+	. ~/.zshrc.oh-my-zsh
+fi
+
+# zsh 配置
+
+
+# 更新 环境变量
+if [ -f ~/.bash_profile ]; then
+	. ~/.bash_profile
+fi
+
+
+# zsh 和 bash 共用
+if [ -f ~/.alias.sh ]; then
+	. ~/.alias.sh
+fi

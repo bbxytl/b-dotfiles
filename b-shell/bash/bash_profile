@@ -1,32 +1,16 @@
-# .bash_profile
-
 HOMELOCAL_PATH=$HOME/.local
-
-# PYTHON_PATH=$HOME/.local/app/python-dev
-
 # PATH -- bin
 PATH=/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin
-# PATH=$PYTHON_PATH/bin:$HOMELOCAL_PATH/bin:$PATH
 PATH=$HOMELOCAL_PATH/bin:$PATH
 export PATH
 
-
 # LD_LIBRARY_PATH --- lib
-
-# LD_LIBRARY_PATH=$PYTHON_PATH/lib:$HOMELOCAL_PATH/lib:$LD_LIBRARY_PATH
 LD_LIBRARY_PATH=$HOMELOCAL_PATH/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH
 
-# Get the aliases and functions
-if [ -f ~/.bashrc ]; then
-	. ~/.bashrc
-fi
-
-# User specific environment and startup programs
-
 SYS_PKGCONFIG=/usr/local/lib/pkgconfig
-# PYTHON_PKGCONFIG=$PYTHON_PATH/lib/pkgconfig
 PYTHON_PKGCONFIG=$HOMELOCAL_PATH/lib/pkgconfig
 PKG_CONFIG_PATH=$PYTHON_PKGCONFIG:$SYS_PKGCONFIG
 export PKG_CONFIG_PATH
+
 
