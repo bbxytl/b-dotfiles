@@ -287,6 +287,10 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+map <leader>j <C-W>j
+map <leader>k <C-W>k
+map <leader>h <C-W>h
+map <leader>l <C-W>l
 
 " Go to home and end using capitalized directions
 noremap H ^
@@ -446,14 +450,14 @@ set term=screen-256color
 nnoremap <Leader>w :w<CR>
 
 	" 设置快捷键将选中文本块复制至系统剪贴板
-vnoremap <leader>y "+y
-vmap <Leader>y "+y
-vmap <Leader>d "+d
-nmap <Leader>p "+p
-			" 设置快捷键将系统剪贴板内容粘贴至 vim
-nmap <leader>P "+p
-vmap <Leader>p "+p
-vmap <Leader>P "+P
+nmap ,y "+y
+vmap ,y "+y
+vmap ,d "+d
+    " 设置快捷键将系统剪贴板内容粘贴至 vim
+nmap ,p "+p
+nmap ,P "+p
+vmap ,p "+p
+vmap ,P "+P
 
 " 标签映射
 " 生成系统 头文件的 tags

@@ -22,6 +22,8 @@ alias tmls="tmux ls"
 
 alias cdu="cd -"
 alias cdp="cd ~/data/projects/"
+alias cdl="cd ~/data/lean/"
+alias cdt="cd ~/data/tmp/"
 
 alias grep='grep --color=auto'
 mcd() { mkdir -p "$1"; cd "$1";}
