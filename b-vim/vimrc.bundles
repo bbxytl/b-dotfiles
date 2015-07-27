@@ -178,8 +178,8 @@ nnoremap <Leader>sp :lprevious<cr>
 "
 " ======================= Shougo/neocomplete.vim ============================
 " 代码补全
-Bundle 'Shougo/neocomplete.vim'
-let g:neocomplete#enable_at_startup = 1
+" Bundle 'Shougo/neocomplete.vim'
+" let g:neocomplete#enable_at_startup = 1
 
 Bundle 'vim-scripts/OmniCppComplete'
 
@@ -237,7 +237,6 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 Bundle 'docunext/closetag.vim'
 """"""
 let g:closetag_html_style=1
-
 
 " ======================= scrooloose/nerdcommenter ==========================
 " 快速注释
@@ -557,7 +556,7 @@ hi CtrlSpaceStatus   guifg=#839496 guibg=#002b36 gui=reverse term=reverse cterm=
 Bundle 'majutsushi/tagbar'
 """"""
 nmap <F9> :TagbarToggle<CR>
-"nmap <leader>m :TagbarToggle<CR>
+nmap <leader>m :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 " cpp类型
 let g:tagbar_type_cpp = {
