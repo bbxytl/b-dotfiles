@@ -52,7 +52,7 @@ for i in $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.vimrc.config_bas
 for i in $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.vimrc.config_base $HOME/.vimrc.config_filetype $HOME/.indexer_files; do [ -L $i ] && unlink $i ; done
 
 echo " Step 2: setting tu symlinks----------Vim"
-if COMPLEX;then
+if $COMPLEX;then
 	bundlesfile=$CURRENT_DIR/vimrc.bundles_complex
 else
 	bundlesfile=$CURRENT_DIR/vimrc.bundles

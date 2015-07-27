@@ -23,7 +23,7 @@ if [ ! -e $tmp ];then mkdir $tmp; fi
 git clone https://github.com/lidaobing/manpages-zh.git $tmp/manpages-zh.$today
 cd $tmp/manpages-zh.$today
 sh autogen.sh
-./configure --prefix=$HOME/.local/zhman --disable-zhtw 
+./configure --prefix=$HOME/.local/ --disable-zhtw 
 make && make install
 
 # 不使用 b-shell 的话要使用下面命令（在命令行中）
