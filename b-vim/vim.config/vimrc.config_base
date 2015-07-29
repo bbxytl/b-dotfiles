@@ -516,13 +516,14 @@ function! Do_CsTag()
     endif
     if(executable('ctags'))
         "silent! execute "!ctags -R --c-types=+p --fields=+S *"
-        silent! execute "!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q ."
+        " silent! execute "!ctags --exclude=branches  --exclude=../../branches -R --c++-kinds=+p --fields=+iaS --extra=+q ."
+        silent! execute "!ctags --exclude=branches  -R --c++-kinds=+p --fields=+iaS --extra=+q ."
     endif
     if(executable('cscope') && has("cscope") )
         if(g:iswindows!=1)
-            silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' > cscope.files"
+            silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' '*.py' '*.sh' > cscope.files"
         else
-            silent! execute "!dir /s/b *.c,*.cpp,*.h,*.java,*.cs >> cscope.files"
+            silent! execute "!dir /s/b *.c,*.cpp,*.h,*.java,*.cs,*.py,*.sh >> cscope.files"
         endif
         silent! execute "!cscope -b"
         execute "normal :"

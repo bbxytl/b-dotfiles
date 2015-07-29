@@ -314,6 +314,8 @@ Bundle 'majutsushi/tagbar'
 nmap <F9> :TagbarToggle<CR>
 nmap <leader>m :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
+let g:tagbar_sort = 0
+let g:tagbar_show_linenumbers = 2
 " cpp类型
 let g:tagbar_type_cpp = {
     \ 'kinds' : [
@@ -466,6 +468,9 @@ Bundle 'vim-scripts/indexer.tar.gz'
 " 如果出问题了则使用：
 " cd ~/.vim/bundle/
 " git clone git@github.com:vim-scripts/indexer.tar.gz
+" indexer 使用 ctags 5.8.1
+" wget http://dfrank.ru/uploaded_files/ctags/ctags-5.8.1.tar.gz
+" 来自 ：http://dfrank.ru/ctags581/en.html
 " 依赖项
 Bundle 'DfrankUtil'
 Bundle 'vimprj'
