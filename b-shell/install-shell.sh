@@ -42,6 +42,6 @@ lnif $CURRENT_DIR/bash/inputrc $HOME/.inputrc
 lnif $CURRENT_DIR/alias.sh $HOME/.alias.sh
 
 echo " Step 3: source files -----------Shell"
-source $HOME/.bashrc
-source $HOME/.bash_profile
+. $HOME/.bashrc
+. $HOME/.bash_profile
 

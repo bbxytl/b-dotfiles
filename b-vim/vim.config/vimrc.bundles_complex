@@ -541,12 +541,13 @@ Bundle 'tpope/vim-fugitive'
 """"""
 nnoremap <leader>ge :Gdiff<CR>
 " not ready to open
-<leader>gbm maps to :Gblame<CR>
-<leader>gst maps to :Gstatus<CR>
-<leader>gdf maps to :Gdiff<CR>  和现有冲突
-<leader>glg maps to :Glog<CR>
-<leader>gci maps to :Gcommit<CR>
-<leader>gps maps to :Git push<CR>
+" <leader>gbm maps to :Gblame<CR>
+" <leader>gst maps to :Gstatus<CR>
+" " 和现有冲突
+" <leader>gdf maps to :Gdiff<CR>
+" <leader>glg maps to :Glog<CR>
+" <leader>gci maps to :Gcommit<CR>
+" <leader>gps maps to :Git push<CR>
 
 " ##### 同git diff,实时展示文件中修改的行
 " 只是不喜欢除了行号多一列, 默认关闭,gs时打开
@@ -556,7 +557,6 @@ let g:gitgutter_map_keys = 0
 let g:gitgutter_enabled = 0
 let g:gitgutter_highlight_lines = 1
 nnoremap <leader>gs :GitGutterToggle<CR>
-
 
 
 " ##### 可以查看回到某个历史状态
