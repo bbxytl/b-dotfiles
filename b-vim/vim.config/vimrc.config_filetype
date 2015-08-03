@@ -2,6 +2,9 @@
 " FileType Settings  文件类型设置
 "==========================================
 
+" for # indent, python文件中输入新行时#号注释不切回行首
+autocmd BufNewFile,BufRead *.py inoremap # X<c-h>#
+
 autocmd BufRead,BufNew *.pike setfiletype pike
 autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown.mkd
 autocmd BufRead,BufNew *.c setfiletype pike		" LPC 文件的缘故

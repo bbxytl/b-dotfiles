@@ -261,6 +261,10 @@ nnoremap gj j
 " F4
 " F5
 " F6 语法开关，关闭语法可以加快大文件的展示
+"
+" F9 显示函数列表--tagbar
+" F12 生成tag
+" <leader>F12 生成系统tag
 
 noremap <F1> <Esc>"
 " 为方便复制，用<F2>开启/关闭行号显示:
@@ -282,7 +286,7 @@ au InsertLeave * set nopaste
 nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
 
 
-" ##### 分屏窗口移动
+" ##### 分屏窗口移动 在vim的各个窗口间切换
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
@@ -317,8 +321,6 @@ nnoremap # *
 nnoremap * #
 
 
-" for # indent, python文件中输入新行时#号注释不切回行首
-autocmd BufNewFile,BufRead *.py inoremap # X<c-h>#
 
 " 去掉搜索高亮
 noremap <silent><leader>/ :nohls<CR>
@@ -385,8 +387,8 @@ nnoremap <leader>v V`}
 cmap w!! w !sudo tee >/dev/null %
 
 		" 滚动Speed up scrolling of the viewport slightly
-nnoremap <C-e> 30<C-e>
-nnoremap <C-y> 30<C-y>
+nnoremap <C-e> 10<C-e>
+nnoremap <C-y> 10<C-y>
 		" Quickly close the current window
 nnoremap <leader>q :q<CR>
 
