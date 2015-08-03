@@ -65,7 +65,20 @@ lnif $CURRENT_DIR/vimrc.config_filetype $HOME/.vimrc.config_filetype
 lnif $CURRENT_DIR/indexer_files $HOME/.indexer_files
 lnif "$vimpacks" "$HOME/.vim"
 
-echo " Step 3: install vundle"
+
+echo " Step 3: vim bk and undo dir and swp and view"
+vimdir=$HOME/.vim
+if [ ! -d $vimdir/vimbackup ]; then
+    mkdir -p $vimdir/vimbackup
+fi
+if [ ! -d $vimdir/vimundo ];then
+    mkdir -p $vimdir/vimundo
+fi
+if [ ! -d $vimdir/vimswap ];then
+    mkdir -p $vimdir/vimswap
+fi
+
+echo " Step 4: install vundle"
 if [ ! -e $vimpacks/bundle/vundle ]; then
     echo "Installing Vundle"
     git clone https://github.com/gmarik/vundle.git $vimpacks/bundle/vundle
@@ -73,11 +86,15 @@ else
     echo "Upgrde Vundle"
     cd "$HOME/.vim/bundle/vundle" && git pull origin master
 fi
-echo " Step 4: update/install plugins using Vundle -------- Vim"
+echo " Step 5: update/install plugins using Vundle -------- Vim"
 system_shell=$SHELLL
 export SHELL="/bin/sh"
 vim -u $HOME/.vimrc.bundles +BundleInstall! +BundleClean +qall
 export SHELL=$system_shell
+
+
+# 编译前确定安装了：sudo apt-get install python2.7-dev
+#                   sudo yum install python-devel
 
 # echo "Step5: compile YouCompleteMe"
 # echo "It will take a long time, just be patient!"
@@ -92,17 +109,6 @@ export SHELL=$system_shell
 # fi
 
 
-echo " Step 5: vim bk and undo dir and swp and view"
-vimdir=$HOME/.vim
-if [ ! -d $vimdir/vimbackup ]; then
-    mkdir -p $vimdir/vimbackup
-fi
-if [ ! -d $vimdir/vimundo ];then
-    mkdir -p $vimdir/vimundo
-fi
-if [ ! -d $vimdir/vimswap ];then
-    mkdir -p $vimdir/vimswap
-fi
 # if [ ! -d $vimdir/vimviews ];then
 #     mkdir -p $vimdir/vimviews
 # fi

@@ -10,6 +10,9 @@ export TERM=xterm-256color
 export PS1='\e[0;31m\u@\h \w\$ \e[m'
 # User specific aliases and functions
 
+if [ -e ~/.bashrc.local ];then
+	source ~/.bashrc.local
+fi
 
 if [ -e ~/.bash_profile ];then
 	source ~/.bash_profile
