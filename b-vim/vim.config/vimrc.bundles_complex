@@ -153,6 +153,12 @@ Bundle 'bronson/vim-trailing-whitespace'
 map <leader>, :FixWhitespace<cr>
 
 
+" ##### 快速加入修改环绕字符
+Bundle 'tpope/vim-surround'
+" for repeat -> enhance surround.vim, . to repeat command
+Bundle 'tpope/vim-repeat'
+""""""
+
 
 " ##### 更高效的移动 [,, + w/fx]
 Bundle 'Lokaltog/vim-easymotion'
@@ -256,6 +262,49 @@ nnoremap <Leader>fu :CtrlPFunky<Cr>
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_extensions = ['funky']
+
+
+
+
+" ##### 类似sublimetext的搜索
+Bundle "dyng/ctrlsf.vim"
+""""""
+" In CtrlSF window:
+" 回车/o, 打开
+" t       在tab中打开(建议)
+" T - Lkie t but focus CtrlSF window instead of opened new tab.
+" q - Quit CtrlSF window.
+nmap \ <Plug>CtrlSFCwordPath<CR>
+" let g:ctrlsf_position = 'below'
+" let g:ctrlsf_winsize = '30%'
+let g:ctrlsf_auto_close = 0
+let g:ctrlsf_confirm_save = 0
+" Note: cannot use <CR> or <C-m> for open
+" Use : <sapce> or <tab>
+let g:ctrlsf_mapping = {
+    \ "open"  : "<Space>",
+    \ "openb" : "O",
+    \ "tab"   : "t",
+    \ "tabb"  : "T",
+    \ "prevw" : "p",
+    \ "quit"  : "q",
+    \ "next"  : "<C-J>",
+    \ "prev"  : "<C-K>",
+    \ "pquit" : "q",
+    \ }
+nnoremap <leader>sp :CtrlSF<CR>
+
+
+
+" ======================= szw/vim-ctrlspace ==========================
+" Vim Workspace Controller
+Bundle 'szw/vim-ctrlspace'
+""""""
+let g:airline_exclude_preview = 1
+hi CtrlSpaceSelected guifg=#586e75 guibg=#eee8d5 guisp=#839496 gui=reverse,bold ctermfg=10 ctermbg=7 cterm=reverse,bold
+hi CtrlSpaceNormal   guifg=#839496 guibg=#021B25 guisp=#839496 gui=NONE ctermfg=12 ctermbg=0 cterm=NONE
+hi CtrlSpaceSearch   guifg=#cb4b16 guibg=NONE gui=bold ctermfg=9 ctermbg=NONE term=bold cterm=bold
+hi CtrlSpaceStatus   guifg=#839496 guibg=#002b36 gui=reverse term=reverse cterm=reverse ctermfg=12 ctermbg=8
 
 
 " ##### 括号显示增强

@@ -5,22 +5,21 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 export TERM=xterm-256color
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
+## Uncomment the following line if you don't like systemctl's auto-paging feature:
+## export SYSTEMD_PAGER=
 export PS1='\e[0;31m\u@\h \w\$ \e[m'
-# User specific aliases and functions
-
-if [ -e ~/.bashrc.local ];then
+## User specific aliases and functions
+#
+if [ -f ~/.bashrc.local ];then
 	source ~/.bashrc.local
 fi
 
-if [ -e ~/.bash_profile ];then
+if [ -f ~/.bash_profile ];then
 	source ~/.bash_profile
 fi
 
-if [ -e ~/.alias.sh ]; then
+if [ -f ~/.alias.sh ]; then
 	source ~/.alias.sh
 fi
 
-# 直接启动 zsh
 zsh
