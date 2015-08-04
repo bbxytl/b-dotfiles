@@ -10,16 +10,16 @@ export TERM=xterm-256color
 export PS1='\e[0;31m\u@\h \w\$ \e[m'
 ## User specific aliases and functions
 #
+if [ -f ~/.bash_env.sh ];then
+	source ~/.bash_env.sh
+fi
+
+if [ -f ~/.bash_alias.sh ]; then
+	source ~/.bash_alias.sh
+fi
+
 if [ -f ~/.bashrc.local ];then
 	source ~/.bashrc.local
-fi
-
-if [ -f ~/.bash_profile ];then
-	source ~/.bash_profile
-fi
-
-if [ -f ~/.alias.sh ]; then
-	source ~/.alias.sh
 fi
 
 zsh

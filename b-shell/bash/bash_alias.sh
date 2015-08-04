@@ -22,6 +22,7 @@ alias tmls="tmux ls"
 
 alias cdu="cd -"
 alias cdp="cd ~/data/projects/"
+alias cdz="cd ~/data/projects/zlsg/trunk"
 alias cdl="cd ~/data/lean/"
 alias cdt="cd ~/data/tmp/"
 
