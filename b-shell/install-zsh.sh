@@ -11,10 +11,10 @@
 #   Log     :
 #
 # ====================================================
-if which zsh>/dev/null 2>&1 ;then 
+if which zsh>/dev/null 2>&1 ;then
 	echo " begin zshrc ...."
 else
-	echo -e ' 需要先安装 zsh !!\n 
+	echo -e ' 需要先安装 zsh !!\n
 			git clone git://git.code.sf.net/p/zsh/code zsh\n
 			或者：\n
 			git clone https://github.com/zsh-users/zsh\n

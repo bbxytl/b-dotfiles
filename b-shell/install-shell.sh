@@ -36,7 +36,7 @@ for i in $HOME/.bashrc $HOME/.bash_profile $HOME/.dir_colors $HOME/.inputrc $HOM
 echo " Step 2: setting tu symlinks----------Shell"
 lnif $CURRENT_DIR/bash/bashrc $HOME/.bashrc
 lnif $CURRENT_DIR/bash/bash_profile $HOME/.bash_profile
-# lnif $CURRENT_DIR/bash/DIR_COLORS $HOME/.dir_colors
+lnif $CURRENT_DIR/bash/DIR_COLORS $HOME/.dir_colors
 lnif $CURRENT_DIR/bash/inputrc $HOME/.inputrc
 
 lnif $CURRENT_DIR/alias.sh $HOME/.alias.sh
