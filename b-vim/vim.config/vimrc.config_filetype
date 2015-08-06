@@ -23,14 +23,14 @@ autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,pe
 
 
 
-" 加入注释,主要以 /**/ 、 // 注释的语言
+" ###### 加入注释,主要以 /**/ 、 // 注释的语言
 function! SetComment()
     call setline(1,"/*====================================================")
     call append(line("."), " *   Copyright (C)".strftime("%Y")." All rights reserved.")
     call append(line(".") + 1, " *")
     call append(line(".") + 2, " *   Author  : bbxytl")
     call append(line(".") + 3, " *   Email  : bbxytl@gmail.com")
-    call append(line(".") + 4, " *   FileName: ".expand("%:t"))
+    call append(line(".") + 4, " *   File Name: ".expand("%:t"))
     call append(line(".") + 5, " *   Last Modified : ".strftime("%Y-%m-%d %H:%M"))
     call append(line(".") + 6, " *   Describe:")
     call append(line(".") + 7, " *")
@@ -38,7 +38,9 @@ function! SetComment()
     call append(line(".") + 9, " *")
     call append(line(".") + 10, " * ====================================================*/")
 endfunction
-" 加入注释， 主要以 # 进行注释的语言
+
+
+" ###### 加入注释， 主要以 # 进行注释的语言
 function! SetCommentBin()
     if &filetype == 'sh'
         let l = 0
@@ -53,8 +55,8 @@ function! SetCommentBin()
     call append(l + 3, "#")
     call append(l + 4, "\#   Author  : bbxytl")
     call append(l + 5, "\#   Email   : bbxytl@gmail.com")
-    call append(l + 6, "\#   FileName: ".expand("%:t"))
-    call append(l + 7, "\#   LastModify : ".strftime("%Y-%m-%d %H:%M"))
+    call append(l + 6, "\#   File Name: ".expand("%:t"))
+    call append(l + 7, "\#   Last Modify : ".strftime("%Y-%m-%d %H:%M"))
     call append(l + 8, "\#   Describe:")
     call append(l + 9, "\#")
     call append(l + 10, "\#   Log     :")
@@ -66,7 +68,7 @@ endfunction
 
 
 " 将键盘上的 F4 功能键映射为添加文件头的快捷键,目前有问题
-"map <F4> ms:call AutoSetFileHead()<cr>'s
+map <leader>us :call AutoSetFileHead()<cr>'s
 " 定义函数AutoSetFileHead，自动插入文件头
 autocmd BufNewFile *.sh,*.py,*.pike,*.h,*.hpp,*c,*cpp exec ":call AutoSetFileHead()"
 
@@ -84,67 +86,106 @@ function! AutoSetFileHead()
 endfunction
 
 function! UpdateTitle()
-    normal m'
+    " normal m'
     execute '/# *LastModify:/s@:.*$@\=strftime(":\t%Y-%m-%d %H:%M ====")'
-    normal "
-    normal mk
+    " normal "
+    " normal mk
     execute '/# *FileName:/s@:.*$@\=":\t\t".expand("%:t")@'
     execute "noh"
-    normal 'k
+    " normal 'k
     echohl WarningMsg | echo "Successful in updating the copy right." | echohl None
 endfunction
 
+" ##### 不同文件添加不同头总调用函数
 function! AddTitle()
+
     "如果文件类型为.sh文件
     if &filetype == 'sh'
-        call setline(1, "\#!/bin/bash")
-        call SetCommentBin()
+        call Title_sh()
     endif
 
     "如果文件类型为python
     if &filetype == 'python'
-        call setline(1, "\#!/usr/bin/env python")
-        call append(1, "\# encoding: utf-8")
-        call append(2, "\# coding style: pep8")
-        call SetCommentBin()
+        call Title_python()
     endif
 
     " Pike 文件
     if &filetype == 'pike'
-        call SetComment()
-        "call insert(1, "\#!/usr/bin/env pike")
-    endif
-
-    " C 文件
-    let hf = expand("%:e") == "h" || expand("%:e") == "hpp"
-    if &filetype == 'c' && !hf  || &filetype == "cpp" && !hf
-        call SetComment()
-        let l = 10
-        "call append(line(".") + l + 1, "\#include \"".expand("%:t:r").".h\"")
-        if &filetype == "cpp"
-            call append(line(".") + l + 2, "\#include <iostream>")
-            call append(line(".") + l + 3, "using namespace std;")
-        else
-            "call append(line(".") + l + 2, "\#include <stdio.h>")
-        endif
+        call Title_pike()
     endif
 
     " H 文件
-    if expand("%:e") == 'h' || expand("%:e") == "hpp"
-        call SetComment()
-        let l = 10
-        call append(line(".") + l + 1, "")
-        call append(line(".") + l + 2, "\#ifndef  _".toupper(expand("%:t:r"))."_H")
-        call append(line(".") + l + 3, "\#define  _".toupper(expand("%:t:r"))."_H")
-        call append(line(".") + l + 4, "")
-        call append(line(".") + l + 5, "")
-        call append(line(".") + l + 6, "\#endif _".toupper(expand("%:t:r"))."_H")
+    let hf = expand("%:e") == "h" || expand("%:e") == "hpp"
+    if hf
+        call Title_h()
+    endif
+
+    " C 文件
+    if &filetype == 'c' && !hf
+        " call Title_c()
+    endif
+
+    " CPP 文件
+    if &filetype == "cpp" && !hf
+        call Title_cpp()
     endif
 
     normal G
     normal o
     normal o
 endfunc
+
+" ##### 具体实现函数
+func! Title_sh()
+    call setline(1, "\#!/bin/bash")
+    call SetCommentBin()
+endfunc
+
+
+func! Title_python()
+    call setline(1, "\#!/usr/bin/env python")
+    call append(1, "\# encoding: utf-8")
+    call append(2, "\# coding style: pep8")
+    call SetCommentBin()
+endfunc
+
+
+func! Title_piki()
+    call SetComment()
+    "call insert(1, "\#!/usr/bin/env pike")
+endfunc
+
+func! Title_h()
+    call SetComment()
+    let l = 10
+    call append(line(".") + l + 1, "")
+    call append(line(".") + l + 2, "\#ifndef  _".toupper(expand("%:t:r"))."_H")
+    call append(line(".") + l + 3, "\#define  _".toupper(expand("%:t:r"))."_H")
+    call append(line(".") + l + 4, "")
+    call append(line(".") + l + 5, "")
+    call append(line(".") + l + 6, "\#endif // _".toupper(expand("%:t:r"))."_H")
+endfunc
+
+func! Title_c()
+    call SetComment()
+    let l = 10
+    call append(line(".") + l + 1, "")
+    call append(line(".") + l + 2, "\#include <stdio.h>")
+    call append(line(".") + l + 3, "")
+    call append(line(".") + l + 4, "")
+endfunc
+
+func! Title_cpp()
+    call SetComment()
+    let l = 10
+    call append(line(".") + l + 1, "")
+    call append(line(".") + l + 2, "\#include <iostream>")
+    call append(line(".") + l + 3, "using namespace std;")
+    call append(line(".") + l + 4, "")
+    call append(line(".") + l + 6, "")
+    "call append(line(".") + l + 5, "\#include \"".expand("%:t:r").".h\"")
+endfunc
+
 
 
 " set some keyword to highlight
