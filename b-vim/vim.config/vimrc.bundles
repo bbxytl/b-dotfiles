@@ -27,9 +27,14 @@ call vundle#rc()
 " ##### 插件管理工具
 Bundle 'gmarik/vundle'
 
-" ###### 主题 molokai
+" ###### 主题 molokai 和 Solarized
 Bundle 'tomasr/molokai'
 let g:molokai_original = 1
+Bundle 'altercation/vim-colors-solarized'
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+let g:solarized_contrast="normal"
+let g:solarized_visibility="normal"
 
 
 " ###### 中文 vim 帮助

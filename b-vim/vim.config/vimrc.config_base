@@ -431,6 +431,7 @@ set background=dark
 "set background=light
 set t_Co=256
 colorscheme molokai
+" colorscheme solarized
 
 "设置标记一列的背景颜色和数字一行颜色一致
 hi! link SignColumn   LineNr
@@ -540,5 +541,5 @@ endfunction
 
 " let ada_no_trail_space_error=1
 		" 关闭 C 的语法检测，因为 LPC 也是.c后缀
-let g:syntastic_ignore_files=[".*\.c$"]
+let g:syntastic_ignore_files=[".*\.c$", ".*\.decl$"]
 
