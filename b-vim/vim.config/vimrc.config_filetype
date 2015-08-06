@@ -6,8 +6,9 @@
 autocmd BufNewFile,BufRead *.py inoremap # X<c-h>#
 
 autocmd BufRead,BufNew *.pike setfiletype pike
+autocmd BufRead,BufNew *.decl setfiletype cpp
+
 autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown.mkd
-autocmd BufRead,BufNew *.c setfiletype pike		" LPC 文件的缘故
 autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
 autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
 autocmd FileType pike set tabstop=4 shiftwidth=4 expandtab ai
@@ -66,7 +67,6 @@ endfunction
 
 " 将键盘上的 F4 功能键映射为添加文件头的快捷键,目前有问题
 "map <F4> ms:call AutoSetFileHead()<cr>'s
-autocmd BufRead,BufNewFile *.c setfiletype pike
 " 定义函数AutoSetFileHead，自动插入文件头
 autocmd BufNewFile *.sh,*.py,*.pike,*.h,*.hpp,*c,*cpp exec ":call AutoSetFileHead()"
 
