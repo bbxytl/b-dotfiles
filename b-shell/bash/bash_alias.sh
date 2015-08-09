@@ -25,7 +25,7 @@ alias cdp="cd ~/data/projects/"
 alias cdz="cd ~/data/projects/zlsg/trunk"
 alias cdl="cd ~/data/lean/"
 alias cdt="cd ~/data/tmp/"
-alias cdr="cd ~/Recycle"
+alias rec="cd ~/Recycle"
 
 # 防误删操作
 # 原来的删除操作
@@ -60,12 +60,13 @@ rm() {
         if [ $tmp != "--" ];then
             today=`date +%Y%m%d%H%M%S`
             mv $1 $Rec/$1.$today
-            echo -e "\n
-            OK!\n
-            move $1 to $Rec !\n
-            you can use 'cdr' to checkout $Rec!\n
-            you can use 'rmabs' to delete absolutely!\n
+            echo -e "OK!
+            move $1 to $Rec !
+            you can use 'rec' to checkout $Rec!
+            you can use 'rmabs' to delete absolutely!
             you can use 'rmall' to delete all files in $Rec!"
+        else
+            rmabs $@
         fi
     else
         rmabs --help
