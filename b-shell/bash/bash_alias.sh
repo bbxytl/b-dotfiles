@@ -25,6 +25,53 @@ alias cdp="cd ~/data/projects/"
 alias cdz="cd ~/data/projects/zlsg/trunk"
 alias cdl="cd ~/data/lean/"
 alias cdt="cd ~/data/tmp/"
+alias cdr="cd ~/Recycle"
+
+# 防误删操作
+# 原来的删除操作
+alias rmabs="/bin/rm"
+Rec=$HOME/Recycle
+# 清空回收站,只能用在回收站里
+rmall() {
+    if [ `pwd` = $Rec ];then
+        cd
+        rmabs -rf $Rec
+        mkdir $Rec
+        cd $Rec
+    else
+        echo "This cmd only uses in $Rec !"
+    fi
+}
+# 将删除的文件全部放到回收站里,防误删
+rm() {
+    if [ ! -e $Rec ];then
+        mkdir $Rec
+    fi
+    if [ $# -gt 0 ];then
+        tmp=$1
+        for f in $@;do
+            if [ ${f:0:1} != "-" ];then
+                tmp=$f
+                break
+            else
+                tmp="--"
+            fi
+        done
+        if [ $tmp != "--" ];then
+            today=`date +%Y%m%d%H%M%S`
+            mv $1 $Rec/$1.$today
+            echo -e "\n
+            OK!\n
+            move $1 to $Rec !\n
+            you can use 'cdr' to checkout $Rec!\n
+            you can use 'rmabs' to delete absolutely!\n
+            you can use 'rmall' to delete all files in $Rec!"
+        fi
+    else
+        rmabs --help
+    fi
+}
+
 
 alias grep='grep --color=auto'
 mcd() { mkdir -p "$1"; cd "$1";}
