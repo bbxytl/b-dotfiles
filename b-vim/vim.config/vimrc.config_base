@@ -281,6 +281,7 @@ endfunc
 nnoremap <F2> :call HideNumber()<CR>
 	   	" 插件 nerdtree 显示关闭快捷键
 map <F3> <leader>n
+set pastetoggle=<F5>
 		" disbale paste mode when leaving insert mode
 au InsertLeave * set nopaste
 nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>

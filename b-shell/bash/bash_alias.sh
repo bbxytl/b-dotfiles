@@ -27,6 +27,85 @@ alias cdl="cd ~/data/lean/"
 alias cdt="cd ~/data/tmp/"
 alias rec="cd ~/Recycle"
 
+
+config_dir=$HOME/.config/cache_alias
+export PREDIRS=$config_dir/predirs
+PREDIRS_README=$config_dir/predirs.md
+pcd() {
+    if [ ! -e $config_dir ];then
+        mkdir -p $config_dir
+    fi
+    curpd=`pwd`
+    no=0
+    if [ -e $PREDIRS ];then
+        cat $PREDIRS | while read line
+        do
+            let no++
+            if [ $line = $curpd ];then
+                sed -i $no','$no'd' $PREDIRS
+                break
+            fi
+        done
+    fi
+    echo $curpd >> $PREDIRS
+
+    if [ $# -gt 0 ];then
+        if [ -e $1 ];then
+            cd $1
+        else
+            echo "$1 unexited !"
+        fi
+    fi
+}
+# 显示缓存了多少目录
+# 参数 -c 显式相关命令
+pls() {
+    if [ $# -gt 0 ];then
+        if [ $1 = '-d' ];then
+            if [ ! -e $PREDIRS_README ];then
+                echo "pls : 显示缓存了多少目录；带参数 -d 时显示相关命令说明；带参数 -c 时清空缓存路径" >> $PREDIRS_README
+                echo "pcd : 缓存当前路径，后跟参数为新的要切换的路径，无参数时只缓存路径" >> $PREDIRS_README
+                echo "psd : 无参数时调用 pls，后跟数字参数！为 pls 输出的对应缓存路径的编号" >> $PREDIRS_README
+            fi
+            cat $PREDIRS_README
+        else if [ $1 = '-c' ];then
+                rm $PREDIRS
+            else
+                pls '-d'
+            fi
+        fi
+    else
+        if [ -e $PREDIRS ];then
+            no=0
+            cat $PREDIRS | while read line
+            do
+                let no++
+                echo "$no : $line"
+            done
+        fi
+    fi
+}
+psd() {
+    if [ $# -ge 1 ];then
+        if [ -e $PREDIRS ];then
+            if [[ "$1" =~ "^[0-9]+$" ]] ;then
+                no=0
+                cat $PREDIRS | while read line
+                do
+                    let no++
+                    if [ $no -eq $1 ];then
+                        cd $line
+                    fi
+                done
+            fi
+            pcd $1
+        fi
+    else
+        pls
+    fi
+}
+
+
 # 防误删操作
 # 原来的删除操作
 alias rmabs="/bin/rm"
@@ -42,37 +121,48 @@ rmall() {
         echo "This cmd only uses in $Rec !"
     fi
 }
+
+RMLS_README=$config_dir/rmls.md
+rmls() {
+   if [ ! -e $config_dir ];then mkdir $config_dir;fi
+   if [ ! -e $RMLS_README ];then
+       echo "rmls   : ls this cmd" >> $RMLS_README
+       echo "rec    : checkout to $Rec" >> $RMLS_README
+       echo "rmabs  : delete absolutely" >> $RMLS_README
+       echo "rmall  : delete all in $Rec" >> $RMLS_README
+   fi
+   cat $RMLS_README
+}
+
 # 将删除的文件全部放到回收站里,防误删
 rm() {
+    curdir=`pwd`
     if [ ! -e $Rec ];then
         mkdir $Rec
     fi
     if [ $# -gt 0 ];then
-        tmp=$1
+        tmp="--"
+        today=`date +%Y%m%d%H%M%S`
         for f in $@;do
             if [ ${f:0:1} != "-" ];then
                 tmp=$f
-                break
-            else
-                tmp="--"
+                mv $f $Rec/$f.$today
+                dir_dir=`dirname $f`
+                if [ $dir_dir = '.' ];then dir_dir=`pwd`;fi
+                echo "$dir_dir" > $Rec/$f.$today.dir
+               echo "move $dir_dir/$f to $Rec ! OK ! use 'rmls' show all cmds !"
             fi
         done
-        if [ $tmp != "--" ];then
-            today=`date +%Y%m%d%H%M%S`
-            mv $1 $Rec/$1.$today
-            echo -e "OK!
-            move $1 to $Rec !
-            you can use 'rec' to checkout $Rec!
-            you can use 'rmabs' to delete absolutely!
-            you can use 'rmall' to delete all files in $Rec!"
-        else
+        if [ $tmp = "--" ];then
             rmabs $@
+        else
+            echo "move to $Rec ! OK ! use 'rmls' show all cmds !"
         fi
     else
         rmabs --help
     fi
+    cd $curdir
 }
-
 
 alias grep='grep --color=auto'
 mcd() { mkdir -p "$1"; cd "$1";}
