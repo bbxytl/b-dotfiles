@@ -152,13 +152,11 @@ rm() {
                 dir_dir=`dirname $f`
                 if [ $dir_dir = '.' ];then dir_dir=`pwd`;fi
                 echo "$dir_dir" > $Rec/$f.$today.dir
-               echo "move $dir_dir/$f to $Rec ! OK ! use 'rmls' show all cmds !"
+                echo "move $dir_dir/$f to $Rec ! OK ! use 'rmls' show all cmds !"
             fi
         done
         if [ $tmp = "--" ];then
             rmabs $@
-        else
-            echo "move to $Rec ! OK ! use 'rmls' show all cmds !"
         fi
     else
         rmls

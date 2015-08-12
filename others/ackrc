@@ -1,0 +1,8 @@
+
+--type-add
+ruby=.haml,.ru
+--type-add
+css=.scss,.sass,.less
+--type-add
+js=.coffee
+

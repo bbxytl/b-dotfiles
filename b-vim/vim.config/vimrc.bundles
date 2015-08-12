@@ -87,6 +87,8 @@ endfunction
 nnoremap <Leader>s :call ToggleErrors()<cr>
 nnoremap <Leader>sn :lnext<cr>
 nnoremap <Leader>sp :lprevious<cr>
+        " 关闭 C 的语法检测, 主要是用于 lpc
+let g:syntastic_ignore_files=[".*\.c$", ".*\.decl$"]
 
 " ##### 代码片段快速插入
 Bundle 'SirVer/ultisnips'
@@ -140,10 +142,6 @@ Bundle 'Raimondi/delimitMate'
 	" for python docstring ,优化输入
 au FileType python let b:delimitMate_nesting_quotes = ['"']
 
-
-" #####
-Bundle 'mileszs/ack.vim'
-let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
 
 " ###### 快速注释
 Bundle 'scrooloose/nerdcommenter'
@@ -469,7 +467,7 @@ map <leader><F4> :AS<CR>
 
 
 " ##### 周期性针对这个工程自动生成标签文件，并通知 vim 引人该标签文件
-Bundle 'vim-scripts/indexer.tar.gz'
+" Bundle 'vim-scripts/indexer.tar.gz'
 " 如果出问题了则使用：
 " cd ~/.vim/bundle/
 " git clone git@github.com:vim-scripts/indexer.tar.gz
@@ -477,15 +475,15 @@ Bundle 'vim-scripts/indexer.tar.gz'
 " wget http://dfrank.ru/uploaded_files/ctags/ctags-5.8.1.tar.gz
 " 来自 ：http://dfrank.ru/ctags581/en.html
 " 依赖项
-Bundle 'DfrankUtil'
-Bundle 'vimprj'
+" Bundle 'DfrankUtil'
+" Bundle 'vimprj'
 " indexer 还有个自己的配置文件，用于设定各个工程的根目录路径，配置文件位于
 " ~/.indexer_files，内容可以设定为：
 """"""
 " 设置插件 indexer 调用 ctags 的参数
 " 默认 --c++-kinds=+p+l，重新设置为 --c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v
 " 默认 --fields=+iaS 不满足 YCM 要求，需改为 --fields=+iaSl
-let g:indexer_ctagsCommandLineOptions="--c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v --fields=+iaSl --extra=+q"
+" let g:indexer_ctagsCommandLineOptions="--c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v --fields=+iaSl --extra=+q"
 " --------------- ~/.indexer_files ---------------
 "  [foo]
 "  /data/workplace/foo/src/
@@ -493,12 +491,32 @@ let g:indexer_ctagsCommandLineOptions="--c++-kinds=+p+l+x+c+d+e+f+g+m+n+s+t+u+v 
 "  /data/workplace/bar/src/
 
 
+" #### 标识buff
+" Bundle 'fholgado/minibufexpl.vim'
+" map <Leader>e :MBEOpen<cr>
+" map <Leader>c :MBEClose<cr>
+" map <Leader>t :MBEToggle<cr>
+
+
+" #### 自动补全
+Bundle 'vim-scripts/AutoComplPop'
+
+
+" ##### 比grep搜索更好
+" grep foo $(find . -name '*.pm' | grep -v .svn)
+Bundle 'mileszs/ack.vim'
+" let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
+let g:ack_default_options =
+              \ " -s -H --color --group --column --smart-case --follow"
+map <leader>a :Ack -i
+
 
 " ##### vim-powerline
 Bundle 'Lokaltog/vim-powerline'
 " Bundle ' bling/vim-airline'
 " Always show the status line - use 2 lines for the status bar
 set laststatus=2
+
 
 
 
