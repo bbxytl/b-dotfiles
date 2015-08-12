@@ -31,6 +31,8 @@ alias rec="cd ~/Recycle"
 config_dir=$HOME/.config/cache_alias
 export PREDIRS=$config_dir/predirs
 PREDIRS_README=$config_dir/predirs.md
+# 最大保存 PREDIRS_CNT 条路径
+export PREDIRS_CNT=20
 pcd() {
     if [ ! -e $config_dir ];then
         mkdir -p $config_dir
@@ -43,9 +45,15 @@ pcd() {
             let no++
             if [ $line = $curpd ];then
                 sed -i $no','$no'd' $PREDIRS
-                break
+                # break
             fi
         done
+    fi
+    if [ $no -gt $PREDIRS_CNT ];then
+        line_no=1
+        cat $PREDIRS | read lines
+        echo $lines
+        sed -i $line_no','$line_no'd' $PREDIRS
     fi
     echo $curpd >> $PREDIRS
 
@@ -145,18 +153,22 @@ rm() {
     if [ $# -gt 0 ];then
         tmp="--"
         today=`date +%Y%m%d%H%M%S`
+        cnt=0
         for f in $@;do
             if [ ${f:0:1} != "-" ];then
                 tmp=$f
-                mv $f $Rec/$f.$today
+                mv $f $Rec/$f.____.$today
+                let cnt++
                 dir_dir=`dirname $f`
                 if [ $dir_dir = '.' ];then dir_dir=`pwd`;fi
-                echo "$dir_dir" > $Rec/$f.$today.dir
-                echo "move $dir_dir/$f to $Rec ! OK ! use 'rmls' show all cmds !"
+                echo "$dir_dir" > $Rec/$f.____.$today.dir
+                echo "$f : move $dir_dir/$f to $Rec ! OK ! use 'rmls' show all cmds !"
             fi
         done
         if [ $tmp = "--" ];then
             rmabs $@
+        else
+            echo "CNT: $cnt ==========================================="
         fi
     else
         rmls
