@@ -61,9 +61,9 @@ pcd() {
 # 参数 -c 显式相关命令
 pls() {
     if [ $# -gt 0 ];then
-        if [ $1 = '-d' ];then
+        if [ $1 = '-h' ] || [ $1 = '--help' ];then
             if [ ! -e $PREDIRS_README ];then
-                echo "pls : 显示缓存了多少目录；带参数 -d 时显示相关命令说明；带参数 -c 时清空缓存路径" >> $PREDIRS_README
+                echo "pls : 显示缓存了多少目录；带参数 -h[--help] 时显示相关命令说明；带参数 -c 时清空缓存路径" >> $PREDIRS_README
                 echo "pcd : 缓存当前路径，后跟参数为新的要切换的路径，无参数时只缓存路径" >> $PREDIRS_README
                 echo "psd : 无参数时调用 pls，后跟数字参数！为 pls 输出的对应缓存路径的编号" >> $PREDIRS_README
             fi
@@ -97,11 +97,12 @@ psd() {
                         cd $line
                     fi
                 done
+            else
+                pcd $1
             fi
-            pcd $1
         fi
     else
-        pls
+        pls '-h'
     fi
 }
 
@@ -128,7 +129,8 @@ rmls() {
    if [ ! -e $RMLS_README ];then
        echo "rmls   : ls this cmd" >> $RMLS_README
        echo "rec    : checkout to $Rec" >> $RMLS_README
-       echo "rmabs  : delete absolutely" >> $RMLS_README
+       echo "rm     : move curfile/dir to $Rec" >> $RMLS_README
+       echo "rmabs  : delete absolutely, use '/bin/rm'" >> $RMLS_README
        echo "rmall  : delete all in $Rec" >> $RMLS_README
    fi
    cat $RMLS_README
@@ -159,7 +161,7 @@ rm() {
             echo "move to $Rec ! OK ! use 'rmls' show all cmds !"
         fi
     else
-        rmabs --help
+        rmls
     fi
     cd $curdir
 }
