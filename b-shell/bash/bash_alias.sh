@@ -16,6 +16,7 @@ alias lsa="ls -a"
 alias tmat="tmux attach -t"
 alias tmnn="tmux new -s"
 alias tmls="tmux ls"
+alias tmrn="tmux rename-window"
 
 # . ~/.local/lib/python2.6/site-packages/powerline/bindings/bash/powerline.sh
 # . ~/mydotfiles/packges/powerline/powerline/bindings/bash/powerline.sh

@@ -23,7 +23,7 @@ if [ ! -e $tmp ];then mkdir $tmp; fi
 git clone https://github.com/lidaobing/manpages-zh.git $tmp/manpages-zh.$today
 cd $tmp/manpages-zh.$today
 sh autogen.sh
-./configure --prefix=$HOME/.local/ --disable-zhtw 
+./configure --prefix=$HOME/.local/ --disable-zhtw
 make && make install
 
 # 不使用 b-shell 的话要使用下面命令（在命令行中）
@@ -32,7 +32,10 @@ make && make install
 # 在 .bashrc 中增加：
 #	alias cman='man -M $HOME/.local/zhman/share/man/zh_CN'
 # source .bashrc   # 刷新
-# cman cd          # 查看是否成功，如果要使用英文版，可继续使用 man 命令 
+# cman cd          # 查看是否成功，如果要使用英文版，可继续使用 man 命令
 cd $CURRENT_DIR
 
+echo -e "如果需要 高亮 man ，需要安装 most，源码安装比较麻烦，\n
+建议直接安装：http://www.cyberciti.biz/faq/unix-linux-color-man-pages-configuration/ \n
+配置已经写入到 .bash_env.sh里了!"
 
