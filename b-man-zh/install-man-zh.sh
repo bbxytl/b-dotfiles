@@ -37,5 +37,10 @@ cd $CURRENT_DIR
 
 echo -e "如果需要 高亮 man ，需要安装 most，源码安装比较麻烦，\n
 建议直接安装：http://www.cyberciti.biz/faq/unix-linux-color-man-pages-configuration/ \n
-配置已经写入到 .bash_env.sh里了!"
+配置已经写入到 .bash_env.sh里了!\n
+下载shell：\n
+    下载安装 most 依赖的 slang \n
+    wget http://www.jedsoft.org/releases/slang/slang-2.3.0.tar.bz2 \n
+    下载安装 most \n
+    wget http://www.jedsoft.org/releases/most/most-5.0.0a.tar.bz2"
 
