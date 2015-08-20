@@ -258,14 +258,15 @@ nnoremap gj j
 " F1
 " F2 行号开关，用于鼠标复制代码用
 " F3 显示/关闭 树形资源管理器
-" F4
-" F5
+" F4 切换 h/cpp
+" F5 开启关闭粘贴模式
 " F6 语法开关，关闭语法可以加快大文件的展示
 "
 " F9 显示函数列表--tagbar
 " F12 生成tag
 " <leader>F12 生成系统tag
-
+" <leader><F6> 切换十六进制
+" <leader><leader><F6> 切换回文本模式
 noremap <F1> <Esc>"
 " 为方便复制，用<F2>开启/关闭行号显示:
 function! HideNumber()
@@ -285,7 +286,8 @@ set pastetoggle=<F5>
 		" disbale paste mode when leaving insert mode
 au InsertLeave * set nopaste
 nnoremap <F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
-
+nnoremap <leader><F6> :%!xxd -g 2<CR>
+nnoremap <leader><leader><F6> :%!xxd -r<CR>
 
 " ##### 分屏窗口移动 在vim的各个窗口间切换
 map <C-j> <C-W>j
@@ -308,7 +310,7 @@ cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
 " ##### 搜索相关
-	" 进入搜索Use sane regexes"
+" 进入搜索Use sane regexes"
 nnoremap / /\v
 vnoremap / /\v
 " Keep search pattern at the center of the screen."
@@ -376,21 +378,23 @@ autocmd TabLeave * let g:last_active_tab = tabpagenr()
 " 调整缩进后自动选中，方便再次操作
 vnoremap < <gv
 vnoremap > >gv
-		" y$ -> Y Make Y behave like other capitals
+    " y$ -> Y Make Y behave like other capitals
 map Y y$
 set mouse=v
 set clipboard=unnamed
-		" select all
+    " select all
 map <Leader>sa ggVG"
-		" select block
+    " select block
 nnoremap <leader>v V`}
-		" w!! to sudo & write a file
+    " w!! to sudo & write a file
 cmap w!! w !sudo tee >/dev/null %
 
-		" 滚动Speed up scrolling of the viewport slightly
+    " 滚动Speed up scrolling of the viewport slightly
 nnoremap <C-e> 10<C-e>
 nnoremap <C-y> 10<C-y>
-		" Quickly close the current window
+nnoremap J 10<C-e>
+nnoremap K 10<C-y>
+    " Quickly close the current window
 nnoremap <leader>q :q<CR>
 
 " Swap implementations of ` and ' jump to markers
@@ -399,9 +403,9 @@ nnoremap <leader>q :q<CR>
 nnoremap ' `
 nnoremap ` '
 
-		" remap U to <C-r> for easier redo
+    " remap U to <C-r> for easier redo
 nnoremap U <C-r>
-		" Quickly edit/reload the vimrc file
+    " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
@@ -412,19 +416,19 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 "==========================================
 " Set extra options when running in GUI mode
 if has("gui_running")
-    set guifont=Monaco:h14
-    if has("gui_gtk2")   "GTK2
-        set guifont=Monaco\ 12,Monospace\ 12
-    endif
-    set guioptions-=T
-    set guioptions+=e
-    set guioptions-=r
-    set guioptions-=L
-    set guitablabel=%M\ %t
-    set showtabline=1
-    set linespace=2
-    set noimd
-    set t_Co=256
+set guifont=Monaco:h14
+if has("gui_gtk2")   "GTK2
+    set guifont=Monaco\ 12,Monospace\ 12
+endif
+set guioptions-=T
+set guioptions+=e
+set guioptions-=r
+set guioptions-=L
+set guitablabel=%M\ %t
+set showtabline=1
+set linespace=2
+set noimd
+set t_Co=256
 endif
 
 " ##### theme主题
@@ -450,14 +454,14 @@ highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
 
 set term=screen-256color
-	" 快速保存 快捷键
+" 快速保存 快捷键
 nnoremap <Leader>w :w<CR>
 
-	" 设置快捷键将选中文本块复制至系统剪贴板
+" 设置快捷键将选中文本块复制至系统剪贴板
 nmap ,y "+y
 vmap ,y "+y
 vmap ,d "+d
-    " 设置快捷键将系统剪贴板内容粘贴至 vim
+" 设置快捷键将系统剪贴板内容粘贴至 vim
 nmap ,p "+p
 nmap ,P "+p
 vmap ,p "+p
@@ -468,8 +472,8 @@ vmap ,P "+P
 set tags+=~/.vim/systags
 map <leader><F12> :call Do_CsTag_Sys()<CR>
 function! Do_CsTag_Sys()
-    delete("~/.vim/systags")
-    silent! execute "!ctags -R -f ~/.vim/systags /usr/include /usr/local/include ~/.local/include"
+delete("~/.vim/systags")
+silent! execute "!ctags -R -f ~/.vim/systags /usr/include /usr/local/include ~/.local/include"
 endfunction
 " 生成项目的 tags
 map <F12> :call Do_CsTag()<CR>
@@ -482,16 +486,16 @@ nmap <C-@>f :cs find f <C-R>=expand("<cfile>")<CR><CR>:copen<CR>
 nmap <C-@>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>:copen<CR>
 nmap <C-@>d :cs find d <C-R>=expand("<cword>")<CR><CR>:copen<CR>
 function! Do_CsTag()
-    let dir = getcwd()
-    if filereadable("tags")
-        if(g:iswindows==1)
-            let tagsdeleted=delete(dir."\\"."tags")
-        else
-            let tagsdeleted=delete("./"."tags")
-        endif
-        if(tagsdeleted!=0)
-            echohl WarningMsg | echo "Fail to do tags! I cannot delete the tags" | echohl None
-            return
+let dir = getcwd()
+if filereadable("tags")
+    if(g:iswindows==1)
+        let tagsdeleted=delete(dir."\\"."tags")
+    else
+        let tagsdeleted=delete("./"."tags")
+    endif
+    if(tagsdeleted!=0)
+        echohl WarningMsg | echo "Fail to do tags! I cannot delete the tags" | echohl None
+        return
         endif
     endif
     if has("cscope")

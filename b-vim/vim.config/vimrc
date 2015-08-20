@@ -1,8 +1,8 @@
 " 修改leader键
 let mapleader = "\<space>"
 let g:mapleader ="\<space>"
-		" jj 替换 Esc
-inoremap jj <Esc>
+		" ii 替换 Esc
+inoremap ii <Esc>
 		" 将 ; 绑定到 : 用于快速进入命令行
 nnoremap ; :
 
