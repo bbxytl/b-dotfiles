@@ -28,6 +28,8 @@ alias cdl="cd ~/data/lean/"
 alias cdt="cd ~/data/tmp/"
 alias rec="cd ~/Recycle"
 
+export PWD_DIR="${PWD##*/}"
+alias dirname="echo $PWD_DIR"
 
 config_dir=$HOME/.config/cache_alias
 export PREDIRS=$config_dir/predirs
