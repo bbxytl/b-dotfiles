@@ -30,6 +30,10 @@ git clone git@github.com:vim-scripts/indexer.tar.gz
 - 每一个文件夹内的都可单独配置，tmux 安装可能需要先安装对应的 依赖包；
 - [更新日志][log]在 [`log`][log] 目录下；
 
+## 帮助文档
+- [shell][shell]
+- [vim][vim]
+
 ## 配置学习
 - 本配置的部分可直接查看 vimrc 和 vimrc.bundles 进行查看
 - 其他学习推荐：[use_vim_as_ide][3]
@@ -39,3 +43,5 @@ git clone git@github.com:vim-scripts/indexer.tar.gz
 [3]: https://github.com/bbxytl/use_vim_as_ide
 [log]: log/version.md
 [YouCompleteMe]: http://valloric.github.io/YouCompleteMe/
+[shell]: ./b-shell/README.md
+[vim]: ./b-vim/README.md
