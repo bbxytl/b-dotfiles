@@ -7,6 +7,12 @@
 - 中文man
 
 ## 安装方式
+- 首先clone到本地：
+```
+git clone https//github.com/bbxytl/b-dotfiles.git
+cd b-dotfiles
+./configure
+```
 - 分别安装，进入到各安装文件夹下，分别进行运行 `install-*.sh` 文件
 
 ## 说明

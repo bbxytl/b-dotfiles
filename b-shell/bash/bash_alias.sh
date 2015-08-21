@@ -17,6 +17,7 @@ alias tmat="tmux attach -t"
 alias tmnn="tmux new -s"
 alias tmls="tmux ls"
 alias tmrn="tmux rename-window"
+alias tmux='tmux -2'
 
 # . ~/.local/lib/python2.6/site-packages/powerline/bindings/bash/powerline.sh
 # . ~/mydotfiles/packges/powerline/powerline/bindings/bash/powerline.sh
@@ -28,6 +29,9 @@ alias cdl="cd ~/data/lean/"
 alias cdt="cd ~/data/tmp/"
 alias rec="cd ~/Recycle"
 
+# 当前目录的名称
+export PWD_DIR="${PWD##*/}"
+alias dirname="echo $PWD_DIR"
 
 config_dir=$HOME/.config/cache_alias
 export PREDIRS=$config_dir/predirs
@@ -246,7 +250,6 @@ alias volume="amixer get Master | sed '1,4 d' | cut -d [ -f 2 | cut -d ] -f 1"
 
 alias cman='man -M $HOME/.local/share/man/zh_CN'
 
-alias tmux='tmux -2'
 alias tlshutdown='shutdown -h now'
 #alias tlreboot='sudo reboot'
 alias tlinit='sudo mount -t vboxsf VBoxShare /mnt/WinShare;
