@@ -12,6 +12,7 @@
 git clone https//github.com/bbxytl/b-dotfiles.git
 cd b-dotfiles
 ./configure
+cd ~/mydotfiles/b-dotfiles
 ```
 - 分别安装，进入到各安装文件夹下，分别进行运行 `install-*.sh` 文件
 
