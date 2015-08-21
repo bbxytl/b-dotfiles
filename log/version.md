@@ -1,3 +1,10 @@
+
+# Version 3.0
+添加配置文件，大幅度修改！
+
+# Version 2.1
+添加一些别名等小修改.
+
 # Version 2.0
 完全废除原先的文件结构，划为一个个对应的小块，尽量减少安装附加软件！
 所以如果是需要附加软件依赖的会在安装中提示，需要手动去安装依赖，
@@ -30,7 +37,7 @@ github源：[https://github.com/lidaobing/manpages-zh][1]
     - b-shell
         - install-shell.sh
         - bashrc
-        - bash_profile
+        - bash\_profile
     - b-vim
         - install-vim.sh
         - vimrc
@@ -60,7 +67,7 @@ github源：[https://github.com/lidaobing/manpages-zh][1]
     - b-shell
         - install-shell.sh
         - bashrc
-        - bash_profile
+        - bash\_profile
     - b-vim
         - install-vim.sh
         - vimrc
