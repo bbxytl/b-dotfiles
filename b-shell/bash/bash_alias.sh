@@ -136,6 +136,7 @@ prm() {
 # 原来的删除操作
 alias rmabs="/bin/rm"
 Rec=$HOME/Recycle
+cmbck_file=$Rec/.cmbck_file.cmbck
 # 清空回收站,只能用在回收站里
 rmall() {
     if [ `pwd` = $Rec ];then
@@ -157,6 +158,7 @@ rmls() {
        echo "rm     : move curfile/dir to $Rec" >> $RMLS_README
        echo "rmabs  : delete absolutely, use '/bin/rm'" >> $RMLS_README
        echo "rmall  : delete all in $Rec" >> $RMLS_README
+       echo -e "rmbk   : revoke the last delete to $Rec \n  \tor revoke the arg1" >> $RMLS_README
    fi
    cat $RMLS_README
 }
@@ -176,10 +178,13 @@ rm() {
                 tmp=$f
                 mv $f $Rec/$f.____.$today
                 let cnt++
-                dir_dir=`dirname $f`
-                if [ $dir_dir = '.' ];then dir_dir=`pwd`;fi
-                echo "$dir_dir" > $Rec/$f.____.$today.dir
-                echo "$f : move $dir_dir/$f to $Rec ! OK ! use 'rmls' show all cmds !"
+                # dir_dir=`dirname $f`
+                # if [ $dir_dir = '.' ];then dir_dir=`pwd`;fi
+                rm_f=$f.____.$today
+                echo "`pwd`" > $Rec/$rm_f.dir
+                echo "$f" >> $Rec/$rm_f.dir
+                echo "$rm_f" > $cmbck_file
+                echo "$f : move $f to $Rec ! OK ! use 'rmls' show all cmds !"
             fi
         done
         if [ $tmp = "--" ];then
@@ -192,6 +197,53 @@ rm() {
     fi
     cd $curdir
 }
+
+# 撤销最后一次的删除、某个文件的删除
+rmbk() {
+    curdir=`pwd`
+    error="No dir : $Rec Or No file : $cmbck_file ,Can not comeback !"
+    if [ $# -gt 0 ];then cbk_dir=$1;
+    else if [ ! -e $Rec ] || [ ! -e $cmbck_file ];then
+            echo $error
+            return
+         fi
+         cat $cmbck_file | read cbk_dir
+    fi
+    cd $Rec
+
+    ls $Rec | while read line;do
+        if [ $line = $cbk_dir ];then
+            back_dir_file=$line".dir"
+            # .dir 中保存了两行，一行是删除此文件时所在的目录，
+            # 另一行是当时删除的文件
+            cnt=0
+            mv_cur_dir=""
+            is_this_dir=true
+            cat $back_dir_file |while read back_dir;do
+                if [ $cnt -lt 1 ];then
+                    mv_cur_dir=$back_dir
+                    if [ ! -e $back_dir ];then mkdir -p $back_dir;fi
+                    cd $back_dir;
+                fi
+                if [ $cnt -gt 1 ];then
+                    if [ -e $back_dir ];then back_dir=$back_dir".rmback";fi
+                    mv $Rec/$line $back_dir
+                    rmabs $Rec/$line.dir
+                    # 恢复的文件并不是在当前目录下
+                    if [ `ls $mv_cur_dir | wc -l` -eq 0 ];then rmabs -rf $mv_cur_dir;fi
+                    echo "Comeback $line to $back_dir !"
+                    cd $curdir
+                    return
+                fi
+                cnt=9
+            done
+        fi
+    done
+    echo "$cbk_dir not exited ! Maybe delete absolutely Or rmbk already !"
+    cd $curdir
+}
+
+
 
 alias grep='grep --color=auto'
 mcd() { mkdir -p "$1"; cd "$1";}

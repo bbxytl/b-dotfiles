@@ -1,14 +1,29 @@
 HOMELOCAL_PATH=$HOME/.local
 # PATH -- bin
-PATH=/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin
+# PATH=/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin
 PATH=$HOMELOCAL_PATH/bin:$PATH
 export PATH
 
+# 动态链接库路径
 # LD_LIBRARY_PATH --- lib
-LD_LIBRARY_PATH=$HOMELOCAL_PATH/lib:/usr/lib:/usr/local/lib
+# LD_LIBRARY_PATH=$HOMELOCAL_PATH/lib:/usr/lib:/usr/local/lib
+LD_LIBRARY_PATH=$HOMELOCAL_PATH/lib:$LD_LIBRARY_PATH
 export LD_LIBRARY_PATH
 
-SYS_PKGCONFIG=/usr/local/lib/pkgconfig
+#找到静态库的路径
+LIBRARY_PATH=$HOMELOCAL_PATH/lib:$LIBRARY_PATH
+export LIBRARY_PATH
+
+# gcc include 路径
+C_INCLUDE_PATH=$HOMELOCAL_PATH/include:$C_INCLUDE_PATH
+export C_INCLUDE_PATH
+
+# g++ include 路径
+CPLUS_INCLUDE_PATH=$HOMELOCAL_PATH/include:$CPLUS_INCLUDE_PATH
+export CPLUS_INCLUDE_PATH
+
+
+# SYS_PKGCONFIG=/usr/local/lib/pkgconfig
 PYTHON_PKGCONFIG=$HOMELOCAL_PATH/lib/pkgconfig
 PKG_CONFIG_PATH=$PYTHON_PKGCONFIG:$SYS_PKGCONFIG
 export PKG_CONFIG_PATH
