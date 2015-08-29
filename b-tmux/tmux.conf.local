@@ -24,3 +24,12 @@ tmux_conf_new_panes_retain_current_path=true
 #   - and iTerm2 is configured to send [1;9A -> [1;9D for option + arrow keys
 # then uncomment the following line to make Meta + arrow keys mapping work
 #set -g terminal-overrides "*:kUP3=\e[1;9A,*:kDN3=\e[1;9B,*:kRIT3=\e[1;9C,*:kLFT3=\e[1;9D"
+
+#set-option -g status on
+#set-option -g status-interval 2
+#set-option -g status-utf8 on
+#set-option -g status-justify "centre"
+#set-option -g status-left-length 60
+#set-option -g status-right-length 90
+#set-option -g status-left "#(~/mydotfiles/packges/tmux-powerline/powerline.sh left)"
+#set-option -g status-right "#(~/mydotfiles/packges/tmux-powerline/powerline.sh right)"

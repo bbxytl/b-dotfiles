@@ -12,6 +12,12 @@
 #
 # ====================================================
 
+# 可能需要的命令：autoconf 、automake 、m4
+# curl -O http://mirrors.kernel.org/gnu/automake/automake-1.11.tar.gz
+# curl -O http://mirrors.kernel.org/gnu/autoconf/autoconf-2.65.tar.gz
+# curl -O http://mirrors.kernel.org/gnu/m4/m4-1.4.13.tar.gz
+
+
 PACKGES=$HOME/mydotfiles/packges
 if [ ! -e $PACKGES ];then mkdir $PACKGES;fi
 

@@ -1,16 +1,26 @@
 
 # 自身配置的 命令
 
+SYS_VERSION=`uname -s`
+if [ $SYS_VERSION != 'Linux' ];then
+	SYS_VERSION='Mac'
+fi
+
 export EDITOR='vim'
 
 alias v="vim"
 # User specific aliases and functions
 ##Productivity
-
-alias ls="ls --color=auto"
-alias ll="ls --color -l"
+#if [ $SYS_VERSION != 'Mac' ];then
+#    alias ls="ls --color=auto"
+#fi
+alias ll="ls  -l"
 alias lla="ll -a"
-alias lsa="ls -a"
+alias la="ls -a"
+
+# mac 隐藏文件
+alias fshow='defaults write com.apple.finder AppleShowAllFiles -bool true'
+alias fhide='defaults write com.apple.finder AppleShowAllFiles -bool false'
 
 # tmux
 alias tmat="tmux attach -t"
@@ -23,12 +33,14 @@ alias tmux='tmux -2'
 # . ~/mydotfiles/packges/powerline/powerline/bindings/bash/powerline.sh
 
 alias cdu="cd -"
+alias cdd="cd ~/data"
 alias cdp="cd ~/data/projects/"
 alias cdz="cd ~/data/projects/zlsg/trunk"
 alias cdl="cd ~/data/lean/"
 alias cdt="cd ~/data/tmp/"
 alias rec="cd ~/Recycle"
 
+alias rmabs="/bin/rm"
 # 当前目录的名称
 export PWD_DIR="${PWD##*/}"
 alias dirname="echo $PWD_DIR"
@@ -134,7 +146,6 @@ prm() {
 
 # 防误删操作
 # 原来的删除操作
-alias rmabs="/bin/rm"
 Rec=$HOME/Recycle
 cmbck_file=$Rec/.cmbck_file.cmbck
 # 清空回收站,只能用在回收站里
@@ -176,7 +187,8 @@ rm() {
         for f in $@;do
             if [ ${f:0:1} != "-" ];then
                 tmp=$f
-                mv $f $Rec/$f.____.$today
+		newf=${f##/*}
+                mv $f $Rec/$newf.____.$today
                 let cnt++
                 # dir_dir=`dirname $f`
                 # if [ $dir_dir = '.' ];then dir_dir=`pwd`;fi
