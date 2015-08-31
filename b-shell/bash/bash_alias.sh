@@ -11,16 +11,15 @@ export EDITOR='vim'
 alias v="vim"
 # User specific aliases and functions
 ##Productivity
-#if [ $SYS_VERSION != 'Mac' ];then
-#    alias ls="ls --color=auto"
-#fi
+if [ $SYS_VERSION = 'Mac' ];then
+# mac 隐藏文件
+    alias fshow='defaults write com.apple.finder AppleShowAllFiles -bool true'
+    alias fhide='defaults write com.apple.finder AppleShowAllFiles -bool false'
+fi
+
 alias ll="ls  -l"
 alias lla="ll -a"
 alias la="ls -a"
-
-# mac 隐藏文件
-alias fshow='defaults write com.apple.finder AppleShowAllFiles -bool true'
-alias fhide='defaults write com.apple.finder AppleShowAllFiles -bool false'
 
 # tmux
 alias tmat="tmux attach -t"
@@ -61,7 +60,12 @@ pcd() {
         do
             let no++
             if [ $line = $curpd ];then
-                sed -i $no','$no'd' $PREDIRS
+                # sed -i $no','$no'd' $PREDIRS
+                if [ $SYS_VERSION = 'Mac' ];then
+                    sed -i '' "$no,$no d" $PREDIRS
+                else
+                    sed -i $no','$no'd' $PREDIRS
+                fi
                 # break
             fi
         done
@@ -70,7 +74,12 @@ pcd() {
         line_no=1
         cat $PREDIRS | read lines
         echo $lines
-        sed -i $line_no','$line_no'd' $PREDIRS
+        # sed -i $line_no','$line_no'd' $PREDIRS
+        if [ $SYS_VERSION = 'Mac' ];then
+            sed -i '' "$line_no,$line_no d" $PREDIRS
+        else
+            sed -i $line_no','$line_no'd' $PREDIRS
+        fi
     fi
     echo $curpd >> $PREDIRS
 
@@ -132,8 +141,13 @@ psd() {
 }
 prm() {
     if [ $# -ge 1 ];then
+        no=$1
         if [[ "$1" =~ "^[0-9]+$" ]] ;then
-            sed -i $1','$1'd' $PREDIRS
+            if [ $SYS_VERSION = 'Mac' ];then
+                sed -i '' "$no,$no d" $PREDIRS
+            else
+                sed -i $no','$no'd' $PREDIRS
+            fi
         else
             echo "需要路径编号！"
             pls
