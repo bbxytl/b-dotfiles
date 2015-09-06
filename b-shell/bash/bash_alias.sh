@@ -42,7 +42,7 @@ alias rec="cd ~/Recycle"
 alias rmabs="/bin/rm"
 # 当前目录的名称
 export PWD_DIR="${PWD##*/}"
-alias dirname="echo $PWD_DIR"
+alias curdirname="echo $PWD_DIR"
 
 config_dir=$HOME/.config/cache_alias
 export PREDIRS=$config_dir/predirs

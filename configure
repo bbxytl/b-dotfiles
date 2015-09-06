@@ -2,11 +2,10 @@ echo "正在初始化配置......"
 if [ ! -e $HOME/mydotfiles ];then mkdir $HOME/mydotfiles;fi
 
 curdir=`pwd`
-curdirname=${PWD##*/}
-mv curdir $HOME/mydotfiles/
-cd $HOME/mydotfile/$curdirname
+curdirname=${curdir##*/}
+mv $curdir $HOME/mydotfiles/
 
-echo "在命令行输入：dotdir  进入到配置文件目录！"
+echo "在命令行输入：cd ~/mydotfile/$curdirname  进入到配置文件目录！"
 echo "进入到各配置目录里运行 install*.sh 文件进行安装配置，建议可以看一下文件内容！"
 echo "建议先进入到目录：b-shell下运行 ./install-shell.sh 安装基本 bash 配置！"
 echo "  "
