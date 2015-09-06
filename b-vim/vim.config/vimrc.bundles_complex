@@ -631,7 +631,12 @@ let g:quickrun_no_default_key_mappings = 1
 nmap <Leader>r <Plug>(quickrun)
 map <F10> :QuickRun<CR>
 
+" Just Fun
+Bundle 'uguu-org/vim-matrix-screensaver'
 
+" 给 typedef 和 enum 配色
+" 需要使用到 ctags
+Bundle 'vim-scripts/TagHighlight'
 
 " ################## 插件配置结束 ###########################
 filetype plugin indent on     " required!

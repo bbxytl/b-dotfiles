@@ -15,12 +15,22 @@ if [ $SYS_VERSION = 'Mac' ];then
 # mac 隐藏文件
     alias fshow='defaults write com.apple.finder AppleShowAllFiles -bool true'
     alias fhide='defaults write com.apple.finder AppleShowAllFiles -bool false'
+
+# mpv 播放器播放 bilibili 视频
+    blimpv(){
+        cur_dir=`pwd`
+        cd "$HOME/mydotfiles/packges/BiliDan"
+        ./bilidan.py $@
+        cd $cur_dir
+    }
 fi
 
 alias ll="ls  -l"
 alias lla="ll -a"
 alias la="ls -a"
 
+# virtualenv
+alias vte='virtualenv'
 # tmux
 alias tmat="tmux attach -t"
 alias tmnn="tmux new -s"
@@ -34,10 +44,27 @@ alias tmux='tmux -2'
 alias cdu="cd -"
 alias cdd="cd ~/data"
 alias cdp="cd ~/data/projects/"
+alias cdc="cd ~/data/projects/cpp"
 alias cdz="cd ~/data/projects/zlsg/trunk"
 alias cdl="cd ~/data/lean/"
+alias cdg="cd ~/data/git"
 alias cdt="cd ~/data/tmp/"
 alias rec="cd ~/Recycle"
+
+cdls(){
+    echo -e '
+cdu = "cd -"
+cdd = "cd ~/data"
+cdp = "cd ~/data/projects/"
+cdc = "cd ~/data/projects/cpp"
+cdz = "cd ~/data/projects/zlsg/trunk"
+cdl = "cd ~/data/lean/"
+cdg = "cd ~/data/git"
+cdt = "cd ~/data/tmp/"
+rec = "cd ~/Recycle"
+            '
+}
+
 
 alias rmabs="/bin/rm"
 # 当前目录的名称

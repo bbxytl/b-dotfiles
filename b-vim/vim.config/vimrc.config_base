@@ -1,10 +1,8 @@
 "==========================================
 " Author:  bbxytl
-" Version: 1.0
+" Version: 3.0
 " Email: bbxytl@gmail.com
-" BlogPost: http://www.wklken.me
-" ReadMe: README.md
-" Donation: http://www.wklken.me/pages/donation.html
+" BlogPost: http://bbxytl.github.com
 " Last_modify: 2015-05-02
 " Sections:
 "       -> Initial Plugin 加载插件
@@ -542,4 +540,5 @@ if filereadable("tags")
     endif
 endfunction
 
-
+" 在当前文件中快速查找光标下的单词
+nmap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
