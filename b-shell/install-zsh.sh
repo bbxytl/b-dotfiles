@@ -44,16 +44,18 @@ today=`date +%Y%m%d`
 bakdot="$HOME/mydotfiles/orgConfigBak"
 if [ ! -e $bakdot ];then mkdir $bakdot; fi
 
-
-mv $HOME/.zshrc $HOME/.zshrc.oh-my-zsh
+if [ ! -e $HOME/.zshrc ] && [ ! -L $HOME/.zshrc ];then
+    mv $HOME/.zshrc $HOME/.zshrc.oh-my-zsh.old
+fi
 echo " Step 1: backing up current config-----------Shell-Zsh"
 shellbak="$bakdot/ori-zsh.$today"
 if [ ! -e $shellbak ];then mkdir $shellbak; fi
-for i in $HOME/.zshrc ; do [ -e $i ] && [ ! -L $i ] && mv $i $shellbak/; done
-for i in $HOME/.zshrc ; do [ -L $i ] && unlink $i ; done
+for i in $HOME/.zshrc $HOME/.zshrc.oh-my-zsh; do [ -e $i ] && [ ! -L $i ] && mv $i $shellbak/; done
+for i in $HOME/.zshrc $HOME/.zshrc.oh-my-zsh; do [ -L $i ] && unlink $i ; done
 
 echo " Step 2: setting tu symlinks----------Shell-Zsh"
 lnif $CURRENT_DIR/zsh/zshrc.local $HOME/.zshrc
+lnif $HOME/.oh-my-zsh/templates/zshrc.zsh-template $HOME/.zshrc.oh-my-zsh
 
 echo " Step 3: source files -----------Shell-Zsh"
 source $HOME/.zshrc
