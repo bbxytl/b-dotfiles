@@ -48,8 +48,10 @@ mv $HOME/.vimrc $HOME/.vimrc_other
 echo " Step 1: bucking up current config --------------- Vim"
 vimbak="$bakdot/ori-vim.$today"
 if [ ! -e $vimbak ];then mkdir $vimbak; fi
-for i in $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.vimrc.config_base $HOME/.vimrc.config_filetype $HOME/.indexer_files; do [ -e $i ] && [ ! -L $i ] && mv $i $vimbak/; done
-for i in $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.vimrc.config_base $HOME/.vimrc.config_filetype $HOME/.indexer_files; do [ -L $i ] && unlink $i ; done
+for i in $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.vimrc.config_base $HOME/.vimrc.config_filetype ; do [ -e $i ] && [ ! -L $i ] && mv $i $vimbak/; done
+for i in $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.vimrc.config_base $HOME/.vimrc.config_filetype ; do [ -L $i ] && unlink $i ; done
+# for i in $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.vimrc.config_base $HOME/.vimrc.config_filetype $HOME/.indexer_files; do [ -e $i ] && [ ! -L $i ] && mv $i $vimbak/; done
+# for i in $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.vimrc.config_base $HOME/.vimrc.config_filetype $HOME/.indexer_files; do [ -L $i ] && unlink $i ; done
 
 echo " Step 2: setting tu symlinks----------Vim"
 if $COMPLEX;then
@@ -62,7 +64,7 @@ lnif $CURRENT_DIR/vimrc $HOME/.vimrc
 lnif $bundlesfile $HOME/.vimrc.bundles
 lnif $CURRENT_DIR/vimrc.config_base $HOME/.vimrc.config_base
 lnif $CURRENT_DIR/vimrc.config_filetype $HOME/.vimrc.config_filetype
-lnif $CURRENT_DIR/indexer_files $HOME/.indexer_files
+# lnif $CURRENT_DIR/indexer_files $HOME/.indexer_files
 lnif "$vimpacks" "$HOME/.vim"
 
 

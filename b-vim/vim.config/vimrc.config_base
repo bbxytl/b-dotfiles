@@ -468,13 +468,14 @@ vmap ,P "+P
 " 标签映射
 " 生成系统 头文件的 tags
 set tags+=~/.vim/systags
-map <leader><F12> :call Do_CsTag_Sys()<CR>
+" map <leader><F12> :call Do_CsTag_Sys()<CR>
+map <leader><leader>T :call Do_CsTag_Sys()<CR>
 function! Do_CsTag_Sys()
 delete("~/.vim/systags")
 silent! execute "!ctags -R -f ~/.vim/systags /usr/include /usr/local/include ~/.local/include"
 endfunction
 " 生成项目的 tags
-map <F12> :call Do_CsTag()<CR>
+map <leader>T :call Do_CsTag()<CR>
 nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>:copen<CR>
 nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
 nmap <C-@>c :cs find c <C-R>=expand("<cword>")<CR><CR>:copen<CR>
