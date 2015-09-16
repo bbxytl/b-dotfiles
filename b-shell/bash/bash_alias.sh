@@ -8,7 +8,8 @@ fi
 
 export EDITOR='vim'
 
-alias v="vim"
+alias v='/usr/bin/vi'
+alias vi='vim'
 # User specific aliases and functions
 ##Productivity
 if [ $SYS_VERSION = 'Mac' ];then
