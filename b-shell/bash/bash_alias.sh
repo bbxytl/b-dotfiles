@@ -193,10 +193,14 @@ cmbck_file=$Rec/.cmbck_file.cmbck
 # 清空回收站,只能用在回收站里
 rmall() {
     if [ `pwd` = $Rec ];then
-        cd
-        rmabs -rf $Rec
-        mkdir $Rec
-        cd $Rec
+        ls $Rec | while read line;do
+            rmabs -rf $line
+        done
+        rmabs $Rec/.cmbck_file.cmbck
+        # cd
+        # rmabs -rf $Rec
+        # mkdir $Rec
+        # # cd $Rec
     else
         echo "This cmd only uses in $Rec !"
     fi
