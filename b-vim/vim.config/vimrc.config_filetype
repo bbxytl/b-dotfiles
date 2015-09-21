@@ -9,9 +9,9 @@ autocmd BufRead,BufNew *.pike setfiletype pike
 autocmd BufRead,BufNew *.decl setfiletype cpp
 
 autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown.mkd
-autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
-autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
-autocmd FileType pike set tabstop=4 shiftwidth=4 expandtab ai
+" autocmd FileType python set tabstop=4 shiftwidth=4 expandtab ai
+" autocmd FileType ruby set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
+" autocmd FileType pike set tabstop=4 shiftwidth=4 expandtab ai
 autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown.mkd
 fun! <SID>StripTrailingWhitespaces()	" 保存文件时删除多余空格
     let l = line(".")
@@ -19,7 +19,7 @@ fun! <SID>StripTrailingWhitespaces()	" 保存文件时删除多余空格
     %s/\s\+$//e
     call cursor(l, c)
 endfun
-autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,pike autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+autocmd FileType c,cpp,py,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,pike autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 
 
