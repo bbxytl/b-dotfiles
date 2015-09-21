@@ -215,6 +215,10 @@ set formatoptions+=B
 autocmd! bufwritepost _vimrc source %
 		" vimrc文件修改之后自动加载。 linux。
 autocmd! bufwritepost .vimrc source %
+" autocmd! bufwritepost .vimrc.config_base source %
+" autocmd! bufwritepost .vimrc.config_filetype source %
+" autocmd! bufwritepost .vimrc.bundles source %
+" autocmd! bufwritepost .vimrc.local source %
 		" 自动补全配置
 set completeopt=longest,menu
 		" 增强模式中的命令行自动完成操作
@@ -393,6 +397,10 @@ nnoremap <C-e> 10<C-e>
 nnoremap <C-y> 10<C-y>
 nnoremap J 10<C-e>
 nnoremap K 10<C-y>
+	" 跳转到第一行, 默认一个 G 为跳转到最后一行，
+	" 一个 M 为跳转到当前屏幕中间一
+	" 行
+nnoremap GG 1G
     " Quickly close the current window
 nnoremap <leader>q :q<CR>
 
