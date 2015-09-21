@@ -9,4 +9,3 @@ js=.coffee
 cc=.c,.h,.cpp,.hpp
 --color
 --pager=less -r
---noenv

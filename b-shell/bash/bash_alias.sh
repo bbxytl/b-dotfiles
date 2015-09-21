@@ -202,7 +202,17 @@ rmall() {
         # mkdir $Rec
         # # cd $Rec
     else
-        echo "This cmd only uses in $Rec !"
+        if [ $# -ge 1 ];then
+            if [ -d $1 ];then
+                ls $1 | while read line;do
+                    rm  $line
+                done
+            else
+                echo "$i not exited !"
+            fi
+        else
+            echo "This cmd only uses in $Rec when no arg of dir!"
+        fi
     fi
 }
 

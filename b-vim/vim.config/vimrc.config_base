@@ -41,7 +41,7 @@ set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
 set cursorline
 		"设置 退出vim后，内容显示在终端屏幕, 可以用于查看和复制
 		"好处：误删什么的，如果以前屏幕打开，可以找回
-set t_ti=
+set t_ti= t_te=
 		"- 则点击光标不会换,用于复制
 		" 鼠标暂不启用, 键盘党....
 set mouse-=a
@@ -158,6 +158,7 @@ set softtabstop=4
 set smarttab
 		" 将Tab自动转化成空格    [需要输入真正的Tab键时，使用 Ctrl+V + Tab]
 set expandtab
+" set noexpandtab
 		" 缩进时，取整 use multiple of shiftwidth when indenting with '<' and '>'
 set shiftround
 
