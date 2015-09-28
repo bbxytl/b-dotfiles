@@ -46,3 +46,13 @@ export LESS_TERMCAP_ZN=$(tput ssubm)
 export LESS_TERMCAP_ZV=$(tput rsubm)
 export LESS_TERMCAP_ZO=$(tput ssupm)
 export LESS_TERMCAP_ZW=$(tput rsupm)
+
+# virtualenvswrapper 配置
+if [ `id -u` != '0' ]; then
+  export VIRTUALENV_USE_DISTRIBUTE=1        # <-- Always use pip/distribute
+  export WORKON_HOME=$HOME/.local/virtualenvs       # <-- Where all virtualenvs will be stored
+  source /usr/local/bin/virtualenvwrapper.sh
+  export PIP_VIRTUALENV_BASE=$WORKON_HOME
+  export PIP_RESPECT_VIRTUALENV=true
+
+fi

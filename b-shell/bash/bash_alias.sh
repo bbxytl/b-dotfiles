@@ -32,6 +32,11 @@ alias la="ls -a"
 
 # virtualenv
 alias vte='virtualenv'
+alias mkvte='mkvirtualenv'
+alias deact='deactivate'
+alias rmvte='rmvirtualenv'
+
+
 # tmux
 alias tmat="tmux attach -t"
 alias tmnn="tmux new -s"
@@ -43,6 +48,7 @@ alias tmux='tmux -2'
 # . ~/mydotfiles/packges/powerline/powerline/bindings/bash/powerline.sh
 
 alias cdu="cd -"
+alias cdb="cd ~/mydotfiles/b-dotfiles"
 alias cdd="cd ~/data"
 alias cdp="cd ~/data/projects/"
 alias cdc="cd ~/data/projects/cpp"
