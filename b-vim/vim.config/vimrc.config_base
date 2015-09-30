@@ -552,3 +552,6 @@ endfunction
 
 " 在当前文件中快速查找光标下的单词
 nmap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
+
+set list
+set lcs=tab:\|\ ,nbsp:%,trail:-
