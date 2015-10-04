@@ -34,9 +34,10 @@ if [ ! -e $bakdot ];then mkdir $bakdot; fi
 echo " Step 1: backing up current config-----------Others"
 othersbak="$bakdot/ori-others.$today"
 if [ ! -e $othersbak ];then mkdir $othersbak; fi
-for i in $HOME/.gitconfig $HOME/.ackrc; do [ -e $i ] && [ ! -L $i ] && mv $i $othresbak/$i; done
-for i in $HOME/.gitconfig $HOME/.ackrc; do [ -L $i ] && unlink $i ; done
+for i in $HOME/.gitconfig $HOME/.gitignore $HOME/.ackrc; do [ -e $i ] && [ ! -L $i ] && mv $i $othresbak/$i; done
+for i in $HOME/.gitconfig $HOME/.gitignore $HOME/.ackrc; do [ -L $i ] && unlink $i ; done
 echo " Step 2: setting tu symlinks----------Others"
 lnif $CURRENT_DIR/gitconfig.sh $HOME/.gitconfig
+lnif $CURRENT_DIR/gitignore $HOME/.gitignore
 lnif $CURRENT_DIR/ackrc $HOME/.ackrc
 echo " Step 3: end of install ------------ Others"
