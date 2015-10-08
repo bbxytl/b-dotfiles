@@ -28,6 +28,7 @@ fi
 
 alias ll="ls  -l"
 alias lla="ll -a"
+alias llt="ll -t"
 alias la="ls -a"
 
 # virtualenv
