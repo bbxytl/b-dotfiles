@@ -554,4 +554,4 @@ endfunction
 nmap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
 
 set list
-set lcs=tab:\|\ ,nbsp:%,trail:-
+set lcs=tab:\|\ ,nbsp:% ",trail:-
