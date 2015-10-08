@@ -19,7 +19,7 @@ fun! <SID>StripTrailingWhitespaces()	" 保存文件时删除多余空格
     %s/\s\+$//e
     call cursor(l, c)
 endfun
-autocmd FileType c,cpp,py,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,pike autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+" autocmd FileType c,cpp,py,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,pike autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 
 

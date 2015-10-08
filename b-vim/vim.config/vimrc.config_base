@@ -166,7 +166,7 @@ set shiftround
 set hidden
 set wildmode=list:longest
 set ttyfast
-
+ 
 " ##### 00x增减数字时使用十进制
 set nrformats=
 
