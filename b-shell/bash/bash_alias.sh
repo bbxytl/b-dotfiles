@@ -59,6 +59,8 @@ alias cdg="cd ~/data/git"
 alias cdt="cd ~/data/tmp/"
 alias rec="cd ~/Recycle"
 
+alias rmabs="/bin/rm"
+
 cdls(){
     echo -e '
 cdu = "cd -"
@@ -70,18 +72,56 @@ cdl = "cd ~/data/lean/"
 cdg = "cd ~/data/git"
 cdt = "cd ~/data/tmp/"
 rec = "cd ~/Recycle"
+cdlg
             '
 }
-
-
-alias rmabs="/bin/rm"
 # 当前目录的名称
 export PWD_DIR="${PWD##*/}"
 alias curdirname="echo $PWD_DIR"
 
-config_dir=$HOME/.config/cache_alias
+config_dir=$HOME/.cache/cache_alias
+log_dir=$config_dir/logs
+# 命令操作 log
+#lg(){
+#	if [ ! -e $log_dir ];then mkdir -p $log_dir; fi
+#	mlog=$log_dir/`date +%Y%m`'.log'
+#	echo "==========|==========" >> $mlog
+#	echo "$0 $*" >> $mlog
+#	if [ $# -gt 0 ];then
+#		$@ 2>&1 | tee -a $mlog
+#	fi
+#	if [ $# -eq 0 ];then
+#		echo "lg 后加要使用的命令，可以将此命令以及输出加入log"
+#	fi
+#}
+log_file=$log_dir/commands.log
+export FOUT=$log_file
+alias cdlg="cd $log_dir"
+alias lgcat="cat $log_file"
+alias lgvim="vim $log_file"
+alias lg="tee -a $log_file"
+newlg(){
+	if [ ! -e $log_dir ];then mkdir -p $log_dir;fi
+	nowtime=`date +%Y%m%d%H%M%S`
+	if [ ! -e $log_file ];then
+		echo $nowtime'=================' >> $log_file
+	else
+		newfile=$log_file'.'$nowtime
+		mv $log_file $newfile
+		echo $nowtime'=================' >> $log_file
+	fi
+	echo $log_file
+}
+lgls(){
+	echo "cdlg : 打开输出文件所在目录"
+	echo "lgnew: 创建一个新的输出文件"
+	echo "lgcat: 查看输出文件"
+	echo "lgvim: vim打开输出文件"
+	echo "lg   : 使用方式：command 2>&1 | lg"
+	echo "       用于将输出输出到输出文件和屏幕"
+	echo 'command >> $FOUT 用于将结果输出到输出文件'
+}
 export PREDIRS=$config_dir/predirs
-PREDIRS_README=$config_dir/predirs.md
 # 最大保存 PREDIRS_CNT 条路径
 export PREDIRS_CNT=20
 pcd() {
@@ -130,13 +170,10 @@ pcd() {
 pls() {
     if [ $# -gt 0 ];then
         if [ $1 = '-h' ] || [ $1 = '--help' ];then
-            if [ ! -e $PREDIRS_README ];then
-                echo "pls : 显示缓存了多少目录；带参数 -h[--help] 时显示相关命令说明；带参数 -c 时清空缓存路径" >> $PREDIRS_README
-                echo "pcd : 缓存当前路径，后跟参数为新的要切换的路径，无参数时只缓存路径" >> $PREDIRS_README
-                echo "psd : 无参数时调用 pls，后跟数字参数！为 pls 输出的对应缓存路径的编号" >> $PREDIRS_README
-                echo "prm : 无参数时调用 pls，后跟数字参数！删除对应编号的缓存路径" >> $PREDIRS_README
-            fi
-            cat $PREDIRS_README
+                echo "pls : 显示缓存了多少目录；带参数 -h[--help] 时显示相关命令说明；带参数 -c 时清空缓存路径"
+                echo "pcd : 缓存当前路径，后跟参数为新的要切换的路径，无参数时只缓存路径"
+                echo "psd : 无参数时调用 pls，后跟数字参数！为 pls 输出的对应缓存路径的编号"
+                echo "prm : 无参数时调用 pls，后跟数字参数！删除对应编号的缓存路径"
         else if [ $1 = '-c' ];then
                 rm $PREDIRS
             else
@@ -223,18 +260,13 @@ rmall() {
     fi
 }
 
-RMLS_README=$config_dir/rmls.md
 rmls() {
-   if [ ! -e $config_dir ];then mkdir $config_dir;fi
-   if [ ! -e $RMLS_README ];then
-       echo "rmls   : ls this cmd" >> $RMLS_README
-       echo "rec    : checkout to $Rec" >> $RMLS_README
-       echo "rm     : move curfile/dir to $Rec" >> $RMLS_README
-       echo "rmabs  : delete absolutely, use '/bin/rm'" >> $RMLS_README
-       echo "rmall  : delete all in $Rec" >> $RMLS_README
-       echo -e "rmbk   : revoke the last delete to $Rec \n  \tor revoke the arg1" >> $RMLS_README
-   fi
-   cat $RMLS_README
+	echo "rmls   : ls this cmd"
+	echo "rec    : checkout to $Rec"
+	echo "rm     : move curfile/dir to $Rec"
+	echo "rmabs  : delete absolutely, use '/bin/rm'"
+	echo "rmall  : delete all in $Rec"
+	echo -e "rmbk   : revoke the last delete to $Rec \n  \tor revoke the arg1"
 }
 
 # 将删除的文件全部放到回收站里,防误删
@@ -250,15 +282,15 @@ rm() {
         for f in $@;do
             if [ ${f:0:1} != "-" ];then
                 tmp=$f
-		newf=${f##/*}
-                mv $f $Rec/$newf.____.$today
+				newf=${f##*/}'.____.'$today
+				mv $f $Rec/$newf
                 let cnt++
                 # dir_dir=`dirname $f`
                 # if [ $dir_dir = '.' ];then dir_dir=`pwd`;fi
-                rm_f=$f.____.$today
-                echo "`pwd`" > $Rec/$rm_f.dir
-                echo "$f" >> $Rec/$rm_f.dir
-                echo "$rm_f" > $cmbck_file
+                # rm_f=$f.____.$today
+                echo "`pwd`" > $Rec/$newf.dir
+                echo "$f" >> $Rec/$newf.dir
+                echo "$newf" > $cmbck_file
                 echo "$f : move $f to $Rec ! OK ! use 'rmls' show all cmds !"
             fi
         done
