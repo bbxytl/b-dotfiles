@@ -52,6 +52,8 @@ for i in $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.vimrc.config_bas
 for i in $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.vimrc.config_base $HOME/.vimrc.config_filetype ; do [ -L $i ] && unlink $i ; done
 # for i in $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.vimrc.config_base $HOME/.vimrc.config_filetype $HOME/.indexer_files; do [ -e $i ] && [ ! -L $i ] && mv $i $vimbak/; done
 # for i in $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.vimrc.config_base $HOME/.vimrc.config_filetype $HOME/.indexer_files; do [ -L $i ] && unlink $i ; done
+for i in $HOME/.vim/tags_list ; do [ -e $i ] && cp $i $i.bak; done
+for i in $HOME/.vim/tags_list ; do [ -L $i ] && unlink $i ; done
 
 echo " Step 2: setting tu symlinks----------Vim"
 if $COMPLEX;then
@@ -67,6 +69,12 @@ lnif $CURRENT_DIR/vimrc.config_filetype $HOME/.vimrc.config_filetype
 # lnif $CURRENT_DIR/indexer_files $HOME/.indexer_files
 lnif "$vimpacks" "$HOME/.vim"
 
+SYS_VERSION=`uname -s`
+if [ $SYS_VERSION != 'Linux' ];then
+	lnif $CURRENT_DIR/tags_list_of_cpp/tags_list_mac $tags_list $HOME/.vim/tags_list
+else
+	lnif $CURRENT_DIR/tags_list_of_cpp/tags_list_linux $tags_list $HOME/.vim/tags_list
+fi
 
 echo " Step 3: vim bk and undo dir and swp and view"
 vimdir=$HOME/.vim

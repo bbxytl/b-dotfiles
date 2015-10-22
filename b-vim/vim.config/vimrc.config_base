@@ -477,13 +477,28 @@ vmap ,P "+P
 " 标签映射
 " 生成系统 头文件的 tags
 set tags+=~/.vim/systags
+set tags+=~/.vim/systags_local
 " map <leader><F12> :call Do_CsTag_Sys()<CR>
 map <leader><leader>T :call Do_CsTag_Sys()<CR>
 function! Do_CsTag_Sys()
-delete("~/.vim/systags")
-silent! execute "!ctags -R -f ~/.vim/systags /usr/include /usr/local/include ~/.local/include"
+	delete("~/.vim/systags")
+	" 本地自定义的头文件目录标签文件
+	delete("~/.vim/systags_local")
+	silent! execute "!ctags -R -f ~/.vim/systags -L ~/.vim/tags_list"
+	" 需要自己新建 tags_list_local 文件，用以指示自定义的头文件目录
+	silent! execute "!ctags -R -f ~/.vim/systags_local -L ~/.vim/tags_list_local"
 endfunction
-" 生成项目的 tags
+
+" 使用 gf 跳转到对应的include文件
+if has("mac")
+	set path=.,/usr/local/include
+	set path+=,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include
+	set path+=,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include/c++/4.2.1
+elseif has("linux")|| has("unix")
+	set path=.,/usr/include,/usr/local/include,~/.local/include
+endif
+
+" 生成当前项目的 tags
 map <leader>T :call Do_CsTag()<CR>
 nmap <C-@>s :cs find s <C-R>=expand("<cword>")<CR><CR>:copen<CR>
 nmap <C-@>g :cs find g <C-R>=expand("<cword>")<CR><CR>
@@ -532,8 +547,6 @@ if filereadable("tags")
         endif
     endif
     if(executable('ctags'))
-        "silent! execute "!ctags -R --c-types=+p --fields=+S *"
-        " silent! execute "!ctags --exclude=branches  --exclude=../../branches -R --c++-kinds=+p --fields=+iaS --extra=+q ."
         silent! execute "!ctags --exclude=branches  -R --c++-kinds=+p --fields=+iaS --extra=+q ."
     endif
     if(executable('cscope') && has("cscope") )
