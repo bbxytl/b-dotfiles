@@ -1,0 +1,25 @@
+#!/bin/bash
+# ====================================================
+#   Copyright (C)2015 All rights reserved.
+#
+#   Author        : bbxytl
+#   Email         : bbxytl@gmail.com
+#   File Name     : git-psh
+#   Last Modified : 2015-10-29 16:13
+#   Describe      : 此文件可放到 git 安装目录，然后就
+#                   可使用命令：git psh
+#                    也可直接使用命令：./git-psh
+#   Log           :
+#
+# ====================================================
+if [ `uname -s` != "Linux" ];then
+	cmmt="update-from-Mac"
+else
+	cmmt="update-from-Linux"
+fi
+if [ $# -gt 0 ];then
+	cmmt=$1
+fi
+git add  .
+git commit -m "$cmmt"
+git push
