@@ -495,7 +495,7 @@ if has("mac")
 	set path+=,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include
 	set path+=,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include/c++/4.2.1
 elseif has("linux")|| has("unix")
-	set path=.,/usr/include,/usr/local/include,~/.local/include
+	set path=.,/usr/include,/usr/local/include
 endif
 
 " 生成当前项目的 tags
