@@ -2,13 +2,13 @@
 # ====================================================
 #   Copyright (C)2015 All rights reserved.
 #
-#   Author  : bbxytl
-#   Email   : bbxytl@gmail.com
-#   FileName: install.sh
-#   LastModify : 2015-07-20 10:02
-#   Describe:
+#   Author        : bbxytl
+#   Email         : bbxytl@gmail.com
+#   File Name     : install-vim.sh
+#   Last Modified : 2015-10-30 14:54
+#   Describe      :
 #
-#   Log     :
+#   Log           :
 #
 # ====================================================
 
@@ -44,12 +44,12 @@ if [ ! -e $bakdot ];then mkdir $bakdot; fi
 if [ ! -e $vimpacks ];then mkdir $vimpacks; fi
 
 # 保留 从 github 上搞来的配置
-mv $HOME/.vimrc $HOME/.vimrc_other
+if [ -e $HOME/.vimrc ];then mv $HOME/.vimrc $HOME/.vimrc_other ;fi
 echo " Step 1: bucking up current config --------------- Vim"
 vimbak="$bakdot/ori-vim.$today"
 if [ ! -e $vimbak ];then mkdir $vimbak; fi
-for i in $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.vimrc.config_base $HOME/.vimrc.config_filetype ; do [ -e $i ] && [ ! -L $i ] && mv $i $vimbak/; done
-for i in $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.vimrc.config_base $HOME/.vimrc.config_filetype ; do [ -L $i ] && unlink $i ; done
+for i in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.vimrc.config_base $HOME/.vimrc.config_filetype ; do [ -e $i ] && [ ! -L $i ] && mv $i $vimbak/; done
+for i in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.vimrc.config_base $HOME/.vimrc.config_filetype ; do [ -L $i ] && unlink $i ; done
 # for i in $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.vimrc.config_base $HOME/.vimrc.config_filetype $HOME/.indexer_files; do [ -e $i ] && [ ! -L $i ] && mv $i $vimbak/; done
 # for i in $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles $HOME/.vimrc.config_base $HOME/.vimrc.config_filetype $HOME/.indexer_files; do [ -L $i ] && unlink $i ; done
 for i in $HOME/.vim/tags_list ; do [ -e $i ] && cp $i $i.bak; done
@@ -66,7 +66,6 @@ lnif $CURRENT_DIR/vimrc $HOME/.vimrc
 lnif $bundlesfile $HOME/.vimrc.bundles
 lnif $CURRENT_DIR/vimrc.config_base $HOME/.vimrc.config_base
 lnif $CURRENT_DIR/vimrc.config_filetype $HOME/.vimrc.config_filetype
-# lnif $CURRENT_DIR/indexer_files $HOME/.indexer_files
 lnif "$vimpacks" "$HOME/.vim"
 
 SYS_VERSION=`uname -s`
@@ -89,12 +88,12 @@ if [ ! -d $vimdir/vimswap ];then
 fi
 
 echo " Step 4: install vundle"
-if [ ! -e $vimpacks/bundle/vundle ]; then
+if [ ! -e $vimdir/bundle/vundle ]; then
     echo "Installing Vundle"
     git clone https://github.com/gmarik/vundle.git $vimpacks/bundle/vundle
 else
     echo "Upgrde Vundle"
-    cd "$HOME/.vim/bundle/vundle" && git pull origin master
+    cd "$vimdir/bundle/vundle" && git pull origin master
 fi
 echo " Step 5: update/install plugins using Vundle -------- Vim"
 system_shell=$SHELLL

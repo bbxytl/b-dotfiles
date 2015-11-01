@@ -55,9 +55,9 @@ function! SetComment()
 	endif
 endfunction
 
-" 将键盘上的 F4 功能键映射为添加文件头的快捷键,目前有问题
+" 将键盘上的 uh 功能键映射为添加文件头的快捷键
 map uh :call AutoSetFileHead()<cr>'s
-map <F4> :call AutoSetFileHead()<cr>'s
+" map <F4> :call AutoSetFileHead()<cr>'s
 " 定义函数AutoSetFileHead，自动插入文件头
 autocmd BufNewFile *.sh,*.py,*.pike,*.h,*.hpp,*c,*cpp exec ":call AutoSetFileHead()"
 

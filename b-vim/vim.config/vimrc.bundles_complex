@@ -146,6 +146,8 @@ Bundle 'scrooloose/nerdcommenter'
 " <leader>cu 取消选中注释
 " <leader>c$ 从当前光标开始到行尾注释掉
 let g:NERDSpaceDelims=1
+noremap cc <leader>cc
+noremap cu <leader>cu
 
 
 " ##### 快速去行尾空格

@@ -1,9 +1,0 @@
-" indexer 还有个自己的配置文件，用于设定各个工程的根目录路径，配置文件位于 ~/.indexer_files，内容可以设定为：
-" --------------- ~/.indexer_files ---------------
-"  [foo]
-"  /data/workplace/foo/src/
-"  [bar]
-"  /data/workplace/bar/src/
-"
-[PROJECTS]
-~/data/project/

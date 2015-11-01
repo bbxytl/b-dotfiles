@@ -44,7 +44,7 @@ set cursorline
 set t_ti= t_te=
 		"- 则点击光标不会换,用于复制
 		" 鼠标暂不启用, 键盘党....
-set mouse-=a
+" set mouse-=a
 		" Automatically enable mouse usage
 " set mouse=a
 		" Hide the mouse cursor while typing
@@ -336,8 +336,8 @@ noremap <silent><leader>/ :nohls<CR>
 " :b1 :b2   :bf :bl
 nnoremap [b :bprevious<cr>
 nnoremap ]b :bnext<cr>
-noremap <left> :bp<CR>
-noremap <right> :bn<CR>
+" noremap <left> :bp<CR>
+" noremap <right> :bn<CR>
 
 " ##### tab 操作
 " TODO: ctrl + n 变成切换tab的方法
