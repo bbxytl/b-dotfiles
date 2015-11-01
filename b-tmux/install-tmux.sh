@@ -76,12 +76,8 @@ lnif $CURRENT_DIR/tmux.conf.local $HOME/.tmux.conf.local
 
 echo "Step 3-3: setting powerline fonts for tmux"
 cd $tmp
-if [ ! -e $CURRENT_DIR/PowerlineSymbols.otf ];then
-    wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
-fi
-if [ ! -e $CURRENT_DIR/10-powerline-symbols.conf ];then
-    wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
-fi
+wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
 if [ ! -e $HOME/.fonts ];then mkdir $HOME/.fonts; fi
 cp PowerlineSymbols.otf $HOME/.fonts/
 if [ ! -e $HOME/.config ];then mkdir $HOME/.config; fi
