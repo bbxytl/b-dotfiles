@@ -17,3 +17,16 @@ fi
 if [ -f ~/.bash_alias.sh ]; then
 	. ~/.bash_alias.sh
 fi
+
+if [ -f ~/.bashrc.local ]; then
+	. ~/.bashrc.local
+fi
+
+
+SYS_VERSION=`uname -s`
+if [ $SYS_VERSION != 'Linux' ];then
+	SYS_VERSION='Mac'
+	[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+fi
+
+plugins=(git autojump)
