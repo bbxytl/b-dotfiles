@@ -81,19 +81,7 @@ alias curdirname="echo $PWD_DIR"
 
 config_dir=$HOME/.cache/cache_alias
 log_dir=$config_dir/logs
-# 命令操作 log
-#lg(){
-#	if [ ! -e $log_dir ];then mkdir -p $log_dir; fi
-#	mlog=$log_dir/`date +%Y%m`'.log'
-#	echo "==========|==========" >> $mlog
-#	echo "$0 $*" >> $mlog
-#	if [ $# -gt 0 ];then
-#		$@ 2>&1 | tee -a $mlog
-#	fi
-#	if [ $# -eq 0 ];then
-#		echo "lg 后加要使用的命令，可以将此命令以及输出加入log"
-#	fi
-#}
+
 log_file=$log_dir/commands.log
 export FOUT=$log_file
 alias cdlg="cd $log_dir"
@@ -409,16 +397,16 @@ alias volume="amixer get Master | sed '1,4 d' | cut -d [ -f 2 | cut -d ] -f 1"
 
 alias cman='man -M $HOME/.local/share/man/zh_CN'
 
-alias tlshutdown='shutdown -h now'
-#alias tlreboot='sudo reboot'
-alias tlinit='sudo mount -t vboxsf VBoxShare /mnt/WinShare;
-if [ $? -ne 0 ];then
-    echo " mount VBoxShare share dir error!"
-fi
-sudo -S mount -t vboxsf TL /mnt/TlShare;
+# alias tlshutdown='shutdown -h now'
+# #alias tlreboot='sudo reboot'
+# alias tlinit='sudo mount -t vboxsf VBoxShare /mnt/WinShare;
+# if [ $? -ne 0 ];then
+#     echo " mount VBoxShare share dir error!"
+# fi
+# sudo -S mount -t vboxsf TL /mnt/TlShare;
 
-if [ $? -ne 0 ];then
-    echo " mount TL share dir error!"
-fi
-'
+# if [ $? -ne 0 ];then
+#     echo " mount TL share dir error!"
+# fi
+# '
 
