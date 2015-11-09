@@ -229,6 +229,7 @@ rmall() {
             rmabs -rf $line
         done
         rmabs $Rec/.cmbck_file.cmbck
+        rmabs $Rec/.*
         # cd
         # rmabs -rf $Rec
         # mkdir $Rec
