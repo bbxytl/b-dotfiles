@@ -95,8 +95,10 @@ set nocompatible
 set t_Co=256
  		" 显示行号
 set number
-		" 取消换行
-set nowrap
+		" " 取消换行
+" set nowrap
+		" 按词换行
+set lbr
 		" 括号配对情况,跳转并高亮一下匹配的括号
 set showmatch
 set matchtime=2
