@@ -339,7 +339,25 @@ rmbk() {
     cd $curdir
 }
 
+alias gll="git lg | less"
 
+gci(){
+	if [ `uname -s` != "Linux" ];then
+			cmmt="update-from-Mac"
+	else
+			cmmt="update-from-Linux"
+	fi
+	if [ $# -gt 0 ];then
+		cmmt=$1
+	fi
+	git add  .
+	git commit -m "$cmmt"
+}
+
+gpsh(){
+	gci $@
+	git push
+}
 
 alias grep='grep --color=auto'
 mcd() { mkdir -p "$1"; cd "$1";}
