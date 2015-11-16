@@ -505,6 +505,7 @@ Bundle 'suan/vim-instant-markdown'
 let g:instant_markdown_slow = 1
 let g:instant_markdown_autostart = 0
 map <F12> :InstantMarkdownPreview<CR>
+nmap <leader>md :InstantMarkdownPreview<CR>
 
 
 " ##### 增加对 STL\C++14等的C++语法高亮
@@ -626,7 +627,7 @@ nnoremap <leader>gs :GitGutterToggle<CR>
 " ##### 可以查看回到某个历史状态
 Bundle 'sjl/gundo.vim'
 """"""
-noremap <leader>h :GundoToggle<CR>
+noremap <leader>ht :GundoToggle<CR>
 
 
 " ##### quickrun
