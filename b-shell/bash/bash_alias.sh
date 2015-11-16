@@ -350,7 +350,7 @@ gci(){
 	if [ $# -gt 0 ];then
 		cmmt=$1
 	fi
-	git add  .
+	git add  --all
 	git commit -m "$cmmt"
 }
 

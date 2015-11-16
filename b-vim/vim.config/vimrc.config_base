@@ -297,17 +297,18 @@ map <leader>k <C-W>k
 map <leader>h <C-W>h
 map <leader>l <C-W>l
 
-" Go to home and end using capitalized directions
-" noremap H ^
-" noremap L $
-map <C-a> ^
-map <C-e> $
-
 " ##### 命令行模式增强，ctrl - a到行首， -e 到行尾
 cnoremap <C-j> <t_kd>
 cnoremap <C-k> <t_ku>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
+
+" Go to home and end using capitalized directions
+" map <C-a> H
+" map <C-e> L
+noremap H ^
+noremap L $
+
 
 " ##### 搜索相关
 " 进入搜索Use sane regexes"
