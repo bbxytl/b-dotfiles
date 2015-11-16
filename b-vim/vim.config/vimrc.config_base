@@ -34,7 +34,6 @@ filetype plugin indent on
 set autoread
 		" 启动的时候不显示那个援助索马里儿童的提示
 set shortmess=atI
-set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
 		" 突出显示当前列
 "set cursorcolumn
 		" 突出显示当前行
@@ -82,7 +81,7 @@ set showcmd
 		" 左下角显示当前vim模式
 "set showmode
 		" 在上下移动光标时，光标的上方或下方至少会保留显示的行数
-set scrolloff=7
+" set scrolloff=7
 		" 一行宽度
 set winwidth=79
 		" 命令行（在状态行下）的高度，默认为1，这里是2
@@ -168,7 +167,7 @@ set shiftround
 set hidden
 set wildmode=list:longest
 set ttyfast
- 
+
 " ##### 00x增减数字时使用十进制
 set nrformats=
 
@@ -209,7 +208,6 @@ set formatoptions+=m
 		" 合并两行中文时，不在中间加空格
 set formatoptions+=B
 
-
 "==========================================
 " others 其它设置
 "==========================================
@@ -217,25 +215,22 @@ set formatoptions+=B
 autocmd! bufwritepost _vimrc source %
 		" vimrc文件修改之后自动加载。 linux。
 autocmd! bufwritepost .vimrc source %
-" autocmd! bufwritepost .vimrc.config_base source %
-" autocmd! bufwritepost .vimrc.config_filetype source %
-" autocmd! bufwritepost .vimrc.bundles source %
-" autocmd! bufwritepost .vimrc.local source %
 		" 自动补全配置
 set completeopt=longest,menu
 		" 增强模式中的命令行自动完成操作
 set wildmenu
+" set wildignore=*.swp,*.bak,*.pyc,*.class,.svn,*.o,*.obj
 set wildignore=*.o,*~,*.pyc,*.class		" Ignore compiled files
 		" 离开插入模式后自动关闭预览窗口
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 		" 回车即选中当前项
-inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+" inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
 
 " 上下左右键的行为 会显示其他信息
-inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
-inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
+" inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+" inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+" inoremap <expr> <PageDown> pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<PageDown>"
+" inoremap <expr> <PageUp>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<PageUp>"
 
 " if this not work ,make sure .viminfo is writable for you
 if has("autocmd")
@@ -268,8 +263,6 @@ nnoremap gj j
 " F6 语法开关，关闭语法可以加快大文件的展示
 "
 " F9 显示函数列表--tagbar
-" F12 生成tag
-" <leader>F12 生成系统tag
 " <leader><F6> 切换十六进制
 " <leader><leader><F6> 切换回文本模式
 noremap <F1> <Esc>"
@@ -295,18 +288,20 @@ nnoremap <leader><F6> :%!xxd -g 2<CR>
 nnoremap <leader><leader><F6> :%!xxd -r<CR>
 
 " ##### 分屏窗口移动 在vim的各个窗口间切换
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+" map <C-j> <C-W>j
+" map <C-k> <C-W>k
+" map <C-h> <C-W>h
+" map <C-l> <C-W>l
 map <leader>j <C-W>j
 map <leader>k <C-W>k
 map <leader>h <C-W>h
 map <leader>l <C-W>l
 
 " Go to home and end using capitalized directions
-noremap H ^
-noremap L $
+" noremap H ^
+" noremap L $
+map <C-a> ^
+map <C-e> $
 
 " ##### 命令行模式增强，ctrl - a到行首， -e 到行尾
 cnoremap <C-j> <t_kd>
@@ -385,7 +380,7 @@ vnoremap < <gv
 vnoremap > >gv
     " y$ -> Y Make Y behave like other capitals
 map Y y$
-set mouse=v
+set mouse+=v
 set clipboard=unnamed
     " select all
 map <Leader>sa ggVG"
@@ -395,10 +390,10 @@ nnoremap <leader>v V`}
 cmap w!! w !sudo tee >/dev/null %
 
     " 滚动Speed up scrolling of the viewport slightly
-nnoremap <C-e> 10<C-e>
-nnoremap <C-y> 10<C-y>
-nnoremap J 10<C-e>
-nnoremap K 10<C-y>
+" nnoremap <C-e> 10<C-e>
+" nnoremap <C-y> 10<C-y>
+" nnoremap J 10<C-e>
+" nnoremap K 10<C-y>
 	" 跳转到第一行, 默认一个 G 为跳转到最后一行，
 	" 一个 M 为跳转到当前屏幕中间一
 	" 行
@@ -439,13 +434,8 @@ set linespace=2
 set noimd
 set t_Co=256
 endif
-
+" 具体的主题插件参考 .vimrc.bundles 文件
 " ##### theme主题
-set background=dark
-"set background=light
-set t_Co=256
-colorscheme molokai
-" colorscheme solarized
 
 "设置标记一列的背景颜色和数字一行颜色一致
 hi! link SignColumn   LineNr

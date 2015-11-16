@@ -35,6 +35,12 @@ let g:solarized_termcolors=256
 let g:solarized_termtrans=1
 let g:solarized_contrast="normal"
 let g:solarized_visibility="normal"
+" 主题使用
+set background=dark
+"set background=light
+set t_Co=256
+colorscheme molokai
+" colorscheme solarized
 
 
 " ###### 中文 vim 帮助
