@@ -56,9 +56,13 @@ alias cdc="cd ~/data/projects/cpp"
 alias cdz="cd ~/data/projects/zlsg/trunk"
 alias cdl="cd ~/data/lean/"
 alias cdg="cd ~/data/git"
+# 临时文件目录
 alias cdt="cd ~/data/tmp/"
-alias rec="cd ~/Recycle"
+alias cdmt="cd ~/mydotfiles/tmp/"
+export DTMP="$HOME/data/tmp/"
+export MTMP="$HOME/mydotfiles/tmp/"
 
+alias rec="cd ~/Recycle"
 alias rmabs="/bin/rm"
 
 cdls(){
