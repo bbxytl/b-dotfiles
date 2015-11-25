@@ -113,6 +113,28 @@ lgls(){
 	echo "       用于将输出输出到输出文件和屏幕"
 	echo 'command >> $FOUT 用于将结果输出到输出文件'
 }
+# 通过浏览器共享某一目录
+# 用法：
+#	共享当前目录: webshare
+#	共享指定目录: webshare [dir]
+webshare(){
+	share_dir=`pwd`
+	if [ $# -gt 0 ];then
+		if [ -d $1 ];then
+			cd $1
+			share_dir=`pwd`
+		fi
+	fi
+	echo "Share_Dir : $share_dir"
+	python -m SimpleHTTPServer 8899
+}
+
+# 根据目前的使用环境，更新shell配置
+sco(){
+	if [ -f $HOME/.zshrc ];then source $HOME/.zshrc;return;fi
+	if [ -f $HOME/.bashrc ];then source $HOME/.bashrc;return;fi
+}
+
 export PREDIRS=$config_dir/predirs
 # 最大保存 PREDIRS_CNT 条路径
 export PREDIRS_CNT=20
