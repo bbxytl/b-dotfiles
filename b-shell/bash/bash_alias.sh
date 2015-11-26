@@ -125,9 +125,29 @@ webshare(){
 			share_dir=`pwd`
 		fi
 	fi
+	ifconfig
 	echo "Share_Dir : $share_dir"
 	python -m SimpleHTTPServer 8899
 }
+webshareup(){
+	share_dir=`pwd`
+	if [ $# -gt 0 ];then
+		if [ -d $1 ];then
+			cd $1
+			share_dir=`pwd`
+		fi
+	fi
+	cd $share_dir
+	SHARE_UP_DOWN=$HOME/mydotfiles/b-dotfiles/others/share_up_down.py
+
+	if [ ! -e share_up_down.py ];then
+		ln -s $SHARE_UP_DOWN share_up_down.py
+	fi
+	ifconfig
+	echo "Share_Dir : $share_dir"
+	python share_up_down.py 8899
+}
+
 
 # 根据目前的使用环境，更新shell配置
 sco(){
