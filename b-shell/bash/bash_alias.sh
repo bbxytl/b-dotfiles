@@ -388,7 +388,7 @@ rmbk() {
 # 精简版log
 alias gll="git lg | less"
 # 精简版 分支
-alias gbr="git br"
+alias gbr="git br -a"
 alias gtag="git tag"
 # 显示最近 n 次更改的文件
 gln(){
