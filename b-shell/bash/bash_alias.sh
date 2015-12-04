@@ -387,6 +387,9 @@ rmbk() {
 
 # 精简版log
 alias gll="git lg | less"
+# 精简版 分支
+alias gbr="git br"
+alias gtag="git tag"
 # 显示最近 n 次更改的文件
 gln(){
 	num=2
@@ -395,7 +398,6 @@ gln(){
 	fi
 	git lg -n $num --stat | less
 }
-# 快速提交
 gci(){
 	if [ `uname -s` != "Linux" ];then
 			cmmt="update-from-Mac"
