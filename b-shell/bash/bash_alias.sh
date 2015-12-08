@@ -14,16 +14,16 @@ alias vi='vim'
 ##Productivity
 if [ $SYS_VERSION = 'Mac' ];then
 # mac 隐藏文件
-    alias fshow='defaults write com.apple.finder AppleShowAllFiles -bool true'
-    alias fhide='defaults write com.apple.finder AppleShowAllFiles -bool false'
+	alias fshow='defaults write com.apple.finder AppleShowAllFiles -bool true'
+	alias fhide='defaults write com.apple.finder AppleShowAllFiles -bool false'
 
 # mpv 播放器播放 bilibili 视频
-    blimpv(){
-        cur_dir=`pwd`
-        cd "$HOME/mydotfiles/packges/BiliDan"
-        ./bilidan.py $@
-        cd $cur_dir
-    }
+	blimpv(){
+		cur_dir=`pwd`
+		cd "$HOME/mydotfiles/packges/BiliDan"
+		./bilidan.py $@
+		cd $cur_dir
+	}
 fi
 
 alias ll="ls  -l"
@@ -59,6 +59,7 @@ alias cdg="cd ~/data/git"
 # 临时文件目录
 alias cdt="cd ~/data/tmp"
 alias cdmt="cd ~/mydotfiles/tmp"
+export CACHE_TMP="$HOME/.cache/tmp"
 export DTMP="$HOME/data/tmp"
 export MTMP="$HOME/mydotfiles/tmp"
 
@@ -66,7 +67,7 @@ alias rec="cd ~/Recycle"
 alias rmabs="/bin/rm"
 
 cdls(){
-    echo -e '
+	echo -e '
 cdu = "cd -"
 cdd = "cd ~/data"
 cdp = "cd ~/data/projects/"
@@ -77,7 +78,7 @@ cdg = "cd ~/data/git"
 cdt = "cd ~/data/tmp/"
 rec = "cd ~/Recycle"
 cdlg
-            '
+			'
 }
 # 当前目录的名称
 export PWD_DIR="${PWD##*/}"
@@ -159,109 +160,109 @@ export PREDIRS=$config_dir/predirs
 # 最大保存 PREDIRS_CNT 条路径
 export PREDIRS_CNT=20
 pcd() {
-    if [ ! -e $config_dir ];then
-        mkdir -p $config_dir
-    fi
-    curpd=`pwd`
-    no=0
-    if [ -e $PREDIRS ];then
-        cat $PREDIRS | while read line
-        do
-            let no++
-            if [ $line = $curpd ];then
-                # sed -i $no','$no'd' $PREDIRS
-                if [ $SYS_VERSION = 'Mac' ];then
-                    sed -i '' "$no,$no d" $PREDIRS
-                else
-                    sed -i $no','$no'd' $PREDIRS
-                fi
-                # break
-            fi
-        done
-    fi
-    if [ $no -gt $PREDIRS_CNT ];then
-        line_no=1
-        cat $PREDIRS | read lines
-        echo $lines
-        # sed -i $line_no','$line_no'd' $PREDIRS
-        if [ $SYS_VERSION = 'Mac' ];then
-            sed -i '' "$line_no,$line_no d" $PREDIRS
-        else
-            sed -i $line_no','$line_no'd' $PREDIRS
-        fi
-    fi
-    echo $curpd >> $PREDIRS
+	if [ ! -e $config_dir ];then
+		mkdir -p $config_dir
+	fi
+	curpd=`pwd`
+	no=0
+	if [ -e $PREDIRS ];then
+		cat $PREDIRS | while read line
+		do
+			let no++
+			if [ $line = $curpd ];then
+				# sed -i $no','$no'd' $PREDIRS
+				if [ $SYS_VERSION = 'Mac' ];then
+					sed -i '' "$no,$no d" $PREDIRS
+				else
+					sed -i $no','$no'd' $PREDIRS
+				fi
+				# break
+			fi
+		done
+	fi
+	if [ $no -gt $PREDIRS_CNT ];then
+		line_no=1
+		cat $PREDIRS | read lines
+		echo $lines
+		# sed -i $line_no','$line_no'd' $PREDIRS
+		if [ $SYS_VERSION = 'Mac' ];then
+			sed -i '' "$line_no,$line_no d" $PREDIRS
+		else
+			sed -i $line_no','$line_no'd' $PREDIRS
+		fi
+	fi
+	echo $curpd >> $PREDIRS
 
-    if [ $# -gt 0 ];then
-        if [ -e $1 ];then
-            cd $1
-        else
-            echo "$1 unexited !"
-        fi
-    fi
+	if [ $# -gt 0 ];then
+		if [ -e $1 ];then
+			cd $1
+		else
+			echo "$1 unexited !"
+		fi
+	fi
 }
 # 显示缓存了多少目录
 pls() {
-    if [ $# -gt 0 ];then
-        if [ $1 = '-h' ] || [ $1 = '--help' ];then
-                echo "pls : 显示缓存了多少目录；带参数 -h[--help] 时显示相关命令说明；带参数 -c 时清空缓存路径"
-                echo "pcd : 缓存当前路径，后跟参数为新的要切换的路径，无参数时只缓存路径"
-                echo "psd : 无参数时调用 pls，后跟数字参数！为 pls 输出的对应缓存路径的编号"
-                echo "prm : 无参数时调用 pls，后跟数字参数！删除对应编号的缓存路径"
-        else if [ $1 = '-c' ];then
-                rm $PREDIRS
-            else
-                pls '-d'
-            fi
-        fi
-    else
-        if [ -e $PREDIRS ];then
-            no=0
-            cat $PREDIRS | while read line
-            do
-                let no++
-                echo "$no : $line"
-            done
-        fi
-    fi
+	if [ $# -gt 0 ];then
+		if [ $1 = '-h' ] || [ $1 = '--help' ];then
+				echo "pls : 显示缓存了多少目录；带参数 -h[--help] 时显示相关命令说明；带参数 -c 时清空缓存路径"
+				echo "pcd : 缓存当前路径，后跟参数为新的要切换的路径，无参数时只缓存路径"
+				echo "psd : 无参数时调用 pls，后跟数字参数！为 pls 输出的对应缓存路径的编号"
+				echo "prm : 无参数时调用 pls，后跟数字参数！删除对应编号的缓存路径"
+		else if [ $1 = '-c' ];then
+				rm $PREDIRS
+			else
+				pls '-d'
+			fi
+		fi
+	else
+		if [ -e $PREDIRS ];then
+			no=0
+			cat $PREDIRS | while read line
+			do
+				let no++
+				echo "$no : $line"
+			done
+		fi
+	fi
 }
 psd() {
-    if [ $# -ge 1 ];then
-        if [ -e $PREDIRS ];then
-            if [[ "$1" =~ "^[0-9]+$" ]] ;then
-                no=0
-                cat $PREDIRS | while read line
-                do
-                    let no++
-                    if [ $no -eq $1 ];then
-                        cd $line
-                    fi
-                done
-            else
-                pcd $1
-            fi
-        fi
-    else
-        pls '-h'
-    fi
+	if [ $# -ge 1 ];then
+		if [ -e $PREDIRS ];then
+			if [[ "$1" =~ "^[0-9]+$" ]] ;then
+				no=0
+				cat $PREDIRS | while read line
+				do
+					let no++
+					if [ $no -eq $1 ];then
+						cd $line
+					fi
+				done
+			else
+				pcd $1
+			fi
+		fi
+	else
+		pls '-h'
+	fi
 }
 prm() {
-    if [ $# -ge 1 ];then
-        no=$1
-        if [[ "$1" =~ "^[0-9]+$" ]] ;then
-            if [ $SYS_VERSION = 'Mac' ];then
-                sed -i '' "$no,$no d" $PREDIRS
-            else
-                sed -i $no','$no'd' $PREDIRS
-            fi
-        else
-            echo "需要路径编号！"
-            pls
-        fi
-    else
-        echo "需要路径编号！"
-        pls
-    fi
+	if [ $# -ge 1 ];then
+		no=$1
+		if [[ "$1" =~ "^[0-9]+$" ]] ;then
+			if [ $SYS_VERSION = 'Mac' ];then
+				sed -i '' "$no,$no d" $PREDIRS
+			else
+				sed -i $no','$no'd' $PREDIRS
+			fi
+		else
+			echo "需要路径编号！"
+			pls
+		fi
+	else
+		echo "需要路径编号！"
+		pls
+	fi
 }
 
 # 防误删操作
@@ -270,29 +271,32 @@ Rec=$HOME/Recycle
 cmbck_file=$Rec/.cmbck_file.cmbck
 # 清空回收站,只能用在回收站里
 rmall() {
-    if [ `pwd` = $Rec ];then
-        ls $Rec | while read line;do
-            rmabs -rf $line
-        done
-        rmabs $Rec/.cmbck_file.cmbck
-        rmabs -rf $Rec/.*
-        # cd
-        # rmabs -rf $Rec
-        # mkdir $Rec
-        # # cd $Rec
-    else
-        if [ $# -ge 1 ];then
-            if [ -d $1 ];then
-                ls $1 | while read line;do
-                    rm  $line
-                done
-            else
-                echo "$i not exited !"
-            fi
-        else
-            echo "This cmd only uses in $Rec when no arg of dir!"
-        fi
-    fi
+	if [ `pwd` = $Rec ];then
+		ls $Rec | while read line;do
+			rmabs -rf $line
+		done
+		rmabs $Rec/.cmbck_file.cmbck
+		rmabs -rf $Rec/.*
+		# cd
+		# rmabs -rf $Rec
+		# mkdir $Rec
+		# # cd $Rec
+	else
+		if [ $# -ge 1 ];then
+			if [ -d $1 ];then
+				old_dir=`pwd`
+				cd $1
+				ls $1 | while read line;do
+					rm  $line
+				done
+				cd $old_dir
+			else
+				echo "$i not exited !"
+			fi
+		else
+			echo "This cmd only uses in $Rec when no arg of dir!"
+		fi
+	fi
 }
 
 rmls() {
@@ -306,83 +310,83 @@ rmls() {
 
 # 将删除的文件全部放到回收站里,防误删
 rm() {
-    curdir=`pwd`
-    if [ ! -e $Rec ];then
-        mkdir $Rec
-    fi
-    if [ $# -gt 0 ];then
-        tmp="--"
-        today=`date +%Y%m%d%H%M%S`
-        cnt=0
-        for f in $@;do
-            if [ ${f:0:1} != "-" ];then
-                tmp=$f
+	curdir=`pwd`
+	if [ ! -e $Rec ];then
+		mkdir $Rec
+	fi
+	if [ $# -gt 0 ];then
+		tmp="--"
+		today=`date +%Y%m%d%H%M%S`
+		cnt=0
+		for f in $@;do
+			if [ ${f:0:1} != "-" ];then
+				tmp=$f
 				newf=${f##*/}'.____.'$today
 				mv $f $Rec/$newf
-                let cnt++
-                # dir_dir=`dirname $f`
-                # if [ $dir_dir = '.' ];then dir_dir=`pwd`;fi
-                # rm_f=$f.____.$today
-                echo "`pwd`" > $Rec/$newf.dir
-                echo "$f" >> $Rec/$newf.dir
-                echo "$newf" > $cmbck_file
-                echo "$f : move $f to $Rec ! OK ! use 'rmls' show all cmds !"
-            fi
-        done
-        if [ $tmp = "--" ];then
-            rmabs $@
-        else
-            echo "CNT: $cnt ==========================================="
-        fi
-    else
-        rmls
-    fi
-    cd $curdir
+				let cnt++
+				# dir_dir=`dirname $f`
+				# if [ $dir_dir = '.' ];then dir_dir=`pwd`;fi
+				# rm_f=$f.____.$today
+				echo "`pwd`" > $Rec/$newf.dir
+				echo "$f" >> $Rec/$newf.dir
+				echo "$newf" > $cmbck_file
+				echo "$f : move $f to $Rec ! OK ! use 'rmls' show all cmds !"
+			fi
+		done
+		if [ $tmp = "--" ];then
+			rmabs $@
+		else
+			echo "CNT: $cnt ==========================================="
+		fi
+	else
+		rmls
+	fi
+	cd $curdir
 }
 
 # 撤销最后一次的删除、某个文件的删除
 rmbk() {
-    curdir=`pwd`
-    error="No dir : $Rec Or No file : $cmbck_file ,Can not comeback !"
-    if [ $# -gt 0 ];then cbk_dir=$1;
-    else if [ ! -e $Rec ] || [ ! -e $cmbck_file ];then
-            echo $error
-            return
-         fi
-         cat $cmbck_file | read cbk_dir
-    fi
-    cd $Rec
+	curdir=`pwd`
+	error="No dir : $Rec Or No file : $cmbck_file ,Can not comeback !"
+	if [ $# -gt 0 ];then cbk_dir=$1;
+	else if [ ! -e $Rec ] || [ ! -e $cmbck_file ];then
+			echo $error
+			return
+		fi
+		cat $cmbck_file | read cbk_dir
+	fi
+	cd $Rec
 
-    ls $Rec | while read line;do
-        if [ $line = $cbk_dir ];then
-            back_dir_file=$line".dir"
-            # .dir 中保存了两行，一行是删除此文件时所在的目录，
-            # 另一行是当时删除的文件
-            cnt=0
-            mv_cur_dir=""
-            is_this_dir=true
-            cat $back_dir_file |while read back_dir;do
-                if [ $cnt -lt 1 ];then
-                    mv_cur_dir=$back_dir
-                    if [ ! -e $back_dir ];then mkdir -p $back_dir;fi
-                    cd $back_dir;
-                fi
-                if [ $cnt -gt 1 ];then
-                    if [ -e $back_dir ];then back_dir=$back_dir".rmback";fi
-                    mv $Rec/$line $back_dir
-                    rmabs $Rec/$line.dir
-                    # 恢复的文件并不是在当前目录下
-                    if [ `ls $mv_cur_dir | wc -l` -eq 0 ];then rmabs -rf $mv_cur_dir;fi
-                    echo "Comeback $line to $back_dir !"
-                    cd $curdir
-                    return
-                fi
-                cnt=9
-            done
-        fi
-    done
-    echo "$cbk_dir not exited ! Maybe delete absolutely Or rmbk already !"
-    cd $curdir
+	ls $Rec | while read line;do
+		if [ $line = $cbk_dir ];then
+			back_dir_file=$line".dir"
+			# .dir 中保存了两行，一行是删除此文件时所在的目录，
+			# 另一行是当时删除的文件
+			cnt=0
+			mv_cur_dir=""
+			is_this_dir=true
+			cat $back_dir_file |while read back_dir;do
+				if [ $cnt -lt 1 ];then
+					mv_cur_dir=$back_dir
+					if [ ! -e $back_dir ];then mkdir -p $back_dir;fi
+					cd $back_dir;
+				fi
+				if [ $cnt -gt 1 ];then
+					if [ -e $back_dir ];then back_dir=$back_dir".rmback";fi
+					mv $Rec/$line $back_dir
+					rmabs $Rec/$line.dir
+					# 恢复的文件并不是在当前目录下
+					if [ `ls $mv_cur_dir | wc -l` -eq 0 ];then rmabs -rf $mv_cur_dir;fi
+					echo "Comeback $line to $back_dir !"
+					cd $curdir
+					return
+				fi
+				cnt=9
+			done
+		fi
+	done
+	echo "$cbk_dir not exited ! Maybe delete absolutely Or rmbk already !"
+	cd $curdir
 }
 
 # 精简版log
@@ -428,24 +432,24 @@ alias histg="history | grep"
 alias ..='cd ..'
 alias ...='cd ../..'
 extract() {
-    if [ -f $1 ] ; then
-      case $1 in
-        *.tar.bz2)   tar xjf $1     ;;
-        *.tar.gz)    tar xzf $1     ;;
-        *.bz2)       bunzip2 $1     ;;
-        *.rar)       unrar e $1     ;;
-        *.gz)        gunzip $1      ;;
-        *.tar)       tar xf $1      ;;
-        *.tbz2)      tar xjf $1     ;;
-        *.tgz)       tar xzf $1     ;;
-        *.zip)       unzip $1       ;;
-        *.Z)         uncompress $1  ;;
-        *.7z)        7z x $1        ;;
-        *)     echo "'$1' cannot be extracted via extract()" ;;
-         esac
-     else
-         echo "'$1' is not a valid file"
-     fi
+	if [ -f $1 ] ; then
+	case $1 in
+		*.tar.bz2)   tar xjf $1     ;;
+		*.tar.gz)    tar xzf $1     ;;
+		*.bz2)       bunzip2 $1     ;;
+		*.rar)       unrar e $1     ;;
+		*.gz)        gunzip $1      ;;
+		*.tar)       tar xf $1      ;;
+		*.tbz2)      tar xjf $1     ;;
+		*.tgz)       tar xzf $1     ;;
+		*.zip)       unzip $1       ;;
+		*.Z)         uncompress $1  ;;
+		*.7z)        7z x $1        ;;
+		*)     echo "'$1' cannot be extracted via extract()" ;;
+		esac
+	else
+		echo "'$1' is not a valid file"
+	fi
 }
 
 #System info
@@ -485,4 +489,19 @@ alias cman='man -M $HOME/.local/share/man/zh_CN'
 #     echo " mount TL share dir error!"
 # fi
 # '
+# 更方便的查看 diff ，同时保存起来
+__init__(){
+	if [ ! -d $CACHE_TMP/git-diff ];then mkdir -p $CACHE_TMP/git-diff;fi
+	if [ ! -d $CACHE_TMP/svn-diff ];then mkdir -p $CACHE_TMP/svn-diff;fi
+}
+gdf(){ __init__; now=`date +%Y%m%d-%H%M%S`.log;git diff $@ > $CACHE_TMP/git-diff/$now;vim -M $CACHE_TMP/git-diff/$now; }
+sdf(){ __init__; now=`date +%Y%m%d-%H%M%S`.log;svn diff $@ > $CACHE_TMP/svn-diff/$now;vim -M $CACHE_TMP/svn-diff/$now; }
+# 清除所有log
+alias gdfclear="rm $CACHE_TMP/git-diff"
+alias sdfclear="rm $CACHE_TMP/svn-diff"
+alias gdfls="ls $CACHE_TMP/git-diff"
+alias sdfls="ls $CACHE_TMP/svn-diff"
+
+
+
 
