@@ -162,12 +162,13 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 		if not fn:
 			return (False, "Can't find out file name...")
 		path = self.translate_path(self.path)
-		osType = platform.system()
+		# osType = platform.system()
 		try:
-			if osType == "Linux":
-				fn = os.path.join(path, fn[0].decode('gbk').encode('utf-8'))
-			else:
-				fn = os.path.join(path, fn[0])
+			fn = os.path.join(path, fn[0].decode('gbk').encode('utf-8'))
+			#if osType == "Linux":
+			#	fn = os.path.join(path, fn[0].decode('gbk').encode('utf-8'))
+			#else:
+			#	fn = os.path.join(path, fn[0])
 		except Exception, e:
 			if 0: e
 			return (False, "文件名请不要用中文，或者使用IE上传中文名的文件。")
@@ -262,7 +263,7 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 		f.write('<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">')
 		f.write("<html>\n<title>Directory listing for %s</title>\n" % displaypath)
 		f.write("<head>\n")
-		f.write('<meta http-equiv="Content-Type" content="text/html; charset=gb2312">')
+		f.write('<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />\n')
 		f.write("</head>\n")
 		f.write("<body>\n<h2>Directory listing for %s</h2>\n" % displaypath)
 		f.write("<hr>\n")
