@@ -507,24 +507,29 @@ alias gdfls="ls $CACHE_TMP/git-diff"
 alias sdfls="ls $CACHE_TMP/svn-diff"
 
 # 配置当前项目文件的 vim 自定义配置
-prconf(){
-	cur_dir=`pwd`
-	if [ ! -f $cur_dir/.workspace.vim ];then
-		cp $DOT_CONFIG_BDOT/b-vim/vim.config/project_vimrc/workspace.vim $cur_dir/.workspace.vim
-		echo "set path+=,$cur_dir/**" >> $cur_dir/.workspace.vim
+#   迭代获取所有非隐藏目录 $1:ls的目录, $2:导出的文件
+optpath(){
+	ls $1 | while read line;do
+		if [ -d "$1/$line" ];then
+			echo $line
+			inclpath="\t<inlcule path='"$1/$line"'/>"
+			echo $inclpath >> $echofile
+			optpath $1/$line $echofile
+		fi
+	done
+}
+proconf(){
+	if [ ! -f .workspace.vim ];then
+		cp $DOT_CONFIG_BDOT/b-vim/vim.config/project_vimrc/workspace.vim .workspace.vim
+		echo "set path+=,`pwd`/**" >> .workspace.vim
 	fi
-	if [ ! -f $cur_dir/.ycm_simple_conf.xml ];then
-		ycm_conf=$cur_dir/.ycm_simple_conf.xml
+	if [ ! -f .ycm_simple_conf.xml ];then
+		ycm_conf=.ycm_simple_conf.xml
 		ori_ycm_conf=$DOT_CONFIG_BDOT/b-vim/vim.config/project_vimrc/ycm_simple_conf_mac_cpp_base_dir.xml
 		cat $ori_ycm_conf | while read line;do
 			if [ "$line" = "</project>" ];then
-				ls $curdir | while read fl;do
-					fl=$cur_dir/$fl
-					if [ -d $fl ];then
-						inclpath="\t<inlcule path='"$fl"'/>"
-						echo $inclpath >> $ycm_conf
-					fi
-				done
+				echo "" >> $ycm_conf
+				optpath `pwd` $ycm_conf
 			fi
 			echo $line >> $ycm_conf
 		done
