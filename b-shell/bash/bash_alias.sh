@@ -509,12 +509,11 @@ alias sdfls="ls $CACHE_TMP/svn-diff"
 # 配置当前项目文件的 vim 自定义配置
 #   迭代获取所有非隐藏目录 $1:ls的目录, $2:导出的文件
 optpath(){
-	ls $1 | while read line;do
-		if [ -d "$1/$line" ];then
-			echo $line
-			inclpath="\t<inlcule path='"$1/$line"'/>"
-			echo $inclpath >> $echofile
-			optpath $1/$line $echofile
+	ls $1 | while read lne;do
+		if [ -d "$1/$lne" ];then
+			inclpath="\t<inlcule path='"$1/$lne"'/>"
+			echo $inclpath >> $2
+			optpath $1/$lne $2
 		fi
 	done
 }
