@@ -160,6 +160,7 @@ let g:NERDSpaceDelims=1
 
 " ##### 快速去行尾空格
 Bundle 'bronson/vim-trailing-whitespace'
+let g:extra_whitespace_ignored_filetypes = ['unite', 'mkd', 'diff']
 map <leader>, :FixWhitespace<cr>
 
 
@@ -563,8 +564,8 @@ set laststatus=2
 
 " ##### 重量级补全
 Bundle 'Valloric/YouCompleteMe'
-let g:ycm_key_list_select_completion = ['<Down>']   " C-n 同时可用
-let g:ycm_key_list_previous_completion = ['<Up>']   " C-p 同时可用
+let g:ycm_key_list_select_completion = ['<Down>']   " C-j 同时可用
+let g:ycm_key_list_previous_completion = ['<Up>']   " C-k 同时可用
 let g:ycm_complete_in_comments = 1  "在注释输入中也能补全
 let g:ycm_complete_in_strings = 1   "在字符串输入中也能补全
 let g:ycm_use_ultisnips_completer = 1 "提示UltiSnips
@@ -589,7 +590,12 @@ if !empty(glob("~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_
     let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
 endif
 
+Bundle 'tdcdev/ycm_simple_conf'
 
+
+Bundle 'Valloric/ListToggle'
+let g:lt_location_list_toggle_map = '<leader>lt'
+let g:lt_quickfix_list_toggle_map = '<leader>qt'
 " ##### 快速赋值语句对齐
 Bundle 'junegunn/vim-easy-align'
 vmap <Leader>a <Plug>(EasyAlign)

@@ -8,6 +8,10 @@ fi
 
 export EDITOR='vim'
 
+DOT_CONFIG_MYDOT="$HOME/mydotfiles"
+DOT_CONFIG_BDOT="$DOT_CONFIG_MYDOT/b-dotfiles"
+
+
 alias v='/usr/bin/vi'
 alias vi='vim'
 # User specific aliases and functions
@@ -20,7 +24,7 @@ if [ $SYS_VERSION = 'Mac' ];then
 # mpv 播放器播放 bilibili 视频
 	blimpv(){
 		cur_dir=`pwd`
-		cd "$HOME/mydotfiles/packges/BiliDan"
+		cd "$DOT_CONFIG_MYDOT/packges/BiliDan"
 		./bilidan.py $@
 		cd $cur_dir
 	}
@@ -53,7 +57,7 @@ alias cdb="cd ~/mydotfiles/b-dotfiles"
 alias cdd="cd ~/data"
 alias cdp="cd ~/data/projects"
 alias cdc="cd ~/data/projects/cpp"
-alias cdz="cd ~/data/projects/zlsg/trunk"
+alias cdz="cd ~/data/projects/zlsg"
 alias cdl="cd ~/data/lean"
 alias cdg="cd ~/data/git"
 # 临时文件目录
@@ -61,7 +65,7 @@ alias cdt="cd ~/data/tmp"
 alias cdmt="cd ~/mydotfiles/tmp"
 export CACHE_TMP="$HOME/.cache/tmp"
 export DTMP="$HOME/data/tmp"
-export MTMP="$HOME/mydotfiles/tmp"
+export MTMP="$DOT_CONFIG_MYDOT/tmp"
 
 alias rec="cd ~/Recycle"
 alias rmabs="/bin/rm"
@@ -139,7 +143,7 @@ webshareup(){
 		fi
 	fi
 	cd $share_dir
-	SHARE_UP_DOWN=$HOME/mydotfiles/b-dotfiles/others/share_up_down.py
+	SHARE_UP_DOWN=$DOT_CONFIG_BDOT/others/share_up_down.py
 
 	if [ ! -e share_up_down.py ];then
 		ln -s $SHARE_UP_DOWN share_up_down.py
@@ -502,6 +506,29 @@ alias sdfclear="rm $CACHE_TMP/svn-diff"
 alias gdfls="ls $CACHE_TMP/git-diff"
 alias sdfls="ls $CACHE_TMP/svn-diff"
 
-
+# 配置当前项目文件的 vim 自定义配置
+prconf(){
+	cur_dir=`pwd`
+	if [ ! -f $cur_dir/.workspace.vim ];then
+		cp $DOT_CONFIG_BDOT/b-vim/vim.config/project_vimrc/workspace.vim $cur_dir/.workspace.vim
+		echo "set path+=,$cur_dir/**" >> $cur_dir/.workspace.vim
+	fi
+	if [ ! -f $cur_dir/.ycm_simple_conf.xml ];then
+		ycm_conf=$cur_dir/.ycm_simple_conf.xml
+		ori_ycm_conf=$DOT_CONFIG_BDOT/b-vim/vim.config/project_vimrc/ycm_simple_conf_mac_cpp_base_dir.xml
+		cat $ori_ycm_conf | while read line;do
+			if [ "$line" = "</project>" ];then
+				ls $curdir | while read fl;do
+					fl=$cur_dir/$fl
+					if [ -d $fl ];then
+						inclpath="\t<inlcule path='"$fl"'/>"
+						echo $inclpath >> $ycm_conf
+					fi
+				done
+			fi
+			echo $line >> $ycm_conf
+		done
+	fi
+}
 
 
