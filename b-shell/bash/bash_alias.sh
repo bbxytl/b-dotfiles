@@ -397,6 +397,9 @@ rmbk() {
 alias gll="git lg | less"
 # 精简版 分支
 alias gbr="git br -a"
+# 清空已过期分支
+alias gcbr="git remote prune origin"
+# 显示tag
 alias gtag="git tag"
 # 显示最近 n 次更改的文件
 gln(){
@@ -534,5 +537,13 @@ proconf(){
 		done
 	fi
 }
+
+# 配置 git 仓库忽略文件
+progit(){
+	if [ ! -f .gitignore ];then
+		cp $DOT_CONFIG_BDOT/others/gitignore .gitignore
+	fi
+}
+
 
 
