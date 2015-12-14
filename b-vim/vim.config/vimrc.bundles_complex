@@ -564,7 +564,7 @@ set laststatus=2
 
 " ##### 重量级补全
 Bundle 'Valloric/YouCompleteMe'
-let g:ycm_key_list_select_completion = ['<Down>']   " C-j 同时可用
+let g:ycm_key_list_select_completion = ['<Down>', '<Tab>']   " C-j 同时可用
 let g:ycm_key_list_previous_completion = ['<Up>']   " C-k 同时可用
 let g:ycm_complete_in_comments = 1  "在注释输入中也能补全
 let g:ycm_complete_in_strings = 1   "在字符串输入中也能补全
@@ -580,6 +580,7 @@ nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>] :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>[ :YcmCompleter GoToDeclaration<CR>
+nmap <leader>e :YcmDiags<CR>
 " 引入，可以补全系统，以及python的第三方包 针对新老版本YCM做了兼容
 " old version
 if !empty(glob("~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py"))

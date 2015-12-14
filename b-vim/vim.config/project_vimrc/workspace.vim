@@ -9,7 +9,9 @@
 " set path+=,/Users/xxx/data/git/engine/**
 
 " 下面的两个 let 是关闭 语法检测
+"	关闭syntastic 对 c 类型文件的语法检测
 " let g:syntastic_c_checkers = [ ]
+"	关闭 ycm 的语法检测
 " let g:ycm_show_diagnostics_ui = 0
 
 " let g:extra_whitespace_ignored_filetypes += ['c', 'cpp', 'py']
