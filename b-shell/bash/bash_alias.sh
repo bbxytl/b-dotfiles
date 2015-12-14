@@ -511,20 +511,41 @@ alias gdfls="ls $CACHE_TMP/git-diff"
 alias sdfls="ls $CACHE_TMP/svn-diff"
 
 # 配置当前项目文件的 vim 自定义配置
-#   迭代获取所有非隐藏目录 $1:ls的目录, $2:导出的文件
+
+_work_out(){
+	ln -s $2 $1/
+}
+
+_work_clear(){
+	if [ -e $1/$2 ];then
+		rm $1/$2
+	fi
+}
+
+_ycm_out(){
+	inclpath="\t<inlcule path='"$1"'/>"
+	echo $inclpath >> $2
+}
+
+_opt_path(){
+	$1 $2 $3
+}
+
 optpath(){
-	ls $1 | while read lne;do
-		if [ -d "$1/$lne" ];then
-			inclpath="\t<inlcule path='"$1/$lne"'/>"
-			echo $inclpath >> $2
-			optpath $1/$lne $2
+	ls $2 | while read lne;do
+		if [ -d "$2/$lne" ];then
+			_opt_path  $1 $2/$lne $3
+			optpath $1 $2/$lne $3
 		fi
 	done
 }
 proconf(){
-	if [ ! -f .workspace.vim ];then
-		cp $DOT_CONFIG_BDOT/b-vim/vim.config/project_vimrc/workspace.vim .workspace.vim
-		echo "set path+=,`pwd`/**" >> .workspace.vim
+	workspace_vim=".workspace.vim"
+	if [ ! -f $workspace_vim ];then
+		cp $DOT_CONFIG_BDOT/b-vim/vim.config/project_vimrc/workspace.vim $workspace_vim
+		echo "" >> $workspace_vim
+		echo "set path+=,`pwd`/**" >> $workspace_vim
+		optpath _work_out `pwd` `pwd`/$workspace_vim
 	fi
 	if [ ! -f .ycm_simple_conf.xml ];then
 		ycm_conf=.ycm_simple_conf.xml
@@ -532,13 +553,17 @@ proconf(){
 		cat $ori_ycm_conf | while read line;do
 			if [ "$line" = "</project>" ];then
 				echo "" >> $ycm_conf
-				optpath `pwd` $ycm_conf
+				optpath _ycm_out `pwd` $ycm_conf
 			fi
 			echo $line >> $ycm_conf
 		done
 	fi
 }
-
+proclr(){
+	workspace_vim=".workspace.vim"
+	optpath _work_clear `pwd` $workspace_vim
+	_work_clear `pwd` $workspace_vim
+}
 # 配置 git 仓库忽略文件
 progit(){
 	if [ ! -f .gitignore ];then

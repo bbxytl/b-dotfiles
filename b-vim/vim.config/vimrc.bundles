@@ -47,8 +47,8 @@ Bundle 'asins/vimcdoc'
 
 
 " ##### 自动根据当前打开文件切换工作目录
-Bundle 'airblade/vim-rooter'
-let g:rooter_disable_map = 1
+" Bundle 'airblade/vim-rooter'
+" let g:rooter_disable_map = 1
 
 " ##### 缩进标识
 Bundle 'nathanaelkane/vim-indent-guides'
