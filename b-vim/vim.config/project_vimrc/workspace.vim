@@ -5,9 +5,6 @@
 "  或使用本配置的 shell 配置，加载后使用命令：proconf 即可，
 "  命令可参见 bash_alias.sh 文件
 
-" 设置头文件路径
-" set path+=,/Users/xxx/data/git/engine/**
-
 " 下面的两个 let 是关闭 语法检测
 "	关闭syntastic 对 c 类型文件的语法检测
 " let g:syntastic_c_checkers = [ ]
@@ -17,3 +14,9 @@
 " let g:extra_whitespace_ignored_filetypes += ['c', 'cpp', 'py']
 " 关闭 syntastic 的相应文件的语法检测
 " let g:syntastic_ignore_files=[".*\.c$", ".*\.decl$"]
+
+" 设置头文件路径
+" set path+=,/Users/xxx/data/git/engine/**
+"
+
+
