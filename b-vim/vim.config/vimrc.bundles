@@ -159,7 +159,7 @@ let g:NERDSpaceDelims=1
 " ##### 快速去行尾空格
 Bundle 'bronson/vim-trailing-whitespace'
 " 下列文件类型中的行尾空格tab不高亮显示
-" let g:extra_whitespace_ignored_filetypes = ['unite', 'mkd', 'h', 'hpp', 'c', 'cpp', 'py']
+let g:extra_whitespace_ignored_filetypes = ['unite', 'mkd', 'diff']
 map <leader>, :FixWhitespace<cr>
 
 

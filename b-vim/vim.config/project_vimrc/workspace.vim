@@ -13,4 +13,5 @@
 " let g:ycm_show_diagnostics_ui = 0
 
 " let g:extra_whitespace_ignored_filetypes += ['c', 'py']
-
+" 关闭 syntastic 的相应文件的语法检测
+" let g:syntastic_ignore_files=[".*\.c$", ".*\.decl$"]
