@@ -21,8 +21,6 @@ if(has("win32") || has("win95") || has("win64") || has("win16"))
 else
     let g:vimrc_iswindows=0
 endif
-" 保证工作目录为当前目录
-autocmd BufEnter * lcd %:p:h
 
 " ###################  基本设置 ###################
 		" 允许插件 启动自动补全
