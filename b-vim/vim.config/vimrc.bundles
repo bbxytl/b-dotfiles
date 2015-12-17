@@ -100,10 +100,10 @@ Bundle 'SirVer/ultisnips'
 " 	Snippets are separated from the engine. Add this if you want them:
 Bundle 'honza/vim-snippets'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsExpandTrigger       = "<tab>"
-let g:UltiSnipsJumpForwardTrigger  = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+let g:UltiSnipsExpandTrigger="<leader><tab>"
+let g:UltiSnipsExpandTrigger       = "<leader><tab>"
+let g:UltiSnipsJumpForwardTrigger  = "<leader><tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<leader><s-tab>"
 let g:UltiSnipsSnippetDirectories  = ['UltiSnips']
 " 定义存放代码片段的文件夹 .vim/UltiSnips下，使用自定义和默认的，将会的到全局，有冲突的会提示
 " 进入对应filetype的snippets进行编辑
@@ -457,6 +457,7 @@ Bundle 'suan/vim-instant-markdown'
 let g:instant_markdown_slow = 1
 let g:instant_markdown_autostart = 0
 map <F12> :InstantMarkdownPreview<CR>
+map <leader>mp :InstantMarkdownPreview<CR>
 
 
 " ##### 增加对 STL\C++14等的C++语法高亮

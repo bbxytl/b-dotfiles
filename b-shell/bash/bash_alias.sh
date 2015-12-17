@@ -547,7 +547,9 @@ proconf(){
 		echo "set path+=,`pwd`/**" >> $workspace_vim
 		echo "set tags+=`pwd`/tags" >> $workspace_vim
 		echo "" >> $workspace_vim
-		optpath _work_out `pwd` `pwd`/$workspace_vim
+		if [ `pwd` != $HOME ];then
+			optpath _work_out `pwd` `pwd`/$workspace_vim
+		fi
 	fi
 	if [ ! -f .ycm_simple_conf.xml ];then
 		ycm_conf=.ycm_simple_conf.xml
