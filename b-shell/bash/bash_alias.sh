@@ -59,6 +59,9 @@ alias cdp="cd ~/data/projects"
 alias cdc="cd ~/data/projects/cpp"
 alias cdz="cd ~/data/projects/zlsg"
 alias cdzk="cd ~/data/projects/zlsg/trunk"
+
+alias cdopen="cd ~/data/git/open_channel"
+
 alias cdl="cd ~/data/lean"
 alias cdg="cd ~/data/git"
 # 临时文件目录
@@ -466,7 +469,7 @@ alias tree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^
 sbs(){ du -b --max-depth 1 | sort -nr | perl -pe 's{([0-9]+)}{sprintf "%.1f%s", $1>=2**30? ($1/2**30, "G"): $1>=2**20? ($1/2**20, "M"): $1>=2**10? ($1/2**10, "K"): ($1, "")}e';}
 alias intercept="sudo strace -ff -e trace=write -e write=1,2 -p"
 alias meminfo='free -m -l -t'
-alias psg="ps aux | grep"
+alias psg="ps ux | grep"
 alias volume="amixer get Master | sed '1,4 d' | cut -d [ -f 2 | cut -d ] -f 1"
 
 ##Network
@@ -498,17 +501,25 @@ alias cman='man -M $HOME/.local/share/man/zh_CN'
 # fi
 # '
 # 更方便的查看 diff ，同时保存起来
-__init__(){
+__init_git_svn(){
 	if [ ! -d $CACHE_TMP/git-diff ];then mkdir -p $CACHE_TMP/git-diff;fi
 	if [ ! -d $CACHE_TMP/svn-diff ];then mkdir -p $CACHE_TMP/svn-diff;fi
+	if [ ! -d $CACHE_TMP/git-st ];then mkdir -p $CACHE_TMP/git-st;fi
+	if [ ! -d $CACHE_TMP/svn-st ];then mkdir -p $CACHE_TMP/svn-st;fi
 }
-gdf(){ __init__; now=`date +%Y%m%d-%H%M%S`.log;git diff $@ > $CACHE_TMP/git-diff/$now;vim -M $CACHE_TMP/git-diff/$now; }
-sdf(){ __init__; now=`date +%Y%m%d-%H%M%S`.log;svn diff $@ > $CACHE_TMP/svn-diff/$now;vim -M $CACHE_TMP/svn-diff/$now; }
+gdf(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log;git diff $@ > $CACHE_TMP/git-diff/$now;vim -M $CACHE_TMP/git-diff/$now; }
+sdf(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log;svn diff $@ > $CACHE_TMP/svn-diff/$now;vim -M $CACHE_TMP/svn-diff/$now; }
+
+gsg(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log;git status $@ > $CACHE_TMP/git-st/$now;vim -M $CACHE_TMP/git-st/$now; }
+ssg(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log;svn status $@ > $CACHE_TMP/svn-st/$now;vim -M $CACHE_TMP/svn-st/$now; }
+
+dif(){ diff -y $@ | less; }
 # 清除所有log
 alias gdfclear="rm $CACHE_TMP/git-diff"
 alias sdfclear="rm $CACHE_TMP/svn-diff"
 alias gdfls="ls $CACHE_TMP/git-diff"
 alias sdfls="ls $CACHE_TMP/svn-diff"
+alias sst="svn status"
 
 # 配置当前项目文件的 vim 自定义配置
 
