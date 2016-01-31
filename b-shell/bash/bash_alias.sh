@@ -509,6 +509,8 @@ alias gdfclear="rm $CACHE_TMP/git-diff"
 alias sdfclear="rm $CACHE_TMP/svn-diff"
 alias gdfls="ls $CACHE_TMP/git-diff"
 alias sdfls="ls $CACHE_TMP/svn-diff"
+# svn 只显示修改
+alias ssq="svn status -q"
 
 # 配置当前项目文件的 vim 自定义配置
 
