@@ -516,10 +516,10 @@ ssg(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log;svn status $@ > $CACHE_TMP/
 
 dif(){ diff -y $@ | less; }
 # 清除所有log
-alias gdfclear="rm $CACHE_TMP/git-diff"
-alias sdfclear="rm $CACHE_TMP/svn-diff"
-alias gdfls="ls $CACHE_TMP/git-diff"
-alias sdfls="ls $CACHE_TMP/svn-diff"
+alias gdfclear="rm $CACHE_TMP/git-diff/*"
+alias sdfclear="rm $CACHE_TMP/svn-diff/*"
+alias gdfls="ls $CACHE_TMP/git-diff/"
+alias sdfls="ls $CACHE_TMP/svn-diff/"
 alias gst="git status"
 # svn 只显示修改
 alias sst="svn status"
