@@ -451,6 +451,12 @@ highlight SpellRare term=underline cterm=underline
 highlight clear SpellLocal
 highlight SpellLocal term=underline cterm=underline
 
+" ===============================
+" highlight Pmenu    guibg=darkgrey  guifg=black
+" highlight PmenuSel guibg=lightgrey guifg=black
+" highlight Pmenu    ctermbg=darkgrey  ctermfg=black
+" highlight PmenuSel ctermbg=lightgrey ctermfg=black
+
 set term=screen-256color
 " 快速保存 快捷键
 nnoremap <Leader>w :w<CR>
@@ -556,6 +562,9 @@ endfunction
 
 " 在当前文件中快速查找光标下的单词
 nmap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
+
+" 在处理未保存或只读文件的时候，弹出确认
+set confirm
 
 set list
 set lcs=tab:\|\ ,nbsp:% ",trail:-
