@@ -58,7 +58,8 @@ alias cdd="cd ~/data"
 alias cdp="cd ~/data/projects"
 alias cdc="cd ~/data/projects/cpp"
 alias cdz="cd ~/data/projects/zlsg"
-alias cdzk="cd ~/data/projects/zlsg/trunk"
+alias cdzl="cd ~/data/projects/zlsg/logic"
+alias cdcd="cd ~/data/projects/coc_dev/"
 alias cdcc="cd ~/data/projects/coc/logic"
 
 alias cdopen="cd ~/data/git/open_channel"
@@ -508,11 +509,11 @@ __init_git_svn(){
 	if [ ! -d $CACHE_TMP/git-st ];then mkdir -p $CACHE_TMP/git-st;fi
 	if [ ! -d $CACHE_TMP/svn-st ];then mkdir -p $CACHE_TMP/svn-st;fi
 }
-gdf(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log;git diff $@ > $CACHE_TMP/git-diff/$now;vim -M $CACHE_TMP/git-diff/$now; }
-sdf(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log;svn diff $@ > $CACHE_TMP/svn-diff/$now;vim -M $CACHE_TMP/svn-diff/$now; }
+gdf(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log;fl=$CACHE_TMP/git-diff/$now;git diff $@ > $fl;vim -M $fl; }
+sdf(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log;fl=$CACHE_TMP/svn-diff/$now;svn diff $@ > $fl;vim -M $fl; }
 
-gsg(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log;git status $@ > $CACHE_TMP/git-st/$now;vim -M $CACHE_TMP/git-st/$now; }
-ssg(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log;svn status $@ > $CACHE_TMP/svn-st/$now;vim -M $CACHE_TMP/svn-st/$now; }
+gsg(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log;fl=$CACHE_TMP/git-st/$now;git status $@ > $fl;vim -M $fl; }
+ssg(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log; fl=$CACHE_TMP/svn-st/$now; svn status $@ | sed '/.workspace.vim/d' > $fl; vim -M $fl; }
 
 dif(){ diff -y $@ | less; }
 # 清除所有log
