@@ -2,9 +2,6 @@
 # 自身配置的 命令
 
 SYS_VERSION=`uname -s`
-if [ $SYS_VERSION != 'Linux' ];then
-	SYS_VERSION='Mac'
-fi
 
 export EDITOR='vim'
 
@@ -16,7 +13,7 @@ alias v='/usr/bin/vi'
 alias vi='vim'
 # User specific aliases and functions
 ##Productivity
-if [ $SYS_VERSION = 'Mac' ];then
+if [ $SYS_VERSION = 'Darwin' ];then
 # mac 隐藏文件
 	alias fshow='defaults write com.apple.finder AppleShowAllFiles -bool true'
 	alias fhide='defaults write com.apple.finder AppleShowAllFiles -bool false'
@@ -57,10 +54,12 @@ alias cdb="cd ~/mydotfiles/b-dotfiles"
 alias cdd="cd ~/data"
 alias cdp="cd ~/data/projects"
 alias cdc="cd ~/data/projects/cpp"
-alias cdz="cd ~/data/projects/zlsg"
-alias cdzl="cd ~/data/projects/zlsg/logic"
-alias cdcd="cd ~/data/projects/coc_dev/"
-alias cdcc="cd ~/data/projects/coc/logic"
+
+alias cdcc="cd ~/data/projects/coc/logic;pwd"
+alias cdcd="cd ~/data/projects/coc_dev/;pwd"
+alias cdrun="cd ~/data/projects/coc_dev/run/logic;pwd"
+alias cddev="cd ~/data/projects/coc_dev/dev/logic;pwd"
+alias cdmaster="cd ~/data/projects/coc_dev/master/logic;pwd"
 
 alias cdopen="cd ~/data/git/open_channel"
 
