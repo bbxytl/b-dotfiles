@@ -512,7 +512,17 @@ gdf(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log;fl=$CACHE_TMP/git-diff/$now
 sdf(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log;fl=$CACHE_TMP/svn-diff/$now;svn diff $@ > $fl;vim -M $fl; }
 
 gsg(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log;fl=$CACHE_TMP/git-st/$now;git status $@ > $fl;vim -M $fl; }
-ssg(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log; fl=$CACHE_TMP/svn-st/$now; svn status $@ | sed '/.workspace.vim/d' > $fl; vim -M $fl; }
+ssg(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log; fl=$CACHE_TMP/svn-st/$now; fl0=$fl".log";
+	svn status $@ > $fl0
+	cat ".svnignore" | while read line;do
+		if [ -z $line ];then continue;fi;
+		echo "$line"x| grep -q "^\s";test $? -eq 0 && continue
+		sed "/$line/d" $fl0 > $fl;
+		mv $fl $fl0;
+	done
+	mv $fl0 $fl;
+	vim -M $fl;
+}
 
 dif(){ diff -y $@ | less; }
 # 清除所有log
