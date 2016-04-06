@@ -121,7 +121,7 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 	def do_POST(self):
 		"""Serve a POST request."""
 		r, info = self.deal_post_data()
-		print r, info, "by: ", self.client_address
+		print r, info, "by: ", self.client_address, "  do ==================="
 		f = StringIO()
 		f.write('<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">')
 		f.write("<html>\n<title>Upload Result Page</title>\n")
@@ -159,18 +159,23 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 		line = self.rfile.readline()
 		remainbytes -= len(line)
 		fn = re.findall(r'Content-Disposition.*name="file"; filename="(.*)"', line)
+		print "filename: ",fn
 		if not fn:
 			return (False, "Can't find out file name...")
 		path = self.translate_path(self.path)
 		# osType = platform.system()
 		try:
-			fn = os.path.join(path, fn[0].decode('gbk').encode('utf-8'))
+			# fn = os.path.join(path, fn[0].decode('gbk').encode('utf-8'))
+			# fn = os.path.join(path, fn[0].ecode('gbk'))
+			fn = unicode(fn[0], 'utf8')
+			fn = os.path.join(path, fn)
 			#if osType == "Linux":
 			#	fn = os.path.join(path, fn[0].decode('gbk').encode('utf-8'))
 			#else:
 			#	fn = os.path.join(path, fn[0])
 		except Exception, e:
-			if 0: e
+			if 1: e
+			print "文件名错误！================================"
 			return (False, "文件名请不要用中文，或者使用IE上传中文名的文件。")
 		while os.path.exists(fn):
 			fn += "_"
@@ -181,6 +186,7 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 		try:
 			out = open(fn, 'wb')
 		except IOError:
+			print "IOError ! =================================="
 			return (False, "Can't create file to write, do you have permission to write?")
 
 		preline = self.rfile.readline()
