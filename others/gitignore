@@ -42,13 +42,13 @@ $RECYCLE.BIN/
 *.app
 
 # Vim
-.ycm_simple_conf.xml
-.workspace.vim
-tags
-cscope.out
-.svn
-.git.*
-core.*
+# .ycm_simple_conf.xml
+# .workspace.vim
+# tags
+# cscope.out
+# .svn
+# .git.*
+# core.*
 
 # Custom
 

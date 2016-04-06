@@ -5,7 +5,7 @@
 [core]
   autocrlf = false
   whitespace = fix,space-before-tab,tab-in-indent,trailing-space
-  excludesfile = ~/.cvsignore
+  excludesfile = ~/.gitignore
 
 [alias]
   st = status
