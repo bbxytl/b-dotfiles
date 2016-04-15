@@ -169,7 +169,7 @@ set ttyfast
 " ##### 00x增减数字时使用十进制
 set nrformats=
 
-
+" Vim 7.3以上版本才支持，7.3一下版本不支持 relativenumber
 " ##### 相对行号 行号变成相对，可以用 nj  nk   进行跳转 5j   5k 上下跳5行
 set relativenumber number
 au FocusLost * :set norelativenumber number
