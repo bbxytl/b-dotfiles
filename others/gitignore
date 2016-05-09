@@ -24,22 +24,22 @@ $RECYCLE.BIN/
 ~'$'*.xlsx
 
 # Object files
-*.o
-
-# Libraries
-*.lib
-*.a
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
+#*.o
+#
+## Libraries
+#*.lib
+#*.a
+#
+## Shared objects (inc. Windows DLLs)
+#*.dll
+#*.so
+#*.so.*
+#*.dylib
+#
+## Executables
+#*.exe
+#*.out
+#*.app
 
 # Vim
 # .ycm_simple_conf.xml
