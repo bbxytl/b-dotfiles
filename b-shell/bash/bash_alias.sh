@@ -548,7 +548,7 @@ _work_clear(){
 }
 
 _ycm_out(){
-	inclpath="\t<inlcule path='"$1"'/>"
+	inclpath="\t<include path='"$1"'/>"
 	echo $inclpath >> $2
 }
 
