@@ -16,12 +16,12 @@ $RECYCLE.BIN/
 .DS_Store
 
 # Office
-~'$'*.doc
-~'$'*.docx
-~'$'*.ppt
-~'$'*.pptx
-~'$'*.xls
-~'$'*.xlsx
+\~\$*.doc
+\~\$*.docx
+\~\$*.ppt
+\~\$*.pptx
+\~\$*.xls
+\~\$*.xlsx
 
 # Object files
 #*.o
