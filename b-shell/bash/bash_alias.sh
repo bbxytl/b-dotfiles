@@ -601,5 +601,13 @@ progit(){
 	fi
 }
 
+dsvn=".svn"
+_gitaddsvn(){
+	git add "$1/$2/*"
+}
+gitaddsvn(){
+	optpath _gitaddsvn `pwd` $dsvn
+	_gitaddsvn `pwd` $dsvn
+}
 
 
