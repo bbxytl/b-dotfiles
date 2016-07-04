@@ -610,4 +610,5 @@ gitaddsvn(){
 	_gitaddsvn `pwd` $dsvn
 }
 
+alias gethost="python $HOME/.ssh/get_host.py $HOME/.ssh/config $@"
 
