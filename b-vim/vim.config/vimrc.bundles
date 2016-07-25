@@ -270,6 +270,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 " s/v 分屏打开文件
 let g:NERDTreeMapOpenSplit = 's'
 let g:NERDTreeMapOpenVSplit = 'v'
+"打开NERDTree,定位到当前文件
+noremap <silent> <Leader>nf :NERDTreeFind<cr>
+autocmd vimenter * if !argc() | NERDTree | endif
 
 
 " ##### 目录导航

@@ -349,7 +349,7 @@ au Syntax * RainbowParenthesesLoadBraces
 
 " ##### 目录导航
 Bundle 'scrooloose/nerdtree'
-" noremap <silent> <leader>n :NERDTreeToggle<CR>
+noremap <silent> <leader>n :NERDTreeToggle<CR>
 let NERDTreeHighlightCursorline=1
 let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
 "close vim if the only window left open is a NERDTree
@@ -359,7 +359,7 @@ let g:NERDTreeMapOpenSplit = 's'
 let g:NERDTreeMapOpenVSplit = 'v'
 let NERDTreeQuitOnOpen=1 "NERDTree中打开文件后自动关闭NERDTree窗口
 "打开NERDTree,定位到当前文件
-noremap <silent> <Leader>n :NERDTreeFind<cr>
+noremap <silent> <Leader>nf :NERDTreeFind<cr>
 autocmd vimenter * if !argc() | NERDTree | endif
 
 " ##### 目录导航
