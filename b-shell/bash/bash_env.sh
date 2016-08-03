@@ -62,3 +62,6 @@ export LESS_TERMCAP_ZW=$(tput rsupm)
   export PIP_RESPECT_VIRTUALENV=true
 
 # fi
+
+
+export PYTHONSTARTUP=$HOME/.pystartup.py
