@@ -488,6 +488,19 @@ alias volume="amixer get Master | sed '1,4 d' | cut -d [ -f 2 | cut -d ] -f 1"
 #
 
 alias cman='man -M $HOME/.local/share/man/zh_CN'
+# Use VIm as man pager
+# vman () {
+    # export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
+    # vim -R -c 'set ft=man nomod nolist' -c 'map q :q' \
+    # -c 'map ' -c 'map b ' \
+    # -c 'nmap K :Man =expand(\\\"\\\")' -\""
+
+    # invoke man page
+    # man $@
+
+    # we muse unset the PAGER, so regular man pager is used afterwards
+    # unset PAGER
+# }
 
 # alias tlshutdown='shutdown -h now'
 # #alias tlreboot='sudo reboot'
@@ -612,3 +625,14 @@ gitaddsvn(){
 
 alias gethost="python $HOME/.ssh/get_host.py $HOME/.ssh/config $@"
 
+note(){
+	if [ $# -gt 0 ];then
+		for n in $@;do
+			echo $n
+			if [ "$n" = $1 ] ;then continue;fi
+			echo "$n"  >> "$1"
+		done
+	else
+		echo "note file_name text1 text2 ..."
+	fi
+}
