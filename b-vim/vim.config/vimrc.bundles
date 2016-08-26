@@ -81,6 +81,10 @@ highlight SyntasticErrorSign guifg=white guibg=black
 let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 0
 let g:syntastic_loc_list_height = 5
+if has("mac")
+	"	关闭syntastic 对 c 类型文件的语法检测
+	let g:syntastic_c_checkers = [ ]
+endif
 function! ToggleErrors()
     let old_last_winnr = winnr('$')
     lclose
