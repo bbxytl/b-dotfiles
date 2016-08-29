@@ -296,17 +296,22 @@ map <leader>h <C-W>h
 map <leader>l <C-W>l
 
 " ##### 命令行模式增强，ctrl - a到行首， -e 到行尾
-cnoremap <C-j> <t_kd>
-cnoremap <C-k> <t_ku>
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
+" cnoremap <C-j> <t_kd>
+" cnoremap <C-k> <t_ku>
+" cnoremap <C-a> <Home>
+" cnoremap <C-e> <End>
 
 " Go to home and end using capitalized directions
-" map <C-a> H
-" map <C-e> L
+map <C-a> ^
+map <C-e> $
 noremap H ^
 noremap L $
 
+" 更改窗口大小
+nmap w=  :resize +3<CR>
+nmap w-  :resize -3<CR>
+nmap w,  :vertical resize -3<CR>
+nmap w.  :vertical resize +3<CR>
 
 " ##### 搜索相关
 " 进入搜索Use sane regexes"
