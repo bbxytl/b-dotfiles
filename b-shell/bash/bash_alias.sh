@@ -55,14 +55,6 @@ alias cdd="cd ~/data"
 alias cdp="cd ~/data/projects"
 alias cdc="cd ~/data/projects/cpp"
 
-alias cdcc="cd ~/data/projects/coc/logic;pwd"
-alias cdcd="cd ~/data/projects/coc_dev/;pwd"
-alias cdrun="cd ~/data/projects/coc_dev/run/logic;pwd"
-alias cddev="cd ~/data/projects/coc_dev/dev/logic;pwd"
-alias cdmaster="cd ~/data/projects/coc_dev/master/logic;pwd"
-
-alias cdopen="cd ~/data/git/open_channel"
-
 alias cdl="cd ~/data/lean"
 alias cdg="cd ~/data/git"
 # 临时文件目录
@@ -81,7 +73,6 @@ cdu = "cd -"
 cdd = "cd ~/data"
 cdp = "cd ~/data/projects/"
 cdc = "cd ~/data/projects/cpp"
-cdz = "cd ~/data/projects/zlsg/trunk"
 cdl = "cd ~/data/lean/"
 cdg = "cd ~/data/git"
 cdt = "cd ~/data/tmp/"
