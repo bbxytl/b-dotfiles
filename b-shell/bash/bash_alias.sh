@@ -17,14 +17,6 @@ if [ $SYS_VERSION = 'Darwin' ];then
 # mac 隐藏文件
 	alias fshow='defaults write com.apple.finder AppleShowAllFiles -bool true'
 	alias fhide='defaults write com.apple.finder AppleShowAllFiles -bool false'
-
-# mpv 播放器播放 bilibili 视频
-	blimpv(){
-		cur_dir=`pwd`
-		cd "$DOT_CONFIG_MYDOT/packges/BiliDan"
-		./bilidan.py $@
-		cd $cur_dir
-	}
 fi
 
 alias ll="ls  -l"
@@ -53,21 +45,12 @@ alias cdu="cd -"
 alias cdb="cd ~/mydotfiles/b-dotfiles"
 alias cdd="cd ~/data"
 alias cdp="cd ~/data/projects"
-alias cdc="cd ~/data/projects/cpp"
-
-alias cdcc="cd ~/data/projects/coc/logic;pwd"
-alias cdcd="cd ~/data/projects/coc_dev/;pwd"
-alias cdrun="cd ~/data/projects/coc_dev/run/logic;pwd"
-alias cddev="cd ~/data/projects/coc_dev/dev/logic;pwd"
-alias cdmaster="cd ~/data/projects/coc_dev/master/logic;pwd"
-
-alias cdopen="cd ~/data/git/open_channel"
-
 alias cdl="cd ~/data/lean"
 alias cdg="cd ~/data/git"
 # 临时文件目录
 alias cdt="cd ~/data/tmp"
 alias cdmt="cd ~/mydotfiles/tmp"
+
 export CACHE_TMP="$HOME/.cache/tmp"
 export DTMP="$HOME/data/tmp"
 export MTMP="$DOT_CONFIG_MYDOT/tmp"
@@ -75,54 +58,10 @@ export MTMP="$DOT_CONFIG_MYDOT/tmp"
 alias rec="cd ~/Recycle"
 alias rmabs="/bin/rm"
 
-cdls(){
-	echo -e '
-cdu = "cd -"
-cdd = "cd ~/data"
-cdp = "cd ~/data/projects/"
-cdc = "cd ~/data/projects/cpp"
-cdz = "cd ~/data/projects/zlsg/trunk"
-cdl = "cd ~/data/lean/"
-cdg = "cd ~/data/git"
-cdt = "cd ~/data/tmp/"
-rec = "cd ~/Recycle"
-cdlg
-			'
-}
 # 当前目录的名称
 export PWD_DIR="${PWD##*/}"
 alias curdirname="echo $PWD_DIR"
 
-config_dir=$HOME/.cache/cache_alias
-log_dir=$config_dir/logs
-
-log_file=$log_dir/commands.log
-export FOUT=$log_file
-alias cdlg="cd $log_dir"
-alias lgcat="cat $log_file"
-alias lgvim="vim $log_file"
-alias lg="tee -a $log_file"
-newlg(){
-	if [ ! -e $log_dir ];then mkdir -p $log_dir;fi
-	nowtime=`date +%Y%m%d%H%M%S`
-	if [ ! -e $log_file ];then
-		echo $nowtime'=================' >> $log_file
-	else
-		newfile=$log_file'.'$nowtime
-		mv $log_file $newfile
-		echo $nowtime'=================' >> $log_file
-	fi
-	echo $log_file
-}
-lgls(){
-	echo "cdlg : 打开输出文件所在目录"
-	echo "lgnew: 创建一个新的输出文件"
-	echo "lgcat: 查看输出文件"
-	echo "lgvim: vim打开输出文件"
-	echo "lg   : 使用方式：command 2>&1 | lg"
-	echo "       用于将输出输出到输出文件和屏幕"
-	echo 'command >> $FOUT 用于将结果输出到输出文件'
-}
 # 通过浏览器共享某一目录
 # 用法：
 #	共享当前目录: webshare
@@ -135,7 +74,7 @@ webshare(){
 			share_dir=`pwd`
 		fi
 	fi
-	ifconfig
+	ifconfig |grep 'Bcast'
 	echo "Share_Dir : $share_dir"
 	python -m SimpleHTTPServer 8899
 }
@@ -153,7 +92,7 @@ webshareup(){
 	if [ ! -e share_up_down.py ];then
 		ln -s $SHARE_UP_DOWN share_up_down.py
 	fi
-	ifconfig
+	ifconfig |grep 'Bcast'
 	echo "Share_Dir : $share_dir"
 	python share_up_down.py 8899
 }
@@ -502,16 +441,11 @@ alias cman='man -M $HOME/.local/share/man/zh_CN'
     # unset PAGER
 # }
 
-# alias tlshutdown='shutdown -h now'
-# #alias tlreboot='sudo reboot'
-# alias tlinit='sudo mount -t vboxsf VBoxShare /mnt/WinShare;
+# alias shutdown='shutdown -h now'
+# #alias reboot='sudo reboot'
+# alias mount_init='sudo mount -t vboxsf VBoxShare /mnt/WinShare;
 # if [ $? -ne 0 ];then
 #     echo " mount VBoxShare share dir error!"
-# fi
-# sudo -S mount -t vboxsf TL /mnt/TlShare;
-
-# if [ $? -ne 0 ];then
-#     echo " mount TL share dir error!"
 # fi
 # '
 # 更方便的查看 diff ，同时保存起来
@@ -622,8 +556,6 @@ gitaddsvn(){
 	optpath _gitaddsvn `pwd` $dsvn
 	_gitaddsvn `pwd` $dsvn
 }
-
-alias gethost="python $HOME/.ssh/get_host.py $HOME/.ssh/config $@"
 
 note(){
 	if [ $# -gt 0 ];then

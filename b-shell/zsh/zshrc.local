@@ -24,8 +24,7 @@ fi
 
 
 SYS_VERSION=`uname -s`
-if [ $SYS_VERSION != 'Linux' ];then
-	SYS_VERSION='Mac'
+if [ $SYS_VERSION = 'Darwin' ];then
 	[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 fi
 

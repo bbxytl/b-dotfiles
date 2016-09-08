@@ -49,18 +49,18 @@ export LESS_TERMCAP_ZW=$(tput rsupm)
 
 # virtualenvswrapper 配置
 # if [ `id -u` != '0' ]; then
-  export VIRTUALENV_USE_DISTRIBUTE=1        # <-- Always use pip/distribute
-  export WORKON_HOME=$HOME/.local/virtualenvs       # <-- Where all virtualenvs will be stored
-  if [ -e $HOMELOCAL_PATH/bin/virtualenvwrapper.sh ];then
-	  echo "$HOMELOCAL_PATH"
-	  source $HOMELOCAL_PATH/bin/virtualenvwrapper.sh
-  else if [ -e /usr/local/bin/virtualenvwrapper.sh ];then
-			source /usr/local/bin/virtualenvwrapper.sh
-	   fi
-  fi
-  export PIP_VIRTUALENV_BASE=$WORKON_HOME
-  export PIP_RESPECT_VIRTUALENV=true
-
+#  export VIRTUALENV_USE_DISTRIBUTE=1        # <-- Always use pip/distribute
+#  export WORKON_HOME=$HOME/.local/virtualenvs       # <-- Where all virtualenvs will be stored
+#  if [ -e $HOMELOCAL_PATH/bin/virtualenvwrapper.sh ];then
+#	  echo "$HOMELOCAL_PATH"
+#	  source $HOMELOCAL_PATH/bin/virtualenvwrapper.sh
+#  else if [ -e /usr/local/bin/virtualenvwrapper.sh ];then
+#			source /usr/local/bin/virtualenvwrapper.sh
+#	   fi
+#  fi
+#  export PIP_VIRTUALENV_BASE=$WORKON_HOME
+#  export PIP_RESPECT_VIRTUALENV=true
+#
 # fi
 
 
