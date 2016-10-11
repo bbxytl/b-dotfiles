@@ -589,8 +589,9 @@ nmap <leader>z :call Zoom()<CR>
 " 在处理未保存或只读文件的时候，弹出确认
 set confirm
 
-set list
-set lcs=tab:\|\ ,nbsp:% ",trail:-
+" tab键特殊显示
+" set list
+" set lcs=tab:\|\ ,nbsp:% ",trail:-
 
 "  在 tab页显示序号，方便使用 ngt
 set tabline=%!MyTabLine()  " custom tab pages line
