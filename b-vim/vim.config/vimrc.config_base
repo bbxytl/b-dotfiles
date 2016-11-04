@@ -478,8 +478,8 @@ vmap ,P "+P
 
 " 标签映射
 " 生成系统 头文件的 tags
-set tags+=~/.vim/systags
-set tags+=~/.vim/systags_local
+" set tags+=~/.vim/systags
+" set tags+=~/.vim/systags_local
 " map <leader><F12> :call Do_CsTag_Sys()<CR>
 map <leader><leader>T :call Do_CsTag_Sys()<CR>
 function! Do_CsTag_Sys()

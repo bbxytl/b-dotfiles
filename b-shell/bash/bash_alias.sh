@@ -628,3 +628,6 @@ note(){
 		echo "note file_name text1 text2 ..."
 	fi
 }
+# 生成密码
+randpw(){ < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-16};echo;}
+
