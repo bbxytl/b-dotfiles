@@ -52,7 +52,7 @@ export LESS_TERMCAP_ZW=$(tput rsupm)
   export VIRTUALENV_USE_DISTRIBUTE=1        # <-- Always use pip/distribute
   export WORKON_HOME=$HOME/.local/virtualenvs       # <-- Where all virtualenvs will be stored
   if [ -e $HOMELOCAL_PATH/bin/virtualenvwrapper.sh ];then
-	  echo "$HOMELOCAL_PATH"
+	  # echo "$HOMELOCAL_PATH"
 	  source $HOMELOCAL_PATH/bin/virtualenvwrapper.sh
   else if [ -e /usr/local/bin/virtualenvwrapper.sh ];then
 			source /usr/local/bin/virtualenvwrapper.sh
