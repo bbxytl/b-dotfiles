@@ -537,7 +537,7 @@ alias gdfls="ls $CACHE_TMP/git-diff/"
 alias sdfls="ls $CACHE_TMP/svn-diff/"
 alias gst="git status"
 # svn 只显示修改
-alias sst="svn status"
+alias sst="svn status | grep -v '.workspace.vim'"
 alias ssq="svn status -q"
 
 # 配置当前项目文件的 vim 自定义配置
