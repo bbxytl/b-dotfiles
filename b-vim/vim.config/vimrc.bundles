@@ -497,11 +497,11 @@ Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
 let g:airline_theme='molokai'
 let g:airline_exclude_preview = 1
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#buffer_nr_show = 0
 let g:airline#extensions#bufferline#enabled = 1
 let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 0
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
   endif

@@ -153,8 +153,8 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 
 
 " #####
-Bundle 'mileszs/ack.vim'
-let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
+" Bundle 'mileszs/ack.vim'
+" let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
 
 " ###### 快速注释
 Bundle 'scrooloose/nerdcommenter'
@@ -355,7 +355,7 @@ au Syntax * RainbowParenthesesLoadBraces
 Bundle 'scrooloose/nerdtree'
 "打开NERDTree,定位到当前文件
 " noremap <silent> <leader>n :NERDTreeToggle<CR>
-noremap <silent> <Leader>n :NERDTreeFind<cr>
+noremap <silent> <Leader>nf :NERDTreeFind<cr>
 let NERDTreeHighlightCursorline=1
 let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
 "close vim if the only window left open is a NERDTree
@@ -367,12 +367,12 @@ let NERDTreeQuitOnOpen=1 "NERDTree中打开文件后自动关闭NERDTree窗口
 autocmd vimenter * if !argc() | NERDTree | endif
 
 " ##### 目录导航
-" Bundle 'jistr/vim-nerdtree-tabs'
+Bundle 'jistr/vim-nerdtree-tabs'
 """"""
-" map <Leader>n <plug>NERDTreeTabsToggle<CR>
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
 	" 关闭同步
-" let g:nerdtree_tabs_synchronize_view=0
-" let g:nerdtree_tabs_synchronize_focus=0
+let g:nerdtree_tabs_synchronize_view=0
+let g:nerdtree_tabs_synchronize_focus=0
 	" 自动开启nerdtree
 "let g:nerdtree_tabs_open_on_console_startup=1
 
@@ -569,11 +569,11 @@ Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
 let g:airline_theme='molokai'
 " let g:airline_exclude_preview = 1
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#bufferline#enabled = 1
 let g:airline#extensions#whitespace#enabled = 0
-let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 0
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
   endif
