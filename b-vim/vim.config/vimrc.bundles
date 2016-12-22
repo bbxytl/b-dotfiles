@@ -546,6 +546,17 @@ if !exists('g:airline_symbols')
   let g:airline_symbols.branch = ''
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.linenr = ''
+" 修改文件： ~/.vim/bundle/vim-airline/autoload/airline.vim 中的下面的函数
+"     可以在状态栏显示时间
+" function! airline#statusline(winnr)
+"   if has_key(s:contexts, a:winnr)
+"    " return '%{airline#check_mode('.a:winnr.')}'.s:contexts[a:winnr].line
+"     return '%{airline#check_mode('.a:winnr.')}'.s:contexts[a:winnr].line.'|'.strftime("%d %H:%M")
+"   endif
+"  " in rare circumstances this happens...see #276
+"   return ''
+" endfunction
+
 " Always show the status line - use 2 lines for the status bar
 set laststatus=2
 
