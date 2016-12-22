@@ -503,12 +503,13 @@ Bundle 'vim-scripts/AutoComplPop'
 
 " ##### 比grep搜索更好
 " grep foo $(find . -name '*.pm' | grep -v .svn)
-" Bundle 'mileszs/ack.vim'
-" let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
-" let g:ack_default_options =
-              " \ " -s -H --color --group --column --smart-case --follow"
-" map <leader>a :Ack -i
-
+Bundle 'mileszs/ack.vim'
+let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
+" let g:ackprg = 'ag --nogroup --nocolor --column'
+" let g:ackprg = 'ag --column --smart-case'
+" let g:ackpreview = 1
+" nmap <F7> :Ack /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
+nmap <F7> :Ack <c-r>=expand("<cword>")<cr><cr>
 
 " ##### vim-powerline
 " Bundle 'Lokaltog/vim-powerline'
