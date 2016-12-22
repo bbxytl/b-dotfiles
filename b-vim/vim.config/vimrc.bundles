@@ -29,7 +29,27 @@ Bundle 'gmarik/vundle'
 
 " ###### 主题 molokai 和 Solarized
 Bundle 'tomasr/molokai'
-let g:molokai_original = 0
+let g:molokai_original = 1
+" let g:rehash256 = 1
+" 若要修改 molokai 的背景色或直接设置为透明
+" 打开文件: ~/.vim/bundle/molokai/colors/molokai.vim
+" 定位到下面这段，大概在 137 行
+" if &t_Co > 255
+"  if s:molokai_original == 1
+"     hi Normal                   ctermbg=234
+"     " hi Normal                   ctermbg=none
+"     hi CursorLine               ctermbg=235   cterm=none
+"     hi CursorLineNr ctermfg=208               cterm=none
+"  else
+"     hi Normal       ctermfg=252 ctermbg=233
+"     hi CursorLine               ctermbg=234   cterm=none
+"     hi CursorLineNr ctermfg=208               cterm=none
+"  endif
+"
+"  修改 hi Normal                   ctermbg=234   为：
+"  hi Normal                   ctermbg=none   则为透明背景
+"  修改为其他色可以自己调节
+
 " Bundle 'altercation/vim-colors-solarized'
 " let g:solarized_termcolors=256
 " let g:solarized_termtrans=1
@@ -39,7 +59,6 @@ let g:molokai_original = 0
 " set background=dark
 "set background=light
 " set t_Co=256
-hi Normal       ctermfg=252 ctermbg=233
 colorscheme molokai
 " colorscheme solarized
 
