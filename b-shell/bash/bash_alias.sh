@@ -28,9 +28,9 @@ if [ $SYS_VERSION = 'Darwin' ];then
 fi
 
 alias ll="ls  -l"
-alias lla="ll -a"
+alias lla="ll -A"
 alias llt="ll -t"
-alias la="ls -a"
+alias la="ls -A"
 
 # virtualenv
 alias vte='virtualenv'
@@ -548,8 +548,9 @@ _work_out(){
 }
 
 _work_clear(){
-	if [ -e $1/$2 ];then
-		rm $1/$2
+	if [ -L "$1/$2" ];then
+		rm "$1/$2"
+		# unlink "$1/$2"
 	fi
 }
 
@@ -559,11 +560,15 @@ _ycm_out(){
 }
 
 _opt_path(){
+	# echo "$1  $2 $3"
 	$1 $2 $3
 }
 
 optpath(){
-	ls $2 | while read lne;do
+	ls -A $2 | while read lne;do
+		# echo "$lne"
+		if [ "$lne" = "." ];then continue; fi
+		if [ "$lne" = ".." ];then continue; fi
 		if [ -d "$2/$lne" ];then
 			_opt_path  $1 $2/$lne $3
 			optpath $1 $2/$lne $3

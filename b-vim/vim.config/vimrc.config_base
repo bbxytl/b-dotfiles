@@ -162,7 +162,7 @@ set noexpandtab
 set shiftround
 
 " ##### A buffer becomes hidden when it is abandoned
-" set hidden
+set hidden
 " set wildmode=list:longest
 " set ttyfast
 
@@ -401,7 +401,7 @@ cmap w!! w !sudo tee >/dev/null %
 	" 跳转到第一行, 默认一个 G 为跳转到最后一行，
 	" 一个 M 为跳转到当前屏幕中间一
 	" 行
-nnoremap GG 1G
+" nnoremap GG 1G
     " Quickly close the current window
 nnoremap <leader>q :q<CR>
 
@@ -589,8 +589,8 @@ nmap <leader>z :call Zoom()<CR>
 " 在处理未保存或只读文件的时候，弹出确认
 set confirm
 
-" set list
-" set lcs=tab:\|\ ,nbsp:% ",trail:-
+set list
+set lcs=tab:\|\ ,nbsp:% ",trail:-
 
 "  在 tab页显示序号，方便使用 ngt
 set tabline=%!MyTabLine()  " custom tab pages line
