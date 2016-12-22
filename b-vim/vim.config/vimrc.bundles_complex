@@ -31,6 +31,26 @@ Bundle 'gmarik/vundle'
 Bundle 'tomasr/molokai'
 let g:molokai_original = 1
 " let g:rehash256 = 1
+" 若要修改 molokai 的背景色或直接设置为透明
+" 打开文件: ~/.vim/bundle/molokai/colors/molokai.vim
+" 定位到下面这段，大概在 137 行
+" if &t_Co > 255
+"  if s:molokai_original == 1
+"     hi Normal                   ctermbg=234
+"     " hi Normal                   ctermbg=none
+"     hi CursorLine               ctermbg=235   cterm=none
+"     hi CursorLineNr ctermfg=208               cterm=none
+"  else
+"     hi Normal       ctermfg=252 ctermbg=233
+"     hi CursorLine               ctermbg=234   cterm=none
+"     hi CursorLineNr ctermfg=208               cterm=none
+"  endif
+"
+"  修改 hi Normal                   ctermbg=234   为：
+"  hi Normal                   ctermbg=none   则为透明背景
+"  修改为其他色可以自己调节
+
+
 " Bundle 'altercation/vim-colors-solarized'
 " let g:solarized_termcolors=256
 " let g:solarized_termtrans=1
@@ -153,8 +173,13 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 
 
 " #####
-" Bundle 'mileszs/ack.vim'
-" let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
+Bundle 'mileszs/ack.vim'
+let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
+" let g:ackprg = 'ag --nogroup --nocolor --column'
+" let g:ackprg = 'ag --column --smart-case'
+" let g:ackpreview = 1
+" nmap <F7> :Ack /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
+nmap <F7> :Ack <c-r>=expand("<cword>")<cr><cr>
 
 " ###### 快速注释
 Bundle 'scrooloose/nerdcommenter'
@@ -596,10 +621,19 @@ if !exists('g:airline_symbols')
   let g:airline_symbols.branch = ''
   let g:airline_symbols.readonly = ''
   let g:airline_symbols.linenr = ''
+" 修改文件： ~/.vim/bundle/vim-airline/autoload/airline.vim 中的下面的函数
+"     可以在状态栏显示时间
+" function! airline#statusline(winnr)
+"   if has_key(s:contexts, a:winnr)
+"    " return '%{airline#check_mode('.a:winnr.')}'.s:contexts[a:winnr].line
+"     return '%{airline#check_mode('.a:winnr.')}'.s:contexts[a:winnr].line.'|'.strftime("%d %H:%M")
+"   endif
+"  " in rare circumstances this happens...see #276
+"   return ''
+" endfunction
 
-
-" Always show the status line - use 2 lines for the status bar
-set laststatus=2
+" " Always show the status line - use 2 lines for the status bar
+" set laststatus=2
 
 " ##### 重量级补全
 Bundle 'Valloric/YouCompleteMe'
