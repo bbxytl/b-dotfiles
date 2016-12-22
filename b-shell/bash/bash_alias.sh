@@ -539,6 +539,7 @@ alias gst="git status"
 # svn 只显示修改
 alias sst="svn status | grep -v '.workspace.vim'"
 alias ssq="svn status -q"
+alias ssqm="ssq | grep '^M'"
 
 # 配置当前项目文件的 vim 自定义配置
 

@@ -29,16 +29,17 @@ Bundle 'gmarik/vundle'
 
 " ###### 主题 molokai 和 Solarized
 Bundle 'tomasr/molokai'
-let g:molokai_original = 1
+let g:molokai_original = 0
 " Bundle 'altercation/vim-colors-solarized'
 " let g:solarized_termcolors=256
 " let g:solarized_termtrans=1
 " let g:solarized_contrast="normal"
 " let g:solarized_visibility="normal"
 " 主题使用
-set background=dark
+" set background=dark
 "set background=light
-set t_Co=256
+" set t_Co=256
+hi Normal       ctermfg=252 ctermbg=233
 colorscheme molokai
 " colorscheme solarized
 
