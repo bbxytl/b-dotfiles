@@ -66,7 +66,7 @@ export MTMP="$DOT_CONFIG_MYDOT/tmp"
 
 alias rec="cd ~/Recycle"
 alias rmabs="/bin/rm"
-
+alias tac="tail -r"
 cdls(){
 	echo -e '
 cdu = "cd -"

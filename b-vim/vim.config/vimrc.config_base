@@ -386,7 +386,7 @@ vnoremap > >gv
 map Y y$
 set mouse+=v
 set clipboard=unnamed
-    " select all
+    " select all 全选
 map <Leader>sa ggVG"
     " select block
 nnoremap <leader>v V`}
