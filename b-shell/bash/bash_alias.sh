@@ -57,6 +57,7 @@ alias cdc="cd ~/data/projects/cpp"
 
 alias cdl="cd ~/data/lean"
 alias cdg="cd ~/data/git"
+alias cal="cal -m"
 # 临时文件目录
 alias cdt="cd ~/data/tmp"
 alias cdmt="cd ~/mydotfiles/tmp"
