@@ -30,15 +30,35 @@ Bundle 'gmarik/vundle'
 " ###### 主题 molokai 和 Solarized
 Bundle 'tomasr/molokai'
 let g:molokai_original = 1
-Bundle 'altercation/vim-colors-solarized'
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
-let g:solarized_contrast="normal"
-let g:solarized_visibility="normal"
+" let g:rehash256 = 1
+" 若要修改 molokai 的背景色或直接设置为透明
+" 打开文件: ~/.vim/bundle/molokai/colors/molokai.vim
+" 定位到下面这段，大概在 137 行
+" if &t_Co > 255
+"  if s:molokai_original == 1
+"     hi Normal                   ctermbg=234
+"     " hi Normal                   ctermbg=none
+"     hi CursorLine               ctermbg=235   cterm=none
+"     hi CursorLineNr ctermfg=208               cterm=none
+"  else
+"     hi Normal       ctermfg=252 ctermbg=233
+"     hi CursorLine               ctermbg=234   cterm=none
+"     hi CursorLineNr ctermfg=208               cterm=none
+"  endif
+"
+"  修改 hi Normal                   ctermbg=234   为：
+"  hi Normal                   ctermbg=none   则为透明背景
+"  修改为其他色可以自己调节
+
+" Bundle 'altercation/vim-colors-solarized'
+" let g:solarized_termcolors=256
+" let g:solarized_termtrans=1
+" let g:solarized_contrast="normal"
+" let g:solarized_visibility="normal"
 " 主题使用
-set background=dark
+" set background=dark
 "set background=light
-set t_Co=256
+" set t_Co=256
 colorscheme molokai
 " colorscheme solarized
 
@@ -424,11 +444,11 @@ let g:vim_markdown_no_default_key_mappings=1
 
 
 " ##### Markdown Preview
-Bundle 'suan/vim-instant-markdown'
-let g:instant_markdown_slow = 1
-let g:instant_markdown_autostart = 0
-map <F12> :InstantMarkdownPreview<CR>
-map <leader>mp :InstantMarkdownPreview<CR>
+" Bundle 'suan/vim-instant-markdown'
+" let g:instant_markdown_slow = 1
+" let g:instant_markdown_autostart = 0
+" map <F12> :InstantMarkdownPreview<CR>
+" map <leader>mp :InstantMarkdownPreview<CR>
 
 
 " ##### 增加对 STL\C++14等的C++语法高亮
@@ -484,15 +504,60 @@ Bundle 'vim-scripts/AutoComplPop'
 " ##### 比grep搜索更好
 " grep foo $(find . -name '*.pm' | grep -v .svn)
 Bundle 'mileszs/ack.vim'
-" let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
-let g:ack_default_options =
-              \ " -s -H --color --group --column --smart-case --follow"
-map <leader>a :Ack -i
-
+let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
+" let g:ackprg = 'ag --nogroup --nocolor --column'
+" let g:ackprg = 'ag --column --smart-case'
+" let g:ackpreview = 1
+" nmap <F7> :Ack /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
+nmap <F7> :Ack <c-r>=expand("<cword>")<cr><cr>
 
 " ##### vim-powerline
-Bundle 'Lokaltog/vim-powerline'
-" Bundle ' bling/vim-airline'
+" Bundle 'Lokaltog/vim-powerline'
+Bundle 'vim-airline/vim-airline'
+" set statusline=%<%f\ %h%m%r%=%k[%{(&fenc==\"\")?&enc:&fenc}%{(&bomb?\",BOM\":\"\")}]\ %-14.(%l,%c%V%)\ %P
+Bundle 'vim-airline/vim-airline-themes'
+let g:airline_theme='molokai'
+let g:airline_exclude_preview = 1
+let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#tabline#buffer_nr_show = 0
+let g:airline#extensions#bufferline#enabled = 1
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#tabline#buffer_idx_mode = 0
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+  endif
+
+  " unicode symbols
+  let g:airline_left_sep = '▶'
+  let g:airline_right_sep = '◀'
+  let g:airline_symbols.crypt = '🔒'
+  let g:airline_symbols.linenr = '␊'
+  let g:airline_symbols.maxlinenr = '☰'
+  let g:airline_symbols.maxlinenr = '│'
+  let g:airline_symbols.maxlinenr = ''
+  let g:airline_symbols.branch = '⎇'
+  let g:airline_symbols.paste = 'ρ'
+  let g:airline_symbols.spell = 'Ꞩ'
+  let g:airline_symbols.notexists = '∄'
+  let g:airline_symbols.whitespace = 'Ξ'
+  let g:airline_left_sep = ''
+  let g:airline_left_alt_sep = ''
+  let g:airline_right_sep = ''
+  let g:airline_right_alt_sep = ''
+  let g:airline_symbols.branch = ''
+  let g:airline_symbols.readonly = ''
+  let g:airline_symbols.linenr = ''
+" 修改文件： ~/.vim/bundle/vim-airline/autoload/airline.vim 中的下面的函数
+"     可以在状态栏显示时间
+" function! airline#statusline(winnr)
+"   if has_key(s:contexts, a:winnr)
+"    " return '%{airline#check_mode('.a:winnr.')}'.s:contexts[a:winnr].line
+"     return '%{airline#check_mode('.a:winnr.')}'.s:contexts[a:winnr].line.'|'.strftime("%d %H:%M")
+"   endif
+"  " in rare circumstances this happens...see #276
+"   return ''
+" endfunction
+
 " Always show the status line - use 2 lines for the status bar
 set laststatus=2
 

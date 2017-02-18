@@ -11,4 +11,9 @@
 	<include path="include"/>
 	<include path="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include"/>
 	<include path="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr/include/c++/4.2.1"/>
+	<include path="/usr/local/include/"/>
+	<include path="/opt/local/include/"/>
+	<!-- ln -s /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/usr /opt/local/xcode  -->
+	<!-- <include path="/opt/local/xcode/include"/> -->
+	<!-- <include path="/opt/local/xcode/include/c++/4.2.1"/> -->
 </project>

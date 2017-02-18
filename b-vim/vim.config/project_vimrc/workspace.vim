@@ -20,6 +20,15 @@
 " 设置 tags
 " set tags+=/Users/xxx/data/git/engine/tags
 
+" 设置系统 tags
+" set tags+=~/.vim/systags
+" set tags+=~/.vim/systags_local
+"
+" 设置第三方库的 tags
+" set tags+=
 
-
+" 标签映射
+" 生成系统 头文件的 tags
+" set tags+=~/.vim/systags
+" set tags+=~/.vim/systags_local
 

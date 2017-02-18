@@ -20,9 +20,9 @@ if [ $SYS_VERSION = 'Darwin' ];then
 fi
 
 alias ll="ls  -l"
-alias lla="ll -a"
+alias lla="ll -A"
 alias llt="ll -t"
-alias la="ls -a"
+alias la="ls -A"
 
 # virtualenv
 alias vte='virtualenv'
@@ -45,8 +45,11 @@ alias cdu="cd -"
 alias cdb="cd ~/mydotfiles/b-dotfiles"
 alias cdd="cd ~/data"
 alias cdp="cd ~/data/projects"
+alias cdc="cd ~/data/projects/cpp"
+
 alias cdl="cd ~/data/lean"
 alias cdg="cd ~/data/git"
+alias cal="cal -m"
 # 临时文件目录
 alias cdt="cd ~/data/tmp"
 alias cdmt="cd ~/mydotfiles/tmp"
@@ -57,7 +60,20 @@ export MTMP="$DOT_CONFIG_MYDOT/tmp"
 
 alias rec="cd ~/Recycle"
 alias rmabs="/bin/rm"
-
+alias tac="tail -r"
+cdls(){
+	echo -e '
+cdu = "cd -"
+cdd = "cd ~/data"
+cdp = "cd ~/data/projects/"
+cdc = "cd ~/data/projects/cpp"
+cdl = "cd ~/data/lean/"
+cdg = "cd ~/data/git"
+cdt = "cd ~/data/tmp/"
+rec = "cd ~/Recycle"
+cdlg
+			'
+}
 # 当前目录的名称
 export PWD_DIR="${PWD##*/}"
 alias curdirname="echo $PWD_DIR"
@@ -413,13 +429,14 @@ alias psg="ps ux | grep"
 alias volume="amixer get Master | sed '1,4 d' | cut -d [ -f 2 | cut -d ] -f 1"
 
 ##Network
+alias myip="ifconfig | grep 'broadcast'"
 #alias websiteget="wget --random-wait -r -p -e robots=off -U mozilla"
 #alias listen="lsof -P -i -n"
 #alias port='netstat -tulanp'
 #gmail() { curl -u "$1" --silent "https://mail.google.com/mail/feed/atom" | sed -e 's/<\/fullcount.*/\n/' | sed -e 's/.*fullcount>//'}
 #alias ipinfo="curl ifconfig.me && curl ifconfig.me/host"
-#getlocation() { lynx -dump http:
-#//www.ip-adress.com/ip_tracer/?QRY=$1|grep address|egrep 'city|state|country'|awk '{print $3,$4,$5,$6,$7,$8}'|sed 's\ip address flag \\'|sed 's\My\\';}
+getlocation() { lynx -dump http:
+//www.ip-adress.com/ip_tracer/?QRY=$1|grep address|egrep 'city|state|country'|awk '{print $3,$4,$5,$6,$7,$8}'|sed 's\ip address flag \\'|sed 's\My\\';}
 #
 ##Funny
 #kernelgraph() { lsmod | perl -e 'print "digraph \"lsmod\" {";<>;while(<>){@_=split/\s+/; print "\"$_[0]\" -> \"$_\"\n" for split/,/,$_[3]}print "}"' | dot -Tpng | display -;}
@@ -479,8 +496,9 @@ alias gdfls="ls $CACHE_TMP/git-diff/"
 alias sdfls="ls $CACHE_TMP/svn-diff/"
 alias gst="git status"
 # svn 只显示修改
-alias sst="svn status"
+alias sst="svn status | grep -v '.workspace.vim'"
 alias ssq="svn status -q"
+alias ssqm="ssq | grep '^M'"
 
 # 配置当前项目文件的 vim 自定义配置
 
@@ -489,8 +507,9 @@ _work_out(){
 }
 
 _work_clear(){
-	if [ -e $1/$2 ];then
-		rm $1/$2
+	if [ -L "$1/$2" ];then
+		rm "$1/$2"
+		# unlink "$1/$2"
 	fi
 }
 
@@ -500,11 +519,15 @@ _ycm_out(){
 }
 
 _opt_path(){
+	# echo "$1  $2 $3"
 	$1 $2 $3
 }
 
 optpath(){
-	ls $2 | while read lne;do
+	ls -A $2 | while read lne;do
+		# echo "$lne"
+		if [ "$lne" = "." ];then continue; fi
+		if [ "$lne" = ".." ];then continue; fi
 		if [ -d "$2/$lne" ];then
 			_opt_path  $1 $2/$lne $3
 			optpath $1 $2/$lne $3
@@ -568,3 +591,6 @@ note(){
 		echo "note file_name text1 text2 ..."
 	fi
 }
+# 生成密码
+randpw(){ < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-16};echo;}
+
