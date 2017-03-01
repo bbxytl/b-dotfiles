@@ -173,13 +173,13 @@ au FileType python let b:delimitMate_nesting_quotes = ['"']
 
 
 " #####
-Bundle 'mileszs/ack.vim'
-let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
+" Bundle 'mileszs/ack.vim'
+" let g:ackprg = 'ag --nogroup --nocolor --column --smart-case'
 " let g:ackprg = 'ag --nogroup --nocolor --column'
 " let g:ackprg = 'ag --column --smart-case'
 " let g:ackpreview = 1
 " nmap <F7> :Ack /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
-nmap <F7> :Ack <c-r>=expand("<cword>")<cr><cr>
+" nmap <F7> :Ack <c-r>=expand("<cword>")<cr><cr>
 
 " ###### 快速注释
 Bundle 'scrooloose/nerdcommenter'
@@ -713,6 +713,12 @@ Bundle 'uguu-org/vim-matrix-screensaver'
 " 给 typedef 和 enum 配色
 " 需要使用到 ctags
 Bundle 'vim-scripts/TagHighlight'
+
+Bundle "rking/ag.vim"
+" set runtimepath^=~/.vim/bundle/ag
+let g:ag_working_path_mode="r"
+let g:ag_highlight=1
+nmap <F7> :Ag <c-r>=expand("<cword>")<cr><cr>
 
 " ################## 插件配置结束 ###########################
 filetype plugin indent on     " required!
