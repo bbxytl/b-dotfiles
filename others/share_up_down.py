@@ -137,7 +137,7 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 		f.write(info)
 		f.write("<br><a href=\"%s\">back</a>" % self.headers['referer'])
 		f.write("<hr><small>Powered By: bbxytl, check new version at ")
-		f.write("<a href=\"https://github.com/bbxytl/b-dotfiles/blob/master/others/share_up_down.py\">")
+		f.write("<a href=\"https://github.com/bbxytl/b-dotfiles/blob/personal/others/share_up_down.py\">")
 		f.write("here</a>.</small></body>\n</html>\n")
 		length = f.tell()
 		f.seek(0)
