@@ -141,7 +141,7 @@ func! Title_sh()
 endfunc
 
 func! Title_perl()
-	call setline(1, "\#!/usr/bin/perl")
+	call setline(1, "\#!/usr/bin/perl -w")
 	call SetComment()
 endfunc
 
