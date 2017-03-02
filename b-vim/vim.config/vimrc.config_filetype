@@ -7,6 +7,7 @@ autocmd BufNewFile,BufRead *.py inoremap # X<c-h>#
 
 autocmd BufRead,BufNew *.pike setfiletype pike
 autocmd BufRead,BufNew *.decl setfiletype cpp
+autocmd BufRead,BufNew *.plx setfiletype perl
 
 autocmd BufRead,BufNew *.md,*.mkd,*.markdown  set filetype=markdown.mkd
 autocmd FileType python,py,c,cpp,java,javascript,go,php,ruby,xml,yml,perl set tabstop=4 shiftwidth=4 noexpandtab ai
@@ -26,7 +27,7 @@ endfun
 function! SetComment()
 	let l = 0
 	let cx= 1
-	if &filetype == 'sh'
+	if &filetype == 'sh' || &filetype == "perl"
 		let l = 0
 	elseif &filetype == 'python'
 		let l = 2
@@ -60,7 +61,7 @@ endfunction
 map uh :call AutoSetFileHead()<cr>'s
 " map <F4> :call AutoSetFileHead()<cr>'s
 " 定义函数AutoSetFileHead，自动插入文件头
-autocmd BufNewFile *.sh,*.py,*.pike,*.h,*.hpp,*c,*cpp exec ":call AutoSetFileHead()"
+autocmd BufNewFile *.sh,*.plx,*.py,*.pike,*.h,*.hpp,*c,*cpp exec ":call AutoSetFileHead()"
 
 function! AutoSetFileHead()
 	let n = 1
@@ -93,6 +94,11 @@ function! AddTitle()
 	"如果文件类型为.sh文件
 	if &filetype == 'sh'
 		call Title_sh()
+	endif
+
+	"如果文件类型为perl文件
+	if &filetype == 'perl'
+		call Title_perl()
 	endif
 
 	"如果文件类型为python
@@ -129,6 +135,11 @@ endfunc
 " ##### 具体实现函数
 func! Title_sh()
 	call setline(1, "\#!/bin/bash")
+	call SetComment()
+endfunc
+
+func! Title_perl()
+	call setline(1, "\#!/usr/bin/perl")
 	call SetComment()
 endfunc
 
