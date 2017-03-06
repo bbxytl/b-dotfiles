@@ -40,8 +40,8 @@ if [ ! -e $tmp ];then mkdir $tmp; fi
 echo "Step 3-1: bucking up current config --------------- Tmux"
 tmuxbak="$bakdot/ori-tmux.$today"
 if [ ! -e $tmuxbak ];then mkdir $tmuxbak; fi
-for i in $HOME/.tmux.conf $HOME/.tmux.conf.local; do [ -e $i ] && [ ! -L $i ] && mv $i $tmuxbak/; done
-for i in $HOME/.tmux.conf $HOME/.tmux.conf.local; do [ -L $i ] && unlink $i ; done
+for i in $HOME/.tmux.conf $HOME/.tmux.conf.sh; do [ -e $i ] && [ ! -L $i ] && mv $i $tmuxbak/; done
+for i in $HOME/.tmux.conf $HOME/.tmux.conf.sh; do [ -L $i ] && unlink $i ; done
 echo "Step 3-2: install tmux"
 system_shell=$SHELLL
 export SHELL="/bin/sh"
@@ -72,7 +72,7 @@ cd $CURRENT_DIR
 export SHELL=$system_shell
 echo "Step 3-2: setting tu symlinks----------Tmux"
 lnif $CURRENT_DIR/tmux.conf $HOME/.tmux.conf
-lnif $CURRENT_DIR/tmux.conf.local $HOME/.tmux.conf.local
+lnif $CURRENT_DIR/tmux.conf.sh $HOME/.tmux.conf.sh
 
 echo "Step 3-3: setting powerline fonts for tmux"
 cd $tmp
