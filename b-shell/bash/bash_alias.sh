@@ -427,6 +427,7 @@ alias intercept="sudo strace -ff -e trace=write -e write=1,2 -p"
 alias meminfo='free -m -l -t'
 alias psg="ps ux | grep"
 alias volume="amixer get Master | sed '1,4 d' | cut -d [ -f 2 | cut -d ] -f 1"
+alias hsg="history | grep"
 
 ##Network
 alias myip="ifconfig | grep 'broadcast'"

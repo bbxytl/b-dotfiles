@@ -226,7 +226,8 @@ let g:multi_cursor_quit_key='<Esc>'
 Bundle 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_map = '<leader>p'
 let g:ctrlp_cmd = 'CtrlP'
-map <leader>f :CtrlPMRU<CR>
+" map <leader>f :CtrlPMRU<CR>
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Linux/MacOSX
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
     \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
@@ -247,12 +248,12 @@ let g:ctrlp_follow_symlinks=1
 
 
 " ###### ctrlp插件1 - 不用ctag进行函数快速跳转
-Bundle 'tacahiroy/ctrlp-funky'
-nnoremap <Leader>fu :CtrlPFunky<Cr>
+" Bundle 'tacahiroy/ctrlp-funky'
+" nnoremap <Leader>fu :CtrlPFunky<Cr>
 	" narrow the list down with a word under cursor
-nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-let g:ctrlp_funky_syntax_highlight = 1
-let g:ctrlp_extensions = ['funky']
+" nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+" let g:ctrlp_funky_syntax_highlight = 1
+" let g:ctrlp_extensions = ['funky']
 
 
 " ##### 括号显示增强
