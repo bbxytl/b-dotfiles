@@ -33,4 +33,4 @@
 " set tags+=~/.vim/systags_local
 
 " 将此行加入文件首行，可以直接设置文件类型
-" /* vim: set filetype=idl : */
+" /* vim: set filetype=vim : */
