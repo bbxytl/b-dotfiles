@@ -501,6 +501,9 @@ alias sst="svn status | grep -v '.workspace.vim'"
 alias ssq="svn status -q"
 alias ssqm="ssq | grep '^M'"
 
+alias ssta="sst | grep -v ^对 | grep -v ^Performing | grep -v ^$"
+alias sstm="ssq | grep -v ^对 | grep -v ^Performing | grep -v ^$"
+
 # 配置当前项目文件的 vim 自定义配置
 
 _work_out(){
