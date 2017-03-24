@@ -304,8 +304,10 @@ map <leader>l <C-W>l
 " Go to home and end using capitalized directions
 map <C-a> ^
 map <C-e> $
-noremap H ^
-noremap L $
+" noremap H ^
+" noremap L $
+map <leader>a ^
+map <leader>e $
 
 " 更改窗口大小
 nmap w=  :resize +3<CR>
@@ -566,7 +568,7 @@ if filereadable("tags")
 endfunction
 
 " 在当前文件中快速查找光标下的单词
-nmap <leader>lv :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
+nmap <leader>s :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
 
 function! Zoom ()
     " check if is the zoomed state (tabnumber > 1 && window == 1)
