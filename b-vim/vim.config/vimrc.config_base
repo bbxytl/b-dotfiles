@@ -677,3 +677,8 @@ highlight Cursor guifg=grey70
 " highlight Special gui=NONE guibg=grey95
 
 
+" 关于颜色的配置
+" =================
+" hi Number  ctermfg=135
+" hi Comment  ctermfg=59
+" hi Directory  ctermfg=118   cterm=bold
