@@ -67,3 +67,9 @@ export LESS_TERMCAP_ZW=$(tput rsupm)
 export PYTHONSTARTUP=$HOME/.pystartup.py
 # export PATH=$PATH:/usr/local/Cellar/aria2/1.31.0/bin
 alias aria2c="aria2c --conf-path=$HOME/.aria2/aria2.conf --log=$HOME/.cache/aria2/run.log"
+
+
+# if [ $MY_BASH ];then
+	# PS1='(MY_BASH)\[\e[1;35m\][\[\e[1;33m\]\u@\h \[\e[1;31m\]\w\[\e[1;35m\]]\[\e[1;36m\]\$ \[\e[0m\]'
+# fi
+

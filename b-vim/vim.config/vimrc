@@ -54,5 +54,8 @@ if has('persistent_undo')
 endif
 
 
-
-
+if $MY_BASH
+	if filereadable(expand("~/.my.bash.vim"))
+		source ~/.my.bash.vim
+	endif
+endif
