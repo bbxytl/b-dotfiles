@@ -564,6 +564,7 @@ set laststatus=2
 
 Bundle "rking/ag.vim"
 " set runtimepath^=~/.vim/bundle/ag
+" let g:ag_prg="ag --vimgrep --smart-case  --column --nogroup --noheading"
 let g:ag_working_path_mode="r"
 let g:ag_highlight=1
 nmap <F7> :Ag <c-r>=expand("<cword>")<cr><cr>
