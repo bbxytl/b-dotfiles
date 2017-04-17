@@ -532,6 +532,8 @@ optpath(){
 		# echo "$lne"
 		if [ "$lne" = "." ];then continue; fi
 		if [ "$lne" = ".." ];then continue; fi
+		if [ "$lne" = ".git" ];then continue; fi
+		if [ "$lne" = ".svn" ];then continue; fi
 		if [ -d "$2/$lne" ];then
 			_opt_path  $1 $2/$lne $3
 			optpath $1 $2/$lne $3
