@@ -570,5 +570,19 @@ let g:ag_highlight=1
 nmap <F7> :Ag <c-r>=expand("<cword>")<cr><cr>
 
 
+" ##### 同git diff,实时展示文件中修改的行
+" 只是不喜欢除了行号多一列, 默认关闭,gs时打开
+Bundle 'airblade/vim-gitgutter'
+""""""
+let g:gitgutter_map_keys = 0
+let g:gitgutter_enabled = 0
+let g:gitgutter_highlight_lines = 1
+nnoremap <leader>gs :GitGutterToggle<CR>
+" ##### 可以查看回到某个历史状态
+Bundle 'sjl/gundo.vim'
+""""""
+noremap <leader>ht :GundoToggle<CR>
+
+
 " ################## 插件配置结束 ###########################
 filetype plugin indent on     " required!
