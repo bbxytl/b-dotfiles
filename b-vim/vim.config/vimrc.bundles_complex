@@ -672,8 +672,8 @@ let g:lt_location_list_toggle_map = '<leader>lt'
 let g:lt_quickfix_list_toggle_map = '<leader>qt'
 " ##### 快速赋值语句对齐
 Bundle 'junegunn/vim-easy-align'
-vmap <Leader>a <Plug>(EasyAlign)
-nmap <Leader>a <Plug>(EasyAlign)
+vmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 if !exists('g:easy_align_delimiters')
   let g:easy_align_delimiters = {}
 endif
