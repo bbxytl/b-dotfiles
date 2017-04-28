@@ -14,7 +14,8 @@
 " let g:extra_whitespace_ignored_filetypes += ['c', 'cpp', 'py', 'python']
 " 关闭 syntastic 的相应文件的语法检测
 " let g:syntastic_ignore_files=[".*\.c$", ".*\.decl$"]
-
+" let g:ag_prg="ag --column --nogroup --noheading --ignore-dir tmp --ignore-dir tools --ignore *.txt --ignore *.md"
+" let g:ag_prg="ag --column --nogroup --noheading --ignore-dir tmp --ignore *.txt"
 " 设置头文件路径
 " set path+=,/Users/xxx/data/git/engine/**
 " 设置 tags
