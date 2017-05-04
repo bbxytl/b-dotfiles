@@ -102,21 +102,9 @@ let g:syntastic_python_checkers=['pep8', 'pyflakes']
 let g:syntastic_python_pep8_args='--ignore=E501,E225'
 	" 修改高亮的背景色, 适应主题
 highlight SyntasticErrorSign guifg=white guibg=black
-if has("mac")
-	"	关闭syntastic 对 c 类型文件的语法检测
-	let g:syntastic_c_checkers = [ ]
-endif
-function! ToggleErrors()
-    let old_last_winnr = winnr('$')
-    lclose
-    if old_last_winnr == winnr('$')
-        " Nothing was closed, open syntastic error location panel
-        Errors
-    endif
-endfunction
-nnoremap <Leader>se :call ToggleErrors()<cr>
-nnoremap <Leader>sn :lnext<cr>
-nnoremap <Leader>sp :lprevious<cr>
+nnoremap <Leader>se :cw<cr>
+nnoremap <Leader>sn :cnext<cr>
+nnoremap <Leader>sp :cprevious<cr>
 
 " ##### 代码片段快速插入
 Bundle 'SirVer/ultisnips'
@@ -641,6 +629,7 @@ let g:ycm_key_list_previous_completion = ['<Up>']   " C-k 同时可用
 let g:ycm_complete_in_comments = 1  "在注释输入中也能补全
 let g:ycm_complete_in_strings = 1   "在字符串输入中也能补全
 let g:ycm_use_ultisnips_completer = 1 "提示UltiSnips
+let g:ycm_always_populate_location_list = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1   "注释和字符串中的文字也会被收入补全
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_seed_identifiers_with_syntax=1   "语言关键字补全, 不过python关键字都很短，所以，需要的自己打开

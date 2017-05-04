@@ -102,21 +102,9 @@ let g:syntastic_python_checkers=['pep8', 'pyflakes']
 let g:syntastic_python_pep8_args='--ignore=E501,E225'
 	" 修改高亮的背景色, 适应主题
 highlight SyntasticErrorSign guifg=white guibg=black
-if has("mac")
-	"	关闭syntastic 对 c 类型文件的语法检测
-	let g:syntastic_c_checkers = [ ]
-endif
-function! ToggleErrors()
-    let old_last_winnr = winnr('$')
-    lclose
-    if old_last_winnr == winnr('$')
-        " Nothing was closed, open syntastic error location panel
-        Errors
-    endif
-endfunction
-nnoremap <Leader>se :call ToggleErrors()<cr>
-nnoremap <Leader>sn :lnext<cr>
-nnoremap <Leader>sp :lprevious<cr>
+nnoremap <Leader>se :cw<cr>
+nnoremap <Leader>sn :cnext<cr>
+nnoremap <Leader>sp :cprevious<cr>
 
 " #### 主要用于 C/C++ 代码补全，需要 ctag 支持
 Bundle 'vim-scripts/OmniCppComplete'
