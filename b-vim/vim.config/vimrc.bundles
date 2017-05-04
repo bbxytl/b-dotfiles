@@ -68,7 +68,8 @@ Bundle 'asins/vimcdoc'
 
 " ##### 自动根据当前打开文件切换工作目录
 Bundle 'airblade/vim-rooter'
-let g:rooter_disable_map = 1
+let g:rooter_silent_chdir = 1
+let g:rooter_resolve_links = 1
 
 " ##### 缩进标识
 Bundle 'nathanaelkane/vim-indent-guides'
@@ -87,20 +88,20 @@ Bundle 'scrooloose/syntastic'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+" to see error location list
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+" let g:syntastic_loc_list_height = 5
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=1
 let g:syntastic_error_symbol='✘✘'
 let g:syntastic_warning_symbol='➤➤'
-let g:syntastic_check_on_open=1
-let g:syntastic_check_on_wq=0
 let g:syntastic_enable_highlighting=1
  	" 使用pyflakes,速度比pylint快
 let g:syntastic_python_checkers=['pep8', 'pyflakes']
 let g:syntastic_python_pep8_args='--ignore=E501,E225'
 	" 修改高亮的背景色, 适应主题
 highlight SyntasticErrorSign guifg=white guibg=black
-" to see error location list
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_loc_list_height = 5
 if has("mac")
 	"	关闭syntastic 对 c 类型文件的语法检测
 	let g:syntastic_c_checkers = [ ]
@@ -113,11 +114,9 @@ function! ToggleErrors()
         Errors
     endif
 endfunction
-nnoremap <Leader>s :call ToggleErrors()<cr>
+nnoremap <Leader>se :call ToggleErrors()<cr>
 nnoremap <Leader>sn :lnext<cr>
 nnoremap <Leader>sp :lprevious<cr>
-        " 关闭 C 的语法检测, 主要是用于 lpc
-" let g:syntastic_ignore_files=[".*\.c$", ".*\.decl$"]
 
 " #### 主要用于 C/C++ 代码补全，需要 ctag 支持
 Bundle 'vim-scripts/OmniCppComplete'
@@ -426,7 +425,7 @@ let g:tagbar_type_ruby = {
 
 " ##### python fly check, 弥补syntastic只能打开和保存才检查语法的不足
 Bundle 'kevinw/pyflakes-vim'
-let g:pyflakes_use_quickfix = 0
+let g:pyflakes_use_quickfix = 1
 
 
 " ##### pythgon的语法高亮 for python.vim syntax highlight

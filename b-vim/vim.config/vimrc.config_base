@@ -596,8 +596,8 @@ set confirm
 " set lcs=tab:\|\ ,nbsp:% ",trail:-
 
 "  在 tab页显示序号，方便使用 ngt
-set tabline=%!MyTabLine()  " custom tab pages line
-function MyTabLine()
+set tabline=%!CustomMyTabLine()  " custom tab pages line
+function! CustomMyTabLine()
     let s = '' " complete tabline goes here
     " loop through each tab page
     for t in range(tabpagenr('$'))
