@@ -486,11 +486,12 @@ hi def link cCppOutIf2		cCppOut
 hi def link cCppOut		Comment
 
 "TL_CUSTOM
-hi def link TLRepeat		Repeat
-hi def link TLStructure		Structure
-hi def link TLType		Type
-hi def link TLFunction		Function
-hi TLRpc ctermfg=43 cterm=bold
+" hi def link TLRepeat		Repeat
+" hi def link TLStructure		Structure
+" hi def link TLType		Type
+" hi def link TLFunction		Function
+" hi def link TLRpc		Rpc
+" hi TLRpc ctermfg=43 cterm=bold
 
 
 let b:current_syntax = "c"

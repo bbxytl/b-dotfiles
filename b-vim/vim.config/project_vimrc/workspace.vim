@@ -5,6 +5,15 @@
 "  或使用本配置的 shell 配置，加载后使用命令：proconf 即可，
 "  命令可参见 bash_alias.sh 文件
 
+"TL_CUSTOM 配色
+hi def link TLRepeat		Repeat
+hi def link TLStructure		Structure
+hi def link TLType			Type
+hi def link TLFunction		Function
+hi def link TLRpc			Rpc
+
+
+
 " 下面的两个 let 是关闭 语法检测
 "	关闭syntastic 对 c 类型文件的语法检测
 " let g:syntastic_c_checkers = [ ]
