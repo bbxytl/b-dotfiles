@@ -168,11 +168,11 @@ if &t_Co > 255
    hi Float           ctermfg=135
    hi FoldColumn      ctermfg=67  ctermbg=16
    hi Folded          ctermfg=67  ctermbg=16
-   " hi Function        ctermfg=118
-   " hi Identifier      ctermfg=208               cterm=none
-   hi Function        ctermfg=208
+   hi Function        ctermfg=118
+   hi Identifier      ctermfg=208               cterm=none
+   " hi Function        ctermfg=208
+   " hi Identifier      ctermfg=118               cterm=none
    hi Rpc			  ctermfg=43
-   hi Identifier      ctermfg=118               cterm=none
    hi Ignore          ctermfg=244 ctermbg=232
    hi IncSearch       ctermfg=193 ctermbg=16
 
@@ -255,11 +255,11 @@ if &t_Co > 255
        hi Error           ctermfg=222 ctermbg=233
        hi Exception       ctermfg=154               cterm=bold
        hi Float           ctermfg=141
-       " hi Function        ctermfg=154
-       " hi Identifier      ctermfg=208
-       hi Function        ctermfg=208
+	   hi Function        ctermfg=154
+	   hi Identifier      ctermfg=208
+       " hi Function        ctermfg=208
+       " hi Identifier      ctermfg=154
        hi Rpc			  ctermfg=43
-       hi Identifier      ctermfg=154
 
        hi Keyword         ctermfg=197               cterm=bold
        hi Operator        ctermfg=197
