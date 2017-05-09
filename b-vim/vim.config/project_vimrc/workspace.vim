@@ -11,6 +11,7 @@ hi def link TLStructure		Structure
 hi def link TLType			Type
 hi def link TLFunction		Function
 hi def link TLRpc			Rpc
+hi def link TLConditional     Conditional
 
 
 

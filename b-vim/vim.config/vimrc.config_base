@@ -592,8 +592,8 @@ nmap <leader>z :call Zoom()<CR>
 set confirm
 
 " tab键特殊显示
-" set list
-" set lcs=tab:\|\ ,nbsp:% ",trail:-
+set list
+set lcs=tab:\|\ ,nbsp:% ",trail:-
 
 "  在 tab页显示序号，方便使用 ngt
 set tabline=%!CustomMyTabLine()  " custom tab pages line

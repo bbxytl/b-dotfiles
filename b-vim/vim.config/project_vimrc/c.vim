@@ -410,6 +410,7 @@ syn match	cBitField	display ";\s*\I\i*\s*:\s*[1-9]"me=e-1 contains=cType
 
 " TL_CUSTOM
 syn keyword	TLRepeat	foreach
+syn keyword     TLConditional	in
 syn keyword	TLStructure	class
 syn keyword TLType	mixed mapping object function arrary string
 syn match TLFunction	display "[a-zA-Z_]\w*("me=e-1
