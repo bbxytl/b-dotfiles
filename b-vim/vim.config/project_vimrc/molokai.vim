@@ -292,14 +292,14 @@ set background=dark
 
 
 
-"TL_CUSTOM
-hi def link TLRepeat		Repeat
-hi def link TLStructure		Structure
-hi def link TLType		Type
-hi def link TLFunction		Function
-hi def link TLRpc		Rpc
-hi def link TLpointer	Pointer
-hi def link TLoperation  Operation
-hi def link TLBlockParen  Conditional
-" hi TLRpc ctermfg=43 cterm=bold
+"Bdot_CUSTOM
+hi def link BdotRepeat		Repeat
+hi def link BdotStructure		Structure
+hi def link BdotType		Type
+hi def link BdotFunction		Function
+hi def link BdotRpc		Rpc
+hi def link Bdotpointer	Pointer
+hi def link Bdotoperation  Operation
+hi def link BdotBlockParen  Conditional
+" hi BdotRpc ctermfg=43 cterm=bold
 
