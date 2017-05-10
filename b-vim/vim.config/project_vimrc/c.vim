@@ -412,6 +412,7 @@ syn match	cBitField	display ";\s*\I\i*\s*:\s*[1-9]"me=e-1 contains=cType
 syn keyword	BdotRepeat	foreach
 syn keyword     BdotConditional	in
 syn keyword	BdotStructure	class
+syn keyword     BdotStorageClass        static varargs
 syn keyword BdotType	mixed mapping object function arrary string
 syn match BdotFunction	display "[a-zA-Z_]\w*("me=e-1
 " rpc 协议

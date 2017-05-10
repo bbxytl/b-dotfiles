@@ -301,5 +301,6 @@ hi def link BdotRpc		Rpc
 hi def link Bdotpointer	Pointer
 hi def link Bdotoperation  Operation
 hi def link BdotBlockParen  Conditional
+hi def link BdotStorageClass StorageClass
 " hi BdotRpc ctermfg=43 cterm=bold
 

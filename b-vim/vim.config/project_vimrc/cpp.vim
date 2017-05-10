@@ -56,6 +56,7 @@ syn match cppMinMax "[<>]?"
 syn keyword	BdotRepeat	foreach
 syn keyword     BdotConditional	in
 syn keyword	BdotStructure	class
+syn keyword     BdotStorageClass        static varargs
 syn keyword BdotType	mixed mapping object function arrary string
 syn match BdotFunction	display "[a-zA-Z_]\w*("me=e-1
 " rpc 协议
