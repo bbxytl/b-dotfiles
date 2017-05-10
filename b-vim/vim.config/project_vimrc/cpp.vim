@@ -52,16 +52,37 @@ endif
 " The minimum and maximum operators in GNU C++
 syn match cppMinMax "[<>]?"
 
-" TL_CUSTOM
-syn keyword	TLRepeat	foreach
-syn keyword	TLStructure	class
-syn keyword TLType	mixed mapping object function arrary string
-syn match TLFunction	display "[a-zA-Z_]\w*("me=e-1
+" Bdot_CUSTOM
+syn keyword	BdotRepeat	foreach
+syn keyword     BdotConditional	in
+syn keyword	BdotStructure	class
+syn keyword BdotType	mixed mapping object function arrary string
+syn match BdotFunction	display "[a-zA-Z_]\w*("me=e-1
 " rpc 协议
-syn match TLRpc		display "rpc_client_\w*("me=e-1
-syn match TLRpc		display "rpc_server_\w*("me=e-1
-" marco workaround
-syn match TLCon	display "rpc_server_\w*("me=e-1
+syn match BdotRpc		display "rpc_client_\w*("me=e-1
+syn match BdotRpc		display "rpc_server_\w*("me=e-1
+
+" operation
+syntax match Bdotoperation display "[?:\.+=\-&|~%^]"
+syntax match Bdotoperation display "[<>!]"
+syntax match Bdotoperation display "[<>!]="
+syntax match Bdotoperation display "[+=\-&|~]="
+syntax match Bdotoperation display "\(&&\|||\)"
+syntax match Bdotoperation display "\(&&\|||\)$"
+syntax match Bdotoperation display "!"
+syntax match Bdotoperation display "++"
+syntax match Bdotoperation display ">>=\?"
+syntax match Bdotoperation display "<<=\?"
+syntax match Bdotoperation display "--"
+syntax match Bdotoperation display "/="
+syntax match Bdotoperation display "*="
+syntax match Bdotoperation display "[\[\]]"
+" 过滤注释
+syntax match Bdotoperation display "/[^/*]"
+syntax match Bdotoperation display "*[^/]"
+
+syntax match BdotBlockParen display "{"
+syntax match BdotBlockParen display "}"
 
 
 " Default highlighting
@@ -85,12 +106,12 @@ if version >= 508 || !exists("did_cpp_syntax_inits")
   HiLink cppRawStringDelimiter	Delimiter
   HiLink cppRawString		String
 
-  "TL_CUSTOM
-  HiLink TLRepeat		Repeat
-  HiLink TLStructure		Structure
-  HiLink TLType			Type
-  HiLink TLFunction		Function
-  hi TLRpc ctermfg=43 cterm=bold
+  "Bdot_CUSTOM
+  " HiLink BdotRepeat		Repeat
+  " HiLink BdotStructure		Structure
+  " HiLink BdotType			Type
+  " HiLink BdotFunction		Function
+  " hi BdotRpc ctermfg=43 cterm=bold
 
   delcommand HiLink
 endif

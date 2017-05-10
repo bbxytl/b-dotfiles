@@ -5,17 +5,17 @@
 "  或使用本配置的 shell 配置，加载后使用命令：proconf 即可，
 "  命令可参见 bash_alias.sh 文件
 
-" TL_CUSTOM
-hi def link TLRepeat		Repeat
-hi def link TLStructure		Structure
-hi def link TLType		Type
-hi def link TLFunction		Function
-hi def link TLRpc		Rpc
-hi def link TLConditional     Conditional
-hi def link TLpointer	Pointer
-hi def link TLoperation  Operation
-" hi def link TLBlockParen  BlockParen
-hi def link TLBlockParen  Conditional
+" Bdot_CUSTOM
+hi def link BdotRepeat		Repeat
+hi def link BdotStructure		Structure
+hi def link BdotType		Type
+hi def link BdotFunction		Function
+hi def link BdotRpc		Rpc
+hi def link BdotConditional     Conditional
+hi def link Bdotpointer	Pointer
+hi def link Bdotoperation  Operation
+" hi def link BdotBlockParen  BlockParen
+hi def link BdotBlockParen  Conditional
 
 
 

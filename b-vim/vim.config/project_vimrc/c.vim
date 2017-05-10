@@ -408,42 +408,37 @@ syn match	cUserLabel	display "\I\i*" contained
 syn match	cBitField	display "^\s*\I\i*\s*:\s*[1-9]"me=e-1 contains=cType
 syn match	cBitField	display ";\s*\I\i*\s*:\s*[1-9]"me=e-1 contains=cType
 
-" TL_CUSTOM
-syn keyword	TLRepeat	foreach
-syn keyword     TLConditional	in
-syn keyword	TLStructure	class
-syn keyword TLType	mixed mapping object function arrary string
-syn match TLFunction	display "[a-zA-Z_]\w*("me=e-1
+" Bdot_CUSTOM
+syn keyword	BdotRepeat	foreach
+syn keyword     BdotConditional	in
+syn keyword	BdotStructure	class
+syn keyword BdotType	mixed mapping object function arrary string
+syn match BdotFunction	display "[a-zA-Z_]\w*("me=e-1
 " rpc 协议
-syn match TLRpc		display "rpc_client_\w*("me=e-1
-syn match TLRpc		display "rpc_server_\w*("me=e-1
-" pointer
-" syntax match TLpointer display "\*\{1,3\}\w\+"me=e-1
-" syntax match TLpointer display "&\w\+"me=e-1
-" syntax match TLpointer display "->\w\+"me=e-1
-" syntax match TLpointer display "\.\w\+"me=e-1
+syn match BdotRpc		display "rpc_client_\w*("me=e-1
+syn match BdotRpc		display "rpc_server_\w*("me=e-1
 
 " operation
-syntax match TLoperation display "[?:\.+=\-&|~%^]"
-syntax match TLoperation display "[<>!]"
-syntax match TLoperation display "[<>!]="
-syntax match TLoperation display "[+=\-&|~]="
-syntax match TLoperation display "\(&&\|||\)"
-syntax match TLoperation display "\(&&\|||\)$"
-syntax match TLoperation display "!"
-syntax match TLoperation display "++"
-syntax match TLoperation display ">>=\?"
-syntax match TLoperation display "<<=\?"
-syntax match TLoperation display "--"
-syntax match TLoperation display "/="
-syntax match TLoperation display "*="
-syntax match TLoperation display "[\[\]]"
+syntax match Bdotoperation display "[?:\.+=\-&|~%^]"
+syntax match Bdotoperation display "[<>!]"
+syntax match Bdotoperation display "[<>!]="
+syntax match Bdotoperation display "[+=\-&|~]="
+syntax match Bdotoperation display "\(&&\|||\)"
+syntax match Bdotoperation display "\(&&\|||\)$"
+syntax match Bdotoperation display "!"
+syntax match Bdotoperation display "++"
+syntax match Bdotoperation display ">>=\?"
+syntax match Bdotoperation display "<<=\?"
+syntax match Bdotoperation display "--"
+syntax match Bdotoperation display "/="
+syntax match Bdotoperation display "*="
+syntax match Bdotoperation display "[\[\]]"
 " 过滤注释
-syntax match TLoperation display "/[^/*]"
-syntax match TLoperation display "*[^/]"
+syntax match Bdotoperation display "/[^/*]"
+syntax match Bdotoperation display "*[^/]"
 
-syntax match TLBlockParen display "{"
-syntax match TLBlockParen display "}"
+syntax match BdotBlockParen display "{"
+syntax match BdotBlockParen display "}"
 
 
 if exists("c_minlines")
@@ -514,12 +509,12 @@ hi def link cCppInElse2		cCppOutIf2
 hi def link cCppOutIf2		cCppOut
 hi def link cCppOut		Comment
 
-"TL_CUSTOM
-" hi def link TLRepeat		Repeat
-" hi def link TLStructure		Structure
-" hi def link TLType		Type
-" hi def link TLFunction		Function
-" hi TLRpc ctermfg=43 cterm=bold
+"Bdot_CUSTOM
+" hi def link BdotRepeat		Repeat
+" hi def link BdotStructure		Structure
+" hi def link BdotType		Type
+" hi def link BdotFunction		Function
+" hi BdotRpc ctermfg=43 cterm=bold
 
 let b:current_syntax = "c"
 
