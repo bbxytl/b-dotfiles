@@ -416,6 +416,34 @@ syn match TLFunction	display "[a-zA-Z_]\w*("me=e-1
 " rpc 协议
 syn match TLRpc		display "rpc_client_\w*("me=e-1
 syn match TLRpc		display "rpc_server_\w*("me=e-1
+" pointer
+" syntax match TLpointer display "\*\{1,3\}\w\+"me=e-1
+" syntax match TLpointer display "&\w\+"me=e-1
+" syntax match TLpointer display "->\w\+"me=e-1
+" syntax match TLpointer display "\.\w\+"me=e-1
+
+" operation
+syntax match TLoperation display "[?:\.+=\-&|~%^]"
+syntax match TLoperation display "[<>!]"
+syntax match TLoperation display "[<>!]="
+syntax match TLoperation display "[+=\-&|~]="
+syntax match TLoperation display "\(&&\|||\)"
+syntax match TLoperation display "\(&&\|||\)$"
+syntax match TLoperation display "!"
+syntax match TLoperation display "++"
+syntax match TLoperation display ">>=\?"
+syntax match TLoperation display "<<=\?"
+syntax match TLoperation display "--"
+syntax match TLoperation display "/="
+syntax match TLoperation display "*="
+syntax match TLoperation display "[\[\]]"
+" 过滤注释
+syntax match TLoperation display "/[^/*]"
+syntax match TLoperation display "*[^/]"
+
+syntax match TLBlockParen display "{"
+syntax match TLBlockParen display "}"
+
 
 if exists("c_minlines")
   let b:c_minlines = c_minlines
@@ -490,9 +518,7 @@ hi def link cCppOut		Comment
 " hi def link TLStructure		Structure
 " hi def link TLType		Type
 " hi def link TLFunction		Function
-" hi def link TLRpc		Rpc
 " hi TLRpc ctermfg=43 cterm=bold
-
 
 let b:current_syntax = "c"
 
@@ -501,4 +527,3 @@ unlet s:ft
 let &cpo = s:cpo_save
 unlet s:cpo_save
 " vim: ts=8
-" /usr/local/Cellar/vim/7.4.826/share/vim/vim74/syntax/c.vim
