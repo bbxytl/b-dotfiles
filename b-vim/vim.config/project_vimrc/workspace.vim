@@ -11,10 +11,12 @@ hi def link TLStructure		Structure
 hi def link TLType		Type
 hi def link TLFunction		Function
 hi def link TLRpc		Rpc
+hi def link TLConditional     Conditional
 hi def link TLpointer	Pointer
 hi def link TLoperation  Operation
 " hi def link TLBlockParen  BlockParen
 hi def link TLBlockParen  Conditional
+
 
 
 " 下面的两个 let 是关闭 语法检测
