@@ -438,8 +438,8 @@ syntax match Bdotoperation display "[\[\]]"
 syntax match Bdotoperation display "/[^/*]"
 syntax match Bdotoperation display "*[^/]"
 
-syntax match BdotBlockParen display "{"
-syntax match BdotBlockParen display "}"
+syntax match BdotBlockParen display "{"me=e-1
+syntax match BdotBlockParen display "}"me=e-1
 
 
 if exists("c_minlines")
