@@ -605,3 +605,5 @@ format_json(){
 cat $1 | python -m json.tool > "$1.format.json"
 }
 
+alias gitinfo=
+alias gitinfo="cat .git/config"
