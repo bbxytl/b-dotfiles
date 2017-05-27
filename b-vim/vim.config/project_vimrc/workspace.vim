@@ -6,16 +6,16 @@
 "  命令可参见 bash_alias.sh 文件
 
 " Bdot_CUSTOM
-hi def link BdotRepeat		Repeat
-hi def link BdotStructure		Structure
-hi def link BdotType		Type
-hi def link BdotFunction		Function
-hi def link BdotRpc		Rpc
-hi def link BdotConditional     Conditional
-hi def link Bdotpointer	Pointer
-hi def link Bdotoperation  Operation
-" hi def link BdotBlockParen  BlockParen
-hi def link BdotBlockParen  Conditional
+"hi def link BdotRepeat		Repeat
+"hi def link BdotStructure		Structure
+"hi def link BdotType		Type
+"hi def link BdotFunction		Function
+"hi def link BdotRpc		Rpc
+"hi def link BdotConditional     Conditional
+"hi def link Bdotpointer	Pointer
+"hi def link Bdotoperation  Operation
+"" hi def link BdotBlockParen  BlockParen
+"hi def link BdotBlockParen  Conditional
 
 
 
