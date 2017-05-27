@@ -296,8 +296,10 @@ set background=dark
 hi def link BdotRepeat		Repeat
 hi def link BdotStructure		Structure
 hi def link BdotType		Type
+hi def link BdotCustomType	Type
 hi def link BdotFunction		Function
 hi def link BdotRpc		Rpc
+hi def link BdotMacro	Macro
 hi def link Bdotpointer	Pointer
 hi def link Bdotoperation  Operation
 hi def link BdotBlockParen  Conditional
