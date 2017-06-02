@@ -484,6 +484,7 @@ vmap ,P "+P
 " set tags+=~/.vim/systags_local
 " map <leader><F12> :call Do_CsTag_Sys()<CR>
 map <leader><leader>T :call Do_CsTag_Sys()<CR>
+map <c-]> g<C-]>
 function! Do_CsTag_Sys()
 	delete("~/.vim/systags")
 	" 本地自定义的头文件目录标签文件
