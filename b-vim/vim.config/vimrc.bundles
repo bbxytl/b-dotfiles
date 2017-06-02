@@ -570,6 +570,12 @@ Bundle 'sjl/gundo.vim'
 """"""
 noremap <leader>ht :GundoToggle<CR>
 
+" Bundle "xolox/vim-misc"
+" Bundle "xolox/vim-lua-ftplugin"
+" This sets the default value for all buffers.
+" let g:lua_compiler_name = '/usr/bin/luac'
+" This is how you change the value for one buffer.
+" let b:lua_compiler_name = '/usr/bin/lualint'
 
 " ################## 插件配置结束 ###########################
 filetype plugin indent on     " required!

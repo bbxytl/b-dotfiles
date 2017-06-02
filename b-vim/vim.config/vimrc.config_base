@@ -566,6 +566,8 @@ if filereadable("tags")
         endif
     endif
 endfunction
+" lua 的 ctags 命令:
+" ctags --langdef=MYLUA --langmap=MYLUA:.lua --regex-MYLUA="/^.*\s*function\s*(\w+):(\w+).*$/\2/f/" --regex-MYLUA="/^\s*(\w+)\s*=\s*[0-9]+.*$/\1/e/" --regex-MYLUA="/^.*\s*function\s*(\w+)\.(\w+).*$/\2/f/" --regex-MYLUA="/^.*\s*function\s*(\w+)\s*\(.*$/\1/f/" --regex-MYLUA="/^\s*(\w+)\s*=\s*\{.*$/\1/e/" --regex-MYLUA="/^\s*module\s+\"(\w+)\".*$/\1/m,module/" --regex-MYLUA="/^\s*module\s+\"[a-zA-Z0-9._]+\.(\w+)\".*$/\1/m,module/" --regex-MYLUA="/^\s*local\s*(\w+)\s*=\s*/\1/f/"  --regex-MYLUA="/^\s*(\w+).(\w+)\s*=\s*/\1/f/"  --languages=MYLUA --excmd=number -R .
 
 " 在当前文件中快速查找光标下的单词
 nmap <leader>s :lv /<c-r>=expand("<cword>")<cr>/ %<cr>:lw<cr>
