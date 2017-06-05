@@ -263,7 +263,17 @@ nnoremap gj j
 " F9 显示函数列表--tagbar
 " <leader><F6> 切换十六进制
 " <leader><leader><F6> 切换回文本模式
+set list
+set lcs=tab:\|\ ,nbsp:% ",trail:-
 noremap <F1> <Esc>"
+" 根据是否有行号来决定是否显示 tab 标示符，用来方便 copy
+function! TabShowSign()
+	if(&relativenumber || &number)
+		set lcs=tab:\|\ ,nbsp:% ",trail:-
+	else
+		set lcs=tab:\ \ ,nbsp:% ",trail:-
+	endif
+endfunc
 " 为方便复制，用<F2>开启/关闭行号显示:
 function! HideNumber()
   if(&relativenumber == &number)
@@ -273,6 +283,7 @@ function! HideNumber()
   else
     set relativenumber!
   endif
+  call TabShowSign()
   set number?
 endfunc
 nnoremap <F2> :call HideNumber()<CR>
@@ -595,8 +606,8 @@ nmap <leader>z :call Zoom()<CR>
 set confirm
 
 " tab键特殊显示
-set list
-set lcs=tab:\|\ ,nbsp:% ",trail:-
+" set list
+" set lcs=tab:\|\ ,nbsp:% ",trail:-
 
 "  在 tab页显示序号，方便使用 ngt
 set tabline=%!CustomMyTabLine()  " custom tab pages line
