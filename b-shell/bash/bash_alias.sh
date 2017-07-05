@@ -54,6 +54,9 @@ alias cal="cal -m"
 alias cdt="cd ~/data/tmp"
 alias cdmt="cd ~/mydotfiles/tmp"
 
+# docker
+alias dck="docker"
+
 export CACHE_TMP="$HOME/.cache/tmp"
 export DTMP="$HOME/data/tmp"
 export MTMP="$DOT_CONFIG_MYDOT/tmp"

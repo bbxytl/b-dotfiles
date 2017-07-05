@@ -128,6 +128,11 @@ Bundle 'scrooloose/nerdcommenter'
 " <leader>cc 注释选中内容
 " <leader>cu 取消选中注释
 " <leader>c$ 从当前光标开始到行尾注释掉
+let g:NERDCustomDelimiters = {
+	\ 'c': { 'leftAlt': '/*','rightAlt': '*/', 'left': '//', 'right': '' },
+	\ }
+let NERD_cpp_alt_style=1
+let NERD_c_alt_style=1
 let g:NERDSpaceDelims=1
 
 
