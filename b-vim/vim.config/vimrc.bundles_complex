@@ -670,7 +670,7 @@ nmap ga <Plug>(EasyAlign)
 if !exists('g:easy_align_delimiters')
   let g:easy_align_delimiters = {}
 endif
-let g:easy_align_delimiters['#'] = { 'pattern': '#', 'ignore_groups': ['String'] }
+let g:easy_align_delimiters['='] = { 'pattern': '=', 'ignore_groups': ['String'] }
 
 " ##### 同git diff,实时展示文件中修改的行
 " 只是不喜欢除了行号多一列, 默认关闭,gs时打开
@@ -717,5 +717,13 @@ Bundle "vim-perl/vim-perl", { 'for': 'perl', 'do': 'make clean carp dancer highl
 
 Bundle "ochaloup/vim-syntax-match"
 " Bundle "fatih/vim-go"
+
+Bundle "vim-scripts/DoxygenToolkit.vim"
+let s:licenseTag = "Copyright(C)\<enter>"
+let s:licenseTag = s:licenseTag . "For free\<enter>"
+let s:licenseTag = s:licenseTag . "All right reserved\<enter>"
+let g:DoxygenToolkit_licenseTag = s:licenseTag
+let g:DoxygenToolkit_briefTag_funcName="yes"
+let g:doxygen_enhanced_color=1
 " ################## 插件配置结束 ###########################
 filetype plugin indent on     " required!
