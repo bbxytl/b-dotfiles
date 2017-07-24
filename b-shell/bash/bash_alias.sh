@@ -609,3 +609,10 @@ cat $1 | python -m json.tool > "$1.format.json"
 }
 
 alias gitinfo="cat .git/config"
+
+
+############## docker ###############
+# 删除所有容器
+alias docker_rm_all_container="docker ps -a | sed '1d' | cut -d ' ' -f1 | xargs docker rm"
+
+
