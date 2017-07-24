@@ -37,7 +37,7 @@ echo " Step 2: setting tu symlinks----------Shell"
 lnif $CURRENT_DIR/bash/bashrc $HOME/.bashrc
 lnif $CURRENT_DIR/bash/bash_profile $HOME/.bash_profile
 lnif $CURRENT_DIR/bash/DIR_COLORS $HOME/.dir_colors
-lnif $CURRENT_DIR/bash/inputrc $HOME/.inputrc
+# lnif $CURRENT_DIR/bash/inputrc $HOME/.inputrc
 lnif $CURRENT_DIR/bash/bash_env.sh $HOME/.bash_env.sh
 lnif $CURRENT_DIR/bash/bash_alias.sh $HOME/.bash_alias.sh
 lnif $CURRENT_DIR/bash/pystartup.py $HOME/.pystartup.py

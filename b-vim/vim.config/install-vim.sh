@@ -23,6 +23,14 @@ if [ $# -ge 1 ];then
 		exit
 	fi
 fi
+Download=true
+if [ $# -ge 2 ];then
+	if [ $2="--no-download" ];then
+		Download=false
+	fi
+fi
+
+
 PACKGES=$HOME/mydotfiles/packges
 if [ ! -e $PACKGES ];then mkdir $PACKGES;fi
 
@@ -69,10 +77,11 @@ lnif $CURRENT_DIR/vimrc.config_filetype $HOME/.vimrc.config_filetype
 lnif "$vimpacks" "$HOME/.vim"
 
 SYS_VERSION=`uname -s`
-if [ $SYS_VERSION != 'Linux' ];then
+if [ $SYS_VERSION = 'Darwin' ];then
 	lnif $CURRENT_DIR/tags_list_of_cpp/tags_list_mac $tags_list $HOME/.vim/tags_list
-else
+else if [ $SYS_VERSION = 'Linux' ];then
 	lnif $CURRENT_DIR/tags_list_of_cpp/tags_list_linux $tags_list $HOME/.vim/tags_list
+fi
 fi
 
 echo " Step 3: vim bk and undo dir and swp and view"
@@ -87,6 +96,7 @@ if [ ! -d $vimdir/vimswap ];then
     mkdir -p $vimdir/vimswap
 fi
 
+if $Download ;then
 echo " Step 4: install vundle"
 if [ ! -e $vimdir/bundle/vundle ]; then
     echo "Installing Vundle"
@@ -100,7 +110,7 @@ system_shell=$SHELLL
 export SHELL="/bin/sh"
 vim -u $HOME/.vimrc.bundles +BundleInstall! +BundleClean +qall
 export SHELL=$system_shell
-
+fi
 
 # 编译前确定安装了：sudo apt-get install python2.7-dev
 #                   sudo yum install python-devel

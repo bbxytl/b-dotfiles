@@ -42,47 +42,47 @@ tmuxbak="$bakdot/ori-tmux.$today"
 if [ ! -e $tmuxbak ];then mkdir $tmuxbak; fi
 for i in $HOME/.tmux.conf $HOME/.tmux.conf.sh; do [ -e $i ] && [ ! -L $i ] && mv $i $tmuxbak/; done
 for i in $HOME/.tmux.conf $HOME/.tmux.conf.sh; do [ -L $i ] && unlink $i ; done
-echo "Step 3-2: install tmux"
-system_shell=$SHELLL
-export SHELL="/bin/sh"
+#echo "Step 3-2: install tmux"
+#system_shell=$SHELLL
+#export SHELL="/bin/sh"
+#
+#installfg=true
+#if which tmux >/dev/null 2>&1 ;then installfg=false;fi
+#if $installfg;then
+#    if [ ! -e $tmp/libevent.$today ];then mkdir $tmp/libevent.$today; fi
+#    cd $tmp/libevent.$today
+#    wget http://sourceforge.net/projects/levent/files/libevent/libevent-2.0/libevent-2.0.22-stable.tar.gz
+#    tar -xzvf libevent-2.0.22-stable.tar.gz
+#    cd libevent-2.0.22-stable
+#    ./configure --prefix=$HOME/.local
+#    make && make verify &&  make install
+#    #echo $PASSWD | sudo -S ln -sf /usr/local/lib/libevent-2.0.so.5 /usr/lib/libevent-2.0.so.5
+#    #if [ -e /usr/lib64 ];then
+#    #    echo $PASSWD | sudo -S ln -sf /usr/local/lib/libevent-2.0.so.5 /usr/lib64/libevent-2.0.so.5
+#    #fi
+#	cd $CURRENT_DIR
+#    git clone https://github.com/tmux/tmux.git $tmp/tmux.$today
+#    cd $tmp/tmux.$today
+#    sh autogen.sh
+#    ./configure --prefix=$HOME/.local
+#	make && make install
+#fi
 
-installfg=true
-if which tmux >/dev/null 2>&1 ;then installfg=false;fi
-if $installfg;then
-    if [ ! -e $tmp/libevent.$today ];then mkdir $tmp/libevent.$today; fi
-    cd $tmp/libevent.$today
-    wget http://sourceforge.net/projects/levent/files/libevent/libevent-2.0/libevent-2.0.22-stable.tar.gz
-    tar -xzvf libevent-2.0.22-stable.tar.gz
-    cd libevent-2.0.22-stable
-    ./configure --prefix=$HOME/.local
-    make && make verify &&  make install
-    #echo $PASSWD | sudo -S ln -sf /usr/local/lib/libevent-2.0.so.5 /usr/lib/libevent-2.0.so.5
-    #if [ -e /usr/lib64 ];then
-    #    echo $PASSWD | sudo -S ln -sf /usr/local/lib/libevent-2.0.so.5 /usr/lib64/libevent-2.0.so.5
-    #fi
-	cd $CURRENT_DIR
-    git clone https://github.com/tmux/tmux.git $tmp/tmux.$today
-    cd $tmp/tmux.$today
-    sh autogen.sh
-    ./configure --prefix=$HOME/.local
-	make && make install
-fi
-
-cd $CURRENT_DIR
-export SHELL=$system_shell
+#cd $CURRENT_DIR
+#export SHELL=$system_shell
 echo "Step 3-2: setting tu symlinks----------Tmux"
 lnif $CURRENT_DIR/tmux.conf $HOME/.tmux.conf
 lnif $CURRENT_DIR/tmux.conf.sh $HOME/.tmux.conf.sh
 
 echo "Step 3-3: setting powerline fonts for tmux"
-cd $tmp
-wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
-wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
+# cd $tmp
+# wget https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf
+# wget https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf
 if [ ! -e $HOME/.fonts ];then mkdir $HOME/.fonts; fi
-cp PowerlineSymbols.otf $HOME/.fonts/
+cp $CURRENT_DIR/PowerlineSymbols.otf $HOME/.fonts/
 if [ ! -e $HOME/.config ];then mkdir $HOME/.config; fi
 if [ ! -e $HOME/.config/fontconfig ];then mkdir -p $HOME/.config/fontconfig/conf.d; fi
-cp 10-powerline-symbols.conf $HOME/.config/fontconfig/conf.d/
+cp $CURRENT_DIR/10-powerline-symbols.conf $HOME/.config/fontconfig/conf.d/
 
 cd $CURRENT_DIR
 
