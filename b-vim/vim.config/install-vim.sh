@@ -29,6 +29,7 @@ if [ $# -ge 2 ];then
 		Download=false
 	fi
 fi
+Download=false
 
 
 PACKGES=$HOME/mydotfiles/packges
