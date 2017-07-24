@@ -55,7 +55,8 @@ for i in $HOME/.zshrc $HOME/.zshrc.oh-my-zsh; do [ -L $i ] && unlink $i ; done
 
 echo " Step 2: setting tu symlinks----------Shell-Zsh"
 lnif $CURRENT_DIR/zsh/zshrc.local $HOME/.zshrc
-lnif $HOME/.oh-my-zsh/templates/zshrc.zsh-template $HOME/.zshrc.oh-my-zsh
+# lnif $HOME/.oh-my-zsh/templates/zshrc.zsh-template $HOME/.zshrc.oh-my-zsh
+sed 's/^ZSH_THEME="robbyrussell"/ZSH_THEME="avit"/g' $HOME/.oh-my-zsh/templates/zshrc.zsh-template  > $HOME/.zshrc.oh-my-zsh
 
 echo " Step 3: source files -----------Shell-Zsh"
 source $HOME/.zshrc

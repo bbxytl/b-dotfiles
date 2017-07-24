@@ -53,3 +53,16 @@ else if [ $SYS_VERSION = 'Linux' ];then
 	fi
 fi
 
+mv $HOME/.vim/bundle/molokai/colors/molokai.vim $HOME/.vim/bundle/molokai/colors/molokai.vim.bk
+cp $CURRENT_DIR/project_vimrc/molokai.vim $HOME/.vim/bundle/molokai/colors/molokai.vim
+
+mv $HOME/.vim/bundle/vim-syntax-match/colors/syntaxmatch.vim $HOME/.vim/bundle/vim-syntax-match/colors/syntaxmatch.vim.bk
+cp $CURRENT_DIR/project_vimrc/syntaxmatch.vim  $HOME/.vim/bundle/vim-syntax-match/colors
+
+sudo mv /usr/share/vim/vim80/syntax/c.vim /usr/share/vim/vim80/syntax/c.vim.bk
+sudo cp mv $CURRENT_DIR/project_vimrc/c.vim /usr/share/vim/vim80/syntax/c.vim
+
+sudo mv /usr/share/vim/vim80/syntax/cpp.vim /usr/share/vim/vim80/syntax/cpp.vim.bk
+sudo cp mv $CURRENT_DIR/project_vimrc/cpp.vim /usr/share/vim/vim80/syntax/cpp.vim
+
+
