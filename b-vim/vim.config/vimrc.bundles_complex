@@ -712,7 +712,8 @@ let g:ag_working_path_mode="r"
 let g:ag_highlight=1
 nmap <F7> :Ag <c-r>=expand("<cword>")<cr><cr>
 
-Bundle "vim-perl/vim-perl", { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
+" Bundle "vim-perl/vim-perl"
+" , { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
 
 " Bundle "vim-scripts/c.vim"
 
