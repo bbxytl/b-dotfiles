@@ -32,5 +32,5 @@ lnif $CURRENT_DIR/bash/pystartup.py $HOME/.pystartup.py
 
 lnif $CURRENT_DIR/zsh/zshrc.local $HOME/.zshrc
 # lnif $HOME/.oh-my-zsh/templates/zshrc.zsh-template $HOME/.zshrc.oh-my-zsh
-sed 's/^ZSH_THEME="robbyrussell"/ZSH_THEME="avit"/g' $HOME/.oh-my-zsh/templates/zshrc.zsh-template  > $HOME/.zshrc.oh-my-zsh
+# sed 's/^ZSH_THEME="robbyrussell"/ZSH_THEME="avit"/g' $HOME/.oh-my-zsh/templates/zshrc.zsh-template  > $HOME/.zshrc.oh-my-zsh
 
