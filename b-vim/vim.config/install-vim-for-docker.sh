@@ -40,16 +40,18 @@ else
 	bundlesfile=$CURRENT_DIR/vimrc.bundles
 fi
 
+rm $HOME/.vimrc  $HOME/.vimrc.bundles  $HOME/.vimrc.config_base  $HOME/.vimrc.config_filetype
 lnif $CURRENT_DIR/vimrc $HOME/.vimrc
 lnif $bundlesfile $HOME/.vimrc.bundles
 lnif $CURRENT_DIR/vimrc.config_base $HOME/.vimrc.config_base
 lnif $CURRENT_DIR/vimrc.config_filetype $HOME/.vimrc.config_filetype
 
+rm $HOME/.vim/tags_list  $HOME/.vim/tags_list
 SYS_VERSION=`uname -s`
 if [ $SYS_VERSION = 'Darwin' ];then
-	lnif $CURRENT_DIR/tags_list_of_cpp/tags_list_mac $tags_list $HOME/.vim/tags_list
+	lnif $CURRENT_DIR/tags_list_of_cpp/tags_list_mac $HOME/.vim/tags_list
 else if [ $SYS_VERSION = 'Linux' ];then
-		lnif $CURRENT_DIR/tags_list_of_cpp/tags_list_linux $tags_list $HOME/.vim/tags_list
+		lnif $CURRENT_DIR/tags_list_of_cpp/tags_list_linux $HOME/.vim/tags_list
 	fi
 fi
 
