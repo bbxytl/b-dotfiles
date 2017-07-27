@@ -58,6 +58,11 @@ lnif $CURRENT_DIR/zsh/zshrc.local $HOME/.zshrc
 # lnif $HOME/.oh-my-zsh/templates/zshrc.zsh-template $HOME/.zshrc.oh-my-zsh
 sed 's/^ZSH_THEME="robbyrussell"/ZSH_THEME="avit"/g' $HOME/.oh-my-zsh/templates/zshrc.zsh-template  > $HOME/.zshrc.oh-my-zsh
 
+mkdir -p $HOME/.local/bin
+for i in $HOME/.local/bin/clean-docker ; do [ -L $i ] && unlink $i ; done
+lnif $CURRENT_DIR/bash/clean-docker.sh $HOME/.local/bin/clean-docker
+export PATH=$PATH:$HOME/.local/bin
+
 echo " Step 3: source files -----------Shell-Zsh"
 source $HOME/.zshrc
 

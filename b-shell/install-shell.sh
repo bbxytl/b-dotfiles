@@ -42,6 +42,11 @@ lnif $CURRENT_DIR/bash/bash_env.sh $HOME/.bash_env.sh
 lnif $CURRENT_DIR/bash/bash_alias.sh $HOME/.bash_alias.sh
 lnif $CURRENT_DIR/bash/pystartup.py $HOME/.pystartup.py
 
+mkdir -p $HOME/.local/bin
+for i in $HOME/.local/bin/clean-docker ; do [ -L $i ] && unlink $i ; done
+lnif $CURRENT_DIR/bash/clean-docker.sh $HOME/.local/bin/clean-docker
+export PATH=$PATH:$HOME/.local/bin
+
 echo " Step 3: source files -----------Shell"
 . $HOME/.bash_profile
 . $HOME/.bashrc
