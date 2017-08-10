@@ -22,7 +22,7 @@ cur_path=`pwd` \
 && grep "^Bundle [',\"]\S*/" $cur_path/vimrc.bundles| sed "s/Bundle [',\"]/https:\/\/github.com\//g" | sed "s/[',\"]//g" | while read line;do \
 	dirname=`echo ${line##*/} | sed 's/ //g'`; \
 	echo "git clone --depth 1 $line  $BundlePath/$dirname"; \
-	# git clone --depth 1 $line  $BundlePath/$dirname; \
+	git clone --depth 1 $line  $BundlePath/$dirname; \
 done \
 && cp $cur_path/project_vimrc/molokai.vim $BundlePath/molokai/colors/molokai.vim
 
