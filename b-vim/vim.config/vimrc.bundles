@@ -14,12 +14,13 @@
 " ==========================================
 set nocompatible               " be iMproved
 filetype off " required! turn off
-if $GREEN_VIM_CONFIG_PATH
+if $GREEN_VIM_CONFIG
 	set rtp+=$GREEN_VIM_CONFIG_PATH/vim.tmp/bundle/vundle/
+	call vundle#rc("$GREEN_VIM_CONFIG_PATH/vim.tmp/bundle")
 else
 	set rtp+=~/.vim/bundle/vundle/
+	call vundle#rc()
 endif
-call vundle#rc()
 
 " ################### Bundles 配置 #########################
 " 使用Vundle来管理插件
