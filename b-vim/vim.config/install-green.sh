@@ -7,7 +7,7 @@
 #   File Name     : install-green.sh
 #   Last Modified : 2017-08-10 17:09
 #   Describe      :
-#
+#			使用简单版本的，不带YCM
 #   Log           :
 #
 # ====================================================
