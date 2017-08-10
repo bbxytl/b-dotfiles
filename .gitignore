@@ -19,3 +19,4 @@ $RECYCLE.BIN/
 ~'$'*.xls
 ~'$'*.xlsx
 
+vim.tmp

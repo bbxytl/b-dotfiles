@@ -9,25 +9,47 @@ nnoremap ; :
 autocmd BufEnter * lcd %:p:h
 
 " ##### 插件配置
-if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
+if $GREEN_VIM_CONFIG
+	if filereadable(expand("$GREEN_VIM_CONFIG_PATH/vimrc.bundles"))
+	source $GREEN_VIM_CONFIG_PATH/vimrc.bundles
+	endif
+else
+	if filereadable(expand("~/.vimrc.bundles"))
+	source ~/.vimrc.bundles
+	endif
 endif
-
 
 " ##### 基本配置
-if filereadable(expand("~/.vimrc.config_base"))
-  source ~/.vimrc.config_base
+if $GREEN_VIM_CONFIG
+	if filereadable(expand("$GREEN_VIM_CONFIG_PATH/vimrc.config_base"))
+	source $GREEN_VIM_CONFIG_PATH/vimrc.config_base
+	endif
+else
+	if filereadable(expand("~/.vimrc.config_base"))
+	source ~/.vimrc.config_base
+	endif
 endif
 
-
 " #####  文件类型设置
-if filereadable(expand("~/.vimrc.config_filetype"))
-  source ~/.vimrc.config_filetype
+if $GREEN_VIM_CONFIG
+	if filereadable(expand("$GREEN_VIM_CONFIG_PATH/vimrc.config_filetype"))
+		source $GREEN_VIM_CONFIG_PATH/vimrc.config_filetype
+	endif
+else
+	if filereadable(expand("~/.vimrc.config_filetype"))
+		source ~/.vimrc.config_filetype
+	endif
 endif
 
 " ##### 本地自定义配置
-if filereadable(expand("~/.vimrc.local"))
-    source ~/.vimrc.local
+if $GREEN_VIM_CONFIG
+	if filereadable(expand("$GREEN_VIM_CONFIG_PATH/vimrc.local"))
+	source $GREEN_VIM_CONFIG_PATH/vimrc.local
+	endif
+else
+	if filereadable(expand("~/.vimrc.local"))
+		source ~/.vimrc.local
+	endif
 endif
 
 " ##### 如果当前项目文件内有关于 vim  的特殊配置，
@@ -39,18 +61,30 @@ endif
 " ##### 各种 vim 文件设置
 " 备份
 set backup
-set backupdir=~/.vim/vimbackup
+if $GREEN_VIM_CONFIG
+	set backupdir=$GREEN_VIM_CONFIG_PATH/vim.tmp/vimbackup
+else
+	set backupdir=~/.vim/vimbackup
+endif
 
 " 交换文件
 set swapfile
-set dir=~/.vim/vimswap
+if $GREEN_VIM_CONFIG
+	set backupdir=$GREEN_VIM_CONFIG_PATH/vim.tmp/vimswap
+else
+	set dir=~/.vim/vimswap
+endif
 
 " undo
 if has('persistent_undo')
-  set undolevels=1000         " How many undos
-  set undoreload=10000        " number of lines to save for undo
-  set undofile                " So is persistent undo ...
-  set undodir=~/.vim/vimundo/
+	set undolevels=1000         " How many undos
+	set undoreload=10000        " number of lines to save for undo
+	set undofile                " So is persistent undo ...
+	if $GREEN_VIM_CONFIG
+		set backupdir=$GREEN_VIM_CONFIG_PATH/vim.tmp/vimundo
+	else
+		set undodir=~/.vim/vimundo/
+	endif
 endif
 
 

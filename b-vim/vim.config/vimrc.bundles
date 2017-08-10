@@ -14,7 +14,11 @@
 " ==========================================
 set nocompatible               " be iMproved
 filetype off " required! turn off
-set rtp+=~/.vim/bundle/vundle/
+if $GREEN_VIM_CONFIG_PATH
+	set rtp+=$GREEN_VIM_CONFIG_PATH/vim.tmp/bundle/vundle/
+else
+	set rtp+=~/.vim/bundle/vundle/
+endif
 call vundle#rc()
 
 " ################### Bundles 配置 #########################
