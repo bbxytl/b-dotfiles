@@ -70,7 +70,7 @@ endif
 " 交换文件
 set swapfile
 if $GREEN_VIM_CONFIG
-	set backupdir=$GREEN_VIM_CONFIG_PATH/vim.tmp/vimswap
+	set dir=$GREEN_VIM_CONFIG_PATH/vim.tmp/vimswap
 else
 	set dir=~/.vim/vimswap
 endif
@@ -81,7 +81,7 @@ if has('persistent_undo')
 	set undoreload=10000        " number of lines to save for undo
 	set undofile                " So is persistent undo ...
 	if $GREEN_VIM_CONFIG
-		set backupdir=$GREEN_VIM_CONFIG_PATH/vim.tmp/vimundo
+		set undodir=$GREEN_VIM_CONFIG_PATH/vim.tmp/vimundo
 	else
 		set undodir=~/.vim/vimundo/
 	endif
