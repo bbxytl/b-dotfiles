@@ -17,6 +17,9 @@ cur_path=`pwd` \
 && mybashde="source $cur_path/green/deactive" \
 && echo "alias mybash=\"$mybash\"" >> ~/.bashrc \
 && echo "alias mybashde=\"$mybashde\"" >> ~/.bashrc \
+&& mkdir -p "$cur_path/vim.tmp/vimundo" \
+&& mkdir -p "$cur_path/vim.tmp/vimswap" \
+&& mkdir -p "$cur_path/vim.tmp/vimbackup" \
 && BundlePath="$cur_path/vim.tmp/bundle" \
 && mkdir -p $BundlePath \
 && grep "^Bundle [',\"]\S*/" $cur_path/vimrc.bundles| sed "s/Bundle [',\"]/https:\/\/github.com\//g" | sed "s/[',\"]//g" | while read line;do \
