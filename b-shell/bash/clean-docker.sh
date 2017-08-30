@@ -14,17 +14,29 @@
 # BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
 # NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
 # DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-IMAGES=$@
+
+
+echo "============= ALL Images"
+docker images
+echo "============="
+
+echo "# delete not keep images" > /tmp/clean-docker.txt
+docker images >> /tmp/clean-docker.txt
+sed 's/^REPOSITORY/# REPOSITORY/g' /tmp/clean-docker.txt > /tmp/clean-docker.txt.s
+mv /tmp/clean-docker.txt.s /tmp/clean-docker.txt
+vim /tmp/clean-docker.txt
+IMAGES=`cat /tmp/clean-docker.txt | sed '/^#/d'| sed -e 's/[ ][ ]*/:/g' | cut -d ':' -f1-2`
 
 echo "This will remove all your current containers and images except for:"
-echo ${IMAGES}
+echo "============= Not Delete Images"
+cat /tmp/clean-docker.txt | sed 's/^# REPOSITORY/REPOSITORY/g' | sed '/^#/d'
+echo "============="
 read -p "Are you sure? [yes/NO] " -n 1 -r
 echo    # (optional) move to a new line
 if [[ ! $REPLY =~ ^[Yy]$ ]]
 then
     exit 1
 fi
-
 
 TMP_DIR=$(mktemp -d)
 
