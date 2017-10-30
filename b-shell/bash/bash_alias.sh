@@ -614,6 +614,8 @@ alias gitinfo="cat .git/config"
 ############## docker ###############
 # 删除所有容器
 alias docker_rm_all_container="docker ps -a |grep Exited | cut -d ' ' -f1 | xargs docker rm"
+alias docker_rm_all_container_created="docker ps -a |grep Created | cut -d ' ' -f1 | xargs docker rm"
+alias dockerps="docker ps -a"
 
 alias freepic="freepic -d -p"
 
