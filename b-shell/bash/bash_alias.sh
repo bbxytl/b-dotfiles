@@ -475,6 +475,7 @@ __init_git_svn(){
 	if [ ! -d $CACHE_TMP/svn-diff ];then mkdir -p $CACHE_TMP/svn-diff;fi
 	if [ ! -d $CACHE_TMP/git-st ];then mkdir -p $CACHE_TMP/git-st;fi
 	if [ ! -d $CACHE_TMP/svn-st ];then mkdir -p $CACHE_TMP/svn-st;fi
+	if [ ! -d $CACHE_TMP/file-diff ];then mkdir -p $CACHE_TMP/file-diff;fi
 }
 gdf(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log;fl=$CACHE_TMP/git-diff/$now;git diff $@ > $fl;vim -M $fl; }
 sdf(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log;fl=$CACHE_TMP/svn-diff/$now;svn diff $@ > $fl;vim -M $fl; }
@@ -492,7 +493,8 @@ ssg(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log; fl=$CACHE_TMP/svn-st/$now;
 	vim -M $fl;
 }
 
-dif(){ diff -y $@ | less; }
+# dif(){ diff -y $@ | less; }
+dif(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log;fl=$CACHE_TMP/file-diff/$now;diff -c -a -b $@ > $fl;vim -M $fl; }
 # 清除所有log
 alias gdfclear="rm $CACHE_TMP/git-diff/*"
 alias sdfclear="rm $CACHE_TMP/svn-diff/*"
