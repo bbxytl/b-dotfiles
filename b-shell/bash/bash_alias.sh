@@ -609,6 +609,8 @@ randpw(){ < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-16};echo;}
 format_json(){
 cat $1 | python -m json.tool > "$1.format.json"
 }
+alias jsonpertty="python -m json.tool"
+alias http="http --pretty all"
 
 alias gitinfo="cat .git/config"
 
