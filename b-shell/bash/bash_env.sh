@@ -1,7 +1,8 @@
 HOMELOCAL_PATH=$HOME/.local
 # PATH -- bin
 # PATH=/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin
-PATH=$HOMELOCAL_PATH/bin:$PATH
+PYTHON_BREW="/usr/local/opt/python/libexec/bin"
+PATH=$HOMELOCAL_PATH/bin:$PYTHON_BREW:$PATH
 export PATH
 
 # # 动态链接库路径
@@ -29,6 +30,7 @@ export PATH
 # export PKG_CONFIG_PATH
 
 # color for man 需要安装 most
+# export PAGER="most"
 export PAGER="most"
 
 # # Get color support for 'less'
@@ -59,7 +61,12 @@ export LESS_TERMCAP_ZW=$(tput rsupm)
 	   fi
   fi
   export PIP_VIRTUALENV_BASE=$WORKON_HOME
+  # 套件将被安装在系统环境中
+  export PIP_REQUIRE_VIRTUALENV=true
+  # 在执行pip的时候让系统自动开启虚拟环境
   export PIP_RESPECT_VIRTUALENV=true
+  # 使用python，把默认Python放到虚拟环境中是为了方便管理，保持系统的干净
+  alias pysys="workon pysys"
 
 # fi
 
