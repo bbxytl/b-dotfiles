@@ -182,7 +182,7 @@ let g:NERDSpaceDelims=1
 
 " ##### 快速去行尾空格
 Bundle 'bronson/vim-trailing-whitespace'
-let g:extra_whitespace_ignored_filetypes = ['unite', 'mkd', 'diff']
+let g:extra_whitespace_ignored_filetypes = ['unite', 'mkd', 'diff', 'python', 'py', 'c', 'cpp']
 map <leader>, :FixWhitespace<cr>
 
 
