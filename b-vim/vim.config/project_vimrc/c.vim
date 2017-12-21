@@ -442,6 +442,7 @@ syntax match BdotBlockParen display "{"me=e-1
 syntax match BdotBlockParen display "}"me=e-1
 
 syntax match BdotMacro   display  "[^a-zA-Z0-9_"][A-Z_][A-Z0-9_][A-Z0-9_]*[^a-zA-Z0-9_"]"hs=s+1,he=e-1
+syntax match BdotMacro_1   display  "^[A-Z_][A-Z0-9_][A-Z0-9_]*[^a-zA-Z0-9_"]"he=e-1,me=e-1
 syntax match BdotCustomType display "[a-zA-Z_][a-zA-Z0-9_]*_[ts][^a-zA-Z0-9_]"me=e-1
 
 
