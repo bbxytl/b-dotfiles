@@ -46,6 +46,7 @@ $RECYCLE.BIN/
 .workspace.vim
 tags
 cscope.out
+.idea
 .svn
 .git.*
 core.*
