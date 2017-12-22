@@ -41,6 +41,9 @@ $RECYCLE.BIN/
 #*.out
 #*.app
 
+# Not use git
+*.ngit
+
 # Vim
 .ycm_simple_conf.xml
 .workspace.vim
