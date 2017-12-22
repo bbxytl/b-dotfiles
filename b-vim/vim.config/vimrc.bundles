@@ -79,7 +79,7 @@ let g:rooter_resolve_links = 1
 " ##### 缩进标识
 Bundle 'nathanaelkane/vim-indent-guides'
 		" 随 vim 自启动
-let g:indent_guides_enable_on_vim_startup=0
+let g:indent_guides_enable_on_vim_startup=1
 		" 从第二层开始可视化显示缩进
 let g:indent_guides_start_level=1
 		" 色块宽度
@@ -228,6 +228,7 @@ set wildignore+=*/.git/*,*/.hg/*,*/.svn/*        " Linux/MacOSX
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
     \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+    \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
     \ }
 let g:ctrlp_working_path_mode=0
 let g:ctrlp_match_window_bottom=1

@@ -74,13 +74,13 @@ let g:rooter_resolve_links = 1
 " ##### 缩进标识
 Bundle 'nathanaelkane/vim-indent-guides'
 		" 随 vim 自启动
-let g:indent_guides_enable_on_vim_startup=0
+let g:indent_guides_enable_on_vim_startup=1
 		" 从第二层开始可视化显示缩进
 let g:indent_guides_start_level=2
 		" 色块宽度
 let g:indent_guides_guide_size=1
 		" 快捷键 i 开/关缩进可视化
-" :nmap <silent> <Leader>i <Plug>IndentGuidesToggle
+:nmap <silent> <Leader>i <Plug>IndentGuidesToggle
 
 
 " ###### 多语言语法检查
@@ -272,6 +272,7 @@ map <leader>f :CtrlPMRU<CR>
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
     \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+    \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
     \ }
 let g:ctrlp_working_path_mode=0
 let g:ctrlp_match_window_bottom=1
@@ -280,21 +281,21 @@ let g:ctrlp_match_window_reversed=0
 let g:ctrlp_mruf_max=500
 let g:ctrlp_follow_symlinks=1
 " 如果安装了ag, 使用ag
-" if executable('ag')
-  " " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  " let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  " " ag is fast enough that CtrlP doesn't need to cache
-  " let g:ctrlp_use_caching = 0
-" endif
+if executable('ag')
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
 
 
 " ###### ctrlp插件1 - 不用ctag进行函数快速跳转
-Bundle 'tacahiroy/ctrlp-funky'
-nnoremap <Leader>fu :CtrlPFunky<Cr>
+" Bundle 'tacahiroy/ctrlp-funky'
+" nnoremap <Leader>fu :CtrlPFunky<Cr>
 	" narrow the list down with a word under cursor
-nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-let g:ctrlp_funky_syntax_highlight = 1
-let g:ctrlp_extensions = ['funky']
+" nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+" let g:ctrlp_funky_syntax_highlight = 1
+" let g:ctrlp_extensions = ['funky']
 
 
 
