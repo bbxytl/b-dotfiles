@@ -256,7 +256,7 @@ nnoremap gj j
 " F1
 " F2 行号开关，用于鼠标复制代码用
 " F3 显示/关闭 树形资源管理器
-" F4 切换 h/cpp
+" F4 换行开关
 " F5 开启关闭粘贴模式
 " F6 语法开关，关闭语法可以加快大文件的展示
 "
@@ -289,6 +289,7 @@ endfunc
 nnoremap <F2> :call HideNumber()<CR>
 	   	" 插件 nerdtree 显示关闭快捷键
 map <F3> <leader>n
+nnoremap <F4> :set wrap! wrap?<CR>
 set pastetoggle=<F5>
 		" disbale paste mode when leaving insert mode
 au InsertLeave * set nopaste
