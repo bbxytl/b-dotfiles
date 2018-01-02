@@ -506,7 +506,25 @@ alias sst="svn status | grep -v '.workspace.vim'"
 alias ssq="svn status -q"
 alias ssqm="ssq | grep '^M'"
 
-alias ssta="sst | grep -v ^对 | grep -v ^Performing | grep -v ^$ | grep ^\?"
+# alias ssta="sst | grep -v ^对 | grep -v ^Performing | grep -v ^$ | grep -v 'etc/config' | grep -v '*.log' | grep -v ' tags' | grep '*.git*'| grep ^\?"
+alias ssta="sst | grep -v ^对 | grep -v ^Performing | grep -v ^$ \
+	| grep -v 'etc/config' \
+	| grep -v ' tags' \
+	| grep -v ' log' \
+	| grep -v ' start' \
+	| grep -v ' stop' \
+	| grep -v ' make' \
+	| grep -v ' update' \
+	| grep -v ' restart' \
+	| grep -v ' rpc_update' \
+	| grep -v ' shareprotocal.sh' \
+	| grep -v ' tmp' \
+	| grep -v ' dat' \
+	| grep -v ' user' \
+	| grep -v ' tmp_eval_file.c' \
+	| grep -v '.log' \
+	| grep -v ' .git*'\
+	| grep ^\?"
 alias sstm="ssq | grep -v ^对 | grep -v ^Performing | grep -v ^$"
 
 # 配置当前项目文件的 vim 自定义配置
