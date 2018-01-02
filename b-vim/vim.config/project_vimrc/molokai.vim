@@ -169,6 +169,7 @@ if &t_Co > 255
    hi FoldColumn      ctermfg=67  ctermbg=16
    hi Folded          ctermfg=67  ctermbg=16
    hi Function        ctermfg=118
+   hi FunctionName    ctermfg=11
    hi Identifier      ctermfg=208               cterm=none
    " hi Function        ctermfg=208
    " hi Identifier      ctermfg=118               cterm=none
@@ -299,6 +300,7 @@ hi def link BdotStructure		Structure
 hi def link BdotType		Type
 hi def link BdotCustomType	Type
 hi def link BdotFunction		Function
+hi def link BdotFunctionName		FunctionName
 hi def link BdotRpc		Rpc
 hi def link BdotMacro	Macro
 hi def link BdotMacro_1	Macro
