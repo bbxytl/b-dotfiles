@@ -728,5 +728,14 @@ let s:licenseTag = s:licenseTag . "All right reserved\<enter>"
 let g:DoxygenToolkit_licenseTag = s:licenseTag
 let g:DoxygenToolkit_briefTag_funcName="yes"
 let g:doxygen_enhanced_color=1
+
+" 格式化工具
+Bundle "Chiel92/vim-autoformat"
+noremap <F8> :Autoformat<CR>
+let g:autoformat_verbosemode=1
+let g:autoformat_autoindent = 0
+"保存时自动格式化代码，针对所有支持的文件
+" au BufWrite *.c,*.h,*.py,*.cpp :Autoformat
+
 " ################## 插件配置结束 ###########################
 filetype plugin indent on     " required!
