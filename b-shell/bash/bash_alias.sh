@@ -54,12 +54,8 @@ alias cal="cal -m"
 alias cdt="cd ~/data/tmp"
 alias cdmt="cd ~/mydotfiles/tmp"
 
-# docker
-alias dck="docker"
-
-export CACHE_TMP="$HOME/.cache/tmp"
-export DTMP="$HOME/data/tmp"
-export MTMP="$DOT_CONFIG_MYDOT/tmp"
+# export CACHE_TMP="$HOME/.cache/tmp"
+export CACHE_TMP="$HOME/Recycle"
 
 alias rec="cd ~/Recycle"
 alias rmabs="/bin/rm"
@@ -496,10 +492,10 @@ ssg(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log; fl=$CACHE_TMP/svn-st/$now;
 # dif(){ diff -y $@ | less; }
 dif(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log;fl=$CACHE_TMP/file-diff/$now;diff -c -a -b $@ > $fl;vim -M $fl; }
 # 清除所有log
-alias gdfclear="rm $CACHE_TMP/git-diff/*"
-alias sdfclear="rm $CACHE_TMP/svn-diff/*"
-alias gdfls="ls $CACHE_TMP/git-diff/"
-alias sdfls="ls $CACHE_TMP/svn-diff/"
+# alias gdfclear="rm $CACHE_TMP/git-diff/*"
+# alias sdfclear="rm $CACHE_TMP/svn-diff/*"
+# alias gdfls="ls $CACHE_TMP/git-diff/"
+# alias sdfls="ls $CACHE_TMP/svn-diff/"
 alias gst="git status"
 # svn 只显示修改
 alias sst="svn status | grep -v '.workspace.vim'"
@@ -525,7 +521,7 @@ alias ssta="sst | grep -v ^对 | grep -v ^Performing | grep -v ^$ \
 	| grep -v '.log' \
 	| grep -v ' .git*'\
 	| grep ^\?"
-alias sstm="ssq | grep -v ^对 | grep -v ^Performing | grep -v ^$"
+alias sstm="ssq | grep -v '^对' | grep -v '^Performing' | grep -v '^$'"
 
 # 配置当前项目文件的 vim 自定义配置
 
