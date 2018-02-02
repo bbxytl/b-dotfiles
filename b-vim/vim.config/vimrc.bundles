@@ -456,11 +456,11 @@ Bundle 'Mizuchi/STL-Syntax'
 
 " ##### *.cpp 和 *.h 间切换
 Bundle 'vim-scripts/a.vim'
-nmap <Leader>ch :A<CR>
+nmap <Leader>ch :AS<CR>
 	" 子窗口中显示 *.cpp 或 *.h
-nmap <Leader>sch :AS<CR>
-map <F4> :A<CR>
-map <leader><F4> :AS<CR>
+nmap <Leader>sch :A<CR>
+" map <F4> :AS<CR>
+" map <leader><F4> :AS<CR>
 
 
 
@@ -603,11 +603,11 @@ let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -4,
             \ "AlwaysBreakTemplateDeclarations" : "true",
             \ "Standard" : "C++11",
-            \ "AllowShortLoopsOnASingleLine": "true",
+            \ "AllowShortLoopsOnASingleLine": "false",
+            \ "AllowShortIfStatementsOnASingleLine": "false",
             \ "ColumnLimit": 150,
             \ "BreakBeforeBraces": "Linux"}
 
-            ""\ "AllowShortIfStatementsOnASingleLine": "true",
 
 " ################## 插件配置结束 ###########################
 filetype plugin indent on     " required!
