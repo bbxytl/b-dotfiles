@@ -637,3 +637,5 @@ alias dockerps="docker ps -a"
 
 alias freepic="freepic -d -p"
 
+alias gpp="g++"
+

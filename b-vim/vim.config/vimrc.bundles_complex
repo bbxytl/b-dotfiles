@@ -182,7 +182,7 @@ let g:NERDSpaceDelims=1
 
 " ##### 快速去行尾空格
 Bundle 'bronson/vim-trailing-whitespace'
-let g:extra_whitespace_ignored_filetypes = ['unite', 'mkd', 'diff', 'python', 'py', 'c', 'cpp']
+let g:extra_whitespace_ignored_filetypes = ['unite', 'mkd', 'mk', 'diff', 'python', 'py', 'c', 'cpp']
 map <leader>, :FixWhitespace<cr>
 
 
@@ -540,11 +540,11 @@ Bundle 'Mizuchi/STL-Syntax'
 
 " ##### *.cpp 和 *.h 间切换
 Bundle 'vim-scripts/a.vim'
-nmap <Leader>ch :A<CR>
+nmap <Leader>ch :AS<CR>
 	" 子窗口中显示 *.cpp 或 *.h
-nmap <Leader>sch :AS<CR>
-map <F4> :A<CR>
-map <leader><F4> :AS<CR>
+nmap <Leader>sch :A<CR>
+" map <F4> :A<CR>
+" map <leader><F4> :AS<CR>
 
 
 " ##### 周期性针对这个工程自动生成标签文件，并通知 vim 引人该标签文件

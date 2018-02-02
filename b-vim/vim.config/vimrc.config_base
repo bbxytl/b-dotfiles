@@ -659,4 +659,4 @@ highlight Cursor guifg=grey70
 " =================
 " hi Number  ctermfg=135
 " hi Comment  ctermfg=59
-" hi Directory  ctermfg=118   cterm=bold
+" hi Directory  ctermfg=118   cterm=bold  
