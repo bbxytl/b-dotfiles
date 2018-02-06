@@ -598,7 +598,7 @@ noremap <leader>ht :GundoToggle<CR>
 " au BufWrite *.c,*.h,*.py,*.cpp :Autoformat
 
 Bundle "rhysd/vim-clang-format"
-noremap <F8> :ClangFormat<CR>
+" noremap <F8> :ClangFormat<CR>
 let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -4,
             \ "AlwaysBreakTemplateDeclarations" : "true",
@@ -607,6 +607,18 @@ let g:clang_format#style_options = {
             \ "AllowShortIfStatementsOnASingleLine": "false",
             \ "ColumnLimit": 150,
             \ "BreakBeforeBraces": "Linux"}
+" 格式化shell
+Bundle 'z0mbix/vim-shfmt', { 'for': 'sh' }
+" 根据文件调用不同的插件
+function! F8FormatFile()
+    if &filetype == 'sh'
+        Shfmt -p
+    else
+        ClangFormat
+    endif
+endfunction
+noremap <F8> :call F8FormatFile()<CR>
+
 
 
 " ################## 插件配置结束 ###########################

@@ -1,8 +1,9 @@
 HOMELOCAL_PATH=$HOME/.local
 # PATH -- bin
 # PATH=/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin
-PYTHON_BREW="/usr/local/opt/python/libexec/bin"
-PATH=$HOMELOCAL_PATH/bin:$PYTHON_BREW:$PATH
+# PYTHON_BREW="/usr/local/opt/python/libexec/bin"
+GO_BIN_PATH="/Users/long/go/bin"
+PATH=$HOMELOCAL_PATH/bin:$PYTHON_BREW:$GO_BIN_PATH:$PATH
 export PATH
 
 # # 动态链接库路径
@@ -75,6 +76,10 @@ export PYTHONSTARTUP=$HOME/.pystartup.py
 # export PATH=$PATH:/usr/local/Cellar/aria2/1.31.0/bin
 alias aria2c="aria2c --conf-path=$HOME/.aria2/aria2.conf --log=$HOME/.cache/aria2/run.log"
 
+# mac 下使用 vim8  可能会直接报错，使用下面的参数去除报错
+if [ "`uname -s`" = 'Darwin' ];then
+    export DYLD_FORCE_FLAT_NAMESPACE=1
+fi
 
 # if [ $MY_BASH ];then
 	# PS1='(MY_BASH)\[\e[1;35m\][\[\e[1;33m\]\u@\h \[\e[1;31m\]\w\[\e[1;35m\]]\[\e[1;36m\]\$ \[\e[0m\]'
