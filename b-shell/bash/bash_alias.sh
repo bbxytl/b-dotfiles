@@ -639,3 +639,6 @@ alias freepic="freepic -d -p"
 
 alias gpp="g++"
 
+# 查看vim 的备份文件 
+alias lsvimbak="ls *|rev|cut -d_  -f1 |rev|base64 -D"
+

@@ -66,6 +66,15 @@ if $GREEN_VIM_CONFIG
 else
 	set backupdir=~/.vim/vimbackup
 endif
+" 备份防相同文件名：
+autocmd BufWritePre *
+    \ let s:cmd = 'echo '. '"' . expand("%:p") . '"|base64' |
+    \ let s:cmd = substitute(system(s:cmd),"\n","","") |
+    \ let &bex = '_' . strftime("%Y%m%d") . '_' . s:cmd |
+    \ exe ":mkview"
+" 查找备份的解码, 放在 bash_alias.sh 中
+" alias lsvimbak="ls*|rev|cut -d_  -f1 |rev|base64 -D"
+
 
 " 交换文件
 set swapfile
