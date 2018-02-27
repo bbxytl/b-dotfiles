@@ -26,28 +26,26 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " ###### 主题 molokai
-Bundle 'tomasr/molokai'
+Bundle 'nine2/molokai'
 let g:molokai_original = 1
-" let g:rehash256 = 1
-" 若要修改 molokai 的背景色或直接设置为透明
-" 打开文件: ~/.vim/bundle/molokai/colors/molokai.vim
-" 定位到下面这段，大概在 137 行
-" if &t_Co > 255
-"  if s:molokai_original == 1
-"     hi Normal                   ctermbg=234
-"     " hi Normal                   ctermbg=none
-"     hi CursorLine               ctermbg=235   cterm=none
-"     hi CursorLineNr ctermfg=208               cterm=none
-"  else
-"     hi Normal       ctermfg=252 ctermbg=233
-"     hi CursorLine               ctermbg=234   cterm=none
-"     hi CursorLineNr ctermfg=208               cterm=none
-"  endif
-"
-"  修改 hi Normal                   ctermbg=234   为：
-"  hi Normal                   ctermbg=none   则为透明背景
-"  修改为其他色可以自己调节
+" c/cpp syntax
+let g:c_highlight_brace = 1
+let g:c_highlight_macro = 1
+let g:c_highlight_functions = 1
+let g:c_highlight_operators = 1
+let g:c_highlight_custom_type_ts = 1
+" go syntax
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_function_arguments = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_custom_type_ts = 1
+let g:go_highlight_brace = 1
+" lua syntax
+let g:lua_highlight_function_name = 1
 
+" let g:rehash256 = 1
 
 " Bundle 'altercation/vim-colors-solarized'
 " let g:solarized_termcolors=256
@@ -64,7 +62,6 @@ colorscheme molokai
 
 " ###### 中文 vim 帮助
 Bundle 'asins/vimcdoc'
-
 
 " ##### 自动根据当前打开文件切换工作目录
 Bundle 'airblade/vim-rooter'
@@ -720,14 +717,6 @@ nmap <F7> :Ag <c-r>=expand("<cword>")<cr><cr>
 
 Bundle "ochaloup/vim-syntax-match"
 Bundle "fatih/vim-go"
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_function_arguments = 1
-let g:go_highlight_types = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_bdot_custom_type_ts = 1
-let g:go_highlight_bdot_brace = 1
-hi def link goFunctionCall Function
 nmap gs :GoDef<CR>
 " 此行会导致 C-] 失效, 同时禁用了 go 的 gd 指令，使用上面的 gs 代替
 let g:go_def_mapping_enabled = 0
