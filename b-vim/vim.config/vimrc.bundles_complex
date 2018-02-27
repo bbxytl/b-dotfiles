@@ -755,3 +755,4 @@ noremap <F8> :call F8FormatFile()<CR>
 
 " ################## 插件配置结束 ###########################
 filetype plugin indent on     " required!
+
