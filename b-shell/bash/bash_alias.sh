@@ -571,6 +571,13 @@ proconf(){
 			optpath _work_out `pwd` `pwd`/$workspace_vim
 		fi
 	fi
+	workspace_vim=".workspace_syntax.vim"
+	if [ ! -f $workspace_vim ];then
+		cp $DOT_CONFIG_BDOT/b-vim/vim.config/project_vimrc/workspace_syntax.vim $workspace_vim
+		if [ `pwd` != $HOME ];then
+			optpath _work_out `pwd` `pwd`/$workspace_vim
+		fi
+	fi
 	if [ ! -f .ycm_simple_conf.xml ];then
 		ycm_conf=.ycm_simple_conf.xml
 		ori_ycm_conf=$DOT_CONFIG_BDOT/b-vim/vim.config/project_vimrc/ycm_simple_conf_mac_cpp_base_dir.xml
@@ -586,6 +593,10 @@ proconf(){
 # 清除 项目中自定义 vim 配置文件
 proclr(){
 	workspace_vim=".workspace.vim"
+	optpath _work_clear `pwd` $workspace_vim
+	_work_clear `pwd` $workspace_vim
+
+	workspace_vim=".workspace_syntax.vim"
 	optpath _work_clear `pwd` $workspace_vim
 	_work_clear `pwd` $workspace_vim
 }
