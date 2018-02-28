@@ -47,6 +47,7 @@ $RECYCLE.BIN/
 # Vim
 .ycm_simple_conf.xml
 .workspace.vim
+.workspace_syntax.vim
 tags
 cscope.out
 .idea
