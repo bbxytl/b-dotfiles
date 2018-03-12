@@ -28,24 +28,22 @@ Bundle 'gmarik/vundle'
 " ###### 主题 molokai
 Bundle 'nine2/molokai'
 let g:molokai_original = 1
-" c/cpp syntax
-let g:c_highlight_brace = 1
-let g:c_highlight_macro = 1
-let g:c_highlight_functions = 1
-let g:c_highlight_operators = 1
-let g:c_highlight_custom_type_ts = 1
-" go syntax
-let g:go_highlight_functions = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_function_arguments = 1
-let g:go_highlight_types = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_custom_type_ts = 1
-let g:go_highlight_brace = 1
-" lua syntax
-let g:lua_highlight_function_name = 1
-
-" let g:rehash256 = 1
+" " c/cpp syntax
+" let g:c_highlight_brace = 1
+" let g:c_highlight_macro = 1
+" let g:c_highlight_functions = 1
+" let g:c_highlight_operators = 1
+" let g:c_highlight_custom_type_ts = 1
+" " go syntax
+" let g:go_highlight_functions = 1
+" let g:go_highlight_function_calls = 1
+" let g:go_highlight_function_arguments = 1
+" let g:go_highlight_types = 1
+" let g:go_highlight_operators = 1
+" let g:go_highlight_custom_type_ts = 1
+" let g:go_highlight_brace = 1
+" " lua syntax
+" let g:lua_highlight_function_name = 1
 
 " Bundle 'altercation/vim-colors-solarized'
 " let g:solarized_termcolors=256
@@ -56,6 +54,7 @@ let g:lua_highlight_function_name = 1
 set background=dark
 "set background=light
 set t_Co=256
+" let g:rehash256 = 1
 colorscheme molokai
 " colorscheme solarized
 
