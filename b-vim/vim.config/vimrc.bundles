@@ -607,14 +607,6 @@ let g:clang_format#style_options = {
 " 格式化shell
 Bundle 'z0mbix/vim-shfmt', { 'for': 'sh' }
 " 根据文件调用不同的插件
-" function F8FormatFile() range
-    " if &filetype == 'sh'
-        " Shfmt -p
-    " else
-        " ClangFormat
-    " endif
-" endfunction
-" map <F8> :call F8FormatFile()<CR>
 if !exists(":F8FormatFile")
     if &filetype == 'sh'
         command! -range=% -nargs=0 F8FormatFile Shfmt -p
