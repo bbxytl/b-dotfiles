@@ -54,6 +54,10 @@ cscope.out
 .svn
 .git.*
 core.*
+.syntax
+
+# go
+vendor
 
 # Custom
 *.pyc
