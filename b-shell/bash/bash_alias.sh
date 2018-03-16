@@ -655,3 +655,4 @@ alias lsvimbak="ls *|rev|cut -d_  -f1 |rev|base64 -D"
 
 alias cdgo="cd ~/go/src"
 
+alias tree="tree -C"

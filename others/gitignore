@@ -54,7 +54,7 @@ cscope.out
 .svn
 .git.*
 core.*
-.syntax
+*.syntax
 
 # go
 vendor
