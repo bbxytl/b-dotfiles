@@ -1,2 +1,0 @@
-./configure --prefix=$HOME/.local --enable-fontset --enable-xim  --enable-gui=auto  --enable-pythoninterp=dynamic  --enable-python3interp=dynamic --enable-rubyinterp=dynamic --enable-luainterp=dynamic  --enable-perlinterp=dynamic  --enable-cscope --enable-sniff --with-x --with-compiledby=erocpil   --with-features=huge  --with-python-config-dir=$HOME/.local/lib/python2.7/config/  --with-python3-config-dir=$HOME/.local/lib/python3.4/config/
-make && make install

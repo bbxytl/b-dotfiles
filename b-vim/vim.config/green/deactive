@@ -1,5 +1,0 @@
-unset GREEN_BASH
-unset GREEN_VIM_CONFIG
-unset GREEN_VIM_CONFIG_PATH
-unalias vim
-source ~/.bashrc
