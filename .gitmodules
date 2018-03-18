@@ -1,0 +1,3 @@
+[submodule "b-vim"]
+	path = b-vim
+	url = git@github.com:nine2/b-vim.git
