@@ -1,37 +1,8 @@
 HOMELOCAL_PATH=$HOME/.local
-# PATH -- bin
-# PATH=/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin
-# PYTHON_BREW="/usr/local/opt/python/libexec/bin"
 GO_BIN_PATH="/Users/long/go/bin"
 PATH=$HOMELOCAL_PATH/bin:$PYTHON_BREW:$GO_BIN_PATH:$PATH
 export PATH
 
-# # 动态链接库路径
-# # LD_LIBRARY_PATH --- lib
-# # LD_LIBRARY_PATH=$HOMELOCAL_PATH/lib:/usr/lib:/usr/local/lib
-# LD_LIBRARY_PATH=$HOMELOCAL_PATH/lib:$LD_LIBRARY_PATH
-# export LD_LIBRARY_PATH
-
-# #找到静态库的路径
-# LIBRARY_PATH=$HOMELOCAL_PATH/lib:$LIBRARY_PATH
-# export LIBRARY_PATH
-
-# # gcc include 路径
-# C_INCLUDE_PATH=$HOMELOCAL_PATH/include:$C_INCLUDE_PATH
-# export C_INCLUDE_PATH
-
-# # g++ include 路径
-# CPLUS_INCLUDE_PATH=$HOMELOCAL_PATH/include:$CPLUS_INCLUDE_PATH
-# export CPLUS_INCLUDE_PATH
-
-
-# # SYS_PKGCONFIG=/usr/local/lib/pkgconfig
-# PYTHON_PKGCONFIG=$HOMELOCAL_PATH/lib/pkgconfig
-# PKG_CONFIG_PATH=$PYTHON_PKGCONFIG:$SYS_PKGCONFIG
-# export PKG_CONFIG_PATH
-
-# color for man 需要安装 most
-# export PAGER="most"
 export PAGER="most"
 
 # # Get color support for 'less'
@@ -81,7 +52,4 @@ if [ "`uname -s`" = 'Darwin' ];then
     export DYLD_FORCE_FLAT_NAMESPACE=1
 fi
 
-# if [ $MY_BASH ];then
-	# PS1='(MY_BASH)\[\e[1;35m\][\[\e[1;33m\]\u@\h \[\e[1;31m\]\w\[\e[1;35m\]]\[\e[1;36m\]\$ \[\e[0m\]'
-# fi
 

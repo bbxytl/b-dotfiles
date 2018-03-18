@@ -38,8 +38,6 @@ alias tmls="tmux ls"
 alias tmrn="tmux rename-window"
 alias tmux='tmux -2'
 
-# . ~/.local/lib/python2.6/site-packages/powerline/bindings/bash/powerline.sh
-# . ~/mydotfiles/packges/powerline/powerline/bindings/bash/powerline.sh
 
 alias cdu="cd -"
 alias cdb="cd ~/mydotfiles/b-dotfiles"
@@ -54,25 +52,11 @@ alias cal="cal -m"
 alias cdt="cd ~/data/tmp"
 alias cdmt="cd ~/mydotfiles/tmp"
 
-# export CACHE_TMP="$HOME/.cache/tmp"
-export CACHE_TMP="$HOME/Recycle"
 
 alias rec="cd ~/Recycle"
 alias rmabs="/bin/rm"
 alias tac="tail -r"
-cdls(){
-	echo -e '
-cdu = "cd -"
-cdd = "cd ~/data"
-cdp = "cd ~/data/projects/"
-cdc = "cd ~/data/projects/cpp"
-cdl = "cd ~/data/lean/"
-cdg = "cd ~/data/git"
-cdt = "cd ~/data/tmp/"
-rec = "cd ~/Recycle"
-cdlg
-			'
-}
+
 # 当前目录的名称
 export PWD_DIR="${PWD##*/}"
 alias curdirname="echo $PWD_DIR"
@@ -113,121 +97,6 @@ webshareup(){
 }
 
 
-# 根据目前的使用环境，更新shell配置
-sco(){
-	if [ -f $HOME/.zshrc ];then source $HOME/.zshrc;return;fi
-	if [ -f $HOME/.bashrc ];then source $HOME/.bashrc;return;fi
-}
-
-export PREDIRS=$config_dir/predirs
-# 最大保存 PREDIRS_CNT 条路径
-export PREDIRS_CNT=20
-pcd() {
-	if [ ! -e $config_dir ];then
-		mkdir -p $config_dir
-	fi
-	curpd=`pwd`
-	no=0
-	if [ -e $PREDIRS ];then
-		cat $PREDIRS | while read line
-		do
-			let no++
-			if [ $line = $curpd ];then
-				# sed -i $no','$no'd' $PREDIRS
-				if [ $SYS_VERSION = 'Mac' ];then
-					sed -i '' "$no,$no d" $PREDIRS
-				else
-					sed -i $no','$no'd' $PREDIRS
-				fi
-				# break
-			fi
-		done
-	fi
-	if [ $no -gt $PREDIRS_CNT ];then
-		line_no=1
-		cat $PREDIRS | read lines
-		echo $lines
-		# sed -i $line_no','$line_no'd' $PREDIRS
-		if [ $SYS_VERSION = 'Mac' ];then
-			sed -i '' "$line_no,$line_no d" $PREDIRS
-		else
-			sed -i $line_no','$line_no'd' $PREDIRS
-		fi
-	fi
-	echo $curpd >> $PREDIRS
-
-	if [ $# -gt 0 ];then
-		if [ -e $1 ];then
-			cd $1
-		else
-			echo "$1 unexited !"
-		fi
-	fi
-}
-# 显示缓存了多少目录
-pls() {
-	if [ $# -gt 0 ];then
-		if [ $1 = '-h' ] || [ $1 = '--help' ];then
-				echo "pls : 显示缓存了多少目录；带参数 -h[--help] 时显示相关命令说明；带参数 -c 时清空缓存路径"
-				echo "pcd : 缓存当前路径，后跟参数为新的要切换的路径，无参数时只缓存路径"
-				echo "psd : 无参数时调用 pls，后跟数字参数！为 pls 输出的对应缓存路径的编号"
-				echo "prm : 无参数时调用 pls，后跟数字参数！删除对应编号的缓存路径"
-		else if [ $1 = '-c' ];then
-				rm $PREDIRS
-			else
-				pls '-d'
-			fi
-		fi
-	else
-		if [ -e $PREDIRS ];then
-			no=0
-			cat $PREDIRS | while read line
-			do
-				let no++
-				echo "$no : $line"
-			done
-		fi
-	fi
-}
-psd() {
-	if [ $# -ge 1 ];then
-		if [ -e $PREDIRS ];then
-			if [[ "$1" =~ "^[0-9]+$" ]] ;then
-				no=0
-				cat $PREDIRS | while read line
-				do
-					let no++
-					if [ $no -eq $1 ];then
-						cd $line
-					fi
-				done
-			else
-				pcd $1
-			fi
-		fi
-	else
-		pls '-h'
-	fi
-}
-prm() {
-	if [ $# -ge 1 ];then
-		no=$1
-		if [[ "$1" =~ "^[0-9]+$" ]] ;then
-			if [ $SYS_VERSION = 'Mac' ];then
-				sed -i '' "$no,$no d" $PREDIRS
-			else
-				sed -i $no','$no'd' $PREDIRS
-			fi
-		else
-			echo "需要路径编号！"
-			pls
-		fi
-	else
-		echo "需要路径编号！"
-		pls
-	fi
-}
-
 # 防误删操作
 # 原来的删除操作
 Rec=$HOME/Recycle
@@ -240,10 +109,6 @@ rmall() {
 		done
 		rmabs $Rec/.cmbck_file.cmbck
 		rmabs -rf $Rec/.*
-		# cd
-		# rmabs -rf $Rec
-		# mkdir $Rec
-		# # cd $Rec
 	else
 		if [ $# -ge 1 ];then
 			if [ -d $1 ];then
@@ -262,15 +127,6 @@ rmall() {
 	fi
 }
 
-rmls() {
-	echo "rmls   : ls this cmd"
-	echo "rec    : checkout to $Rec"
-	echo "rm     : move curfile/dir to $Rec"
-	echo "rmabs  : delete absolutely, use '/bin/rm'"
-	echo "rmall  : delete all in $Rec"
-	echo -e "rmbk   : revoke the last delete to $Rec \n  \tor revoke the arg1"
-}
-
 # 将删除的文件全部放到回收站里,防误删
 rm() {
 	curdir=`pwd`
@@ -287,9 +143,6 @@ rm() {
 				newf=${f##*/}'.____.'$today
 				mv $f $Rec/$newf
 				let cnt++
-				# dir_dir=`dirname $f`
-				# if [ $dir_dir = '.' ];then dir_dir=`pwd`;fi
-				# rm_f=$f.____.$today
 				echo "`pwd`" > $Rec/$newf.dir
 				echo "$f" >> $Rec/$newf.dir
 				echo "$newf" > $cmbck_file
@@ -363,9 +216,7 @@ alias gtag="git tag"
 # 显示最近 n 次更改的文件
 gln(){
 	num=2
-	if [ $# -gt 0 ];then
-		num=$1
-	fi
+	if [ $# -gt 0 ];then num=$1; fi
 	git lg -n $num --stat | less
 }
 gci(){
@@ -379,11 +230,6 @@ gci(){
 	fi
 	git add  --all
 	git commit -m "$cmmt"
-}
-
-gpsh(){
-	gci $@
-	git push
 }
 
 alias grep='grep --color=auto'
@@ -466,6 +312,7 @@ alias cman='man -M $HOME/.local/share/man/zh_CN'
 # fi
 # '
 # 更方便的查看 diff ，同时保存起来
+export CACHE_TMP="$HOME/Recycle"
 __init_git_svn(){
 	if [ ! -d $CACHE_TMP/git-diff ];then mkdir -p $CACHE_TMP/git-diff;fi
 	if [ ! -d $CACHE_TMP/svn-diff ];then mkdir -p $CACHE_TMP/svn-diff;fi
@@ -491,18 +338,12 @@ ssg(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log; fl=$CACHE_TMP/svn-st/$now;
 
 # dif(){ diff -y $@ | less; }
 dif(){ __init_git_svn; now=`date +%Y%m%d-%H%M%S`.log;fl=$CACHE_TMP/file-diff/$now;diff -c -a -b $@ > $fl;vim -M $fl; }
-# 清除所有log
-# alias gdfclear="rm $CACHE_TMP/git-diff/*"
-# alias sdfclear="rm $CACHE_TMP/svn-diff/*"
-# alias gdfls="ls $CACHE_TMP/git-diff/"
-# alias sdfls="ls $CACHE_TMP/svn-diff/"
 alias gst="git status"
 # svn 只显示修改
 alias sst="svn status | grep -v '.workspace.vim'"
 alias ssq="svn status -q"
 alias ssqm="ssq | grep '^M'"
 
-# alias ssta="sst | grep -v ^对 | grep -v ^Performing | grep -v ^$ | grep -v 'etc/config' | grep -v '*.log' | grep -v ' tags' | grep '*.git*'| grep ^\?"
 alias ssta="sst | grep -v ^对 | grep -v ^Performing | grep -v ^$ \
 	| grep -v 'etc/config' \
 	| grep -v ' tags' \
@@ -524,7 +365,6 @@ alias ssta="sst | grep -v ^对 | grep -v ^Performing | grep -v ^$ \
 alias sstm="ssq | grep -v '^对' | grep -v '^Performing' | grep -v '^$'"
 
 # 配置当前项目文件的 vim 自定义配置
-
 _work_out(){
 	ln -s $2 $1/
 }
@@ -562,25 +402,19 @@ optpath(){
 proconf(){
 	workspace_vim=".workspace.vim"
 	if [ ! -f $workspace_vim ];then
-		cp $DOT_CONFIG_BDOT/b-vim/vim.config/project_vimrc/workspace.vim $workspace_vim
+		cp $DOT_CONFIG_BDOT/b-vim/config/projects/workspace.vim $workspace_vim
 		echo "" >> $workspace_vim
 		echo "set path+=,`pwd`/**" >> $workspace_vim
 		echo "set tags+=`pwd`/tags" >> $workspace_vim
 		echo "" >> $workspace_vim
-		if [ `pwd` != $HOME ];then
-			optpath _work_out `pwd` `pwd`/$workspace_vim
-		fi
 	fi
 	workspace_vim=".workspace_syntax.vim"
 	if [ ! -f $workspace_vim ];then
-		cp $DOT_CONFIG_BDOT/b-vim/vim.config/project_vimrc/workspace_syntax.vim $workspace_vim
-		if [ `pwd` != $HOME ];then
-			optpath _work_out `pwd` `pwd`/$workspace_vim
-		fi
+		cp $DOT_CONFIG_BDOT/b-vim/config/projects/workspace_syntax.vim $workspace_vim
 	fi
 	if [ ! -f .ycm_simple_conf.xml ];then
 		ycm_conf=.ycm_simple_conf.xml
-		ori_ycm_conf=$DOT_CONFIG_BDOT/b-vim/vim.config/project_vimrc/ycm_simple_conf_mac_cpp_base_dir.xml
+		ori_ycm_conf=$DOT_CONFIG_BDOT/b-vim/config/projects/ycm_simple_conf_mac_cpp_base_dir.xml
 		cat $ori_ycm_conf | while read line;do
 			if [ "$line" = "</project>" ];then
 				echo "" >> $ycm_conf
@@ -616,17 +450,6 @@ gitaddsvn(){
 	_gitaddsvn `pwd` $dsvn
 }
 
-note(){
-	if [ $# -gt 0 ];then
-		for n in $@;do
-			echo $n
-			if [ "$n" = $1 ] ;then continue;fi
-			echo "$n"  >> "$1"
-		done
-	else
-		echo "note file_name text1 text2 ..."
-	fi
-}
 # 生成密码
 randpw(){ < /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-16};echo;}
 
@@ -650,7 +473,7 @@ alias freepic="freepic -d -p"
 
 alias gpp="g++"
 
-# 查看vim 的备份文件 
+# 查看vim 的备份文件
 alias lsvimbak="ls *|rev|cut -d_  -f1 |rev|base64 -D"
 
 alias cdgo="cd ~/go/src"
