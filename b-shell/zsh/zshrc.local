@@ -1,27 +1,36 @@
 # .zshrc.local
 
 # Source global definitions
-if [ -f ~/.zshrc.oh-my-zsh ]; then
-	. ~/.zshrc.oh-my-zsh
+if [ -f ~/.b-dot/zshrc.oh-my-zsh ]; then
+	. ~/.b-dot/zshrc.oh-my-zsh
 fi
 
 # zsh 配置
 
 
 # 更新 本地配置
-if [ -f ~/.bash_env.sh ]; then
-	. ~/.bash_env.sh
+if [ -f ~/.b-dot/bash_env.sh ]; then
+	. ~/.b-dot/bash_env.sh
 fi
 
 # zsh 和 bash 共用
-if [ -f ~/.bash_alias.sh ]; then
-	. ~/.bash_alias.sh
+if [ -f ~/.b-dot/bash_alias.sh ]; then
+	. ~/.b-dot/bash_alias.sh
 fi
 
 if [ -f ~/.bashrc.local ]; then
 	. ~/.bashrc.local
 fi
 
+
+# zsh 自动提示命令
+if [ -f ~/.b-dot/incr.zsh ]; then
+	. ~/.b-dot/incr.zsh
+fi
+# zsh 自动提示命令参数
+if [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+	source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
 
 SYS_VERSION=`uname -s`
 if [ $SYS_VERSION = 'Darwin' ];then

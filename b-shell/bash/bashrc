@@ -10,12 +10,12 @@ export TERM=xterm-256color
 # export PS1='\e[0;31m\u@\h \w\$ \e[m '
 ## User specific aliases and functions
 #
-if [ -f ~/.bash_env.sh ];then
-	source ~/.bash_env.sh
+if [ -f ~/.b-dot/bash_env.sh ];then
+	source ~/.b-dot/bash_env.sh
 fi
 
-if [ -f ~/.bash_alias.sh ]; then
-	source ~/.bash_alias.sh
+if [ -f ~/.b-dot/bash_alias.sh ]; then
+	source ~/.b-dot/bash_alias.sh
 fi
 
 if [ -f ~/.bashrc.local ];then
@@ -27,20 +27,20 @@ PS1='\[\e[1;35m\][\[\e[1;33m\]\u@\h \[\e[1;31m\]\w\[\e[1;35m\]]\[\e[1;36m\]\$ \[
 # PS1='\[\e[1;35m\][\[\e[1;33m\]\u@shell \[\e[1;31m\]\w\[\e[1;35m\]]\[\e[1;36m\]\$ \[\e[0m\]'
 
 if [ $MY_BASH ];then
-	if [ -f ~/.my.bash.bash ];then
-		source ~/.my.bash.bash
+	if [ -f ~/.b-dot/my-bash/bash ];then
+		source ~/.b-dot/my-bash/bash
 	fi
 fi
 
 #  自定义环境
 mybash(){
-if [ -f ~/.my.bash.active ];then
-	source ~/.my.bash.active
+if [ -f ~/.b-dot/my-bash/active ];then
+	source ~/.b-dot/my-bash/active
 fi
 }
 mybashde(){
-if [ -f ~/.my.bash.deactive ];then
-	source ~/.my.bash.deactive
+if [ -f ~/.b-dot/my-bash/deactive ];then
+	source ~/.b-dot/my-bash/deactive
 fi
 }
 
