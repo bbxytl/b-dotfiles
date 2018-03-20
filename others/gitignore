@@ -46,6 +46,7 @@ $RECYCLE.BIN/
 
 # Vim
 .ycm_simple_conf.xml
+.workspace.env
 .workspace.vim
 .workspace_syntax.vim
 tags
