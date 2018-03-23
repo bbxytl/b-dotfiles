@@ -54,6 +54,7 @@ cscope.out
 .idea
 .svn
 .git.*
+.gitconfig
 core.*
 *.syntax
 
