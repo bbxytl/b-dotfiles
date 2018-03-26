@@ -34,7 +34,8 @@ export LESS_TERMCAP_ZW=$(tput rsupm)
   fi
   export PIP_VIRTUALENV_BASE=$WORKON_HOME
   # 套件将被安装在系统环境中
-  export PIP_REQUIRE_VIRTUALENV=true
+  # export PIP_REQUIRE_VIRTUALENV=true
+  export PIP_REQUIRE_VIRTUALENV=false
   # 在执行pip的时候让系统自动开启虚拟环境
   export PIP_RESPECT_VIRTUALENV=true
   # 使用python，把默认Python放到虚拟环境中是为了方便管理，保持系统的干净
