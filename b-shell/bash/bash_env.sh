@@ -48,9 +48,11 @@ export PYTHONSTARTUP=$HOME/.pystartup.py
 # export PATH=$PATH:/usr/local/Cellar/aria2/1.31.0/bin
 alias aria2c="aria2c --conf-path=$HOME/.aria2/aria2.conf --log=$HOME/.cache/aria2/run.log"
 
-# mac 下使用 vim8  可能会直接报错，使用下面的参数去除报错
 if [ "`uname -s`" = 'Darwin' ];then
+    # mac 下使用 vim8  可能会直接报错，使用下面的参数去除报错
     export DYLD_FORCE_FLAT_NAMESPACE=1
+    # mac brew 关闭自动更新
+    export HOMEBREW_NO_AUTO_UPDATE=true
 fi
 
 
