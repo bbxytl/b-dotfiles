@@ -2,13 +2,11 @@
 # ====================================================
 #   Copyright (C)2015 All rights reserved.
 #
-#   Author  : bbxytl
-#   Email   : bbxytl@gmail.com
-#   FileName: install.sh
-#   LastModify : 2015-07-20 10:02
-#   Describe:	配置 shell--Bash 环境
-#
-#   Log     :
+#   Author        : bbxytl
+#   Email         : bbxytl@gmail.com
+#   File Name     : install-shell-for-docker.sh
+#   Last Modified : 2018-04-05 19:28
+#   Describe      :	配置 shell--Bash 环境
 #
 # ====================================================
 
@@ -33,4 +31,6 @@ lnif $CURRENT_DIR/bash/pystartup.py $HOME/.pystartup.py
 lnif $CURRENT_DIR/zsh/zshrc.local $HOME/.zshrc
 lnif $HOME/.oh-my-zsh/templates/zshrc.zsh-template $HOME/.zshrc.oh-my-zsh
 # sed 's/^ZSH_THEME="robbyrussell"/ZSH_THEME="avit"/g' $HOME/.oh-my-zsh/templates/zshrc.zsh-template  > $HOME/.zshrc.oh-my-zsh
+
+
 

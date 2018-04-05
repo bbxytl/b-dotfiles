@@ -4,11 +4,9 @@
 #
 #   Author        : bbxytl
 #   Email         : bbxytl@gmail.com
-#   File Name     : .tmux.conf.sh
-#   Last Modified : 2017-03-06 11:14
+#   File Name     : tmux.conf.sh
+#   Last Modified : 2018-04-05 19:30
 #   Describe      :
-#
-#   Log           :
 #
 # ====================================================
 

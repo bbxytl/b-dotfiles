@@ -2,13 +2,11 @@
 # ====================================================
 #   Copyright (C)2015 All rights reserved.
 #
-#   Author  : bbxytl
-#   Email   : bbxytl@gmail.com
-#   FileName: install.sh
-#   LastModify : 2015-07-20 10:02
-#   Describe:
-#
-#   Log     :
+#   Author        : bbxytl
+#   Email         : bbxytl@gmail.com
+#   File Name     : install-tmux.sh
+#   Last Modified : 2018-04-05 19:30
+#   Describe      :
 #
 # ====================================================
 
@@ -85,4 +83,6 @@ if [ ! -e $HOME/.config/fontconfig ];then mkdir -p $HOME/.config/fontconfig/conf
 cp $CURRENT_DIR/10-powerline-symbols.conf $HOME/.config/fontconfig/conf.d/
 
 cd $CURRENT_DIR
+
+
 

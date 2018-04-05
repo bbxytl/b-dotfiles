@@ -2,15 +2,14 @@
 # ====================================================
 #   Copyright (C)2015 All rights reserved.
 #
-#   Author  : bbxytl
-#   Email   : bbxytl@gmail.com
-#   FileName: install.sh
-#   LastModify : 2015-07-20 10:02
-#   Describe:	配置 shell--Zsh 环境
-#
-#   Log     :
+#   Author        : bbxytl
+#   Email         : bbxytl@gmail.com
+#   File Name     : install-zsh.sh
+#   Last Modified : 2018-04-05 19:26
+#   Describe      :
 #
 # ====================================================
+
 if which zsh>/dev/null 2>&1 ;then
 	echo " begin zshrc ...."
 else
@@ -69,4 +68,6 @@ export PATH=$PATH:$HOME/.local/bin
 
 echo " Step 3: source files -----------Shell-Zsh"
 source $HOME/.zshrc
+
+
 

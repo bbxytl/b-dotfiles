@@ -1,4 +1,14 @@
-
+#!/bin/bash
+# ====================================================
+#   Copyright (C)2018 All rights reserved.
+#
+#   Author        : bbxytl
+#   Email         : bbxytl@gmail.com
+#   File Name     : bash_alias.sh
+#   Last Modified : 2018-04-05 19:22
+#   Describe      :
+#
+# ====================================================
 # 自身配置的 命令
 
 SYS_VERSION=`uname -s`
@@ -476,6 +486,11 @@ alias gpp="g++"
 # 查看vim 的备份文件
 alias lsvimbak="ls *|rev|cut -d_  -f1 |rev|base64 -D"
 
-alias cdgo="cd ~/go/src"
-
 alias tree="tree -C"
+
+## 日期设置
+alias datestr="date +'%Y-%m-%d %H:%M:%S'"
+alias datets="date '+%s'"
+
+
+

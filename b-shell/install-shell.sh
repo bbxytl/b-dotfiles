@@ -2,13 +2,11 @@
 # ====================================================
 #   Copyright (C)2015 All rights reserved.
 #
-#   Author  : bbxytl
-#   Email   : bbxytl@gmail.com
-#   FileName: install.sh
-#   LastModify : 2015-07-20 10:02
-#   Describe:	配置 shell--Bash 环境
-#
-#   Log     :
+#   Author        : bbxytl
+#   Email         : bbxytl@gmail.com
+#   File Name     : install-shell.sh
+#   Last Modified : 2018-04-05 19:28
+#   Describe      :
 #
 # ====================================================
 
@@ -52,4 +50,6 @@ export PATH=$PATH:$HOME/.local/bin
 echo " Step 3: source files -----------Shell"
 . $HOME/.bash_profile
 . $HOME/.bashrc
+
+
 

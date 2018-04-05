@@ -6,8 +6,8 @@
 #
 #   Author        : bbxytl
 #   Email         : bbxytl@gmail.com
-#   File Name     : python_start.py
-#   Last Modified : 2016-08-02 17:24
+#   File Name     : pystartup.py
+#   Last Modified : 2018-04-05 19:26
 #   Describe      :
 #
 #   Log           :

@@ -1,9 +1,22 @@
+#!/bin/bash
+# ====================================================
+#   Copyright (C)2018 All rights reserved.
+#
+#   Author        : bbxytl
+#   Email         : bbxytl@gmail.com
+#   File Name     : bash_env.sh
+#   Last Modified : 2018-04-05 19:24
+#   Describe      :
+#
+# ====================================================
+
 HOMELOCAL_PATH=$HOME/.local
 GO_BIN_PATH="/Users/long/go/bin"
 PATH=$HOMELOCAL_PATH/bin:$PYTHON_BREW:$GO_BIN_PATH:$PATH
 export PATH
+export HOME_CACHE="$HOME/.cache"
 
-export PAGER="most"
+export PAGER="less"
 
 # # Get color support for 'less'
 export LESS="--RAW-CONTROL-CHARS"
@@ -34,12 +47,10 @@ export LESS_TERMCAP_ZW=$(tput rsupm)
   fi
   export PIP_VIRTUALENV_BASE=$WORKON_HOME
   # 套件将被安装在系统环境中
-  # export PIP_REQUIRE_VIRTUALENV=true
-  export PIP_REQUIRE_VIRTUALENV=false
+  export PIP_REQUIRE_VIRTUALENV=true
+  # export PIP_REQUIRE_VIRTUALENV=false
   # 在执行pip的时候让系统自动开启虚拟环境
   export PIP_RESPECT_VIRTUALENV=true
-  # 使用python，把默认Python放到虚拟环境中是为了方便管理，保持系统的干净
-  alias pysys="workon pysys"
 
 # fi
 
