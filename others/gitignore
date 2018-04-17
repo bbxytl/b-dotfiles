@@ -64,6 +64,6 @@ vendor
 # Custom
 *.pyc
 .xmake
-
-
+*.tmp
+.test.*
 

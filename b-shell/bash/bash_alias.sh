@@ -218,7 +218,9 @@ rmbk() {
 # 精简版log
 alias gll="git lg | less"
 # 精简版 分支
-alias gbr="git br -a"
+alias gbr="git br"
+alias gbra="git br -a"
+alias gbrh="git br | head"
 # 清空已过期分支
 alias gcbr="git remote prune origin"
 # 显示tag
@@ -469,6 +471,8 @@ cat $1 | python -m json.tool > "$1.format.json"
 }
 alias jsonpertty="python -m json.tool"
 alias http="http --pretty all"
+# Mac 上使用, 需要 brew install jq
+alias fmtjson='pbpaste | jq "." | pbcopy; echo "json formated and pasted to clipboard: "; pbpaste | jq'
 
 alias gitinfo="cat .git/config"
 

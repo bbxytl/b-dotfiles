@@ -36,7 +36,7 @@ export LESS_TERMCAP_ZW=$(tput rsupm)
 
 # virtualenvswrapper 配置
 # if [ `id -u` != '0' ]; then
-  export VIRTUALENV_USE_DISTRIBUTE=1        # <-- Always use pip/distribute
+  # export VIRTUALENV_USE_DISTRIBUTE=1        # <-- Always use pip/distribute
   export WORKON_HOME=$HOME/.local/virtualenvs       # <-- Where all virtualenvs will be stored
   if [ -e $HOMELOCAL_PATH/bin/virtualenvwrapper.sh ];then
 	  # echo "$HOMELOCAL_PATH"
@@ -47,10 +47,10 @@ export LESS_TERMCAP_ZW=$(tput rsupm)
   fi
   export PIP_VIRTUALENV_BASE=$WORKON_HOME
   # 套件将被安装在系统环境中
-  export PIP_REQUIRE_VIRTUALENV=true
+  # export PIP_REQUIRE_VIRTUALENV=true
   # export PIP_REQUIRE_VIRTUALENV=false
   # 在执行pip的时候让系统自动开启虚拟环境
-  export PIP_RESPECT_VIRTUALENV=true
+  # export PIP_RESPECT_VIRTUALENV=true
 
 # fi
 
