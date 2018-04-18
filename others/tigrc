@@ -1,0 +1,44 @@
+# Vim-style keybindings for Tig
+#
+# To use these keybindings copy the file to your HOME directory and include
+# it from your ~/.tigrc file:
+
+# 绑定一下常用操作
+# bind generic j move-down
+# bind generic k move-up
+bind generic H scroll-left
+bind generic L scroll-right
+
+bind main    G move-last-line
+bind generic G move-last-line
+bind generic J move-page-down
+bind generic K move-page-up
+bind generic <C-f> move-page-down
+bind generic <C-b> move-page-up
+
+bind generic g  none
+bind generic gg move-first-line
+bind generic gj next
+bind generic gk previous
+bind generic gp parent
+bind generic gP back
+bind generic gn view-next
+
+# 设置 tab-size 为 4，默认为 8
+set tab-size = 4
+
+# 设置 blame-view 界面显示
+set blame-view-id = yes,color
+set blame-view-line-number = yes,interval=1
+
+# 重设 main-view，增加 commit Id 信息
+set main-view = date:default author:abbreviated id:yes,color \
+                line-number:no,interval=1 \
+                commit-title:graph=v2,refs=yes,overflow=no
+
+# 重设 tree-view 界面
+set tree-view = date:default author:abbreviated id:yes,color \
+                line-number:no,interval=5 \
+                mode file-size:units,width=0 \
+                file-name
+
