@@ -2,6 +2,7 @@
 #
 # To use these keybindings copy the file to your HOME directory and include
 # it from your ~/.tigrc file:
+# 配置参考： http://jonas.nitro.dk/tig/tigrc.5.html
 
 # 绑定一下常用操作
 # bind generic j move-down
