@@ -4,6 +4,8 @@ unbind C-b
 bind r source-file ~/.tmux.conf \; display '~/.tmux.conf sourced'
 set -g base-index 1
 setw -g pane-base-index 1
+set-option -g allow-rename off
+
 bind | split-window -h
 bind - split-window -v
 bind -r h select-pane -L  # move left
