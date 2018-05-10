@@ -144,6 +144,7 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 		self.send_response(200)
 		self.send_header("Content-type", "text/html")
 		self.send_header("Content-Length", str(length))
+		self.send_header("Access-Control-Allow-Origin", "*")
 		self.end_headers()
 		if f:
 			self.copyfile(f, self.wfile)
@@ -224,6 +225,7 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 				# redirect browser - doing basically what apache does
 				self.send_response(301)
 				self.send_header("Location", self.path + "/")
+				self.send_header("Access-Control-Allow-Origin", "*")
 				self.end_headers()
 				return None
 			for index in "index.html", "index.htm":
@@ -247,6 +249,7 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 		fs = os.fstat(f.fileno())
 		self.send_header("Content-Length", str(fs[6]))
 		self.send_header("Last-Modified", self.date_time_string(fs.st_mtime))
+		self.send_header("Access-Control-Allow-Origin", "*")
 		self.end_headers()
 		return f
 
@@ -301,6 +304,7 @@ class SimpleHTTPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 		f.seek(0)
 		self.send_response(200)
 		self.send_header("Content-type", "text/html")
+		self.send_header("Access-Control-Allow-Origin", "*")
 		self.send_header("Content-Length", str(length))
 		self.end_headers()
 		return f
