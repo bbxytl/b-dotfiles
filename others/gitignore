@@ -67,3 +67,7 @@ vendor
 *.tmp
 .test.*
 
+# java
+.classpath
+.project
+.settings

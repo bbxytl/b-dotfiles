@@ -3,6 +3,9 @@ bind C-x send-prefix -2
 unbind C-b
 bind r source-file ~/.tmux.conf \; display '~/.tmux.conf sourced'
 set -g base-index 1
+set -g mouse-resize-pane on
+set -g mouse-select-pane on
+set -g mouse-select-window on
 setw -g pane-base-index 1
 set-option -g allow-rename off
 
