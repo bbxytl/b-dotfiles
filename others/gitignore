@@ -57,6 +57,7 @@ cscope.out
 .gitconfig
 core.*
 *.syntax
+.vim
 
 # go
 vendor
