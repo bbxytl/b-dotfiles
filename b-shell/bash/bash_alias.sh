@@ -405,6 +405,8 @@ optpath(){
 		if [ "$lne" = ".." ];then continue; fi
 		if [ "$lne" = ".git" ];then continue; fi
 		if [ "$lne" = ".svn" ];then continue; fi
+		if [ "$lne" = ".vim" ];then continue; fi
+		if [ "$lne" = ".idea" ];then continue; fi
 		if [ -d "$2/$lne" ];then
 			_opt_path  $1 $2/$lne $3
 			optpath $1 $2/$lne $3
@@ -418,6 +420,12 @@ proconf(){
 		echo "" >> $workspace_vim
 		echo "set path+=,`pwd`/**" >> $workspace_vim
 		echo "set tags+=`pwd`/tags" >> $workspace_vim
+		echo "" >> $workspace_vim
+		echo "let g:cust_vim_tmp_path_dir = \"`pwd`/.vim\"" >> $workspace_vim
+		echo "set backupdir=`pwd`/.vim/vimbackup" >> $workspace_vim
+		echo "set viewdir=`pwd`/.vim/vimview" >> $workspace_vim
+		echo "set dir=`pwd`/.vim/vimswap" >> $workspace_vim
+		echo "set undodir=`pwd`/.vim/vimundo" >> $workspace_vim
 		echo "" >> $workspace_vim
 	fi
 	workspace_vim=".workspace_syntax.vim"
