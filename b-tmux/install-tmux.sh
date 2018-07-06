@@ -82,6 +82,11 @@ if [ ! -e $HOME/.config ];then mkdir $HOME/.config; fi
 if [ ! -e $HOME/.config/fontconfig ];then mkdir -p $HOME/.config/fontconfig/conf.d; fi
 cp $CURRENT_DIR/10-powerline-symbols.conf $HOME/.config/fontconfig/conf.d/
 
+echo "Step 3-4: installing tmux plugin manager"
+if [ ! -e $HOME/.tmux/plugins ];then mkdir -p $HOME/.tmux/plugins; fi
+# 使用插件管理
+git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+
 cd $CURRENT_DIR
 
 
