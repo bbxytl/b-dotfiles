@@ -54,10 +54,11 @@ for i in $HOME/.zshrc $HOME/.zshrc.oh-my-zsh; do [ -L $i ] && unlink $i ; done
 
 echo " Step 2: setting tu symlinks----------Shell-Zsh"
 B_DOT="$HOME/.b-dot"
+mkdir -p $B_DOT
 lnif $CURRENT_DIR/zsh/zshrc.local $HOME/.zshrc
 lnif $HOME/.oh-my-zsh/templates/zshrc.zsh-template $B_DOT/zshrc.oh-my-zsh
 # sed 's/^ZSH_THEME="robbyrussell"/ZSH_THEME="avit"/g' $HOME/.oh-my-zsh/templates/zshrc.zsh-template  > $HOME/.zshrc.oh-my-zsh
-lnif $CURRENT_DIR/zsh/incr.zsh $B_DOT/incr.zsh
+# lnif $CURRENT_DIR/zsh/incr.zsh $B_DOT/incr.zsh
 git clone https://github.com/zsh-users/zsh-autosuggestions $B_DOT/zsh-autosuggestions
 
 
