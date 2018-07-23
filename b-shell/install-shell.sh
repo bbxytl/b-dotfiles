@@ -24,6 +24,7 @@ lnif(){
 today=`date +%Y%m%d`
 bakdot="$HOME/mydotfiles/orgConfigBak"
 B_DOT="$HOME/.b-dot"
+mkdir -p $B_DOT
 if [ ! -e $bakdot ];then mkdir $bakdot; fi
 
 echo " Step 1: backing up current config-----------Shell"
