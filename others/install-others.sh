@@ -37,7 +37,7 @@ if [ ! -e $othersbak ];then mkdir $othersbak; fi
 for i in $HOME/.aria2 $HOME/.gitconfig $HOME/.gitignore $HOME/.ackrc $HOME/.ssh/get_host.py $HOME/.tigrc; do [ -e $i ] && [ ! -L $i ] && mv $i $othresbak/$i; done
 for i in $HOME/.aria2 $HOME/.gitconfig $HOME/.gitignore $HOME/.ackrc $HOME/.ssh/get_host.py $HOME/.tigrc; do [ -L $i ] && unlink $i ; done
 echo " Step 2: setting tu symlinks----------Others"
-lnif $CURRENT_DIR/aria2 $HOME/aria2
+lnif $CURRENT_DIR/aria2 $HOME/.aria2
 lnif $CURRENT_DIR/gitconfig.sh $HOME/.gitconfig
 lnif $CURRENT_DIR/gitignore $HOME/.gitignore
 lnif $CURRENT_DIR/ackrc $HOME/.ackrc
