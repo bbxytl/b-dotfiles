@@ -21,6 +21,8 @@ lnif(){
     fi
 }
 
+B_DOT="$HOME/.b-dot"
+mkdir -p $B_DOT
 lnif $CURRENT_DIR/bash/bashrc $HOME/.bashrc
 lnif $CURRENT_DIR/bash/bash_profile $HOME/.bash_profile
 lnif $CURRENT_DIR/bash/DIR_COLORS $HOME/.dir_colors
