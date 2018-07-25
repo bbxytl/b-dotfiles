@@ -11,7 +11,7 @@
 # ====================================================
 
 HOMELOCAL_PATH=$HOME/.local
-GO_BIN_PATH="/Users/long/go/bin"
+GO_BIN_PATH="$HOME/go/bin"
 PATH=$HOMELOCAL_PATH/bin:$PYTHON_BREW:$GO_BIN_PATH:$PATH
 export PATH
 export HOME_CACHE="$HOME/.cache"
@@ -19,6 +19,7 @@ export HOME_CACHE="$HOME/.cache"
 export PAGER="less"
 
 # # Get color support for 'less'
+if [ "`uname -s`" = 'Darwin' ];then
 export LESS="--RAW-CONTROL-CHARS"
 export LESS_TERMCAP_mb=$(tput bold; tput setaf 2) # green
 export LESS_TERMCAP_md=$(tput bold; tput setaf 6) # cyan
@@ -33,7 +34,7 @@ export LESS_TERMCAP_ZN=$(tput ssubm)
 export LESS_TERMCAP_ZV=$(tput rsubm)
 export LESS_TERMCAP_ZO=$(tput ssupm)
 export LESS_TERMCAP_ZW=$(tput rsupm)
-
+fi
 # virtualenvswrapper 配置
 # if [ `id -u` != '0' ]; then
   # export VIRTUALENV_USE_DISTRIBUTE=1        # <-- Always use pip/distribute
