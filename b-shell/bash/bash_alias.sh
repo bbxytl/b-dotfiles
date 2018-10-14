@@ -212,6 +212,7 @@ rmbk() {
 
 # 精简版log
 alias gll="git lg | less"
+alias glh="git lg | head"
 # 精简版 分支
 alias gbr="git br"
 alias gbra="git br -a"
