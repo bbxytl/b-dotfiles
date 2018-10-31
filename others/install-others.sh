@@ -43,4 +43,9 @@ lnif $CURRENT_DIR/gitignore $HOME/.gitignore
 lnif $CURRENT_DIR/ackrc $HOME/.ackrc
 lnif $CURRENT_DIR/tigrc $HOME/.tigrc
 lnif $CURRENT_DIR/get_host.py $HOME/.ssh/get_host.py
+
+mkdir $HOME/.local/bin
+lnif $CURRENT_DIR/swagger-description-new.py $HOME/.local/bin/swagger-desc-new
+chmod +x $HOME/.local/bin/swagger-desc-new
+
 echo " Step 3: end of install ------------ Others"

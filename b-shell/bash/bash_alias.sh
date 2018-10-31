@@ -500,5 +500,16 @@ alias tree="tree -C"
 alias datestr="date +'%Y-%m-%d %H:%M:%S'"
 alias datets="date '+%s'"
 
+## go
+goenv() {
+    source ~/.bashrc.local
+    export CGO_ENABLED="1"
+    export GOPATH=$GOPATH_BASE:`pwd`
+    echo 'GOPATH: '
+    echo $GOPATH
+}
+
+alias gorun="go run main.go  -log_dir=./logs -alsologtostderr=true -v 5"
+alias gobuild="go build"
 
 
