@@ -262,22 +262,22 @@ def operation(file, operationIds):
                     pathsOutMap[pathKey] = pathVal
                     if body.has_key("parameters"):
                         params = body["parameters"]
-                    structMap={}
-                    if isinstance(params, dict):
-                        structMap = collect_dict_ref(params, structMap)
-                    if isinstance(params, list):
-                        structMap = collect_list_ref(params, structMap)
-                    for s in structMap.keys():
-                        pathsStructMap[s] = structMap[s]
+                        structMap={}
+                        if isinstance(params, dict):
+                            structMap = collect_dict_ref(params, structMap)
+                        if isinstance(params, list):
+                            structMap = collect_list_ref(params, structMap)
+                        for s in structMap.keys():
+                            pathsStructMap[s] = structMap[s]
                     if body.has_key("responses"):
                         resps = body["responses"]
-                    structMap={}
-                    if isinstance(resps, dict):
-                        structMap = collect_dict_ref(resps, structMap)
-                    if isinstance(resps, list):
-                        structMap = collect_list_ref(resps, structMap)
-                    for s in structMap.keys():
-                        pathsStructMap[s] = structMap[s]
+                        structMap={}
+                        if isinstance(resps, dict):
+                            structMap = collect_dict_ref(resps, structMap)
+                        if isinstance(resps, list):
+                            structMap = collect_list_ref(resps, structMap)
+                        for s in structMap.keys():
+                            pathsStructMap[s] = structMap[s]
 
         fp["paths"] = pathsOutMap
         # printMapKey(pathsOutMap, "========== pathsOutMap")
