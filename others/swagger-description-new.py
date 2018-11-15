@@ -12,7 +12,7 @@
 #
 # 运行下面的指令
 #  mkdir $HOME/.local/bin
-#  ln -s $CURRENT_DIR/swagger-description-new.py $HOME/.local/bin/swagger-desc-new
+#  ln -s `pwd`/swagger-description-new.py $HOME/.local/bin/swagger-desc-new
 #  chmod +x $HOME/.local/bin/swagger-desc-new
 #
 # 将下面的内容放到 .bashrc 里
