@@ -15,7 +15,8 @@
 #  ln -s `pwd`/swagger-description-new.py $HOME/.local/bin/swagger-desc-new
 #  chmod +x $HOME/.local/bin/swagger-desc-new
 #
-# 将下面的内容放到 .bashrc 里
+# 将下面的内容放到 .bashrc 里, zsh 放到 .zshrc
+#  export PATH=$PATH:$HOME/.local/bin
 #  # 只生成固定tag或operationId的path, 不指定 tag/operationId 时 生成全部的
 #  swaggergeopt() {
 #      swagger_file=$1;
