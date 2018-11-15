@@ -10,6 +10,27 @@
 #   Last Modified : 2018-10-31 19:28
 #   Describe      :
 #
+# 运行下面的指令
+#  mkdir $HOME/.local/bin
+#  lnif $CURRENT_DIR/swagger-description-new.py $HOME/.local/bin/swagger-desc-new
+#  chmod +x $HOME/.local/bin/swagger-desc-new
+#
+# 将下面的内容放到 .bashrc 里
+#  # 只生成固定tag或operationId的path, 不指定 tag/operationId 时 生成全部的
+#  swaggergeopt() {
+#      swagger_file=$1;
+#      swagger generate spec -o $swagger_file;
+#      swagger-desc-new $@;
+#      sed "s/____contact__name___/your_name/g" $1 | sed "s/____contact__email___/your_email/g" > "$1.json";
+#      mv "$1.json"  $1
+#  }
+#
+# 使用方法：
+# 在 go 的某个项目里运行：
+#  - 生成所有的内容
+#     swaggergeopt swagger.json
+#  - 生成指定tag或operationId的内容
+#     swaggergeopt swagger.json tag1 tag2 operationId1 operationId2
 # ====================================================
 
 import sys
@@ -60,7 +81,21 @@ def description(file):
         fp = json.load(var)
 
         if not fp.has_key("info"):
-            fp["info"] = {"description": "info", "title": "title"}
+            fp["info"] = {"description": "info", "title": "title", "version":"0.0.0"}
+        if not fp["info"].has_key("version"):
+            fp["info"]["version"] = "0.0.0"
+        if not fp["info"].has_key("description"):
+            fp["info"]["description"] = "info"
+        if not fp["info"].has_key("title"):
+            fp["info"]["title"] = "info"
+
+        # if not fp["info"].has_key("contact"):
+        fp["info"]["contact"] = {}
+        contact = fp["info"]["contact"]
+        if not contact.has_key("name"):
+            contact["name"] = "____contact__name___"
+        if not contact.has_key("email"):
+            contact["email"] = "____contact__email___"
         ############# paths ################
         paths = {}
         if fp.has_key("paths"):
