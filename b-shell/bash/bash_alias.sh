@@ -227,7 +227,7 @@ gln(){
 	if [ $# -gt 0 ];then num=$1; fi
 	git lg -n $num --stat | less
 }
-gci(){
+gcidef(){
 	if [ `uname -s` != "Linux" ];then
 			cmmt="update-from-Mac"
 	else
@@ -239,6 +239,7 @@ gci(){
 	git add  --all
 	git commit -m "$cmmt"
 }
+alias gci="git add --all && git commit"
 
 alias grep='grep --color=auto'
 mcd() { mkdir -p "$1"; cd "$1";}
