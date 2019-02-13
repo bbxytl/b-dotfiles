@@ -25,6 +25,9 @@ bind generic gp parent
 bind generic gP back
 bind generic gn view-next
 
+bind generic I @sh -c "echo -n %(commit) | xclip"
+bind generic V :!git difftool %(commit)
+
 # 设置 tab-size 为 4，默认为 8
 set tab-size = 4
 

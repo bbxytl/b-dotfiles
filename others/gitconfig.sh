@@ -48,11 +48,15 @@
 
 # Kaleidoscope.app as difftool and mergetool.
 [diff]
-    tool = Kaleidoscope
+  tool = Kaleidoscope
+[difftool]
+  prompt = false
 [difftool "Kaleidoscope"]
   cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [merge]
-    tool = Kaleidoscope
+  tool = Kaleidoscope
+[mergetool]
+  prompt = false
 [mergetool "Kaleidoscope"]
   cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
   trustExitCode = true

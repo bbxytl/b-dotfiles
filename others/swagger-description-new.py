@@ -111,6 +111,10 @@ def description(file):
                 if k1 == "get" or k1 == "post" :
                     if not isinstance(v1, dict):
                         continue
+                    if not v1.has_key("x-user"):
+                        v1["x-user"] = "____x_user____"
+                    if not v1.has_key("x-email"):
+                        v1["x-email"] = "____x_email____"
                     summary = ""
                     if v1.has_key("operationId"):
                         summary = v1["operationId"]
@@ -188,7 +192,7 @@ def collect_dict_ref(obj, structMap ):
             # print objKey, objVal, st[-1]
     return structMap
 
-MaxStackDef = 10000000
+MaxStackDef = 100
 def merge_struct(pathsStructMap, allStructMap):
     outMap = {}
     for pathstKey in pathsStructMap.keys():
@@ -199,6 +203,7 @@ def merge_struct_v2(key, allStructMap, outMap, stackDef):
     # print stackDef, key, outMap.keys()
     stackDef = stackDef - 1
     if stackDef <= 0:
+        print key
         return outMap, stackDef
     if allStructMap.has_key(key):
         outMap[key] = 1

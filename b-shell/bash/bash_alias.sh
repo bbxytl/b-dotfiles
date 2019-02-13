@@ -19,14 +19,20 @@ DOT_CONFIG_MYDOT="$HOME/mydotfiles"
 DOT_CONFIG_BDOT="$DOT_CONFIG_MYDOT/b-dotfiles"
 
 
-alias v='/usr/bin/vi'
-alias vi='vim'
 # User specific aliases and functions
 ##Productivity
 if [ $SYS_VERSION = 'Darwin' ];then
 # mac 隐藏文件
 	alias fshow='defaults write com.apple.finder AppleShowAllFiles -bool true'
 	alias fhide='defaults write com.apple.finder AppleShowAllFiles -bool false'
+# mac 特殊的配置
+    alias xclip='pbcopy'
+    # 将 / 转换为 . 方便搜索
+    alias sea="pbpaste | sed 's/\//./g' | pbcopy"
+    # 多行显示到一行里
+    alias oneline="pbpaste| sed 's/\\\\/ /g' | awk BEGIN{RS=EOF}'{gsub(/\\n/,\"\");print}' | pbcopy"
+    # 显示字符串的错误报错信息, 防止很多 \t,\n 出现在字符串里
+    alias errpaste="pbpaste| sed 's/\\\\t//g' | sed 's/\\\\n//g'"
 fi
 
 alias ll="ls  -l"
@@ -241,7 +247,7 @@ gcidef(){
 }
 alias gci="git add --all && git commit"
 
-alias grep='grep --color=auto'
+alias grep='grep --color=auto  --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 mcd() { mkdir -p "$1"; cd "$1";}
 cls() { cd "$1"; ls;}
 backup() { cp "$1"{,.bak};}
@@ -477,7 +483,9 @@ cat $1 | python -m json.tool > "$1.format.json"
 alias jsonperttypython="python -m json.tool"
 alias http="http --pretty all"
 # Mac 上使用, 需要 brew install jq
-alias jsonfmtpbpast='pbpaste | jq "." | pbcopy; echo "json formated and pasted to clipboard: "; pbpaste | jq'
+if [ $SYS_VERSION = 'Darwin' ];then
+    alias jsonfmtpbpast='pbpaste | jq "." | pbcopy; echo "json formated and pasted to clipboard: "; pbpaste | jq "."'
+fi
 
 alias gitinfo="cat .git/config"
 
@@ -513,4 +521,7 @@ goenv() {
 alias gorun="go run main.go  -log_dir=./logs -alsologtostderr=true -v 5"
 alias gobuild="go build"
 
-
+# git difftool 的别名
+alias gdt="git difftool"
+# git mergetool 的别名
+alias gmt="git mergetool"
