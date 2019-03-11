@@ -30,7 +30,7 @@ if [ $SYS_VERSION = 'Darwin' ];then
     # 将 / 转换为 . 方便搜索
     alias sea="pbpaste | sed 's/\//./g' | pbcopy"
     # 多行显示到一行里
-    alias oneline="pbpaste| sed 's/\\\\/ /g' | awk BEGIN{RS=EOF}'{gsub(/\\n/,\"\");print}' | pbcopy"
+    alias oneline="pbpaste| sed 's/\\\\/ /g' | awk BEGIN{RS=EOF}'{gsub(/\\n/,\"\");gsub(/      -H/,\"-H\");print}' | pbcopy"
     # 显示字符串的错误报错信息, 防止很多 \t,\n 出现在字符串里
     alias errpaste="pbpaste| sed 's/\\\\t//g' | sed 's/\\\\n//g'"
 fi
@@ -57,8 +57,10 @@ alias tmux='tmux -2'
 
 alias cdu="cd -"
 alias cdb="cd ~/mydotfiles/b-dotfiles"
+alias cdv="cd ~/mydotfiles/b-dotfiles/b-vim"
 alias cdd="cd ~/data"
 alias cdp="cd ~/data/projects"
+alias cdg="cd ~/data/git"
 
 # 临时文件目录
 alias cdt="cd ~/data/tmp"

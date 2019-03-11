@@ -30,6 +30,8 @@ bind generic V :!git difftool %(commit)
 
 # 设置 tab-size 为 4，默认为 8
 set tab-size = 4
+# 开启鼠标支持
+set mouse = true
 
 # 设置 blame-view 界面显示
 set blame-view-id = yes,color
@@ -46,3 +48,9 @@ set tree-view = date:default author:abbreviated id:yes,color \
                 mode file-size:units,width=0 \
                 file-name
 
+# 自定义日期显示格式
+set main-view-date = custom
+set main-view-date-format = "%Y-%m-%d %H:%M:%S"
+
+# 从 tig 进入文件时是否直接定位到行, 默认是 yes
+# set editor-line-number = yes

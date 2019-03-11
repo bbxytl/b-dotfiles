@@ -28,8 +28,8 @@ if [ -f ~/.b-dot/incr.zsh ]; then
 	. ~/.b-dot/incr.zsh
 fi
 # zsh 自动提示命令参数
-if [ -f ~/.b-dot/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-	source ~/.b-dot/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
 SYS_VERSION=`uname -s`
