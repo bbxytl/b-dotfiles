@@ -229,6 +229,8 @@ alias gbrh="git br -a | grep -v 'remotes'"
 alias gcbr="git remote prune origin"
 # 显示tag
 alias gtag="git tag"
+# 快速拉取
+alias gpl="git pull"
 # 显示最近 n 次更改的文件
 gln(){
 	num=2
