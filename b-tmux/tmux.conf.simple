@@ -19,6 +19,8 @@ bind > swap-pane -D       # swap current pane with the next one
 bind < swap-pane -U       # swap current pane with the previous one
 bind -r C-h previous-window # select previous window
 bind -r C-l next-window     # select next window
+bind-key -n C-S-Left swap-window -t -1
+bind-key -n C-S-Right swap-window -t +1
 bind Space last-window      # move to last active window
 bind Enter copy-mode # enter copy mode
 bind b list-buffers  # list paster buffers
