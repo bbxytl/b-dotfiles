@@ -45,11 +45,10 @@ def opt_dict(key, fp):
     if not isinstance(fp, dict):
         return fp
     if key != "properties" and key != "responses" and key != "schema":
-        # if not fp.has_key("description") and not fp.has_key('$ref'):
-        if not fp.has_key("description"):
+        if "description" not in fp:
             desc = key
             # print desc
-            if fp.has_key("name") and isinstance(fp["name"], str):
+            if "name" in fp and isinstance(fp["name"], str):
                 desc = fp["name"]
             fp["description"] = desc
 
@@ -81,25 +80,24 @@ def description(file):
     with open(file) as var:
         fp = json.load(var)
 
-        if not fp.has_key("info"):
+        if "info" not in fp:
             fp["info"] = {"description": "info", "title": "title", "version":"0.0.0"}
-        if not fp["info"].has_key("version"):
+        if "version" not in fp["info"]:
             fp["info"]["version"] = "0.0.0"
-        if not fp["info"].has_key("description"):
+        if "description" not in fp["info"]:
             fp["info"]["description"] = "info"
-        if not fp["info"].has_key("title"):
+        if "title" not in fp["info"]:
             fp["info"]["title"] = "info"
 
-        # if not fp["info"].has_key("contact"):
         fp["info"]["contact"] = {}
         contact = fp["info"]["contact"]
-        if not contact.has_key("name"):
+        if "name" not in contact:
             contact["name"] = "____contact__name___"
-        if not contact.has_key("email"):
+        if "email" not in contact:
             contact["email"] = "____contact__email___"
         ############# paths ################
         paths = {}
-        if fp.has_key("paths"):
+        if "paths" in fp:
             paths = fp["paths"]
 
         for k0 in paths.keys():
@@ -111,26 +109,26 @@ def description(file):
                 if k1 == "get" or k1 == "post" :
                     if not isinstance(v1, dict):
                         continue
-                    if not v1.has_key("x-user"):
+                    if "x-user" not in v1:
                         v1["x-user"] = "____x_user____"
-                    if not v1.has_key("x-email"):
+                    if "x-email" not in v1:
                         v1["x-email"] = "____x_email____"
                     summary = ""
-                    if v1.has_key("operationId"):
+                    if "operationId" in v1:
                         summary = v1["operationId"]
-                    if v1.has_key("tags"):
+                    if "tags" in v1:
                         tags = v1["tags"]
                         if isinstance(tags, list):
                             for tag in tags:
-                                if not allTags.has_key(tag):
+                                if tag not in allTags:
                                     allTags[tag] = {}
                                 allTags[tag][summary] = 1
 
-                    if v1.has_key("summary"):
+                    if "summary" in v1:
                         summary = v1["summary"]
                     v1["summary"] = summary
 
-                    if v1.has_key("parameters"):
+                    if "parameters" in v1:
                         parameters = v1["parameters"]
                         if isinstance(parameters, dict):
                             v1["parameters"] = opt_dict("parameters", parameters)
@@ -140,7 +138,7 @@ def description(file):
 
         ############# definitions ################
         definitions = {}
-        if fp.has_key("definitions"):
+        if "definitions" in fp:
             definitions = fp["definitions"]
         for k, v in definitions.items():
             if isinstance(v, dict):
@@ -151,7 +149,7 @@ def description(file):
 
         ############# responses ################
         responses = {}
-        if fp.has_key("responses"):
+        if "responses" in fp:
             responses = fp["responses"]
         for k0, v0 in responses.items():
             if isinstance(v0, dict):
@@ -203,20 +201,21 @@ def merge_struct_v2(key, allStructMap, outMap, stackDef):
     # print stackDef, key, outMap.keys()
     stackDef = stackDef - 1
     if stackDef <= 0:
-        print key
+        print(key)
         return outMap, stackDef
-    if allStructMap.has_key(key):
+    if key in allStructMap:
         outMap[key] = 1
         # if key == "getCountriesByCitiesResponseWrapper":
             # print key, allStructMap[key].keys()
         for k in allStructMap[key].keys():
-            outMap, stackDef = merge_struct_v2(k, allStructMap, outMap, stackDef)
+            if k != key or k not in outMap:
+                outMap, stackDef = merge_struct_v2(k, allStructMap, outMap, stackDef)
     return outMap, stackDef
 
 
 def merge_map(allStructMap, structMap):
     for key, val in structMap.items():
-        if not allStructMap.has_key(key):
+        if key not in allStructMap:
             allStructMap[key] = {}
         if not isinstance(val, dict):
             continue
@@ -236,7 +235,7 @@ def operation(file, operationIds):
         pathsOutMap = {}
         pathsStructMap = {}
 
-        if fp.has_key("paths"):
+        if "paths" in fp:
             pathsOriMap = fp["paths"]
 
         for pathKey in pathsOriMap.keys():
@@ -250,10 +249,10 @@ def operation(file, operationIds):
                     if not isinstance(body, dict):
                         break
                     flag = 0
-                    if body.has_key("operationId"):
+                    if "operationId" in body:
                         if body["operationId"] in operationIds:
                             flag = 1
-                    if body.has_key("tags"):
+                    if "tags" in body:
                         tags = body["tags"]
                         # print "tags ===> ", tags, operationIds
                         if isinstance(tags, list):
@@ -265,7 +264,7 @@ def operation(file, operationIds):
                         break
 
                     pathsOutMap[pathKey] = pathVal
-                    if body.has_key("parameters"):
+                    if "parameters" in body:
                         params = body["parameters"]
                         structMap={}
                         if isinstance(params, dict):
@@ -274,7 +273,7 @@ def operation(file, operationIds):
                             structMap = collect_list_ref(params, structMap)
                         for s in structMap.keys():
                             pathsStructMap[s] = structMap[s]
-                    if body.has_key("responses"):
+                    if "responses" in body:
                         resps = body["responses"]
                         structMap={}
                         if isinstance(resps, dict):
@@ -292,7 +291,7 @@ def operation(file, operationIds):
         allStructMap = {}
         ################# responses #################
         respOriMap = {}
-        if fp.has_key("responses"):
+        if "responses" in fp:
             respOriMap = fp["responses"]
 
         structMap={}
@@ -309,7 +308,7 @@ def operation(file, operationIds):
 
         ################# definitions #################
         defOriMap = {}
-        if fp.has_key("definitions"):
+        if "definitions" in fp:
             defOriMap = fp["definitions"]
 
         structMap={}
@@ -346,9 +345,9 @@ def operation(file, operationIds):
         os.system("mv " + outfile + " " + file)
 
 def printMapKey(m, msg):
-    print "========= ", msg
+    print("========= ", msg)
     for k in m.keys():
-        print k
+        print(k)
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
@@ -359,12 +358,12 @@ if __name__ == "__main__":
     if len(operationIdsOrTags) > 0:
         operation(swaggerFile, operationIdsOrTags)
     else:
-        print "======================="
-        print "tags, operationIds: "
+        print("=======================")
+        print("tags, operationIds: ")
         for tag, opts in allTags.items():
             optsStr = ""
             for opt in opts:
                 optsStr = optsStr + opt + ", "
-            print tag, ":\t", optsStr
-        print "======================="
+            print(tag, ":\t", optsStr)
+        print("=======================")
 
