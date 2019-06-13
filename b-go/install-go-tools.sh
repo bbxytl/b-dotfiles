@@ -22,6 +22,12 @@ git clone --depth 1 --recursive https://github.com/golang/image
 git clone --depth 1 --recursive https://github.com/golang/debug
 git clone --depth 1 --recursive https://github.com/golang/crypto
 git clone --depth 1 --recursive https://github.com/golang/sync
+git clone --depth 1 --recursive https://github.com/golang/oauth2
+
+# google.golang.org
+# mkdir -p ~/go/src/google.golang.org
+# cd ~/go/src/google.golang.org/
+# git clone --depth 1 --recursive https://github.com/googleapis/google-api-go-client api
 
 # github
 mkdir -p ~/go/src/github.com; cd ~/go/src/github.com
@@ -43,4 +49,5 @@ cd ~/go/src/golang.org/x/tools/cmd/gorename; go install ./
 cd ~/go/src/golang.org/x/tools/cmd/goimports; go install ./
 cd ~/go/src/golang.org/x/tools/cmd/guru; go install ./
 cd ~/go/src/golang.org/x/tools/cmd/gopls; go install ./
+cd ~/go/src/golang.org/x/tools/oauth2/google; go install ./
 
