@@ -35,10 +35,11 @@ if [ $SYS_VERSION = 'Darwin' ];then
     alias errpaste="pbpaste| sed 's/\\\\t//g' | sed 's/\\\\n//g'"
 fi
 
-alias ll="ls  -l"
-alias lla="ll -A"
+alias l="ls -alh"
+alias ll="ls  -lh"
+alias lla="ll -Ah"
 alias llt="ll -t"
-alias la="ls -A"
+alias la="ls -Ah"
 
 # virtualenv
 alias vte='virtualenv'
@@ -225,6 +226,8 @@ alias glh="git lg | head"
 alias gbr="git br"
 alias gbra="git br -a"
 alias gbrh="git br -a | grep -v 'remotes'"
+# 显示 所有分支关系的树图
+alias gbt="git log --graph --decorate --oneline --simplify-by-decoration --all"
 # 清空已过期分支
 alias gcbr="git remote prune origin"
 # 显示tag
@@ -289,10 +292,13 @@ alias dirtree="ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e '
 sbs(){ du -b --max-depth 1 | sort -nr | perl -pe 's{([0-9]+)}{sprintf "%.1f%s", $1>=2**30? ($1/2**30, "G"): $1>=2**20? ($1/2**20, "M"): $1>=2**10? ($1/2**10, "K"): ($1, "")}e';}
 alias intercept="sudo strace -ff -e trace=write -e write=1,2 -p"
 alias meminfo='free -m -l -t'
-alias psg="ps ux | grep -a"
+# alias psg="ps ux | grep -a"
 alias volume="amixer get Master | sed '1,4 d' | cut -d [ -f 2 | cut -d ] -f 1"
 alias hsg="history | grep"
 
+psg(){
+    ps ux | grep -a $@ | grep -v 'grep' | grep $@;
+}
 ##Network
 alias myip="ifconfig | grep 'broadcast'"
 #alias websiteget="wget --random-wait -r -p -e robots=off -U mozilla"

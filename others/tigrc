@@ -27,6 +27,7 @@ bind generic gn view-next
 
 bind generic I @sh -c "echo -n %(commit) | xclip"
 bind generic V :!git difftool %(commit)
+bind generic B :!git log --graph --decorate --oneline --simplify-by-decoration --all
 
 # 设置 tab-size 为 4，默认为 8
 set tab-size = 4
@@ -37,8 +38,15 @@ set mouse = true
 set blame-view-id = yes,color
 set blame-view-line-number = yes,interval=1
 
+# author
+# display (mixed) [full|abbreviated|email|email-user|<bool>]: How to display author names.
+#
 # 重设 main-view，增加 commit Id 信息
-set main-view = date:default author:abbreviated id:yes,color \
+# set main-view = date:default author:full id:yes,color \
+#
+# set main-view = date:default author:abbreviated id:yes,color \
+#
+set main-view = date:default author:email-user id:yes,color \
                 line-number:no,interval=1 \
                 commit-title:graph=v2,refs=yes,overflow=no
 

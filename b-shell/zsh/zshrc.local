@@ -56,4 +56,5 @@ fi
 # source $ZSH/oh-my-zsh.sh
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
-
+export TERM=xterm-256color
+# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
