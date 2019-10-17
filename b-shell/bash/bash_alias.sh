@@ -87,9 +87,9 @@ webshare(){
 			share_dir=`pwd`
 		fi
 	fi
-	ifconfig |grep 'Bcast'
+    ifconfig | grep 'broadcast'
 	echo "Share_Dir : $share_dir"
-	python -m SimpleHTTPServer 8899
+	python2.7 -m SimpleHTTPServer 8899
 }
 webshareup(){
 	share_dir=`pwd`
@@ -105,9 +105,9 @@ webshareup(){
 	if [ ! -e share_up_down.py ];then
 		ln -s $SHARE_UP_DOWN share_up_down.py
 	fi
-	ifconfig |grep 'Bcast'
+    ifconfig | grep 'broadcast'
 	echo "Share_Dir : $share_dir"
-	python share_up_down.py 8899
+	python2.7 share_up_down.py 8899
 }
 
 
@@ -514,6 +514,19 @@ alias gpp="g++"
 alias lsvimbak="ls *|rev|cut -d_  -f1 |rev|base64 -D"
 
 alias tree="tree -C"
+
+# 命令行查单词
+v2() {
+  declare q="$*";
+  curl --user-agent curl "https://v2en.co/${q// /%20}";
+}
+v2-sh() {
+  while echo -n "v2en> ";
+  read -r input;
+  [[ -n "$input" ]];
+  do v2 "$input";
+  done;
+}
 
 ## 日期设置
 alias datestr="date +'%Y-%m-%d %H:%M:%S'"
