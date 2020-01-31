@@ -67,4 +67,5 @@ if [ "`uname -s`" = 'Darwin' ];then
     export HOMEBREW_NO_AUTO_UPDATE=true
 fi
 
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"
 

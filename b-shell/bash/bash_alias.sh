@@ -42,10 +42,11 @@ alias llt="ll -t"
 alias la="ls -Ah"
 
 # virtualenv
-alias vte='virtualenv'
-alias mkvte='mkvirtualenv'
-alias deact='deactivate'
-alias rmvte='rmvirtualenv'
+alias pyvte='virtualenv'
+alias pyvtenew='mkvirtualenv'
+alias pyvtedeact='deactivate'
+alias pyvterm='rmvirtualenv'
+alias pyvteon='workon'
 
 
 # tmux
@@ -505,6 +506,7 @@ alias gitinfo="cat .git/config"
 alias docker_rm_all_container="docker ps -a |grep Exited | cut -d ' ' -f1 | xargs docker rm"
 alias docker_rm_all_container_created="docker ps -a |grep Created | cut -d ' ' -f1 | xargs docker rm"
 alias dockerps="docker ps -a"
+alias dockerip="docker inspect --format '{{.NetworkSettings.IPAddress}}'"
 
 alias freepic="freepic -d -p"
 
