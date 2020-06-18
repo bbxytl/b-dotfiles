@@ -253,7 +253,7 @@ gcidef(){
 	git add  --all
 	git commit -m "$cmmt"
 }
-alias gci="git add --all && git commit"
+alias gci="git add --all && git commit --signoff"
 
 alias grep='grep --color=auto  --exclude-dir={.bzr,CVS,.git,.hg,.svn}'
 mcd() { mkdir -p "$1"; cd "$1";}
