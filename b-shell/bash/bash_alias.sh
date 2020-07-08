@@ -550,3 +550,15 @@ alias gobuild="go build"
 alias gdt="git difftool"
 # git mergetool 的别名
 alias gmt="git mergetool"
+
+
+############## Mac 系统配置 ###############
+if [ $SYS_VERSION = 'Darwin' ];then
+    # 使Mac的 Dock 立马隐藏或显示。要使Dock 在需要时立即跳回视图而不是滑动
+    alias dock-autohide-time0="defaults write com.apple.dock autohide-time-modifier -int 0;defaults write com.apple.dock autohide-delay -int 0;killall Dock"
+    # 停靠点的动画重新显示一秒钟
+    alias dock-autohide-time015="defaults write com.apple.dock autohide-time-modifier -float 0.15;defaults write com.apple.dock autohide-delay -float 0.15;killall Dock"
+    # 恢复为默认的滑动效果
+    alias dock-autohide-time-reset="defaults delete com.apple.dock autohide-time-modifier;defaults delete com.apple.dock autohide-delay;killall Dock"
+fi
+
