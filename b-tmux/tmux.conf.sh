@@ -102,11 +102,14 @@
        battery_bg=colour160        # black
        time_date_fg=colour245      # light gray
        time_date_bg=colour232      # dark gray
+       time_date_fg=colour160      # red
+       time_date_bg=colour226      # yellow
        whoami_fg=colour254         # white
        whoami_bg=colour160         # red
        host_fg=colour16            # black
        host_bg=colour254           # white
-       status_right="${tmux_conf_battery:-#(cut -c3- ~/.tmux.conf | sh -s battery ${tmux_conf_battery_symbol:-block} ${tmux_conf_battery_symbol_count:-auto} ${tmux_conf_battery_palette:-colour160,colour254,colour16} ${tmux_conf_battery_status})} #[fg=$time_date_fg,nobold]$right_separator %R $right_separator %d %b #[fg=$whoami_bg,bg=$time_date_bg,nobold]$right_separator_black#[fg=$whoami_fg,bg=$whoami_bg,nobold] #(whoami) $right_separator_black#[fg=$host_fg,bg=$host_bg,bold] #h "
+       # status_right="${tmux_conf_battery:-#(cut -c3- ~/.tmux.conf | sh -s battery ${tmux_conf_battery_symbol:-block} ${tmux_conf_battery_symbol_count:-auto} ${tmux_conf_battery_palette:-colour160,colour254,colour16} ${tmux_conf_battery_status})} #[fg=$time_date_fg,nobold]$right_separator %R $right_separator %d %b #[fg=$whoami_bg,bg=$time_date_bg,nobold]$right_separator_black#[fg=$whoami_fg,bg=$whoami_bg,nobold] #(whoami) $right_separator_black#[fg=$host_fg,bg=$host_bg,bold] #h "
+       status_right="${tmux_conf_battery:-#(cut -c3- ~/.tmux.conf | sh -s battery ${tmux_conf_battery_symbol:-block} ${tmux_conf_battery_symbol_count:-auto} ${tmux_conf_battery_palette:-colour160,colour254,colour16} ${tmux_conf_battery_status})} #[fg=$time_date_bg]$right_separator_black#[fg=$time_date_fg,bg=$time_date_bg,bold] %T #[nobold]$right_separator %A $right_separator %Y/%m/%d #[fg=$whoami_bg,bg=$time_date_bg]$right_separator_black#[fg=$whoami_fg,bg=$whoami_bg,nobold] #(whoami) $right_separator_black#[fg=$host_fg,bg=$host_bg,bold] #h "
        tmux set -g status-right-length 64 \; set -g status-right "$status_right"
 
        # clock
