@@ -60,3 +60,7 @@
 [mergetool "Kaleidoscope"]
   cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
   trustExitCode = true
+[url "git@bitbucket.org:"]
+	insteadOf = https://bitbucket.org/
+[pull]
+	rebase = false

@@ -5,7 +5,7 @@
 #   Author        : bbxytl
 #   Email         : bbxytl@gmail.com
 #   File Name     : bash_env.sh
-#   Last Modified : 2018-04-05 19:24
+#   Last Modified : 2021-01-27 18:19
 #   Describe      :
 #
 # ====================================================
@@ -13,8 +13,11 @@
 HOMELOCAL_PATH=$HOME/.local
 GO_BIN_PATH="$HOME/go/bin"
 PATH=$HOMELOCAL_PATH/bin:$PYTHON_BREW:$GO_BIN_PATH:$PATH
+PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH
 export HOME_CACHE="$HOME/.cache"
+
+export GOPROXY="https://goproxy.cn,direct"
 
 export PAGER="less"
 
@@ -36,6 +39,8 @@ export LESS_TERMCAP_ZO=$(tput ssupm)
 export LESS_TERMCAP_ZW=$(tput rsupm)
 fi
 # virtualenvswrapper 配置
+# https://virtualenv.pypa.io/en/latest/installation.html
+# python -m pip install --user virtualenv virtualenvwrapper
 # if [ `id -u` != '0' ]; then
   # export VIRTUALENV_USE_DISTRIBUTE=1        # <-- Always use pip/distribute
   export WORKON_HOME=$HOME/.local/virtualenvs       # <-- Where all virtualenvs will be stored

@@ -5,7 +5,7 @@
 #   Author        : bbxytl
 #   Email         : bbxytl@gmail.com
 #   File Name     : bash_alias.sh
-#   Last Modified : 2018-04-05 19:22
+#   Last Modified : 2020-12-08 10:45
 #   Describe      :
 #
 # ====================================================
@@ -235,6 +235,8 @@ alias gcbr="git remote prune origin"
 alias gtag="git tag"
 # 快速拉取
 alias gpl="git pull"
+# 创建分支
+alias gcob="git checkout -b"
 # 显示最近 n 次更改的文件
 gln(){
 	num=2
@@ -562,3 +564,13 @@ if [ $SYS_VERSION = 'Darwin' ];then
     alias dock-autohide-time-reset="defaults delete com.apple.dock autohide-time-modifier;defaults delete com.apple.dock autohide-delay;killall Dock"
 fi
 
+#####################################
+# 倒计时
+# -f banner3 ntgreek cricket
+# http://www.figlet.org/examples.html
+alias termdowncricket="termdown -f doom"
+alias termdownbanner3="termdown -f doom"
+alias termdowndoom="termdown -f doom"
+alias termdownnofiglet="termdown --no-figlet"
+alias termdown5="termdown -f doom 5 -b"
+alias termdownticker="termdown --no-figlet -t 0"
