@@ -41,6 +41,7 @@ lnif $CURRENT_DIR/aria2 $HOME/.aria2
 lnif $CURRENT_DIR/gitconfig.sh $HOME/.gitconfig
 lnif $CURRENT_DIR/gitignore $HOME/.gitignore
 lnif $CURRENT_DIR/ackrc $HOME/.ackrc
+lnif $CURRENT_DIR/ag_ignore $HOME/.ag_ignore
 lnif $CURRENT_DIR/tigrc $HOME/.tigrc
 lnif $CURRENT_DIR/get_host.py $HOME/.ssh/get_host.py
 

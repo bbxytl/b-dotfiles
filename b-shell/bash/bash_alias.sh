@@ -5,7 +5,7 @@
 #   Author        : bbxytl
 #   Email         : bbxytl@gmail.com
 #   File Name     : bash_alias.sh
-#   Last Modified : 2020-12-08 10:45
+#   Last Modified : 2021-02-18 16:35
 #   Describe      :
 #
 # ====================================================
@@ -574,3 +574,7 @@ alias termdowndoom="termdown -f doom"
 alias termdownnofiglet="termdown --no-figlet"
 alias termdown5="termdown -f doom 5 -b"
 alias termdownticker="termdown --no-figlet -t 0"
+
+if [[ -f  ~/.ag_ignore ]];then
+    alias ag='ag --path-to-ignore ~/.ag_ignore'
+fi
