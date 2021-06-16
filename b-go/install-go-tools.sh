@@ -10,6 +10,8 @@
 #
 # ====================================================
 
+# test - ipad
+
 mkdir -p ~/go/src/golang.org/x
 cd ~/go/src/golang.org/x/
 git clone --depth 1 --recursive https://github.com/golang/tools
