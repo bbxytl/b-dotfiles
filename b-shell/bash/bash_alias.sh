@@ -5,7 +5,7 @@
 #   Author        : bbxytl
 #   Email         : bbxytl@gmail.com
 #   File Name     : bash_alias.sh
-#   Last Modified : 2021-06-22 16:23
+#   Last Modified : 2021-06-22 16:56
 #   Describe      :
 #
 # ====================================================
@@ -501,7 +501,18 @@ if [ $SYS_VERSION = 'Darwin' ];then
 fi
 
 # jsondiff, 需要配合 others/jsondiff.sh 使用
-alias jsondiffv="jsondiff --vim"
+# 使用 vim 显示 diff
+alias jsondiffvim="jsondiff --vim"
+# 只显示不同的内容
+jsondifftext() {
+    jsondiff $@ | grep '^[+-]'
+}
+# 不同的总行数
+jsondiffwc(){
+    wc -l $@ | grep -v 'total'
+    echo "jsondiff wc:"
+    jsondiff $@ | grep -v '^+++' | grep -v '^---' | grep '^[+-]' | wc -l
+}
 
 alias gitinfo="cat .git/config"
 
