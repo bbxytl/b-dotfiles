@@ -48,5 +48,7 @@ lnif $CURRENT_DIR/get_host.py $HOME/.ssh/get_host.py
 mkdir $HOME/.local/bin
 lnif $CURRENT_DIR/swagger-description-new.py $HOME/.local/bin/swagger-desc-new
 chmod +x $HOME/.local/bin/swagger-desc-new
+lnif $CURRENT_DIR/jsondiff.sh $HOME/.local/bin/jsondiff
+chmod +x $HOME/.local/bin/jsondiff
 
 echo " Step 3: end of install ------------ Others"
