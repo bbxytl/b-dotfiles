@@ -1,6 +1,7 @@
 #!/bin/bash
 
-DIFF_PARAMS="-aur --color=auto"
+# DIFF_PARAMS="-aur --color=auto"
+DIFF_PARAMS="-aur"
 
 # Precondition check
 which jq > /dev/null || (echo "jq is required" && exit 1)
@@ -30,6 +31,10 @@ jq -S . "$json1" > "$sorted1"
 jq -S . "$json2" > "$sorted2"
 
 [ "$vim" ] && cmd=vimdiff || cmd="diff $DIFF_PARAMS"
+echo "================================================"
+echo $sorted1
+echo $sorted2
+echo $cmd
 
 $cmd "$sorted1" "$sorted2"
 

@@ -5,7 +5,7 @@
 #   Author        : bbxytl
 #   Email         : bbxytl@gmail.com
 #   File Name     : bash_alias.sh
-#   Last Modified : 2021-02-18 16:35
+#   Last Modified : 2021-06-22 16:23
 #   Describe      :
 #
 # ====================================================
@@ -499,6 +499,9 @@ alias http="http --pretty all"
 if [ $SYS_VERSION = 'Darwin' ];then
     alias jsonfmtpbpast='pbpaste | jq "." | pbcopy; echo "json formated and pasted to clipboard: "; pbpaste | jq "."'
 fi
+
+# jsondiff, 需要配合 others/jsondiff.sh 使用
+alias jsondiffv="jsondiff --vim"
 
 alias gitinfo="cat .git/config"
 
