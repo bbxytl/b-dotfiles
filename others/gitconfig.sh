@@ -46,20 +46,24 @@
 [http]
 	postBuffer = 524288000
 
-# Kaleidoscope.app as difftool and mergetool.
 [diff]
-  tool = Kaleidoscope
-[difftool]
-  prompt = false
-[difftool "Kaleidoscope"]
-  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[merge]
-  tool = Kaleidoscope
-[mergetool]
-  prompt = false
-[mergetool "Kaleidoscope"]
-  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-  trustExitCode = true
+    tool = vimdiff
+
+# Kaleidoscope.app as difftool and mergetool.
+# [diff]
+#   tool = Kaleidoscope
+# [difftool]
+#   prompt = false
+# [difftool "Kaleidoscope"]
+#   cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+# [merge]
+#   tool = Kaleidoscope
+# [mergetool]
+#   prompt = false
+# [mergetool "Kaleidoscope"]
+#   cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+#   trustExitCode = true
+
 [url "git@bitbucket.org:"]
 	insteadOf = https://bitbucket.org/
 [pull]

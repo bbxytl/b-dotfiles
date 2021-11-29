@@ -29,6 +29,9 @@ bind generic I @sh -c "echo -n %(commit) | xclip"
 bind generic V :!git difftool %(commit)
 bind generic B :!git log --graph --decorate --oneline --simplify-by-decoration --all
 
+# bind diff 7 !git diff %(commit)^ %(commit)
+bind diff <Enter> !git diff %(commit)^ %(commit)
+
 # 设置 tab-size 为 4，默认为 8
 set tab-size = 4
 # 开启鼠标支持
