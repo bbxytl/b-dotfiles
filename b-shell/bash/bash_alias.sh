@@ -5,7 +5,7 @@
 #   Author        : bbxytl
 #   Email         : bbxytl@gmail.com
 #   File Name     : bash_alias.sh
-#   Last Modified : 2021-06-22 16:56
+#   Last Modified : 2021-08-19 15:24
 #   Describe      :
 #
 # ====================================================
@@ -237,6 +237,7 @@ alias gtag="git tag"
 alias gpl="git pull"
 # 创建分支
 alias gcob="git checkout -b"
+alias gcom="git checkout master"
 # 显示最近 n 次更改的文件
 gln(){
 	num=2
@@ -264,7 +265,7 @@ backup() { cp "$1"{,.bak};}
 md5check() { md5sum "$1" | grep "$2";}
 alias makescript="fc -rnl | head -1 >"
 alias genpasswd="strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 30 | tr -d '\n'; echo"
-alias c="clear"
+alias c="clear;pwd"
 alias histg="history | grep"
 alias ..='cd ..'
 alias ...='cd ../..'
