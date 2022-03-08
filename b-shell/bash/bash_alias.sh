@@ -5,7 +5,7 @@
 #   Author        : bbxytl
 #   Email         : bbxytl@gmail.com
 #   File Name     : bash_alias.sh
-#   Last Modified : 2021-08-19 15:24
+#   Last Modified : 2022-02-08 17:21
 #   Describe      :
 #
 # ====================================================
@@ -28,7 +28,8 @@ if [ $SYS_VERSION = 'Darwin' ];then
 # mac 特殊的配置
     alias xclip='pbcopy'
     # 将 / 转换为 . 方便搜索
-    alias sea="pbpaste | sed 's/\//./g' | pbcopy"
+    alias sea="pbpaste | sed 's/\//\\\\\//g' | tr -d '\n' | pbcopy"
+    alias sear="pbpaste | sed 's/\\\\//g' | tr -d '\n' | pbcopy"
     # 多行显示到一行里
     alias oneline="pbpaste| sed 's/\\\\/ /g' | awk BEGIN{RS=EOF}'{gsub(/\\n/,\"\");gsub(/      -H/,\"-H\");print}' | pbcopy"
     # 显示字符串的错误报错信息, 防止很多 \t,\n 出现在字符串里
@@ -577,6 +578,17 @@ if [ $SYS_VERSION = 'Darwin' ];then
     alias dock-autohide-time015="defaults write com.apple.dock autohide-time-modifier -float 0.15;defaults write com.apple.dock autohide-delay -float 0.15;killall Dock"
     # 恢复为默认的滑动效果
     alias dock-autohide-time-reset="defaults delete com.apple.dock autohide-time-modifier;defaults delete com.apple.dock autohide-delay;killall Dock"
+
+    # 将多行转成单行，并以逗号分隔
+    sortuq(){
+        pbpaste| sort -n | uniq | pbcopy
+    }
+    ctor(){
+        pbpaste| sort -n | uniq | tr '\n' ',' | sed 's/,$//g' | tr -d '\n' | pbcopy
+    }
+    rtoc(){
+        pbpaste| tr ',' '\n' | sort -n | uniq | pbcopy
+    }
 fi
 
 #####################################

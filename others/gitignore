@@ -58,6 +58,8 @@ cscope.out
 core.*
 *.syntax
 .vim
+.vim*
+.vim-bookmarks
 
 # go
 vendor
