@@ -5,7 +5,7 @@
 #   Author        : bbxytl
 #   Email         : bbxytl@gmail.com
 #   File Name     : bash_alias.sh
-#   Last Modified : 2022-02-08 17:21
+#   Last Modified : 2022-05-10 19:28
 #   Describe      :
 #
 # ====================================================
@@ -237,8 +237,11 @@ alias gtag="git tag"
 # 快速拉取
 alias gpl="git pull"
 # 创建分支
-alias gcob="git checkout -b"
+# alias gcob="git checkout -b"
 alias gcom="git checkout master"
+gcob(){
+    git checkout $@ || git checkout -b $@ || git checkout  $@
+}
 # 显示最近 n 次更改的文件
 gln(){
 	num=2
@@ -605,3 +608,9 @@ alias termdownticker="termdown --no-figlet -t 0"
 if [[ -f  ~/.ag_ignore ]];then
     alias ag='ag --path-to-ignore ~/.ag_ignore'
 fi
+
+# svg 转 png
+# alias svgtopng="rsvg-convert -d 180 -p 180 -b white -z 2"
+svgtopng(){
+    rsvg-convert -d 180 -p 180 -b white -z 2 -f png -o $1.png $1
+}
