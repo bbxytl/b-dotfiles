@@ -5,18 +5,17 @@
 #   Author        : bbxytl
 #   Email         : bbxytl@gmail.com
 #   File Name     : bashrc
-#   Last Modified : 2022-06-06 16:06
+#   Last Modified : 2022-06-06 16:11
 #   Describe      :
 #
 # ====================================================
 # .bashrc
 
-if [ "$CUR_SOURCE_SHELL_RC" != '' ];then
-    echo "CUR_SOURCE_SHELL_RC:$CUR_SOURCE_SHELL_RC"
+if [ $CUR_SOURCE_SHELL_RC ];then
     return
 fi
 # 记录执行了当前文件
-export CUR_SOURCE_SHELL_RC="bashrc"
+# export CUR_SOURCE_SHELL_RC="bashrc"
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
