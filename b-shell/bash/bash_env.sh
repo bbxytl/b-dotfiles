@@ -5,7 +5,7 @@
 #   Author        : bbxytl
 #   Email         : bbxytl@gmail.com
 #   File Name     : bash_env.sh
-#   Last Modified : 2021-10-11 11:17
+#   Last Modified : 2022-06-14 16:25
 #   Describe      :
 #
 # ====================================================
@@ -14,6 +14,7 @@ HOMELOCAL_PATH=$HOME/.local
 GO_BIN_PATH="$HOME/go/bin"
 PATH=$HOMELOCAL_PATH/bin:$PYTHON_BREW:$GO_BIN_PATH:$PATH
 PATH="/usr/local/opt/coreutils/libexec/gnubin:/Users/long/Library/Python/3.9/bin:$PATH"
+PATH="$PATH:$(pyenv root)/shims"
 export PATH
 export HOME_CACHE="$HOME/.cache"
 
