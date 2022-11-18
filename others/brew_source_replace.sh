@@ -5,10 +5,11 @@
 #   Author        : bbxytl
 #   Email         : bbxytl@gmail.com
 #   File Name     : brew_source_replace.sh
-#   Last Modified : 2022-06-06 12:24
+#   Last Modified : 2022-10-08 17:05
 #   Describe      :
 #       https://cloud.tencent.com/developer/article/1614039
 #       https://www.zhihu.com/question/31360766
+#       https://blog.csdn.net/u011035397/article/details/115862286
 # 对于 homebrew，需要替换的是4个模块的镜像：
 # Homebrew
 # Homebrew Core
@@ -47,7 +48,7 @@ echo "6. 替换 Homebrew Bottles"
 # echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles' >> ~/.bash_profile
 # source ~/.bash_profile
 # 对于 zsh 用户：
-echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles' >> ~/.bashrc.local
+echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles/bottles' >> ~/.bashrc.local
 source ~/.bashrc.local
 
 
@@ -57,5 +58,15 @@ cd "$(brew --repo)" && git remote -v
 echo "8. 查看 homebrew-core.git 当前源"
 cd "$(brew --repo homebrew/core)" && git remote -v
 
+brew update
 echo "======================Done=========================="
 echo ""
+
+##########################
+### https://blog.csdn.net/u011035397/article/details/115862286
+### 恢复数据源
+# git -C "$(brew --repo)" remote set-url origin https://github.com/Homebrew/brew.git
+# git -C "$(brew --repo homebrew/core)" remote set-url origin https://github.com/Homebrew/homebrew-core.git
+# git -C "$(brew --repo homebrew/cask)" remote set-url origin https://github.com/Homebrew/homebrew-cask.git
+# brew update
+##########################

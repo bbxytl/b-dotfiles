@@ -5,7 +5,7 @@
 #   Author        : bbxytl
 #   Email         : bbxytl@gmail.com
 #   File Name     : bash_env.sh
-#   Last Modified : 2022-06-14 16:25
+#   Last Modified : 2022-10-10 16:57
 #   Describe      :
 #
 # ====================================================
