@@ -1,0 +1,22 @@
+[flake8]
+max-line-length = 320
+ignore =
+    # Blank line at end of file (W391)
+    # W391,
+    # [flake8] multiple spaces after ','
+    # E241,
+    # Too many blank lines (3) (E303),
+    # E303,
+    # Blank line contains whitespace (W293)
+    # W293,
+    # Too many leading '#' for block comment (E266)
+    E266,
+    # Whitespace after '(' (E201)
+    #E201,
+    # Block comment should start with '# ' (E265)
+    # E265,
+    # Expected 1 blank line, found 0 (E301)
+    # E301
+    # Local variable name is assigned to but never used (F841)
+    # F841
+    #

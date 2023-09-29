@@ -5,7 +5,7 @@
 #   Author        : bbxytl
 #   Email         : bbxytl@gmail.com
 #   File Name     : bash_alias.sh
-#   Last Modified : 2022-05-10 19:28
+#   Last Modified : 2023-09-11 12:06
 #   Describe      :
 #
 # ====================================================
@@ -238,7 +238,7 @@ alias gtag="git tag"
 alias gpl="git pull"
 # 创建分支
 # alias gcob="git checkout -b"
-alias gcom="git checkout master"
+alias gcom="git checkout master || git checkout main"
 gcob(){
     git checkout $@ || git checkout -b $@ || git checkout  $@
 }
@@ -614,3 +614,171 @@ fi
 svgtopng(){
     rsvg-convert -d 180 -p 180 -b white -z 2 -f png -o $1.png $1
 }
+
+#############################################################
+# 当前目录下搜索文件
+
+
+# 使用 vim 打开文件，带行号，支持mac剪切板
+# vimf test.txt:3
+# 打开文件，并定位到第 3 行
+vimf(){
+    args="$@"
+    if [ $SYS_VERSION = 'Darwin' ];then
+        if [ "$args" = '' ];then
+            args=`pbpaste`
+        fi
+    fi
+    file=`echo "$args" | cut -d ':' -f 1`
+    if [ -f $file ];then
+        # echo "$args" | cut -d ':' -f 2
+        line=`echo "$args" | cut -d ':' -f 2`
+        if [ $file = $line ];then
+            line=""
+        else
+            line="+$line"
+        fi
+        echo "vim $file $line"
+        vim $file $line
+    else
+        echo "Not File: $args"
+    fi
+}
+
+
+# 定义一个名为 fdgrep 的函数，可以在文件夹中递归查找文件，并根据多个参数进行过滤
+# 参数：
+# $1：要查找的文件夹
+# $2-$n：过滤条件
+# 如果只有一个参数，则默认查找当前目录
+fdgrep(){
+    p=$1
+    first="$2"
+    if [ $# -le 1 ];then
+        p="."
+        first="$1"
+    fi
+
+    # 构建命令
+    cmd="find \"$p\""
+    for param in "$@"
+    do
+        cmd="$cmd | grep \"$param\""
+    done
+
+    # 输出命令
+    echo $cmd
+
+    # 执行命令并保存结果到变量 lines 中
+    lines=`eval $cmd`
+
+    # 如果是 Mac 系统，则将结果复制到剪贴板中
+    if [ $SYS_VERSION = 'Darwin' ];then
+        echo $lines | grep "$first" | pbcopy
+    fi
+
+    # 输出结果
+    echo $lines | grep "$first"
+}
+
+
+# 当前目录下搜索文件，如果搜索到只有一个文件，则使用 vim 打开
+# fdvim test.txt:3
+# 搜索文件 test.txt, 如果搜索到只有一个文件，则打开文件，并定位到第 3 行
+
+# fdvim 函数用于在目录中查找并打开文件
+fdvim(){
+    # 获取第一个和第二个参数
+    p=$1
+    f=$2
+
+    # 如果只传了一个参数，则将其视为文件名，将当前目录视为查找路径
+    if [ $# -le 1 ];then
+        p="."
+        f=$1
+    fi
+
+    # 输出查找路径和文件名
+    echo $p $f
+    if ! [ -d "$p" ];then
+        echo "目录不存在：$p"
+        return
+    fi
+
+    # 使用 cut 命令获取文件名
+    filefind=`echo "$f" | cut -d ':' -f 1`
+
+    # 使用 find 和 grep 命令查找文件
+    find "$p" | grep "$filefind"
+
+    # 使用 find 和 grep 命令查找文件，并获取文件数量和路径
+    wc=`find $p | grep $filefind | wc -l`
+    file=`find $p | grep $filefind`
+
+    # 如果只找到一个文件，则打开该文件
+    if [ $wc = "1" ];then
+        # 将文件路径复制到剪贴板
+        echo $file | pbcopy
+
+        # 如果找到的是文件，则打开该文件
+        if [ -f $file ];then
+            # 使用 cut 命令获取行号
+            line=`echo "$f" | cut -d ':' -f 2`
+            if [ $filefind = $line ];then
+                line=""
+            else
+                line="+$line"
+            fi
+
+            # 输出 vim 命令并打开文件
+            echo "vim $file $line"
+            vim $file $line
+        else
+            # 如果找到的不是文件，则输出错误信息
+            echo "Not File: $@"
+        fi
+    fi
+}
+
+
+# 查找目录中的文件，如果搜索的第一个参数带 :, 则忽略其他参数; 否则将后续的参数都作为过滤条件使用
+fd(){
+    if [ $# -lt 1 ];then
+        echo "Need params"
+        return
+    fi
+
+    if [ $# -eq 1 ];then
+        if [[ "$1" =~ ":" ]];then
+            fdvim $@
+        else
+            fdgrep $@
+        fi
+    else
+        if [[ "$2" =~ ":" ]];then
+            fdvim $@
+        else
+            fdgrep $@
+        fi
+    fi
+}
+
+
+# 解码 http url
+httpurldecode(){
+    url="$@"
+    url=$(echo -n $url | sed 's/\\/\\\\/g;s/\(%\)\([0-9a-fA-F][0-9a-fA-F]\)/\\x\2/g')
+    echo $url
+    if [ $SYS_VERSION = 'Darwin' ];then
+        echo $url | pbcopy
+    fi
+}
+
+# 编码 http url
+httpurlencode(){
+    echo "$@" |tr -d '\n' |od -An -tx1|tr ' ' %
+}
+
+#############################################################
+
+

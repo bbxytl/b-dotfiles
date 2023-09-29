@@ -5,7 +5,7 @@
 #   Author        : bbxytl
 #   Email         : bbxytl@gmail.com
 #   File Name     : bash_env.sh
-#   Last Modified : 2022-10-10 16:57
+#   Last Modified : 2023-06-16 11:41
 #   Describe      :
 #
 # ====================================================
@@ -18,7 +18,9 @@ PATH="$PATH:$(pyenv root)/shims"
 export PATH
 export HOME_CACHE="$HOME/.cache"
 
-export GOPROXY="https://goproxy.cn,direct"
+export GO111MODULE="on"
+# export GOPROXY="https://goproxy.cn,direct"
+export GOPROXY="https://goproxy.cn"
 
 export PAGER="less"
 
