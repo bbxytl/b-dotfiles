@@ -5,7 +5,7 @@
 #   Author        : bbxytl
 #   Email         : bbxytl@gmail.com
 #   File Name     : bash_env.sh
-#   Last Modified : 2023-06-16 11:41
+#   Last Modified : 2024-01-10 10:55
 #   Describe      :
 #
 # ====================================================
@@ -73,6 +73,7 @@ if [ "`uname -s`" = 'Darwin' ];then
     export DYLD_FORCE_FLAT_NAMESPACE=1
     # mac brew 关闭自动更新
     export HOMEBREW_NO_AUTO_UPDATE=true
+    export HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=true
 fi
 
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -500'"

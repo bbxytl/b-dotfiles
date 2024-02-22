@@ -1,6 +1,6 @@
 [user]
-	name = ttianlong
-	email = bbxytl@126.com
+	name = bbxytl
+    email = bbxytl@gmail.com
 
 [core]
   autocrlf = false

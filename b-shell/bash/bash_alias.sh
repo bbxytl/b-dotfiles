@@ -5,7 +5,7 @@
 #   Author        : bbxytl
 #   Email         : bbxytl@gmail.com
 #   File Name     : bash_alias.sh
-#   Last Modified : 2023-09-11 12:06
+#   Last Modified : 2023-10-30 14:58
 #   Describe      :
 #
 # ====================================================
@@ -223,7 +223,7 @@ rmbk() {
 
 # 精简版log
 alias gll="git lg | less"
-alias glh="git lg | head"
+alias glh=" git lg | head | grep '-' | sed 's/|//g' | sed 's/\\\//g' | sed 's/^.*\\*/*/g' | sed 's/^*[ ]*/* /g' | head"
 # 精简版 分支
 alias gbr="git br"
 alias gbra="git br -a"
