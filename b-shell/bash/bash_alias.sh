@@ -5,7 +5,7 @@
 #   Author        : bbxytl
 #   Email         : bbxytl@gmail.com
 #   File Name     : bash_alias.sh
-#   Last Modified : 2023-10-30 14:58
+#   Last Modified : 2024-06-06 12:01
 #   Describe      :
 #
 # ====================================================
@@ -591,6 +591,16 @@ if [ $SYS_VERSION = 'Darwin' ];then
     }
     rtoc(){
         pbpaste| tr ',' '\n' | sort -n | uniq | pbcopy
+    }
+    sortsep(){
+        if [[ $# != 2 ]];then
+            echo "示例:使用 逗号 分割, 对第 4 列按数字排序"
+            echo "     pbpaste| sort -t [,] -k [4]n -n -r | pbcopy"
+            return
+        fi
+       pbpaste| sort -t $1 -k $2n -n -r | pbcopy
+       echo "tail data: -----------------------"
+       pbpaste| tail
     }
 fi
 

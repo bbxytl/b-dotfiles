@@ -1,12 +1,12 @@
 [flake8]
-max-line-length = 320
+max-line-length = 1000
 ignore =
     # Blank line at end of file (W391)
-    # W391,
+    W391,
     # [flake8] multiple spaces after ','
     # E241,
     # Too many blank lines (3) (E303),
-    # E303,
+    E303,
     # Blank line contains whitespace (W293)
     # W293,
     # Too many leading '#' for block comment (E266)

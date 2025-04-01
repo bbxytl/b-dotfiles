@@ -1,1 +1,4 @@
 *test.go
+only-read/
+api.json
+*.json
