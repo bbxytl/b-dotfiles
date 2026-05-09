@@ -13,7 +13,7 @@
 HOMELOCAL_PATH=$HOME/.local
 GO_BIN_PATH="$HOME/go/bin"
 PATH=$HOMELOCAL_PATH/bin:$PYTHON_BREW:$GO_BIN_PATH:$PATH
-PATH="/usr/local/opt/coreutils/libexec/gnubin:/Users/long/Library/Python/3.9/bin:$PATH"
+PATH="/usr/local/opt/coreutils/libexec/gnubin:$HOME/Library/Python/3.9/bin:$PATH"
 PATH="$PATH:$(pyenv root)/shims"
 export PATH
 export HOME_CACHE="$HOME/.cache"
