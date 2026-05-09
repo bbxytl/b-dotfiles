@@ -5,7 +5,7 @@
 #   Author        : bbxytl
 #   Email         : bbxytl@gmail.com
 #   File Name     : bash_alias.sh
-#   Last Modified : 2024-06-06 12:01
+#   Last Modified : 2026-03-18 11:25
 #   Describe      :
 #
 # ====================================================
@@ -791,4 +791,143 @@ httpurlencode(){
 
 #############################################################
 
+# ==============================================================================
+#  Git Sync 功能函数 (gitsync)
+#  从远程仓库拉取更新，并以交互方式处理合并冲突。
+# ==============================================================================
+gitsync() {
+    # --- 变量定义 ---
+    # 使用 local 关键字防止变量污染全局环境
+    local REMOTE_NAME="${1:-origin}"
+    local DEFAULT_BRANCH_NAME="main"
+    local BRANCH_NAME="${2:-$DEFAULT_BRANCH_NAME}"
+    local STASHED=false
+    local EFFECTIVE_BRANCH_NAME
+    local MERGE_EXIT_CODE
+    local choice
+    local STRATEGY
+    local STASH_POP_EXIT_CODE
+
+    # --- 内嵌的清理函数 ---
+    # 在函数退出前，检查并恢复之前储藏的本地更改
+    _gitsync_cleanup() {
+        if [ "$STASHED" = true ]; then
+            echo "📦 正在恢复之前储藏的更改..."
+            # 临时禁用 exit-on-error，以防 stash pop 失败
+            set +e
+            git stash pop
+            local POP_CODE=$?
+            set -e
+            if [ $POP_CODE -ne 0 ]; then
+                echo "⚠️ 警告: 恢复储藏时发生冲突。请手动运行 'git stash pop' 并解决冲突。"
+            else
+                echo "✅ 本地更改已成功恢复。"
+            fi
+        fi
+    }
+
+    # --- 主逻辑 ---
+    echo "🚀 开始执行 gitsync..."
+    echo "---------------------------------"
+    echo "远程仓库: $REMOTE_NAME"
+    echo "期望分支: $BRANCH_NAME"
+    echo "---------------------------------"
+
+    # 1. 前置检查: 是否在 Git 仓库中
+    if ! git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+        echo "❌ 错误: 当前目录不是一个有效的 Git 仓库。"
+        return 1
+    fi
+
+    # 2. 处理本地未提交的更改
+    if ! git diff-index --quiet HEAD --; then
+        echo "🔎 检测到未提交的本地更改，使用 'git stash' 临时保存..."
+        git stash save "Auto-stashed by gitsync before merge"
+        STASHED=true
+    fi
+
+    # 3. 获取远程数据
+    echo "🚚 步骤 1: 正在从远程仓库 '$REMOTE_NAME' 获取最新数据..."
+    if ! git fetch "$REMOTE_NAME"; then
+        echo "❌ 错误: 从远程仓库 '$REMOTE_NAME' 获取数据失败。"
+        _gitsync_cleanup
+        return 1
+    fi
+    echo "✅ 获取数据成功。"
+
+    # 4. 检查并确定远程分支 (main vs master)
+    EFFECTIVE_BRANCH_NAME="$BRANCH_NAME"
+    if ! git ls-remote --exit-code --heads "$REMOTE_NAME" "$EFFECTIVE_BRANCH_NAME" > /dev/null 2>&1; then
+        echo "ℹ️ 未在远程仓库 '$REMOTE_NAME' 上找到分支 '$EFFECTIVE_BRANCH_NAME'。"
+        if [ "$EFFECTIVE_BRANCH_NAME" = "$DEFAULT_BRANCH_NAME" ]; then
+            echo "🤔 正在尝试查找 'master' 分支..."
+            if git ls-remote --exit-code --heads "$REMOTE_NAME" "master" > /dev/null 2>&1; then
+                EFFECTIVE_BRANCH_NAME="master"
+                echo "✅ 找到 'master' 分支，将使用该分支进行合并。"
+            else
+                echo "❌ 错误: 远程仓库既无 'main' 分支，也无 'master' 分支。"
+                _gitsync_cleanup
+                return 1
+            fi
+        else
+            echo "❌ 错误: 未在远程仓库找到指定的分支 '$EFFECTIVE_BRANCH_NAME'。"
+            _gitsync_cleanup
+            return 1
+        fi
+    fi
+    echo "---------------------------------"
+    echo "最终合并分支: $EFFECTIVE_BRANCH_NAME"
+    echo "---------------------------------"
+
+    # 5. 尝试合并，并处理冲突
+    echo "🔄 步骤 2: 正在尝试将 '$REMOTE_NAME/$EFFECTIVE_BRANCH_NAME' 合并..."
+    set +e # 临时关闭“出错立即退出”
+    git merge "$REMOTE_NAME/$EFFECTIVE_BRANCH_NAME" -m "Merge branch '$EFFECTIVE_BRANCH_NAME' from '$REMOTE_NAME'"
+    MERGE_EXIT_CODE=$?
+    set -e # 恢复“出错立即退出”
+
+    if [ $MERGE_EXIT_CODE -eq 0 ]; then
+        echo "✅ 合并成功，无代码冲突。"
+    else
+        echo "⚠️ 检测到合并冲突！"
+        git merge --abort
+        
+        echo "请选择冲突解决策略:"
+        echo "  [t]heirs - 优先使用远程仓库的更改"
+        echo "  [o]urs   - 优先保留您本地的更改"
+        echo "  [a]bort  - 取消合并操作"
+        read -p "请输入您的选择 (t/o/a): " choice
+
+        case "$choice" in
+            t|T|theirs) STRATEGY="theirs";;
+            o|O|ours)   STRATEGY="ours";;
+            a|A|abort)
+                echo "操作已取消。"
+                _gitsync_cleanup
+                return 0
+                ;;
+            *)
+                echo "❌ 无效的选择。脚本已中止。"
+                _gitsync_cleanup
+                return 1
+                ;;
+        esac
+
+        echo "🔄 正在使用 '$STRATEGY' 策略重新尝试合并..."
+        if ! git merge --strategy-option "$STRATEGY" "$REMOTE_NAME/$EFFECTIVE_BRANCH_NAME" -m "Merge branch '$EFFECTIVE_BRANCH_NAME' from '$REMOTE_NAME' with strategy '$STRATEGY'"; then
+            echo "❌ 错误: 即使使用了 '$STRATEGY' 策略，合并仍然失败。请手动解决。"
+            git merge --abort
+            _gitsync_cleanup
+            return 1
+        fi
+        echo "✅ 使用 '$STRATEGY' 策略成功解决冲突并完成合并。"
+    fi
+
+    # 6. 恢复储藏并结束
+    _gitsync_cleanup
+    
+    echo "---------------------------------"
+    echo "🎉 gitsync 成功完成！"
+    return 0
+}
 
