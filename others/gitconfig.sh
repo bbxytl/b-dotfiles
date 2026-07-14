@@ -6,6 +6,7 @@
   autocrlf = false
   whitespace = fix,space-before-tab,tab-in-indent,trailing-space
   excludesfile = ~/.gitignore
+  hooksPath = ~/.config/githooks
 
 [alias]
   st = status
