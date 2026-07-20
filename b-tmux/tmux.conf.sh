@@ -32,7 +32,7 @@
      powerline*)
 
        # panes
-       pane_border_fg=colour238        # light gray
+       pane_border_fg=colour246        # medium gray (visible on dark bg)
        pane_active_border_fg=colour39  # light blue
 
        tmux set -g pane-border-style fg=$pane_border_fg \; set -g pane-active-border-style fg=$pane_active_border_fg
