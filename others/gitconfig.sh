@@ -3,49 +3,49 @@
     email = bbxytl@gmail.com
 
 [core]
-  autocrlf = false
-  whitespace = fix,space-before-tab,tab-in-indent,trailing-space
-  excludesfile = ~/.gitignore
-  hooksPath = ~/.config/githooks
+    autocrlf = false
+    whitespace = fix,space-before-tab,tab-in-indent,trailing-space
+    excludesfile = ~/.gitignore
+    hooksPath = ~/.config/githooks
 
 [alias]
-  st = status
-  ci = commit
-  br = branch -vv
-  co = checkout
-  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-  cp = cherry-pick
+    st = status
+    ci = commit
+    br = branch -vv
+    co = checkout
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    cp = cherry-pick
 
 [color]
-  ui = true
+    ui = true
 
 [push]
-  default = current
+    default = current
 
 [git-up "bundler"]
-  check = false
-  autoinstall = true
+    check = false
+    autoinstall = true
 
 [git-up "fetch"]
-  all = true
+    all = true
 
 [git-up "rebase"]
-  arguments = --preserve-merges
-  st = status -sb
-  ci = commit
-  br = branch -vv
-  co = checkout
-  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-  cp = cherry-pick
+    arguments = --preserve-merges
+    st = status -sb
+    ci = commit
+    br = branch -vv
+    co = checkout
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    cp = cherry-pick
 
 [rerere]
-  enabled = true
+    enabled = true
 
 [url "git@github.com:"]
-  pushInsteadOf = "git://github.com/"
-  pushInsteadOf = "https://github.com/"
+    pushInsteadOf = "git://github.com/"
+    pushInsteadOf = "https://github.com/"
 [http]
-	postBuffer = 524288000
+    postBuffer = 524288000
 
 [diff]
     tool = vimdiff

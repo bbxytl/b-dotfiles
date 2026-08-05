@@ -10,10 +10,15 @@
 #
 # ====================================================
 
+# ARM Homebrew — 必须在 /usr/local (Intel brew) 之前生效
+if [ -x /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
 HOMELOCAL_PATH=$HOME/.local
 GO_BIN_PATH="$HOME/go/bin"
 PATH=$HOMELOCAL_PATH/bin:$PYTHON_BREW:$GO_BIN_PATH:$PATH
-PATH="/usr/local/opt/coreutils/libexec/gnubin:$HOME/Library/Python/3.9/bin:$PATH"
+PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$HOME/Library/Python/3.9/bin:$PATH"
 PATH="$PATH:$(pyenv root)/shims"
 export PATH
 export HOME_CACHE="$HOME/.cache"
@@ -50,8 +55,11 @@ fi
   if [ -e $HOMELOCAL_PATH/bin/virtualenvwrapper.sh ];then
 	  # echo "$HOMELOCAL_PATH"
 	  source $HOMELOCAL_PATH/bin/virtualenvwrapper.sh
-  else if [ -e /usr/local/bin/virtualenvwrapper.sh ];then
+  else if [ -e /opt/homebrew/bin/virtualenvwrapper.sh ];then
+			source /opt/homebrew/bin/virtualenvwrapper.sh
+	   else if [ -e /usr/local/bin/virtualenvwrapper.sh ];then
 			source /usr/local/bin/virtualenvwrapper.sh
+	   fi
 	   fi
   fi
   export PIP_VIRTUALENV_BASE=$WORKON_HOME
