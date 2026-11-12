@@ -43,7 +43,8 @@
 
 [url "git@github.com:"]
     pushInsteadOf = "git://github.com/"
-    pushInsteadOf = "https://github.com/"
+    # 2026-11-12 去掉 https://github.com/ → SSH 的 push 改写：HTTPS push 走 gh 凭据（见下方 credential），
+    # 且本机 SSH 22 端口连接 github 会被 reset
 [http]
     postBuffer = 524288000
 
