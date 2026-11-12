@@ -69,3 +69,11 @@
 	insteadOf = https://bitbucket.org/
 [pull]
 	rebase = false
+[init]
+	defaultBranch = main
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
